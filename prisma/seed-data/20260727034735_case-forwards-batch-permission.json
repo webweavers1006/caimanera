@@ -1,0 +1,6 @@
+[
+  {
+    "slug": "case_forwards:batch",
+    "description": "Permite remitir múltiples casos en lote a la misma dirección"
+  }
+]

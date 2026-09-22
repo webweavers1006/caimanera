@@ -1,0 +1,10 @@
+[
+  { "id": 1, "name": "OFICINA DE ATENCIÓN AL CIUDADANO", "email": "oac@saime.gob.ve", "isAudit": false },
+  { "id": 3, "name": "OFICINA DE TECNOLOGÍA DE LA INFORMACIÓN Y LA COMUNICACIÓN", "email": "otic@saime.gob.ve", "isAudit": false },
+  { "id": 4, "name": "DIRECCIÓN DE IDENTIFICACIÓN", "email": "di@saime.gob.ve", "isAudit": false },
+  { "id": 5, "name": "DIRECCIÓN DE MIGRACIÓN", "email": "dm@saime.gob.ve", "isAudit": false },
+  { "id": 6, "name": "DIRECCIÓN DE EXTRANJERÍA", "email": "de@saime.gob.ve", "isAudit": false },
+  { "id": 7, "name": "DIRECCIÓN DE VERIFICACIÓN REGISTRO", "email": "dvr@saime.gob.ve", "isAudit": false },
+  { "id": 8, "name": "DIRECCIÓN DE EMISIÓN DE DOCUMENTOS", "email": "ded@saime.gob.ve", "isAudit": false },
+  { "id": 9, "name": "DIRECCIÓN DE REGIONES", "email": "dr@saime.gob.ve", "isAudit": false }
+]

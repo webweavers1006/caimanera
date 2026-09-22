@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "action": "Inicio de sesión",
+    "date": "2026-06-18",
+    "time": "08:00"
+  },
+  {
+    "id": 2,
+    "action": "Creación de caso SOL-2026-0001",
+    "date": "2026-06-18",
+    "time": "10:30"
+  },
+  {
+    "id": 3,
+    "action": "Creación de caso SOL-2026-0002",
+    "date": "2026-06-18",
+    "time": "14:00"
+  },
+  {
+    "id": 4,
+    "action": "Creación de caso SOL-2026-0003",
+    "date": "2026-06-18",
+    "time": "09:15"
+  },
+  {
+    "id": 5,
+    "action": "Creación de caso SOL-2026-0004",
+    "date": "2026-06-19",
+    "time": "11:00"
+  },
+  {
+    "id": 6,
+    "action": "Creación de caso SOL-2026-0005",
+    "date": "2026-06-20",
+    "time": "15:30"
+  },
+  {
+    "id": 7,
+    "action": "Creación de caso SOL-2026-0006",
+    "date": "2026-06-21",
+    "time": "08:45"
+  }
+]

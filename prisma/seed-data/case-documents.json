@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "caseId": 1,
+    "filePath": "/documentos/caso-1/solicitud.pdf",
+    "description": "Formulario de solicitud"
+  },
+  {
+    "id": 2,
+    "caseId": 2,
+    "filePath": "/documentos/caso-2/denuncia.pdf",
+    "description": "Copia de cédula"
+  }
+]

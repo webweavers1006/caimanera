@@ -1,0 +1,194 @@
+{
+  "courts": [
+    {
+      "name": "Cancha La Caimanera",
+      "description": "Cancha sintética techada 5v5",
+      "sport": "Fútbol 5",
+      "address": "Av. Principal, La Caimanera",
+      "latitude": 10.4806,
+      "longitude": -66.9036,
+      "hourlyRate": 25,
+      "photos": [
+        "https://picsum.photos/seed/cancha-caimanera-1/900/600",
+        "https://picsum.photos/seed/cancha-caimanera-2/900/600",
+        "https://picsum.photos/seed/cancha-caimanera-3/900/600"
+      ],
+      "managerIdCard": "V-20000001"
+    },
+    {
+      "name": "Cancha Los Mangos",
+      "description": "Cancha de grama 7v7 con iluminación",
+      "sport": "Fútbol 7",
+      "address": "Calle Los Mangos, El Hatillo",
+      "latitude": 10.4876,
+      "longitude": -66.8712,
+      "hourlyRate": 35,
+      "photos": [
+        "https://picsum.photos/seed/cancha-mangos-1/900/600",
+        "https://picsum.photos/seed/cancha-mangos-2/900/600"
+      ],
+      "managerIdCard": "V-20000002"
+    },
+    {
+      "name": "Cancha El Parque",
+      "description": "Pista de pádel panorámica",
+      "sport": "Pádel",
+      "address": "Parque del Este, Caracas",
+      "latitude": 10.4922,
+      "longitude": -66.8596,
+      "hourlyRate": 20,
+      "photos": [
+        "https://picsum.photos/seed/cancha-parque-1/900/600",
+        "https://picsum.photos/seed/cancha-parque-2/900/600"
+      ],
+      "managerIdCard": "V-20000001"
+    }
+  ],
+  "matches": [
+    {
+      "title": "Fútbol 5 — Amigos vs Caimanera",
+      "sport": "Fútbol 5",
+      "courtName": "Cancha La Caimanera",
+      "hostIdCard": "V-10000001",
+      "daysFromNow": 2,
+      "durationMins": 60,
+      "capacity": 10,
+      "pricePerSlot": 5,
+      "allowSubscription": true,
+      "status": "OPEN"
+    },
+    {
+      "title": "Fútbol 7 — Noche de Jueves",
+      "sport": "Fútbol 7",
+      "courtName": "Cancha Los Mangos",
+      "hostIdCard": "V-10000003",
+      "daysFromNow": 3,
+      "durationMins": 90,
+      "capacity": 14,
+      "pricePerSlot": 7,
+      "allowSubscription": true,
+      "status": "OPEN"
+    },
+    {
+      "title": "Pádel — Torneo Relámpago",
+      "sport": "Pádel",
+      "courtName": "Cancha El Parque",
+      "hostIdCard": "V-10000002",
+      "daysFromNow": 5,
+      "durationMins": 60,
+      "capacity": 4,
+      "pricePerSlot": 10,
+      "allowSubscription": false,
+      "status": "OPEN"
+    },
+    {
+      "title": "Fútbol 5 — Revancha del Sábado",
+      "sport": "Fútbol 5",
+      "courtName": "Cancha La Caimanera",
+      "hostIdCard": "V-10000001",
+      "daysFromNow": 6,
+      "durationMins": 60,
+      "capacity": 10,
+      "pricePerSlot": 5,
+      "allowSubscription": true,
+      "status": "FULL"
+    }
+  ],
+  "participants": [
+    {
+      "userIdCard": "V-10000001",
+      "matchTitle": "Fútbol 5 — Amigos vs Caimanera",
+      "status": "CONFIRMED",
+      "position": "Delantero",
+      "paymentType": "SUBSCRIPTION_CREDIT"
+    },
+    {
+      "userIdCard": "V-10000002",
+      "matchTitle": "Fútbol 5 — Amigos vs Caimanera",
+      "status": "CONFIRMED",
+      "position": "Portero",
+      "paymentType": "PAY_PER_MATCH"
+    },
+    {
+      "userIdCard": "V-10000003",
+      "matchTitle": "Fútbol 5 — Amigos vs Caimanera",
+      "status": "WAITLIST",
+      "position": "Defensa",
+      "paymentType": "PAY_PER_MATCH"
+    },
+    {
+      "userIdCard": "V-10000003",
+      "matchTitle": "Fútbol 7 — Noche de Jueves",
+      "status": "CONFIRMED",
+      "position": "Delantero",
+      "paymentType": "SUBSCRIPTION_CREDIT"
+    },
+    {
+      "userIdCard": "V-10000001",
+      "matchTitle": "Fútbol 7 — Noche de Jueves",
+      "status": "CONFIRMED",
+      "position": "Mediocampista",
+      "paymentType": "PAY_PER_MATCH"
+    },
+    {
+      "userIdCard": "V-10000002",
+      "matchTitle": "Pádel — Torneo Relámpago",
+      "status": "CONFIRMED",
+      "position": "Delantero",
+      "paymentType": "PAY_PER_MATCH"
+    },
+    {
+      "userIdCard": "V-10000001",
+      "matchTitle": "Fútbol 5 — Revancha del Sábado",
+      "status": "CONFIRMED",
+      "position": "Delantero",
+      "paymentType": "SUBSCRIPTION_CREDIT"
+    },
+    {
+      "userIdCard": "V-10000002",
+      "matchTitle": "Fútbol 5 — Revancha del Sábado",
+      "status": "CONFIRMED",
+      "position": "Portero",
+      "paymentType": "PAY_PER_MATCH"
+    },
+    {
+      "userIdCard": "V-10000003",
+      "matchTitle": "Fútbol 5 — Revancha del Sábado",
+      "status": "CONFIRMED",
+      "position": "Defensa",
+      "paymentType": "PAY_PER_MATCH"
+    }
+  ],
+  "transactions": [
+    {
+      "userIdCard": "V-10000002",
+      "matchTitle": "Fútbol 5 — Amigos vs Caimanera",
+      "amount": 5,
+      "type": "PAY_PER_MATCH",
+      "status": "COMPLETED"
+    },
+    {
+      "userIdCard": "V-10000003",
+      "matchTitle": "Fútbol 7 — Noche de Jueves",
+      "amount": 7,
+      "type": "PAY_PER_MATCH",
+      "status": "COMPLETED"
+    }
+  ],
+  "subscriptions": [
+    {
+      "userIdCard": "V-10000001",
+      "planName": "Pase PRO Mensual",
+      "remainingMatches": 6,
+      "isActive": true,
+      "daysValid": 30
+    },
+    {
+      "userIdCard": "V-10000003",
+      "planName": "Pase Básico",
+      "remainingMatches": 2,
+      "isActive": true,
+      "daysValid": 15
+    }
+  ]
+}

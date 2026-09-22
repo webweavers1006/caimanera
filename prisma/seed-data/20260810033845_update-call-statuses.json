@@ -1,0 +1,7 @@
+[
+  { "id": 1, "name": "PENDIENTE", "closesCase": false, "caseStatusId": null },
+  { "id": 2, "name": "CONTACTADO", "closesCase": false, "caseStatusId": null },
+  { "id": 3, "name": "NO CONTESTA", "closesCase": false, "caseStatusId": null },
+  { "id": 4, "name": "OTRO (OBSOLETO)", "closesCase": false, "caseStatusId": null, "deletedAt": "NOW" },
+  { "id": 5, "name": "CERRADO", "closesCase": true, "caseStatusId": 2 }
+]

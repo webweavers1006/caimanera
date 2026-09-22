@@ -1,0 +1,17 @@
+[
+  {"name": "Turístico Diego Bautista Urbaneja", "pcode": "0321", "stateId": 2},
+  {"name": "Ocumare de la Costa de Oro", "pcode": "0518", "stateId": 4},
+  {"name": "Alberto Arvelo Torrealba", "pcode": "0601", "stateId": 5},
+  {"name": "Francisco Linares Alcántara", "pcode": "0517", "stateId": 4},
+  {"name": "Palma Sola", "pcode": "1116", "stateId": 10},
+  {"name": "San Gerónimo de Guayabal", "pcode": "1204", "stateId": 11},
+  {"name": "Antonio Pinto Salinas", "pcode": "1403", "stateId": 13},
+  {"name": "Caracciolo Parra Olmedo", "pcode": "1407", "stateId": 13},
+  {"name": "José Felipe Márquez Cañizales", "pcode": "2107", "stateId": 20},
+  {"name": "Juan Vicente Campo Elías", "pcode": "2108", "stateId": 20},
+  {"name": "Antonio Rómulo Costa", "pcode": "2002", "stateId": 19},
+  {"name": "Peña", "pcode": "2210", "stateId": 22},
+  {"name": "Almirante Padilla", "pcode": "2301", "stateId": 23},
+  {"name": "Francisco Javier Pulgar", "pcode": "2306", "stateId": 23},
+  {"name": "La Cañada de Urdaneta", "pcode": "2309", "stateId": 23}
+]

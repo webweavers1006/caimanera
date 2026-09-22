@@ -1,0 +1,6 @@
+[
+  { "name": "ADMIN", "description": "Administrador del Sistema con acceso total" },
+  { "name": "USER", "description": "Usuario estándar con acceso limitado" },
+  { "name": "OPERADOR", "description": "Operador — gestión de personas, casos, seguimientos y documentos" },
+  { "name": "DIRECCION", "description": "Usuario de dirección — recibe remisiones, gestiona casos y notificaciones de su dirección" }
+]

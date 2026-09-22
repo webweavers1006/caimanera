@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "caseId": 1,
+    "type": "REMISION",
+    "message": "Caso SOL-2026-0001 remitido a Dirección de Identificación.",
+    "isRead": false
+  },
+  {
+    "id": 2,
+    "caseId": 2,
+    "type": "SEGUIMIENTO",
+    "message": "Nuevo seguimiento registrado para caso SOL-2026-0002.",
+    "isRead": true
+  },
+  {
+    "id": 3,
+    "caseId": 3,
+    "type": "REMISION",
+    "message": "Sugerencia SOL-2026-0003 remitida a Dirección de Regiones para evaluación.",
+    "isRead": false
+  },
+  {
+    "id": 4,
+    "caseId": 4,
+    "type": "CREACION",
+    "message": "Reclamo SOL-2026-0004 registrado. Requiere revisión de estatus migratorio.",
+    "isRead": false
+  },
+  {
+    "id": 5,
+    "caseId": 5,
+    "type": "CREACION",
+    "message": "Denuncia SOL-2026-0005 registrada. Se requiere apertura de investigación.",
+    "isRead": false
+  },
+  {
+    "id": 6,
+    "caseId": 6,
+    "type": "CREACION",
+    "message": "Petición SOL-2026-0006 registrada. Solicitud de donación por gastos médicos.",
+    "isRead": false
+  }
+]

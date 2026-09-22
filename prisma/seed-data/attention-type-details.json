@@ -1,0 +1,9 @@
+[
+  { "id": 1, "attentionTypeId": 6, "name": "Donación por Gastos Fúnebres" },
+  { "id": 2, "attentionTypeId": 6, "name": "Donación por Gastos Médicos" },
+  { "id": 3, "attentionTypeId": 6, "name": "Donación por Gastos Operatorios" },
+  { "id": 4, "attentionTypeId": 6, "name": "Donaciones Personales" },
+  { "id": 5, "attentionTypeId": 6, "name": "Donaciones de Apoyo Alimenticio" },
+  { "id": 6, "attentionTypeId": 6, "name": "Donaciones por Apoyo Académico" },
+  { "id": 7, "attentionTypeId": 6, "name": "Donaciones de Materiales de Construcción" }
+]

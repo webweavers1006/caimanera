@@ -1,0 +1,9 @@
+[
+  { "id": 1, "name": "No Aplica" },
+  { "id": 2, "name": "Otros" },
+  { "id": 3, "name": "Extranjería" },
+  { "id": 4, "name": "Identificación" },
+  { "id": 5, "name": "Verificación y Registro" },
+  { "id": 6, "name": "Migración" },
+  { "id": 7, "name": "Regiones" }
+]

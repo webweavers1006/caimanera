@@ -1,0 +1,80 @@
+{
+  "roles": [
+    {
+      "name": "COURT_MANAGER",
+      "description": "Administrador de canchas — gestiona recintos, horarios, reservas y liquidaciones"
+    },
+    {
+      "name": "PLAYER",
+      "description": "Jugador estándar — se une a partidos mediante pago por cupo o suscripción"
+    }
+  ],
+  "permissions": [
+    { "slug": "courts:view", "description": "Ver el módulo de Canchas en el menú" },
+    { "slug": "courts:read", "description": "Ver listado de canchas" },
+    { "slug": "courts:create", "description": "Registrar nuevas canchas" },
+    { "slug": "courts:update", "description": "Editar canchas existentes" },
+    { "slug": "courts:delete", "description": "Eliminar canchas" },
+    { "slug": "matches:view", "description": "Ver el módulo de Partidos en el menú" },
+    { "slug": "matches:read", "description": "Ver listado de partidos" },
+    { "slug": "matches:create", "description": "Crear partidos" },
+    { "slug": "matches:update", "description": "Editar partidos" },
+    { "slug": "matches:delete", "description": "Eliminar partidos" },
+    { "slug": "subscriptions:view", "description": "Ver el módulo de Suscripciones en el menú" },
+    { "slug": "subscriptions:read", "description": "Ver planes y membresías" },
+    { "slug": "subscriptions:create", "description": "Crear planes de suscripción" },
+    { "slug": "subscriptions:update", "description": "Editar planes de suscripción" },
+    { "slug": "subscriptions:delete", "description": "Eliminar planes de suscripción" },
+    { "slug": "participants:view", "description": "Ver el módulo de Participantes en el menú" },
+    { "slug": "participants:read", "description": "Ver inscripciones de jugadores" },
+    { "slug": "participants:create", "description": "Inscribir jugadores en partidos" },
+    { "slug": "participants:update", "description": "Editar inscripciones" },
+    { "slug": "participants:delete", "description": "Eliminar inscripciones" },
+    { "slug": "transactions:view", "description": "Ver el módulo de Transacciones en el menú" },
+    { "slug": "transactions:read", "description": "Ver transacciones de pago" },
+    { "slug": "transactions:create", "description": "Registrar transacciones" },
+    { "slug": "transactions:update", "description": "Editar transacciones" },
+    { "slug": "transactions:delete", "description": "Eliminar transacciones" }
+  ],
+  "rolePermissions": {
+    "COURT_MANAGER": [
+      "courts:view", "courts:read", "courts:create", "courts:update",
+      "matches:view", "matches:read", "matches:create", "matches:update",
+      "participants:view", "participants:read",
+      "transactions:view", "transactions:read",
+      "subscriptions:view", "subscriptions:read"
+    ],
+    "PLAYER": [
+      "matches:view", "matches:read",
+      "participants:read", "participants:create",
+      "subscriptions:view", "subscriptions:read",
+      "courts:view", "courts:read"
+    ]
+  },
+  "plans": [
+    {
+      "name": "Pase Básico",
+      "tier": "BASIC_PASS",
+      "price": 19.99,
+      "matchesIncluded": 4,
+      "priorityBooking": false,
+      "description": "4 partidos al mes con descuento del 20%"
+    },
+    {
+      "name": "Pase PRO Mensual",
+      "tier": "PRO_MONTHLY",
+      "price": 34.99,
+      "matchesIncluded": 8,
+      "priorityBooking": true,
+      "description": "8 partidos al mes + prioridad de reserva"
+    },
+    {
+      "name": "Pase VIP Anual",
+      "tier": "VIP_ANNUAL",
+      "price": 349.99,
+      "matchesIncluded": 999,
+      "priorityBooking": true,
+      "description": "Partidos ilimitados y prioridad total"
+    }
+  ]
+}

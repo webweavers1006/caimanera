@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "Abierto", "color": "#f59e0b" },
+  { "id": 2, "name": "Cerrado", "color": "#10b981" },
+  { "id": 3, "name": "EN PROCESO", "color": "#3b82f6" }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "caseId": 1,
+    "name": "Oficina Principal",
+    "latitude": 10.4806,
+    "longitude": -66.9036
+  },
+  {
+    "id": 2,
+    "caseId": 2,
+    "name": "Trailer Santa Rita",
+    "latitude": 10.4631,
+    "longitude": -66.8167
+  },
+  {
+    "id": 3,
+    "caseId": 3,
+    "name": "Plaza Caracas",
+    "latitude": 10.5062,
+    "longitude": -66.9146
+  },
+  {
+    "id": 4,
+    "caseId": 4,
+    "name": "Oficina Catia",
+    "latitude": 10.5167,
+    "longitude": -66.9500
+  },
+  {
+    "id": 5,
+    "caseId": 5,
+    "name": "Oficina Guasdualito",
+    "latitude": 7.2469,
+    "longitude": -70.7297
+  },
+  {
+    "id": 6,
+    "caseId": 6,
+    "name": "Oficina Propatria",
+    "latitude": 10.5100,
+    "longitude": -66.9600
+  }
+]

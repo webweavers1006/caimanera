@@ -1,0 +1,5 @@
+[
+  { "slug": "fingerprint:enroll", "description": "Registrar huella dactilar de una persona" },
+  { "slug": "fingerprint:verify", "description": "Verificar identidad por huella dactilar (1:1)" },
+  { "slug": "fingerprint:identify", "description": "Identificar persona por huella dactilar (1:N)" }
+]

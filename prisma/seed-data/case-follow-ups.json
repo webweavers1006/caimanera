@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "caseId": 1,
+    "callStatusId": 2,
+    "comment": "Llamada realizada. Ciudadano atendido satisfactoriamente.",
+    "date": "2026-06-16"
+  },
+  {
+    "id": 2,
+    "caseId": 2,
+    "callStatusId": 1,
+    "comment": "Pendiente por llamar para seguimiento.",
+    "date": "2026-06-17"
+  },
+  {
+    "id": 3,
+    "caseId": 3,
+    "callStatusId": 2,
+    "comment": "Sugerencia recibida por correo electrónico. Se remite a Dirección de Regiones para evaluación.",
+    "date": "2026-06-18"
+  },
+  {
+    "id": 4,
+    "caseId": 4,
+    "callStatusId": 1,
+    "comment": "Pendiente verificación de estatus migratorio con Dirección de Migración.",
+    "date": "2026-06-19"
+  },
+  {
+    "id": 5,
+    "caseId": 5,
+    "callStatusId": 2,
+    "comment": "Denuncia recibida en oficina. Se notifica a Inspectoría para investigación.",
+    "date": "2026-06-20"
+  },
+  {
+    "id": 6,
+    "caseId": 6,
+    "callStatusId": 3,
+    "comment": "No se logró contacto telefónico. Se enviará correo electrónico de seguimiento.",
+    "date": "2026-06-21"
+  }
+]

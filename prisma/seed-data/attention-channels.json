@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "Oficina Presencial" },
+  { "id": 2, "name": "Correo Electrónico" },
+  { "id": 3, "name": "Centro de Llamadas" }
+]

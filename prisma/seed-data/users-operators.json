@@ -1,0 +1,317 @@
+[
+  {
+    "firstName": "CÉSAR EMANUEL",
+    "lastName": "GÓMEZ PORTILLO",
+    "email": "cesargomez@saime.gob.ve",
+    "idCard": "26574012",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$XqU1R7QoGlWokD5bzqiLyO28bhsXOXZWqVdVIWuOlXPXndHkuv9oa"
+  },
+  {
+    "firstName": "NILSY",
+    "lastName": "RODRIGUEZ RAMIREZ",
+    "email": "nilsyrodriguez@saime.gob.ve",
+    "idCard": "11592670",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$lulxVO/W9GfZppb4JCTy6uT0lDD/svaHfM0.SoqjGFmUWozZjDHzS"
+  },
+  {
+    "firstName": "GEUDY YZARA",
+    "lastName": "GONZALEZ FRANCO",
+    "email": "geudygonzalez@saime.gob.ve",
+    "idCard": "12554674",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$KTFBRuR7nhJuCRd9vD2nteKOJ/9tP14k48je8Ui.9aB0FCmyfSeEK"
+  },
+  {
+    "firstName": "HAGGEN AYLEN",
+    "lastName": "MENDOZA INFANTE",
+    "email": "haggenmendoza@saime.gob.ve",
+    "idCard": "14046368",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$zpWLyQfxM8d.dn8Y6eDR1.csxEv3kMsVrNf5Wr6XKhEvmEWDOlZAa"
+  },
+  {
+    "firstName": "KARINA",
+    "lastName": "MARTINEZ",
+    "email": "karinamartinez@saime.gob.ve",
+    "idCard": "14450962",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$fpmCVqA9AjMjiynIN8cYI.UtclTeYmuJLsaBE1eM79gLb7nTtTPre"
+  },
+  {
+    "firstName": "YENNY",
+    "lastName": "SUAREZ CASTELLANO",
+    "email": "yennysuarez@saime.gob.ve",
+    "idCard": "16952702",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$T2G3YDYim.ut7ZdlOacYauHFqDGGNUFuWADZL.VFD.fKir6ug9/Zq"
+  },
+  {
+    "firstName": "KELLY JOHAN",
+    "lastName": "FRANCO CASTILLO",
+    "email": "kellyfranco@saime.gob.ve",
+    "idCard": "18440615",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$FFd4UUshIZMnPP4u8BPY9uMXhv9WAmzrg8mo5FzwGUHAliHpPFHGC"
+  },
+  {
+    "firstName": "YOSIBEL MARIANA",
+    "lastName": "CASTRO ARANA",
+    "email": "yosibelcastro@saime.gob.ve",
+    "idCard": "20614507",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$jQBPg8Z9zEbIy/2CJApFHu.6Ae7V4WiJhc7Piy4DPM4RSjO3UdIWK"
+  },
+  {
+    "firstName": "ZULAY",
+    "lastName": "MERCADO OSPINO",
+    "email": "zulaymercado@saime.gob.ve",
+    "idCard": "25280467",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$OxChhl3LHYUuT260BHKDKOsYKUFE2DYKpLjCT7v4Xx8SCNO1pIrYC"
+  },
+  {
+    "firstName": "GERONIMA DEL CARMEN",
+    "lastName": "VILLEGAS",
+    "email": "geronimavillegas@saime.gob.ve",
+    "idCard": "5782127",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$UL/gyM1VOvu9x5JWy4CDvO80vUMdwbZtdH4HWu97TaaFL9tmsAJGW"
+  },
+  {
+    "firstName": "GLORIA JOSEFINA",
+    "lastName": "GUZMAN OSORIO",
+    "email": "gloriaguzman@saime.gob.ve",
+    "idCard": "6633325",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$ru9bcPTG2W6PIzVHPE4MsePDuYhZridxMEegoNI9be.KSujkr1/.."
+  },
+  {
+    "firstName": "RUBEN DARIO",
+    "lastName": "MONTOYA",
+    "email": "rubenmontoya@saime.gob.ve",
+    "idCard": "4251539",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$yKBEb3EqXNAlPaXakAbtDedyWDcBjtaF2cUK4KbeRA0.wZzXb/Mru"
+  },
+  {
+    "firstName": "YUSMILEIDY",
+    "lastName": "FERNANDEZ ROMERO",
+    "email": "yusmileidyfernandez@saime.gob.ve",
+    "idCard": "26819895",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$z219FzldzFMl6wFT8aAD3OROYI88akr8cjfoa6Ed//b9Ntq8veSWu"
+  },
+  {
+    "firstName": "IVANNA CELESTE",
+    "lastName": "BERROTERAN",
+    "email": "ivannaberroteran@saime.gob.ve",
+    "idCard": "17759740",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$xRNCmd4U8pVxStWx9oShjeLNAzxXOT/59VBHIDAb91yYbCtHSmxBu"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "FUENTES DAVILA",
+    "email": "alexanderfuentes@saime.gob.ve",
+    "idCard": "13636649",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$qa/pWi1HwZW9ejUFQC8gmOsMFfmZ9S9WoBeYGmtnxbBaDVIKNJxqu"
+  },
+  {
+    "firstName": "EGLEE ROSARIO",
+    "lastName": "GONZALEZ GARCIA",
+    "email": "egleegonzalez@saime.gob.ve",
+    "idCard": "18889700",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$fJkGIidJnigviERCML.eA.VUwRpt17Si1NZmOvYaa/a2qV6V0myCC"
+  },
+  {
+    "firstName": "ODALIS LISBETH",
+    "lastName": "BERRIO ACEVEDO",
+    "email": "odalisberrio@saime.gob.ve",
+    "idCard": "16620825",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$snxwkDJAm/6Mjf5qvqDXce/GmTudZuCzcyuivaeRj3FW0jS3fR2Z6"
+  },
+  {
+    "firstName": "ABDIEL JESE",
+    "lastName": "SOTO CASTELLANOS",
+    "email": "abdielsoto@saime.gob.ve",
+    "idCard": "24312518",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$jVQ/YM2gG0an8US.WM6gFupNFtKoIE.dMR8my/5ql94XAXwgh.wiO"
+  },
+  {
+    "firstName": "ZANIS YULIBER",
+    "lastName": "CAMPOS BASTARDO",
+    "email": "zaniscampos@saime.gob.ve",
+    "idCard": "14065903",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$OAxzf0UBIEMzzCq3/hr97OCI2t6mi2VZS5oSrvH3bUeHVK9Wn5EdC"
+  },
+  {
+    "firstName": "FRANCIS LUZ",
+    "lastName": "GONCALVES MEDINA",
+    "email": "francisgoncalves@saime.gob.ve",
+    "idCard": "13888845",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$F4pL5ZxgokDR.yPUl85Mluj1zgmjsAaKCFqr1My3I23xkmQIsfDne"
+  },
+  {
+    "firstName": "IRAMA DEL VALLE",
+    "lastName": "ALVAREZ RAMIREZ",
+    "email": "iramaalvarez@saime.gob.ve",
+    "idCard": "19958933",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$JI70H1hsPxAQbOoDHhdFK.Jv45qWqbOIRWA9y8pwu7Ma8IHWDHDjC"
+  },
+  {
+    "firstName": "DAMIAN DAVID",
+    "lastName": "MORA TORO",
+    "email": "damianmora@saime.gob.ve",
+    "idCard": "29529378",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$uCycKrxzKFZGdcLBR2HU/.1NnAch9SM9QspRcFNySHTLFHgSDEgSO"
+  },
+  {
+    "firstName": "YUSMARY CAROLINA",
+    "lastName": "CORCEGA ALVAREZ",
+    "email": "yusmarycorcega@saime.gob.ve",
+    "idCard": "18836163",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$BaBLtt/Vv8nkd3AH4b7bPeEq6GmfWW2mVML1YMyePXI2CzoPhRGJ."
+  },
+  {
+    "firstName": "MANUEL ALFONSO",
+    "lastName": "COLMENARES LLAMAS",
+    "email": "manuelcolmenares@saime.gob.ve",
+    "idCard": "29731092",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$Wl47SLrREZjhfRp3CeE47eNwa/YxMdrmVHCnHd7ujPCG.32U2vbHi"
+  },
+  {
+    "firstName": "MIRLEY NATASHA",
+    "lastName": "ECHARRY PESTANA",
+    "email": "mirleyecharry@saime.gob.ve",
+    "idCard": "29595942",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$9.nBd70mAjIsCJwPwSjyee.TE4Fp2aYP9neLuQ18Vg/DsYRUpifQW"
+  },
+  {
+    "firstName": "JOYNER JESÚS",
+    "lastName": "SARMIENTO MEDINA",
+    "email": "joynersarmiento@saime.gob.ve",
+    "idCard": "26272602",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$DF/HQXcjLtTy6FAuDrV5v.mD.ZoTjWf4L6qon19s6GHGtxhca/FV."
+  },
+  {
+    "firstName": "ELY SAUL",
+    "lastName": "CHIRIVELLA ABACHE",
+    "email": "elychirivella@saime.gob.ve",
+    "idCard": "27038431",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$lXkczwgTXGoS06OOSUOGkOC4oi2eYbu99KTD9z3b7hs4NxsPYm2W6"
+  },
+  {
+    "firstName": "YAIRAMY",
+    "lastName": "PARRA",
+    "email": "yairamyparra@saime.gob.ve",
+    "idCard": "27107583",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$6wlGGIbIv2NX4U247rADHeRBTgG8pcmqMRNBvvLgz9sh3/NfP0LRC"
+  },
+  {
+    "firstName": "CHIQUINQUIRA",
+    "lastName": "CARRILLO",
+    "email": "chiquinquiracarrillo@saime.gob.ve",
+    "idCard": "29987346",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$1JpIKl5G4aD2/QMIYkdLQehhgUUuMm9cOr0e.BJiFS5LZvwDm8pyG"
+  },
+  {
+    "firstName": "YORLENYS",
+    "lastName": "RIVAS",
+    "email": "yorlenysrivas@saime.gob.ve",
+    "idCard": "26243437",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$ulrWlfKwMiZOYWUOPtqBI.Ve95kzFTfmelv/s96Pgt1TGDyb9U1O."
+  },
+  {
+    "firstName": "AHARON",
+    "lastName": "STOJS",
+    "email": "aharonstojs@saime.gob.ve",
+    "idCard": "29922823",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$7XK8jjghNefICig9EPTyhe6W6A.CgU4pwZWeanUx13iHhrwhAy0dy"
+  },
+  {
+    "firstName": "GENESIS",
+    "lastName": "BRICEÑO",
+    "email": "genesisbriceno@saime.gob.ve",
+    "idCard": "30507019",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$cs8p1xt6sTGi8UjBEVI4zOzHkPJfyYl/lknYbQebpSHZIQvcu/ThK"
+  },
+  {
+    "firstName": "RAMÓN",
+    "lastName": "INFANTE",
+    "email": "ramoninfante@saime.gob.ve",
+    "idCard": "22522441",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$dr/yuTV/pQ5Er4KhRQuf.el1szbwjb8WA5vsBlMLcIoAwzzbcHflm"
+  },
+  {
+    "firstName": "NAYARITH",
+    "lastName": "CHAURAN",
+    "email": "nayarithchauran@saime.gob.ve",
+    "idCard": "19195728",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$z675qDHVD6RyrHSd0aNywOdZXJsUlte9KXVZz.L7qW9WkDzaUKSNq"
+  },
+  {
+    "firstName": "RUBÉN",
+    "lastName": "BORROMÉ",
+    "email": "rubenborrome@saime.gob.ve",
+    "idCard": "18676045",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "passwordHash": "$2b$10$tY5fxwMgJgpq3xRCrzMpAuqBnhm5Rb7d./3d5lPO0t4M01VJ1Mfa2"
+  }
+]

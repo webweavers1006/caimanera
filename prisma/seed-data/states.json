@@ -1,0 +1,132 @@
+[
+  {
+    "id": 1,
+    "name": "Amazonas",
+    "countryId": 1
+  },
+  {
+    "id": 2,
+    "name": "Anzoátegui",
+    "countryId": 1
+  },
+  {
+    "id": 3,
+    "name": "Apure",
+    "countryId": 1
+  },
+  {
+    "id": 4,
+    "name": "Aragua",
+    "countryId": 1
+  },
+  {
+    "id": 5,
+    "name": "Barinas",
+    "countryId": 1
+  },
+  {
+    "id": 6,
+    "name": "Bolívar",
+    "countryId": 1
+  },
+  {
+    "id": 7,
+    "name": "Carabobo",
+    "countryId": 1
+  },
+  {
+    "id": 8,
+    "name": "Cojedes",
+    "countryId": 1
+  },
+  {
+    "id": 9,
+    "name": "Delta Amacuro",
+    "countryId": 1
+  },
+  {
+    "id": 10,
+    "name": "Falcón",
+    "countryId": 1
+  },
+  {
+    "id": 11,
+    "name": "Guárico",
+    "countryId": 1
+  },
+  {
+    "id": 12,
+    "name": "Lara",
+    "countryId": 1
+  },
+  {
+    "id": 13,
+    "name": "Mérida",
+    "countryId": 1
+  },
+  {
+    "id": 14,
+    "name": "Miranda",
+    "countryId": 1
+  },
+  {
+    "id": 15,
+    "name": "Monagas",
+    "countryId": 1
+  },
+  {
+    "id": 16,
+    "name": "Nueva Esparta",
+    "countryId": 1
+  },
+  {
+    "id": 17,
+    "name": "Portuguesa",
+    "countryId": 1
+  },
+  {
+    "id": 18,
+    "name": "Sucre",
+    "countryId": 1
+  },
+  {
+    "id": 19,
+    "name": "Táchira",
+    "countryId": 1
+  },
+  {
+    "id": 20,
+    "name": "Trujillo",
+    "countryId": 1
+  },
+  {
+    "id": 21,
+    "name": "La Guaira",
+    "countryId": 1
+  },
+  {
+    "id": 22,
+    "name": "Yaracuy",
+    "countryId": 1
+  },
+  {
+    "id": 23,
+    "name": "Zulia",
+    "countryId": 1
+  },
+  {
+    "id": 24,
+    "name": "Distrito Capital",
+    "countryId": 1
+  },
+  {
+    "id": 25,
+    "name": "Dependencias Federales",
+    "countryId": 1
+  },
+  {
+    "id": 26,
+    "name": "N/A",
+    "countryId": 216
+  }
+]

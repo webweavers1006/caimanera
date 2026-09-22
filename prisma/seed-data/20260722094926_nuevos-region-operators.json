@@ -1,0 +1,965 @@
+[
+  {
+    "firstName": "TRAILER BARCELONA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of169trailerbarcelona@saime.gob.ve",
+    "idCard": "OF169",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "EL TIGRE",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of222eltigre@saime.gob.ve",
+    "idCard": "OF222",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "GUANIPA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of207guanipa@saime.gob.ve",
+    "idCard": "OF207",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "PIRITU",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of147piritu@saime.gob.ve",
+    "idCard": "OF147",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "JOSE ANTONIO ANZOATEGUI",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of149joseantonioanzoategui@saime.gob.ve",
+    "idCard": "OF149",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SAN SEBASTIAN DE LOS REYES",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of145sansebastiandelosreyes@saime.gob.ve",
+    "idCard": "OF145",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "JOSÉ FÉLIX RIBAS",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of125josefelixribas@saime.gob.ve",
+    "idCard": "OF125",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "CAGUA II",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of192caguaii@saime.gob.ve",
+    "idCard": "OF192",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SOCOPO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of183socopo@saime.gob.ve",
+    "idCard": "OF183",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SANTA BARBARA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of223santabarbara@saime.gob.ve",
+    "idCard": "OF223",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SABANETA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of206sabaneta@saime.gob.ve",
+    "idCard": "OF206",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "UPATA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of082upata@saime.gob.ve",
+    "idCard": "OF082",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SAN FELIX",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of012sanfelix@saime.gob.ve",
+    "idCard": "OF012",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "GUASIPATI",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of083guasipati@saime.gob.ve",
+    "idCard": "OF083",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "TUMEREMO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of213tumeremo@saime.gob.ve",
+    "idCard": "OF213",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "CIUDAD BOLIVAR",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of126ciudadbolivar@saime.gob.ve",
+    "idCard": "OF126",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "ARTURO MICHELENA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of106arturomichelena@saime.gob.ve",
+    "idCard": "OF106",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "MARIARA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of209mariara@saime.gob.ve",
+    "idCard": "OF209",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "MIRANDA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of214miranda@saime.gob.ve",
+    "idCard": "OF214",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "VICENTE SALIAS",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of105vicentesalias@saime.gob.ve",
+    "idCard": "OF105",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "LOS GUAYOS",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of085losguayos@saime.gob.ve",
+    "idCard": "OF085",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "LA NORIA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of099lanoria@saime.gob.ve",
+    "idCard": "OF099",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "GUACARA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of228guacara@saime.gob.ve",
+    "idCard": "OF228",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "LIBERTADOR",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of212libertador@saime.gob.ve",
+    "idCard": "OF212",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "TINAQUILLO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of137tinaquillo@saime.gob.ve",
+    "idCard": "OF137",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SIMÓN BOLÍVAR",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of216simonbolivar@saime.gob.ve",
+    "idCard": "OF216",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SAN BERNARDINO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of054sanbernardino@saime.gob.ve",
+    "idCard": "OF054",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "COTIZA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of090cotiza@saime.gob.ve",
+    "idCard": "OF090",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "PARQUE CENTRAL",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of067parquecentral@saime.gob.ve",
+    "idCard": "OF067",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "FUERTE TIUNA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of065fuertetiuna@saime.gob.ve",
+    "idCard": "OF065",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "PROPATRIA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of037propatria@saime.gob.ve",
+    "idCard": "OF037",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "DEFENSA PUBLICA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of084defensapublica@saime.gob.ve",
+    "idCard": "OF084",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "CARICUAO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of071caricuao@saime.gob.ve",
+    "idCard": "OF071",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "23 DE ENERO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of07223deenero@saime.gob.ve",
+    "idCard": "OF072",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "IPSFA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of204ipsfa@saime.gob.ve",
+    "idCard": "OF204",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "MERCADO TURISTICO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of079mercadoturistico@saime.gob.ve",
+    "idCard": "OF079",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "TUCACAS",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of210tucacas@saime.gob.ve",
+    "idCard": "OF210",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "DABAJURO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of195dabajuro@saime.gob.ve",
+    "idCard": "OF195",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "MENE DE MAUROA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of172menedemauroa@saime.gob.ve",
+    "idCard": "OF172",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "ZARAZA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of101zaraza@saime.gob.ve",
+    "idCard": "OF101",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "CALABOZO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of102calabozo@saime.gob.ve",
+    "idCard": "OF102",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "TUCUPIDO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of189tucupido@saime.gob.ve",
+    "idCard": "OF189",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "VALLE DE LA PASCUA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of020valledelapascua@saime.gob.ve",
+    "idCard": "OF020",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "MERCABAR",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of121mercabar@saime.gob.ve",
+    "idCard": "OF121",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "EL TOCUYO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of034eltocuyo@saime.gob.ve",
+    "idCard": "OF034",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SIQUISIQUE",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of194siquisique@saime.gob.ve",
+    "idCard": "OF194",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "CARORA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of108carora@saime.gob.ve",
+    "idCard": "OF108",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "QUIBOR",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of112quibor@saime.gob.ve",
+    "idCard": "OF112",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SANTA CRUZ DE MORA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of163santacruzdemora@saime.gob.ve",
+    "idCard": "OF163",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "PUEBLO LLANO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of098pueblollano@saime.gob.ve",
+    "idCard": "OF098",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "TOVAR",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of076tovar@saime.gob.ve",
+    "idCard": "OF076",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "EL VIGIA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of179elvigia@saime.gob.ve",
+    "idCard": "OF179",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "CAMPO ELIAS",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of089campoelias@saime.gob.ve",
+    "idCard": "OF089",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SANTA ELENA DE ARENALES",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of104santaelenadearenales@saime.gob.ve",
+    "idCard": "OF104",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "LOS TEQUES - SUPER LIDER",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of024lostequessuperlider@saime.gob.ve",
+    "idCard": "OF024",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "GUARENAS",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of111guarenas@saime.gob.ve",
+    "idCard": "OF111",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "HIGUEROTE",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of097higuerote@saime.gob.ve",
+    "idCard": "OF097",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SAN JOSE DE BARLOVENTO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of131sanjosedebarlovento@saime.gob.ve",
+    "idCard": "OF131",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "CAUCAGUA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of047caucagua@saime.gob.ve",
+    "idCard": "OF047",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "OCUMARE DEL TUY",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of033ocumaredeltuy@saime.gob.ve",
+    "idCard": "OF033",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "LA URBINA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of056laurbina@saime.gob.ve",
+    "idCard": "OF056",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "LAS MERCEDES",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of055lasmercedes@saime.gob.ve",
+    "idCard": "OF055",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "LA TRINIDAD",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of003latrinidad@saime.gob.ve",
+    "idCard": "OF003",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SANTA TERESA DEL TUY",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of091santateresadeltuy@saime.gob.ve",
+    "idCard": "OF091",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SAN FRANCISCO DE YARE",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of095sanfranciscodeyare@saime.gob.ve",
+    "idCard": "OF095",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "LOS TEQUES - GUAICAIPURO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of050lostequesguaicaipuro@saime.gob.ve",
+    "idCard": "OF050",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "IFE CUA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of075ifecua@saime.gob.ve",
+    "idCard": "OF075",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "IFE - CHARALLAVE SUR",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of074ifecharallavesur@saime.gob.ve",
+    "idCard": "OF074",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "BOLEITA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of226boleita@saime.gob.ve",
+    "idCard": "OF226",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "PLAZA LAS AMERICAS",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of227plazalasamericas@saime.gob.ve",
+    "idCard": "OF227",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "PUNTA DE MATA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of138puntademata@saime.gob.ve",
+    "idCard": "OF138",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "LA ASUNCION",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of087laasuncion@saime.gob.ve",
+    "idCard": "OF087",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "BOCA DEL RIO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of088bocadelrio@saime.gob.ve",
+    "idCard": "OF088",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "ISLA DE COCHE",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of164isladecoche@saime.gob.ve",
+    "idCard": "OF164",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "JUAN GRIEGO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of202juangriego@saime.gob.ve",
+    "idCard": "OF202",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "FENTE PORLAMAR",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of123fenteporlamar@saime.gob.ve",
+    "idCard": "OF123",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "TRAILER PLAYON",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of136trailerplayon@saime.gob.ve",
+    "idCard": "OF136",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "TUREN",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of181turen@saime.gob.ve",
+    "idCard": "OF181",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "ACARIGUA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of029acarigua@saime.gob.ve",
+    "idCard": "OF029",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "GUIRIA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of119guiria@saime.gob.ve",
+    "idCard": "OF119",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "CARÚPANO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of224carupano@saime.gob.ve",
+    "idCard": "OF224",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SAN ANTONIO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of069sanantonio@saime.gob.ve",
+    "idCard": "OF069",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "LA GRITA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of036lagrita@saime.gob.ve",
+    "idCard": "OF036",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SAN JUAN DE COLON",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of198sanjuandecolon@saime.gob.ve",
+    "idCard": "OF198",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "RUBIO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of061rubio@saime.gob.ve",
+    "idCard": "OF061",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "EL DIVIDIVE",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of151eldividive@saime.gob.ve",
+    "idCard": "OF151",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "VALERA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of013valera@saime.gob.ve",
+    "idCard": "OF013",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "TRAILER MONAY",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of139trailermonay@saime.gob.ve",
+    "idCard": "OF139",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "BOCONÓ",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of049bocono@saime.gob.ve",
+    "idCard": "OF049",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "AROA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of092aroa@saime.gob.ve",
+    "idCard": "OF092",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "COCOROTE",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of176cocorote@saime.gob.ve",
+    "idCard": "OF176",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "NIRGUA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of094nirgua@saime.gob.ve",
+    "idCard": "OF094",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "YARITAGUA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of093yaritagua@saime.gob.ve",
+    "idCard": "OF093",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "CHIVACOA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of219chivacoa@saime.gob.ve",
+    "idCard": "OF219",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "MACHIQUES",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of080machiques@saime.gob.ve",
+    "idCard": "OF080",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "CIUDAD OJEDA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of028ciudadojeda@saime.gob.ve",
+    "idCard": "OF028",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SANTA RITA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of027santarita@saime.gob.ve",
+    "idCard": "OF027",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "CABIMAS",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of059cabimas@saime.gob.ve",
+    "idCard": "OF059",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "BACHAQUERO",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of122bachaquero@saime.gob.ve",
+    "idCard": "OF122",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "TRAILER COLON",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of142trailercolon@saime.gob.ve",
+    "idCard": "OF142",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "DOMITILA FLORES",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of109domitilaflores@saime.gob.ve",
+    "idCard": "OF109",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "CAJA SECA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of220cajaseca@saime.gob.ve",
+    "idCard": "OF220",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SINAMAICA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of221sinamaica@saime.gob.ve",
+    "idCard": "OF221",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SABANETA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of043sabaneta@saime.gob.ve",
+    "idCard": "OF043",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "SAN RAFAEL DEL MOJAN",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of103sanrafaeldelmojan@saime.gob.ve",
+    "idCard": "OF103",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "PUERTOS DE ALTAGRACIA",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of156puertosdealtagracia@saime.gob.ve",
+    "idCard": "OF156",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  },
+  {
+    "firstName": "TRÀILER CORE III",
+    "lastName": "OFICINA REGIONAL",
+    "email": "of208trailercoreiii@saime.gob.ve",
+    "idCard": "OF208",
+    "roleName": "OPERADOR",
+    "attentionChannelId": 1,
+    "password": "cambiarclave17"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "firstName": "Juan Perez",
+    "lastName": null,
+    "idCard": "12345678",
+    "phone": "04121234567",
+    "email": "juan@example.com",
+    "address": "Caracas, La Candelaria",
+    "nationality": "V",
+    "sex": "M",
+    "personType": "CASE_PERSON",
+    "countryId": 1,
+    "stateId": 24,
+    "municipalityId": 1,
+    "parishId": 3,
+    "beneficiaryTypeId": 1
+  },
+  {
+    "id": 2,
+    "firstName": "Maria Lopez",
+    "lastName": null,
+    "idCard": "87654321",
+    "phone": "04149876543",
+    "email": "maria@example.com",
+    "address": "Maracaibo, Centro",
+    "nationality": "V",
+    "sex": "F",
+    "personType": "CASE_PERSON",
+    "countryId": 1,
+    "stateId": 23,
+    "municipalityId": 303,
+    "parishId": 964,
+    "beneficiaryTypeId": 1
+  }
+]

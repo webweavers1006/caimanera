@@ -1,0 +1,5 @@
+# Place the Futronic Linux libraries here:
+# - libScanAPI.so   (scanner hardware communication)
+# - libFTRAPI.so    (fingerprint matching engine)
+#
+# Request these files from Futronic support.

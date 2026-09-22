@@ -1,0 +1,7 @@
+[
+  { "slug": "closure_reasons:view",   "description": "Ver el módulo de Motivos de Cierre en el menú" },
+  { "slug": "closure_reasons:read",   "description": "Ver catálogo de motivos de cierre" },
+  { "slug": "closure_reasons:create", "description": "Crear motivos de cierre" },
+  { "slug": "closure_reasons:update", "description": "Editar motivos de cierre" },
+  { "slug": "closure_reasons:delete", "description": "Eliminar motivos de cierre" }
+]

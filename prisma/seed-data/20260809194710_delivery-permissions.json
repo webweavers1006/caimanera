@@ -1,0 +1,5 @@
+[
+  { "slug": "delivery:read",  "description": "Ver el libro de entregas de documentos" },
+  { "slug": "delivery:write", "description": "Registrar entregas de documentos con huella" },
+  { "slug": "delivery:verify", "description": "Verificar autenticidad de un registro de entrega" }
+]

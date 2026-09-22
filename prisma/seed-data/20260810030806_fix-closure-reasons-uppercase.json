@@ -1,0 +1,10 @@
+[
+  { "id": 1, "name": "CASO RESUELTO" },
+  { "id": 2, "name": "REMITIDO A OTRO ENTE" },
+  { "id": 3, "name": "SIN COMPETENCIA" },
+  { "id": 4, "name": "DESISTIMIENTO DEL SOLICITANTE" },
+  { "id": 5, "name": "DUPLICADO" },
+  { "id": 6, "name": "IMPROCEDENTE" },
+  { "id": 7, "name": "FALTA DE DOCUMENTACIÓN" },
+  { "id": 8, "name": "ARCHIVADO" }
+]

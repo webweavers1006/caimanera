@@ -1,0 +1,4 @@
+[
+  { "slug": "follow_up_stats:view", "description": "Ver el módulo de Estadísticas de Seguimientos en el menú" },
+  { "slug": "forward_stats:view",   "description": "Ver el módulo de Estadísticas de Remisiones en el menú" }
+]

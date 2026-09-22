@@ -1,0 +1,1388 @@
+[
+  {
+    "name": "No Urbana Monseor Feliciano Gonzalez",
+    "pcode": "VE051703",
+    "municipalityId": 340,
+    "_muni": "Francisco Linares Alcántara",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Rodriguez Dominguez",
+    "pcode": "VE060102",
+    "municipalityId": 339,
+    "_muni": "Alberto Arvelo Torrealba",
+    "_state": "Barinas"
+  },
+  {
+    "name": "Sabaneta",
+    "pcode": "VE060101",
+    "municipalityId": 339,
+    "_muni": "Alberto Arvelo Torrealba",
+    "_state": "Barinas"
+  },
+  {
+    "name": "Capital Jose Felix Ribas",
+    "pcode": "VE050501",
+    "municipalityId": 32,
+    "_muni": "Jose Felix Rivas",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Urbana Caa de Azucar",
+    "pcode": "VE050802",
+    "municipalityId": 42,
+    "_muni": "Mario B Iragorry",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Seccion Capital Gran Sabana",
+    "pcode": "VE070401",
+    "municipalityId": 68,
+    "_muni": "Gran Sabana",
+    "_state": "Bolívar"
+  },
+  {
+    "name": "Urbana san Diego",
+    "pcode": "VE081201",
+    "municipalityId": 83,
+    "_muni": "San Diego",
+    "_state": "Carabobo"
+  },
+  {
+    "name": "Luis Beltran Prieto Figueroa",
+    "pcode": "VE100302",
+    "municipalityId": 332,
+    "_muni": "Pedernales",
+    "_state": "Delta Amacuro"
+  },
+  {
+    "name": "Coronel Mariano Peraza",
+    "pcode": "VE130408",
+    "municipalityId": 136,
+    "_muni": "Jimenez",
+    "_state": "Lara"
+  },
+  {
+    "name": "Capital Antonio Pinto Salinas",
+    "pcode": "VE140301",
+    "municipalityId": 343,
+    "_muni": "Antonio Pinto Salinas",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Capital Arzobispo Chacon",
+    "pcode": "VE140501",
+    "municipalityId": 145,
+    "_muni": "Arzobispo Chacon",
+    "_state": "Mérida"
+  },
+  {
+    "name": "San Jose del Sur",
+    "pcode": "VE140607",
+    "municipalityId": 146,
+    "_muni": "Campo Elias",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Florencio Ramirez",
+    "pcode": "VE140702",
+    "municipalityId": 344,
+    "_muni": "Caracciolo Parra Olmedo",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Capital Caracciolo Parra Olmedo",
+    "pcode": "VE140701",
+    "municipalityId": 344,
+    "_muni": "Caracciolo Parra Olmedo",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Capital Rivas Davila",
+    "pcode": "VE141801",
+    "municipalityId": 159,
+    "_muni": "Rivas Davila",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Maria de la Concepcion Palacios Blanco",
+    "pcode": "VE142203",
+    "municipalityId": 162,
+    "_muni": "Tulio F Cordero",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Capital Tulio Febres Cordero",
+    "pcode": "VE142201",
+    "municipalityId": 162,
+    "_muni": "Tulio F Cordero",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Altagracia de la Montaa",
+    "pcode": "VE151002",
+    "municipalityId": 168,
+    "_muni": "Guaicaipuro",
+    "_state": "Miranda"
+  },
+  {
+    "name": "Antonio Nicolas Briceo",
+    "pcode": "VE211602",
+    "municipalityId": 281,
+    "_muni": "S Rafael Carvajal",
+    "_state": "Trujillo"
+  },
+  {
+    "name": "Capital Cedeo",
+    "pcode": "VE160501",
+    "municipalityId": 190,
+    "_muni": "Cedeño",
+    "_state": "Monagas"
+  },
+  {
+    "name": "Capital Maturin",
+    "pcode": "VE160801",
+    "municipalityId": 193,
+    "_muni": "Maturin",
+    "_state": "Monagas"
+  },
+  {
+    "name": "Capital Acosta",
+    "pcode": "VE160101",
+    "municipalityId": 187,
+    "_muni": "Acosta",
+    "_state": "Monagas"
+  },
+  {
+    "name": "Capital Piar",
+    "pcode": "VE160901",
+    "municipalityId": 194,
+    "_muni": "Piar",
+    "_state": "Monagas"
+  },
+  {
+    "name": "Capital Punceres",
+    "pcode": "VE161001",
+    "municipalityId": 195,
+    "_muni": "Punceres",
+    "_state": "Monagas"
+  },
+  {
+    "name": "Capital Garcia",
+    "pcode": "VE170401",
+    "municipalityId": 210,
+    "_muni": "Garcia",
+    "_state": "Nueva Esparta"
+  },
+  {
+    "name": "San Juan de Guanaguanare",
+    "pcode": "VE180404",
+    "municipalityId": 213,
+    "_muni": "Guanare",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "Capital Monseor Jose Vicente de Unda",
+    "pcode": "VE180601",
+    "municipalityId": 219,
+    "_muni": "M.Jose V De Unda",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "Uvencio Antonio Velasquez",
+    "pcode": "VE181304",
+    "municipalityId": 217,
+    "_muni": "Sucre",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "Capital Turen",
+    "pcode": "VE181401",
+    "municipalityId": 218,
+    "_muni": "Turen",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "Urbana Miguel Pea",
+    "pcode": "VE081404",
+    "municipalityId": 79,
+    "_muni": "Valencia",
+    "_state": "Carabobo"
+  },
+  {
+    "name": "Panamericano",
+    "pcode": "VE201901",
+    "municipalityId": 254,
+    "_muni": "Panamericano",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Pedro Maria Urea",
+    "pcode": "VE202001",
+    "municipalityId": 255,
+    "_muni": "Pedro Maria Ureña",
+    "_state": "Táchira"
+  },
+  {
+    "name": "General en Jefe Jose Laurencio Silva",
+    "pcode": "VE090901",
+    "municipalityId": 91,
+    "_muni": "Tinaco",
+    "_state": "Cojedes"
+  },
+  {
+    "name": "Santa Fe",
+    "pcode": "VE191407",
+    "municipalityId": 233,
+    "_muni": "Sucre",
+    "_state": "Sucre"
+  },
+  {
+    "name": "Ayacucho",
+    "pcode": "VE200301",
+    "municipalityId": 240,
+    "_muni": "Ayacucho",
+    "_state": "Táchira"
+  },
+  {
+    "name": "El Carmelo",
+    "pcode": "VE230904",
+    "municipalityId": 351,
+    "_muni": "La Cañada de Urdaneta",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Monseor Arturo Celestino Alvarez",
+    "pcode": "VE232005",
+    "municipalityId": 311,
+    "_muni": "Sucre",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Capital Jos Gregorio Monagas",
+    "pcode": "VE031001",
+    "municipalityId": 11,
+    "_muni": "Monagas",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Potreritos",
+    "pcode": "VE230905",
+    "municipalityId": 351,
+    "_muni": "La Cañada de Urdaneta",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Cardenas",
+    "pcode": "VE200501",
+    "municipalityId": 243,
+    "_muni": "Cardenas",
+    "_state": "Táchira"
+  },
+  {
+    "name": "San Jose de Perija",
+    "pcode": "VE231104",
+    "municipalityId": 315,
+    "_muni": "M/Rosario De Perija",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Fernandez Feo",
+    "pcode": "VE200701",
+    "municipalityId": 258,
+    "_muni": "Fernandez Feo",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Emilio Constantino Guerrero",
+    "pcode": "VE201202",
+    "municipalityId": 244,
+    "_muni": "Jauregui",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Jauregui",
+    "pcode": "VE201201",
+    "municipalityId": 244,
+    "_muni": "Jauregui",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Junin",
+    "pcode": "VE201401",
+    "municipalityId": 245,
+    "_muni": "Junin",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Samuel Dario Maldonado",
+    "pcode": "VE202201",
+    "municipalityId": 260,
+    "_muni": "Samuel Maldonado",
+    "_state": "Táchira"
+  },
+  {
+    "name": "El Morro de Puerto Santo",
+    "pcode": "VE190303",
+    "municipalityId": 225,
+    "_muni": "Arismendi",
+    "_state": "Sucre"
+  },
+  {
+    "name": "Sucre",
+    "pcode": "VE202601",
+    "municipalityId": 256,
+    "_muni": "Sucre",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Capital Bruzual",
+    "pcode": "VE220301",
+    "municipalityId": 290,
+    "_muni": "Bruzual",
+    "_state": "Yaracuy"
+  },
+  {
+    "name": "Capital Veroes",
+    "pcode": "VE221401",
+    "municipalityId": 302,
+    "_muni": "Veroes",
+    "_state": "Yaracuy"
+  },
+  {
+    "name": "Monagas",
+    "pcode": "VE230102",
+    "municipalityId": 349,
+    "_muni": "Almirante Padilla",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Simon Rodriguez",
+    "pcode": "VE230601",
+    "municipalityId": 350,
+    "_muni": "Francisco Javier Pulgar",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Jesus Maria Semprum",
+    "pcode": "VE230801",
+    "municipalityId": 321,
+    "_muni": "Jesus M Semprun",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Andres Bello",
+    "pcode": "VE230902",
+    "municipalityId": 351,
+    "_muni": "La Cañada de Urdaneta",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Capital Paez",
+    "pcode": "VE180801",
+    "municipalityId": 216,
+    "_muni": "Paez",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "Antolin Tovar",
+    "pcode": "VE181002",
+    "municipalityId": 222,
+    "_muni": "Genaro Boconoito",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "Capital san Genaro de Boconoito",
+    "pcode": "VE181001",
+    "municipalityId": 222,
+    "_muni": "Genaro Boconoito",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "Municipio Con Dos Parroquias",
+    "pcode": "VE031900",
+    "municipalityId": 13,
+    "_muni": "Simon Rodriguez",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Capital Sucre",
+    "pcode": "VE142001",
+    "municipalityId": 160,
+    "_muni": "Sucre",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Ramon Ignacio Mendez",
+    "pcode": "VE060410",
+    "municipalityId": 49,
+    "_muni": "Barinas",
+    "_state": "Barinas"
+  },
+  {
+    "name": "Parroquia Sin Delimitar",
+    "pcode": "VE020700",
+    "municipalityId": 327,
+    "_muni": "Rio Negro",
+    "_state": "Amazonas"
+  },
+  {
+    "name": "Parroquia Sin Delimitar",
+    "pcode": "VE020100",
+    "municipalityId": 330,
+    "_muni": "Alto Orinoco",
+    "_state": "Amazonas"
+  },
+  {
+    "name": "San Lorenzo de Tiznados",
+    "pcode": "VE121004",
+    "municipalityId": 130,
+    "_muni": "Ortiz",
+    "_state": "Guárico"
+  },
+  {
+    "name": "San Francisco de Tiznados",
+    "pcode": "VE121002",
+    "municipalityId": 130,
+    "_muni": "Ortiz",
+    "_state": "Guárico"
+  },
+  {
+    "name": "Quebrada Honda de Guache",
+    "pcode": "VE130102",
+    "municipalityId": 141,
+    "_muni": "Andres E Blanco",
+    "_state": "Lara"
+  },
+  {
+    "name": "Aguedo Felipe Alvarado",
+    "pcode": "VE130308",
+    "municipalityId": 135,
+    "_muni": "Iribarren",
+    "_state": "Lara"
+  },
+  {
+    "name": "Seccion Capital Cedeo",
+    "pcode": "VE070201",
+    "municipalityId": 61,
+    "_muni": "Cedeño",
+    "_state": "Bolívar"
+  },
+  {
+    "name": "Parroquia Sin Delimitar",
+    "pcode": "VE020200",
+    "municipalityId": 325,
+    "_muni": "Atabapo",
+    "_state": "Amazonas"
+  },
+  {
+    "name": "Parroquia Sin Delimitar",
+    "pcode": "VE020300",
+    "municipalityId": 324,
+    "_muni": "Atures",
+    "_state": "Amazonas"
+  },
+  {
+    "name": "Parroquia Sin Delimitar",
+    "pcode": "VE020400",
+    "municipalityId": 328,
+    "_muni": "Autana",
+    "_state": "Amazonas"
+  },
+  {
+    "name": "Capital Aragua",
+    "pcode": "VE030201",
+    "municipalityId": 3,
+    "_muni": "Aragua",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Capital Fernando de Pealver",
+    "pcode": "VE030301",
+    "municipalityId": 12,
+    "_muni": "Peñalver",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Parroquia Sin Delimitar",
+    "pcode": "VE020500",
+    "municipalityId": 326,
+    "_muni": "Maroa",
+    "_state": "Amazonas"
+  },
+  {
+    "name": "Parroquia Sin Delimitar",
+    "pcode": "VE020600",
+    "municipalityId": 329,
+    "_muni": "Manapiare",
+    "_state": "Amazonas"
+  },
+  {
+    "name": "No Urbana Francisco de Miranda",
+    "pcode": "VE051702",
+    "municipalityId": 340,
+    "_muni": "Francisco Linares Alcántara",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Capital Francisco Linares Alcantara",
+    "pcode": "VE051701",
+    "municipalityId": 340,
+    "_muni": "Francisco Linares Alcántara",
+    "_state": "Aragua"
+  },
+  {
+    "name": "La Pea",
+    "pcode": "VE110203",
+    "municipalityId": 95,
+    "_muni": "Bolivar",
+    "_state": "Falcón"
+  },
+  {
+    "name": "Cinco de Julio",
+    "pcode": "VE100202",
+    "municipalityId": 334,
+    "_muni": "Casacoima",
+    "_state": "Delta Amacuro"
+  },
+  {
+    "name": "Monseor Argimiro Garcia",
+    "pcode": "VE100406",
+    "municipalityId": 331,
+    "_muni": "Tucupita",
+    "_state": "Delta Amacuro"
+  },
+  {
+    "name": "Juan Bautista Arismendi",
+    "pcode": "VE100203",
+    "municipalityId": 334,
+    "_muni": "Casacoima",
+    "_state": "Delta Amacuro"
+  },
+  {
+    "name": "Capital Libertador",
+    "pcode": "VE160701",
+    "municipalityId": 192,
+    "_muni": "Libertador",
+    "_state": "Monagas"
+  },
+  {
+    "name": "Capital Puerto la Cruz",
+    "pcode": "VE030801",
+    "municipalityId": 14,
+    "_muni": "Sotillo",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Valle de Guanape",
+    "pcode": "VE030401",
+    "municipalityId": 19,
+    "_muni": "Carvajal",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Capital Francisco de Miranda",
+    "pcode": "VE030501",
+    "municipalityId": 10,
+    "_muni": "Miranda",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Capital Independencia",
+    "pcode": "VE030701",
+    "municipalityId": 8,
+    "_muni": "Independencia",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Lago de Valencia - Aragua",
+    "pcode": "VE050300",
+    "municipalityId": 30,
+    "_muni": "Girardot",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Capital Libertad",
+    "pcode": "VE031101",
+    "municipalityId": 9,
+    "_muni": "Libertad",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Boca de Uchire",
+    "pcode": "VE031601",
+    "municipalityId": 22,
+    "_muni": "S Juan Capistrano",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Concepcion",
+    "pcode": "VE130302",
+    "municipalityId": 135,
+    "_muni": "Iribarren",
+    "_state": "Lara"
+  },
+  {
+    "name": "San Rafael de Alcazar",
+    "pcode": "VE141403",
+    "municipalityId": 154,
+    "_muni": "Ob. Ramos De Lora",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Capital Obispo Ramos de Lora",
+    "pcode": "VE141401",
+    "municipalityId": 154,
+    "_muni": "Ob. Ramos De Lora",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Mariscal Antonio Jose de Sucre",
+    "pcode": "VE100405",
+    "municipalityId": 331,
+    "_muni": "Tucupita",
+    "_state": "Delta Amacuro"
+  },
+  {
+    "name": "Capital Rangel",
+    "pcode": "VE141701",
+    "municipalityId": 158,
+    "_muni": "Rangel",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Las Aluhacas",
+    "pcode": "VE160703",
+    "municipalityId": 192,
+    "_muni": "Libertador",
+    "_state": "Monagas"
+  },
+  {
+    "name": "Capital Sotillo",
+    "pcode": "VE161201",
+    "municipalityId": 196,
+    "_muni": "Sotillo",
+    "_state": "Monagas"
+  },
+  {
+    "name": "Alfredo Arvelo Larriva",
+    "pcode": "VE060402",
+    "municipalityId": 49,
+    "_muni": "Barinas",
+    "_state": "Barinas"
+  },
+  {
+    "name": "Urbana Madre Maria de san Jose",
+    "pcode": "VE050304",
+    "municipalityId": 30,
+    "_muni": "Girardot",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Capital Libertador",
+    "pcode": "VE050701",
+    "municipalityId": 38,
+    "_muni": "Libertador",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Capital Mario Briceo Iragorry",
+    "pcode": "VE050801",
+    "municipalityId": 42,
+    "_muni": "Mario B Iragorry",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Dominga Ortiz de Paez",
+    "pcode": "VE060414",
+    "municipalityId": 49,
+    "_muni": "Barinas",
+    "_state": "Barinas"
+  },
+  {
+    "name": "Juan Antonio Rodriguez Dominguez",
+    "pcode": "VE060413",
+    "municipalityId": 49,
+    "_muni": "Barinas",
+    "_state": "Barinas"
+  },
+  {
+    "name": "Manuel Palacio Fajardo",
+    "pcode": "VE060412",
+    "municipalityId": 49,
+    "_muni": "Barinas",
+    "_state": "Barinas"
+  },
+  {
+    "name": "Capital Sucre",
+    "pcode": "VE051301",
+    "municipalityId": 35,
+    "_muni": "Sucre",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Francisco Aniceto Lugo",
+    "pcode": "VE100103",
+    "municipalityId": 333,
+    "_muni": "Antonio Diaz",
+    "_state": "Delta Amacuro"
+  },
+  {
+    "name": "Palacios Fajardo",
+    "pcode": "VE061003",
+    "municipalityId": 54,
+    "_muni": "Rojas",
+    "_state": "Barinas"
+  },
+  {
+    "name": "Urbana Independencia",
+    "pcode": "VE080602",
+    "municipalityId": 84,
+    "_muni": "Libertador",
+    "_state": "Carabobo"
+  },
+  {
+    "name": "Urbana Tocuyito",
+    "pcode": "VE080601",
+    "municipalityId": 84,
+    "_muni": "Libertador",
+    "_state": "Carabobo"
+  },
+  {
+    "name": "Urbana los Guayos",
+    "pcode": "VE080701",
+    "municipalityId": 81,
+    "_muni": "Los Guayos",
+    "_state": "Carabobo"
+  },
+  {
+    "name": "Cazorla",
+    "pcode": "VE120402",
+    "municipalityId": 342,
+    "_muni": "San Gerónimo de Guayabal",
+    "_state": "Guárico"
+  },
+  {
+    "name": "Capital san Geronimo Guayabal",
+    "pcode": "VE120401",
+    "municipalityId": 342,
+    "_muni": "San Gerónimo de Guayabal",
+    "_state": "Guárico"
+  },
+  {
+    "name": "Juan Bautista Rodriguez",
+    "pcode": "VE130401",
+    "municipalityId": 136,
+    "_muni": "Jimenez",
+    "_state": "Lara"
+  },
+  {
+    "name": "Jose Gregorio Bastidas",
+    "pcode": "VE130602",
+    "municipalityId": 138,
+    "_muni": "Palavecino",
+    "_state": "Lara"
+  },
+  {
+    "name": "Gabriel Picon Gonzalez",
+    "pcode": "VE140104",
+    "municipalityId": 143,
+    "_muni": "Alberto Adriani",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Capital Julio Cesar Salas",
+    "pcode": "VE141001",
+    "municipalityId": 148,
+    "_muni": "Julio Cesar Salas",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Castaeda",
+    "pcode": "VE130804",
+    "municipalityId": 139,
+    "_muni": "Torres",
+    "_state": "Lara"
+  },
+  {
+    "name": "Presidente Romulo Gallegos",
+    "pcode": "VE140103",
+    "municipalityId": 143,
+    "_muni": "Alberto Adriani",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Mesa de las Palmas",
+    "pcode": "VE140303",
+    "municipalityId": 343,
+    "_muni": "Antonio Pinto Salinas",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Mesa Bolivar",
+    "pcode": "VE140302",
+    "municipalityId": 343,
+    "_muni": "Antonio Pinto Salinas",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Fernandez Pea",
+    "pcode": "VE140601",
+    "municipalityId": 146,
+    "_muni": "Campo Elias",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Capital Cardenal Quintero",
+    "pcode": "VE140801",
+    "municipalityId": 156,
+    "_muni": "Cardenal Quintero",
+    "_state": "Mérida"
+  },
+  {
+    "name": "San Cristobal de Torondoy",
+    "pcode": "VE141102",
+    "municipalityId": 149,
+    "_muni": "Justo Briceño",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Capital Justo Briceo",
+    "pcode": "VE141101",
+    "municipalityId": 149,
+    "_muni": "Justo Briceño",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Domingo Pea",
+    "pcode": "VE141204",
+    "municipalityId": 150,
+    "_muni": "Libertador",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Caracciolo Parra Perez",
+    "pcode": "VE141203",
+    "municipalityId": 150,
+    "_muni": "Libertador",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Capital Miranda",
+    "pcode": "VE141301",
+    "municipalityId": 152,
+    "_muni": "Miranda",
+    "_state": "Mérida"
+  },
+  {
+    "name": "Capital Ezequiel Zamora",
+    "pcode": "VE160601",
+    "municipalityId": 191,
+    "_muni": "Ezequiel Zamora",
+    "_state": "Monagas"
+  },
+  {
+    "name": "Arnoldo Gabaldon",
+    "pcode": "VE210802",
+    "municipalityId": 346,
+    "_muni": "Juan Vicente Campo Elías",
+    "_state": "Trujillo"
+  },
+  {
+    "name": "Campo Elias",
+    "pcode": "VE210801",
+    "municipalityId": 346,
+    "_muni": "Juan Vicente Campo Elías",
+    "_state": "Trujillo"
+  },
+  {
+    "name": "El Bao",
+    "pcode": "VE211202",
+    "municipalityId": 279,
+    "_muni": "Motatan",
+    "_state": "Trujillo"
+  },
+  {
+    "name": "Capital Maneiro",
+    "pcode": "VE170601",
+    "municipalityId": 203,
+    "_muni": "Maneiro",
+    "_state": "Nueva Esparta"
+  },
+  {
+    "name": "Tuame",
+    "pcode": "VE211906",
+    "municipalityId": 274,
+    "_muni": "Urdaneta",
+    "_state": "Trujillo"
+  },
+  {
+    "name": "Guajira",
+    "pcode": "VE231504",
+    "municipalityId": 309,
+    "_muni": "Paez",
+    "_state": "Zulia"
+  },
+  {
+    "name": "San Antonio de Yare",
+    "pcode": "VE151802",
+    "municipalityId": 180,
+    "_muni": "Simon Bolivar",
+    "_state": "Miranda"
+  },
+  {
+    "name": "Capital Tubores",
+    "pcode": "VE171001",
+    "municipalityId": 208,
+    "_muni": "Tubores",
+    "_state": "Nueva Esparta"
+  },
+  {
+    "name": "Capital Esteller",
+    "pcode": "VE180301",
+    "municipalityId": 212,
+    "_muni": "Esteller",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "San Jose de la Montaa",
+    "pcode": "VE180403",
+    "municipalityId": 213,
+    "_muni": "Guanare",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "Pea Blanca",
+    "pcode": "VE180602",
+    "municipalityId": 219,
+    "_muni": "M.Jose V De Unda",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "Capital santa Rosalia",
+    "pcode": "VE181201",
+    "municipalityId": 224,
+    "_muni": "Santa Rosalia",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "San Rafael de Palo Alzado",
+    "pcode": "VE181303",
+    "municipalityId": 217,
+    "_muni": "Sucre",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "Capital Sucre",
+    "pcode": "VE181301",
+    "municipalityId": 217,
+    "_muni": "Sucre",
+    "_state": "Portuguesa"
+  },
+  {
+    "name": "San Jose de Aerocuar",
+    "pcode": "VE190201",
+    "municipalityId": 237,
+    "_muni": "Andres Mata",
+    "_state": "Sucre"
+  },
+  {
+    "name": "San Juan de las Galdonas",
+    "pcode": "VE190305",
+    "municipalityId": 225,
+    "_muni": "Arismendi",
+    "_state": "Sucre"
+  },
+  {
+    "name": "General Francisco Antonio Vasquez",
+    "pcode": "VE190403",
+    "municipalityId": 226,
+    "_muni": "Benitez",
+    "_state": "Sucre"
+  },
+  {
+    "name": "El Paujil",
+    "pcode": "VE190702",
+    "municipalityId": 228,
+    "_muni": "Cajigal",
+    "_state": "Sucre"
+  },
+  {
+    "name": "Capital Marcano",
+    "pcode": "VE170701",
+    "municipalityId": 204,
+    "_muni": "Marcano",
+    "_state": "Nueva Esparta"
+  },
+  {
+    "name": "Capital Diaz",
+    "pcode": "VE170301",
+    "municipalityId": 201,
+    "_muni": "Diaz",
+    "_state": "Nueva Esparta"
+  },
+  {
+    "name": "Villa Frontado (muelle de Cariaco)",
+    "pcode": "VE191301",
+    "municipalityId": 232,
+    "_muni": "Ribero",
+    "_state": "Sucre"
+  },
+  {
+    "name": "Punta de Piedras",
+    "pcode": "VE191504",
+    "municipalityId": 234,
+    "_muni": "Valdez",
+    "_state": "Sucre"
+  },
+  {
+    "name": "Isaias Medina Angarita",
+    "pcode": "VE200404",
+    "municipalityId": 241,
+    "_muni": "Bolivar",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Bolivar",
+    "pcode": "VE200401",
+    "municipalityId": 241,
+    "_muni": "Bolivar",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Amenodoro Rangel Lamus",
+    "pcode": "VE200502",
+    "municipalityId": 243,
+    "_muni": "Cardenas",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Garcia de Hevia",
+    "pcode": "VE200901",
+    "municipalityId": 250,
+    "_muni": "Garcia De Hevia",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Independencia",
+    "pcode": "VE201101",
+    "municipalityId": 242,
+    "_muni": "Independencia",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Monseor Miguel Antonio Salas",
+    "pcode": "VE201203",
+    "municipalityId": 244,
+    "_muni": "Jauregui",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Libertad",
+    "pcode": "VE201501",
+    "municipalityId": 259,
+    "_muni": "Libertad",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Libertador",
+    "pcode": "VE201601",
+    "municipalityId": 253,
+    "_muni": "Libertador",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Eleazar Lopez Contreras",
+    "pcode": "VE202602",
+    "municipalityId": 256,
+    "_muni": "Sucre",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Isla de Toas",
+    "pcode": "VE230101",
+    "municipalityId": 349,
+    "_muni": "Almirante Padilla",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Francisco Javier Pulgar",
+    "pcode": "VE230603",
+    "municipalityId": 350,
+    "_muni": "Francisco Javier Pulgar",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Carlos Quevedo",
+    "pcode": "VE230602",
+    "municipalityId": 350,
+    "_muni": "Francisco Javier Pulgar",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Chiquinquira",
+    "pcode": "VE230903",
+    "municipalityId": 351,
+    "_muni": "La Cañada de Urdaneta",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Concepcion",
+    "pcode": "VE230901",
+    "municipalityId": 351,
+    "_muni": "La Cañada de Urdaneta",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Eleazar Lopez Contreras",
+    "pcode": "VE231004",
+    "municipalityId": 313,
+    "_muni": "Lagunillas",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Rio Negro",
+    "pcode": "VE231103",
+    "municipalityId": 315,
+    "_muni": "M/Rosario De Perija",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Bartolome de las Casas",
+    "pcode": "VE231102",
+    "municipalityId": 315,
+    "_muni": "M/Rosario De Perija",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Libertad",
+    "pcode": "VE231101",
+    "municipalityId": 315,
+    "_muni": "M/Rosario De Perija",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Monseor Marcos Sergio Godoy",
+    "pcode": "VE231205",
+    "municipalityId": 306,
+    "_muni": "Mara",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Idelfonso Vasquez",
+    "pcode": "VE231310",
+    "municipalityId": 307,
+    "_muni": "Maracaibo",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Francisco Eugenio Bustamante",
+    "pcode": "VE231309",
+    "municipalityId": 307,
+    "_muni": "Maracaibo",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Jose Cenovio Urribarri",
+    "pcode": "VE231803",
+    "municipalityId": 304,
+    "_muni": "Santa Rita",
+    "_state": "Zulia"
+  },
+  {
+    "name": "Carlos Soublette",
+    "pcode": "VE240111",
+    "municipalityId": 335,
+    "_muni": "Vargas",
+    "_state": "La Guaira"
+  },
+  {
+    "name": "Raul Leoni",
+    "pcode": "VE240110",
+    "municipalityId": 335,
+    "_muni": "Vargas",
+    "_state": "La Guaira"
+  },
+  {
+    "name": "Capital Villalba",
+    "pcode": "VE171101",
+    "municipalityId": 207,
+    "_muni": "Villalba(I.Coche)",
+    "_state": "Nueva Esparta"
+  },
+  {
+    "name": "Capital Pedro Maria Freites",
+    "pcode": "VE031301",
+    "municipalityId": 7,
+    "_muni": "Freites",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Capital Peninsula de Macanao",
+    "pcode": "VE170901",
+    "municipalityId": 206,
+    "_muni": "Penin. De Macanao",
+    "_state": "Nueva Esparta"
+  },
+  {
+    "name": "Dr. Francisco Romero Lobo",
+    "pcode": "VE202305",
+    "municipalityId": 247,
+    "_muni": "San Cristobal",
+    "_state": "Táchira"
+  },
+  {
+    "name": "El Morro",
+    "pcode": "VE032102",
+    "municipalityId": 337,
+    "_muni": "Turístico Diego Bautista Urbaneja",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Capital Lecherias",
+    "pcode": "VE032101",
+    "municipalityId": 337,
+    "_muni": "Turístico Diego Bautista Urbaneja",
+    "_state": "Anzoátegui"
+  },
+  {
+    "name": "Seccion Capital Piar",
+    "pcode": "VE070601",
+    "municipalityId": 63,
+    "_muni": "Piar",
+    "_state": "Bolívar"
+  },
+  {
+    "name": "Seccion Capital Raul Leoni",
+    "pcode": "VE070701",
+    "municipalityId": 67,
+    "_muni": "Raul Leoni",
+    "_state": "Bolívar"
+  },
+  {
+    "name": "Capital Santiago Mario",
+    "pcode": "VE051101",
+    "municipalityId": 31,
+    "_muni": "Santiago Mariño",
+    "_state": "Aragua"
+  },
+  {
+    "name": "No Urbana Alfredo Pacheco Miranda",
+    "pcode": "VE051105",
+    "municipalityId": 31,
+    "_muni": "Santiago Mariño",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Capital Santos Michelena",
+    "pcode": "VE051201",
+    "municipalityId": 41,
+    "_muni": "Santos Michelena",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Seccion Capital Sucre",
+    "pcode": "VE071001",
+    "municipalityId": 65,
+    "_muni": "Sucre",
+    "_state": "Bolívar"
+  },
+  {
+    "name": "No Urbana las Peitas",
+    "pcode": "VE051502",
+    "municipalityId": 36,
+    "_muni": "Urdaneta",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Capital Urdaneta",
+    "pcode": "VE051501",
+    "municipalityId": 36,
+    "_muni": "Urdaneta",
+    "_state": "Aragua"
+  },
+  {
+    "name": "Seccion Capital Roscio",
+    "pcode": "VE070801",
+    "municipalityId": 64,
+    "_muni": "Roscio",
+    "_state": "Bolívar"
+  },
+  {
+    "name": "Seccion Capital Sifontes",
+    "pcode": "VE070901",
+    "municipalityId": 66,
+    "_muni": "Sifontes",
+    "_state": "Bolívar"
+  },
+  {
+    "name": "Capital Zamora",
+    "pcode": "VE051601",
+    "municipalityId": 37,
+    "_muni": "Zamora",
+    "_state": "Aragua"
+  },
+  {
+    "name": "No Urbana Augusto Mijares",
+    "pcode": "VE051605",
+    "municipalityId": 37,
+    "_muni": "Zamora",
+    "_state": "Aragua"
+  },
+  {
+    "name": "No Urbana Valles del Tucutunemo",
+    "pcode": "VE051604",
+    "municipalityId": 37,
+    "_muni": "Zamora",
+    "_state": "Aragua"
+  },
+  {
+    "name": "La Cienega",
+    "pcode": "VE112502",
+    "municipalityId": 106,
+    "_muni": "Zamora",
+    "_state": "Falcón"
+  },
+  {
+    "name": "Capital Gomez",
+    "pcode": "VE170501",
+    "municipalityId": 202,
+    "_muni": "Gomez",
+    "_state": "Nueva Esparta"
+  },
+  {
+    "name": "Uribante",
+    "pcode": "VE202801",
+    "municipalityId": 248,
+    "_muni": "Uribante",
+    "_state": "Táchira"
+  },
+  {
+    "name": "Monseor Carrillo",
+    "pcode": "VE211806",
+    "municipalityId": 273,
+    "_muni": "Trujillo",
+    "_state": "Trujillo"
+  },
+  {
+    "name": "Monseor Jauregui",
+    "pcode": "VE210209",
+    "municipalityId": 270,
+    "_muni": "Bocono",
+    "_state": "Trujillo"
+  },
+  {
+    "name": "Los Cedros",
+    "pcode": "VE211503",
+    "municipalityId": 269,
+    "_muni": "Rafael Rangel",
+    "_state": "Trujillo"
+  },
+  {
+    "name": "Jose Gregorio Hernandez",
+    "pcode": "VE211504",
+    "municipalityId": 269,
+    "_muni": "Rafael Rangel",
+    "_state": "Trujillo"
+  }
+]

@@ -1,0 +1,7 @@
+[
+  { "slug": "delivery_types:view", "description": "Ver tipos de entrega" },
+  { "slug": "delivery_types:read", "description": "Consultar tipos de entrega" },
+  { "slug": "delivery_types:create", "description": "Crear tipos de entrega" },
+  { "slug": "delivery_types:update", "description": "Actualizar tipos de entrega" },
+  { "slug": "delivery_types:delete", "description": "Eliminar tipos de entrega" }
+]

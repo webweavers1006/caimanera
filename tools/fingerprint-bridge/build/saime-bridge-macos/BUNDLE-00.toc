@@ -1,0 +1,3 @@
+([('saime-bridge-macos',
+   '/Users/zireael/Documents/GitHub/siac_saime_next/tools/fingerprint-bridge/dist/saime-bridge-macos',
+   'EXECUTABLE')],)

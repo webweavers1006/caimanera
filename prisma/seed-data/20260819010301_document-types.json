@@ -1,0 +1,10 @@
+[
+  { "name": "PASAPORTE" },
+  { "name": "CÉDULA DE IDENTIDAD" },
+  { "name": "PARTIDA DE NACIMIENTO" },
+  { "name": "ACTA DE MATRIMONIO" },
+  { "name": "ACTA DE DEFUNCIÓN" },
+  { "name": "CARTA DE NATURALIZACIÓN" },
+  { "name": "VISADO" },
+  { "name": "OTRO" }
+]

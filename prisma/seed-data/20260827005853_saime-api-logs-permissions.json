@@ -1,0 +1,5 @@
+[
+  { "slug": "saime_api_logs:view", "description": "Ver el módulo de Peticiones API SAIME en el menú" },
+  { "slug": "saime_api_logs:read", "description": "Consultar el registro de peticiones realizadas a la API SAIME" }
+]
+

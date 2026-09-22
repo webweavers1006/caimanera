@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Por Llamar", "closesCase": false },
+  { "id": 2, "name": "Atendido", "closesCase": true },
+  { "id": 3, "name": "No Contesta", "closesCase": false },
+  { "id": 4, "name": "Otro", "closesCase": false }
+]

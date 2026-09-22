@@ -1,0 +1,7 @@
+[
+  { "slug": "permissions:view",   "description": "Ver el módulo de Permisos en el menú" },
+  { "slug": "permissions:read",   "description": "Ver catálogo de permisos del sistema" },
+  { "slug": "permissions:create", "description": "Crear nuevos permisos" },
+  { "slug": "permissions:update", "description": "Editar permisos existentes" },
+  { "slug": "permissions:delete", "description": "Eliminar permisos del sistema" }
+]

@@ -1,0 +1,907 @@
+[
+  {
+    "id": 1,
+    "caseAreaId": 2,
+    "name": "Caso Externo (Otro Ente)"
+  },
+  {
+    "id": 2,
+    "caseAreaId": 3,
+    "name": "Anulación De Prorroga (Sistema)"
+  },
+  {
+    "id": 3,
+    "caseAreaId": 3,
+    "name": "Cambio De Condición (Extranjero)"
+  },
+  {
+    "id": 4,
+    "caseAreaId": 3,
+    "name": "Certificado De Naturalización"
+  },
+  {
+    "id": 5,
+    "caseAreaId": 3,
+    "name": "Certificado De No Naturalización"
+  },
+  {
+    "id": 6,
+    "caseAreaId": 3,
+    "name": "Constancia De No Naturalizados"
+  },
+  {
+    "id": 7,
+    "caseAreaId": 3,
+    "name": "Estudio De Permanencia"
+  },
+  {
+    "id": 8,
+    "caseAreaId": 3,
+    "name": "Naturalización"
+  },
+  {
+    "id": 9,
+    "caseAreaId": 3,
+    "name": "Prorroga De Residente"
+  },
+  {
+    "id": 10,
+    "caseAreaId": 3,
+    "name": "Prorroga Visa Turista"
+  },
+  {
+    "id": 11,
+    "caseAreaId": 3,
+    "name": "Rechazado Por Dirección / Visa"
+  },
+  {
+    "id": 12,
+    "caseAreaId": 3,
+    "name": "Recuento"
+  },
+  {
+    "id": 13,
+    "caseAreaId": 3,
+    "name": "Requisitos Para Naturalización"
+  },
+  {
+    "id": 14,
+    "caseAreaId": 3,
+    "name": "Validación De Pago - Duplicado"
+  },
+  {
+    "id": 15,
+    "caseAreaId": 3,
+    "name": "Validación De Pago - Visa"
+  },
+  {
+    "id": 16,
+    "caseAreaId": 3,
+    "name": "Validación De Pago (Visa)"
+  },
+  {
+    "id": 17,
+    "caseAreaId": 3,
+    "name": "Verificación De Datos"
+  },
+  {
+    "id": 18,
+    "caseAreaId": 3,
+    "name": "Visa Transeunte Estudiante"
+  },
+  {
+    "id": 19,
+    "caseAreaId": 3,
+    "name": "Visa Transeunte Familiar Venezolano"
+  },
+  {
+    "id": 20,
+    "caseAreaId": 3,
+    "name": "Visa Transeunte Laboral"
+  },
+  {
+    "id": 21,
+    "caseAreaId": 3,
+    "name": "Visa Transeunte Rentista"
+  },
+  {
+    "id": 22,
+    "caseAreaId": 3,
+    "name": "Visa Transeunte Simple"
+  },
+  {
+    "id": 23,
+    "caseAreaId": 3,
+    "name": "Visa Turista"
+  },
+  {
+    "id": 24,
+    "caseAreaId": 4,
+    "name": "Actualización De Datos"
+  },
+  {
+    "id": 25,
+    "caseAreaId": 4,
+    "name": "Actualización De Datos Civiles"
+  },
+  {
+    "id": 26,
+    "caseAreaId": 4,
+    "name": "Anulación De Pasaporte"
+  },
+  {
+    "id": 27,
+    "caseAreaId": 4,
+    "name": "Anulación De Pasaporte/prórroga"
+  },
+  {
+    "id": 28,
+    "caseAreaId": 4,
+    "name": "Bloqueo Renovación De Cédula 6 Meses"
+  },
+  {
+    "id": 29,
+    "caseAreaId": 4,
+    "name": "Cambio De Contraseña"
+  },
+  {
+    "id": 30,
+    "caseAreaId": 4,
+    "name": "Cambio De Correo"
+  },
+  {
+    "id": 31,
+    "caseAreaId": 4,
+    "name": "Cambio De Correo/consulado"
+  },
+  {
+    "id": 32,
+    "caseAreaId": 4,
+    "name": "Cambio De Estado Civil"
+  },
+  {
+    "id": 33,
+    "caseAreaId": 4,
+    "name": "Cambio De Número Telefónico"
+  },
+  {
+    "id": 34,
+    "caseAreaId": 4,
+    "name": "Cambio Modalidad De Pasaporte (Ordinario A Habilitado)"
+  },
+  {
+    "id": 35,
+    "caseAreaId": 4,
+    "name": "Cédula (Naturalizado)"
+  },
+  {
+    "id": 36,
+    "caseAreaId": 4,
+    "name": "Cedulación Extranjero"
+  },
+  {
+    "id": 37,
+    "caseAreaId": 4,
+    "name": "Cedulación Indígena"
+  },
+  {
+    "id": 38,
+    "caseAreaId": 4,
+    "name": "Cedulación Por Primera Vez"
+  },
+  {
+    "id": 39,
+    "caseAreaId": 4,
+    "name": "Cedulación Por Primera Vez Para Mayor De 18 Años Nacidos En Venezuela"
+  },
+  {
+    "id": 40,
+    "caseAreaId": 4,
+    "name": "Cedulación Por Primera Vez Para Mayor De 18 Años Nacidos En Venezuela (Hijos De Madre Extranjera)"
+  },
+  {
+    "id": 41,
+    "caseAreaId": 4,
+    "name": "Certificación De Pasaporte"
+  },
+  {
+    "id": 42,
+    "caseAreaId": 4,
+    "name": "Certificación De Pasaporte, Recuento"
+  },
+  {
+    "id": 43,
+    "caseAreaId": 4,
+    "name": "Colocacion Familiar"
+  },
+  {
+    "id": 44,
+    "caseAreaId": 4,
+    "name": "Congestión (Pago - Plataforma Saime)"
+  },
+  {
+    "id": 45,
+    "caseAreaId": 4,
+    "name": "Consulta Certificación De Pasaporte"
+  },
+  {
+    "id": 46,
+    "caseAreaId": 4,
+    "name": "Consulta De Prorroga De Pasaporte"
+  },
+  {
+    "id": 47,
+    "caseAreaId": 4,
+    "name": "Consulta Documento De Viaje (Salvoconducto)"
+  },
+  {
+    "id": 48,
+    "caseAreaId": 4,
+    "name": "Consulta Pasaporte Habilitado"
+  },
+  {
+    "id": 49,
+    "caseAreaId": 4,
+    "name": "Consulta Pasaporte Ordinario"
+  },
+  {
+    "id": 50,
+    "caseAreaId": 4,
+    "name": "Consulta Ubicación De Pasaporte Consular (Argentina)"
+  },
+  {
+    "id": 51,
+    "caseAreaId": 4,
+    "name": "Consulta Ubicación De Pasaporte Consular (Chile)"
+  },
+  {
+    "id": 52,
+    "caseAreaId": 4,
+    "name": "Consulta Ubicación De Pasaporte Consular (Colombia)"
+  },
+  {
+    "id": 53,
+    "caseAreaId": 4,
+    "name": "Consulta Ubicación De Pasaporte Consular (México)"
+  },
+  {
+    "id": 54,
+    "caseAreaId": 4,
+    "name": "Correo/ Toquen Invalido"
+  },
+  {
+    "id": 55,
+    "caseAreaId": 4,
+    "name": "Creación De Usuario"
+  },
+  {
+    "id": 56,
+    "caseAreaId": 4,
+    "name": "Desbloqueo De Cita"
+  },
+  {
+    "id": 57,
+    "caseAreaId": 4,
+    "name": "Doble Cedulación"
+  },
+  {
+    "id": 58,
+    "caseAreaId": 4,
+    "name": "Doble Filiación"
+  },
+  {
+    "id": 59,
+    "caseAreaId": 4,
+    "name": "Error En Cedulación (Fecha De Emisión Incorrecta)"
+  },
+  {
+    "id": 60,
+    "caseAreaId": 4,
+    "name": "Error En Cédulación (Foto Errada)"
+  },
+  {
+    "id": 61,
+    "caseAreaId": 4,
+    "name": "Error En Manejo De Plataforma Saime"
+  },
+  {
+    "id": 62,
+    "caseAreaId": 4,
+    "name": "Error En Sistema (Pago Pasaporte)"
+  },
+  {
+    "id": 63,
+    "caseAreaId": 4,
+    "name": "Error En Sistema (Responsabilidad Legal)"
+  },
+  {
+    "id": 64,
+    "caseAreaId": 4,
+    "name": "Error En Sistema / 24 Horas"
+  },
+  {
+    "id": 65,
+    "caseAreaId": 4,
+    "name": "Error En Sistema/ Pago Pasaporte"
+  },
+  {
+    "id": 66,
+    "caseAreaId": 4,
+    "name": "Error En Sistema/ Responsabilidad Legal"
+  },
+  {
+    "id": 67,
+    "caseAreaId": 4,
+    "name": "Estatus De Pasaporte"
+  },
+  {
+    "id": 68,
+    "caseAreaId": 4,
+    "name": "Extravío De Cédula"
+  },
+  {
+    "id": 69,
+    "caseAreaId": 4,
+    "name": "Homologación De Pago (Pasaporte)"
+  },
+  {
+    "id": 70,
+    "caseAreaId": 4,
+    "name": "Inclusión De Sistema"
+  },
+  {
+    "id": 71,
+    "caseAreaId": 4,
+    "name": "Inconsistencia (Plataforma Indica Fallecido)"
+  },
+  {
+    "id": 72,
+    "caseAreaId": 4,
+    "name": "Inconsistencia De Datos"
+  },
+  {
+    "id": 73,
+    "caseAreaId": 4,
+    "name": "Inconsistencia En Registro De Nna"
+  },
+  {
+    "id": 74,
+    "caseAreaId": 4,
+    "name": "Incosistencia Estado Civil"
+  },
+  {
+    "id": 75,
+    "caseAreaId": 4,
+    "name": "Información Para Olvido De Contraseña"
+  },
+  {
+    "id": 76,
+    "caseAreaId": 4,
+    "name": "Invasión De Serial"
+  },
+  {
+    "id": 77,
+    "caseAreaId": 4,
+    "name": "Jornada De Cedulación"
+  },
+  {
+    "id": 78,
+    "caseAreaId": 4,
+    "name": "No Aparece Centro Hospitalario"
+  },
+  {
+    "id": 79,
+    "caseAreaId": 4,
+    "name": "Objeción (Restriccion Militar)"
+  },
+  {
+    "id": 80,
+    "caseAreaId": 4,
+    "name": "Objetado Por Físcalia Cne"
+  },
+  {
+    "id": 81,
+    "caseAreaId": 4,
+    "name": "Pago A Domicilio/pasaporte Consular"
+  },
+  {
+    "id": 82,
+    "caseAreaId": 4,
+    "name": "Pasaporte (Error De Concurrencia)"
+  },
+  {
+    "id": 83,
+    "caseAreaId": 4,
+    "name": "Pasaporte Consular"
+  },
+  {
+    "id": 84,
+    "caseAreaId": 4,
+    "name": "Pasaporte Extranjero"
+  },
+  {
+    "id": 85,
+    "caseAreaId": 4,
+    "name": "Pasaporte Habilitado"
+  },
+  {
+    "id": 86,
+    "caseAreaId": 4,
+    "name": "Pasaporte Ordinario"
+  },
+  {
+    "id": 87,
+    "caseAreaId": 4,
+    "name": "Pasaporte Retenido Legalmente"
+  },
+  {
+    "id": 88,
+    "caseAreaId": 4,
+    "name": "Pasaporte Sin Avance (Etiqueta Impresa)"
+  },
+  {
+    "id": 89,
+    "caseAreaId": 4,
+    "name": "Pasaporte/código De Pago"
+  },
+  {
+    "id": 90,
+    "caseAreaId": 4,
+    "name": "Pasaporte/error De Concurrencia"
+  },
+  {
+    "id": 91,
+    "caseAreaId": 4,
+    "name": "Pérdida O Robo De Cedula"
+  },
+  {
+    "id": 92,
+    "caseAreaId": 4,
+    "name": "Pérdida O Robo De Pasaporte"
+  },
+  {
+    "id": 93,
+    "caseAreaId": 4,
+    "name": "Permiso De Viaje Nna"
+  },
+  {
+    "id": 94,
+    "caseAreaId": 4,
+    "name": "Precios De Pasaporte"
+  },
+  {
+    "id": 95,
+    "caseAreaId": 4,
+    "name": "Proceso De Cedulación Irregular"
+  },
+  {
+    "id": 96,
+    "caseAreaId": 4,
+    "name": "Reagendar Cita - Cedulación"
+  },
+  {
+    "id": 97,
+    "caseAreaId": 4,
+    "name": "Reagendar Cita (Pasaporte)"
+  },
+  {
+    "id": 98,
+    "caseAreaId": 4,
+    "name": "Reclamo Por Inclusión En Sistema Menor De Edad (Ingreso Opsu)"
+  },
+  {
+    "id": 99,
+    "caseAreaId": 4,
+    "name": "Reintegro De Dinero / Pasaporte"
+  },
+  {
+    "id": 100,
+    "caseAreaId": 4,
+    "name": "Renovación Adulto Mayor"
+  },
+  {
+    "id": 101,
+    "caseAreaId": 4,
+    "name": "Renovación De Cédula"
+  },
+  {
+    "id": 102,
+    "caseAreaId": 4,
+    "name": "Renovación De Pasaporte"
+  },
+  {
+    "id": 103,
+    "caseAreaId": 4,
+    "name": "Requisitos Para Emisión De Pasaporte"
+  },
+  {
+    "id": 104,
+    "caseAreaId": 4,
+    "name": "Requisitos Retiro Pasaporte Consular (Familiar Directo)"
+  },
+  {
+    "id": 105,
+    "caseAreaId": 4,
+    "name": "Resguardo De Pasaporte"
+  },
+  {
+    "id": 106,
+    "caseAreaId": 4,
+    "name": "Restricción"
+  },
+  {
+    "id": 107,
+    "caseAreaId": 4,
+    "name": "Restriccion Militar"
+  },
+  {
+    "id": 108,
+    "caseAreaId": 4,
+    "name": "Retiro De Cédula"
+  },
+  {
+    "id": 109,
+    "caseAreaId": 4,
+    "name": "Retiro De Pasaporte Consular"
+  },
+  {
+    "id": 110,
+    "caseAreaId": 4,
+    "name": "Retiro De Pasaporte Por Apoderado"
+  },
+  {
+    "id": 111,
+    "caseAreaId": 4,
+    "name": "Ruta José Gregorio Hernández"
+  },
+  {
+    "id": 112,
+    "caseAreaId": 4,
+    "name": "Serial Anulado"
+  },
+  {
+    "id": 113,
+    "caseAreaId": 4,
+    "name": "Serial Flotante"
+  },
+  {
+    "id": 114,
+    "caseAreaId": 4,
+    "name": "Tramite Abierto (Cédula Impresa)"
+  },
+  {
+    "id": 115,
+    "caseAreaId": 4,
+    "name": "Trámite Abierto (Cita De Cedulación)"
+  },
+  {
+    "id": 116,
+    "caseAreaId": 4,
+    "name": "Tramite De Pasaporte Nna"
+  },
+  {
+    "id": 117,
+    "caseAreaId": 4,
+    "name": "Transferencia De Pago Entre Usuarios (Pasaporte)"
+  },
+  {
+    "id": 118,
+    "caseAreaId": 4,
+    "name": "Usuario No Recibe Correo (Ingreso Plataforma Saime)"
+  },
+  {
+    "id": 119,
+    "caseAreaId": 4,
+    "name": "Usuario No Recibe Token (Correo)"
+  },
+  {
+    "id": 120,
+    "caseAreaId": 4,
+    "name": "Usurpación De Identidad"
+  },
+  {
+    "id": 121,
+    "caseAreaId": 4,
+    "name": "Validación De Pago (Cédula Extranjero)"
+  },
+  {
+    "id": 122,
+    "caseAreaId": 4,
+    "name": "Validacion De Pago (Pasaporte Consular)"
+  },
+  {
+    "id": 123,
+    "caseAreaId": 4,
+    "name": "Validación De Pago (Pasaporte)"
+  },
+  {
+    "id": 124,
+    "caseAreaId": 4,
+    "name": "Validación De Pago/certificación De Pasaporte"
+  },
+  {
+    "id": 125,
+    "caseAreaId": 4,
+    "name": "Error De Concurrencia"
+  },
+  {
+    "id": 126,
+    "caseAreaId": 5,
+    "name": "Certificación De Datos"
+  },
+  {
+    "id": 127,
+    "caseAreaId": 5,
+    "name": "Chequeo Dactiloscópico Aprobado"
+  },
+  {
+    "id": 128,
+    "caseAreaId": 5,
+    "name": "Chequeo Dactiloscópico Rechazado"
+  },
+  {
+    "id": 129,
+    "caseAreaId": 5,
+    "name": "Consulta Certificación De Datos"
+  },
+  {
+    "id": 130,
+    "caseAreaId": 5,
+    "name": "Consulta Datos Filiatorios"
+  },
+  {
+    "id": 131,
+    "caseAreaId": 5,
+    "name": "Consulta Datos Filiatorios, Actividad Sospechosa"
+  },
+  {
+    "id": 132,
+    "caseAreaId": 5,
+    "name": "Datos Filiatorios (Error En Actualización De Datos)"
+  },
+  {
+    "id": 133,
+    "caseAreaId": 5,
+    "name": "Error En Impresión Dactilar"
+  },
+  {
+    "id": 134,
+    "caseAreaId": 5,
+    "name": "Error En Validación De Pago (Datos Filiatorios)"
+  },
+  {
+    "id": 135,
+    "caseAreaId": 5,
+    "name": "Fallecimiento Fuera Del País"
+  },
+  {
+    "id": 136,
+    "caseAreaId": 5,
+    "name": "Por Chequeo Dactiloscópico"
+  },
+  {
+    "id": 137,
+    "caseAreaId": 5,
+    "name": "Recaptura De Huellas Visa"
+  },
+  {
+    "id": 138,
+    "caseAreaId": 5,
+    "name": "Reclamo Por Verificación De Datos"
+  },
+  {
+    "id": 139,
+    "caseAreaId": 5,
+    "name": "Reclamo Tramite Datos Filiatorios"
+  },
+  {
+    "id": 140,
+    "caseAreaId": 5,
+    "name": "Reclamo Trámite Datos Filiatorios"
+  },
+  {
+    "id": 141,
+    "caseAreaId": 5,
+    "name": "Tramite Datos Filiatorios (Oficina)"
+  },
+  {
+    "id": 142,
+    "caseAreaId": 5,
+    "name": "Validación De Impresión Dactilar"
+  },
+  {
+    "id": 143,
+    "caseAreaId": 5,
+    "name": "Validación De Pago - Certificación De Datos"
+  },
+  {
+    "id": 144,
+    "caseAreaId": 6,
+    "name": "Error Migratorio"
+  },
+  {
+    "id": 145,
+    "caseAreaId": 6,
+    "name": "Error Migratorio - Extranjero"
+  },
+  {
+    "id": 146,
+    "caseAreaId": 6,
+    "name": "Ingreso Al País (Pasaporte Vencido)"
+  },
+  {
+    "id": 147,
+    "caseAreaId": 6,
+    "name": "Ingreso Al País De Extranjero (Padres Venezolanos)"
+  },
+  {
+    "id": 148,
+    "caseAreaId": 6,
+    "name": "Ingreso Al País De Extranjeros"
+  },
+  {
+    "id": 149,
+    "caseAreaId": 6,
+    "name": "Ingreso Al País Irregular (Doble Nacionalidad)"
+  },
+  {
+    "id": 150,
+    "caseAreaId": 6,
+    "name": "Ingreso Al País Nna (Doble Nacionalidad)"
+  },
+  {
+    "id": 151,
+    "caseAreaId": 6,
+    "name": "Ingreso Por Tsvc"
+  },
+  {
+    "id": 152,
+    "caseAreaId": 6,
+    "name": "Movimiento Migratorio"
+  },
+  {
+    "id": 153,
+    "caseAreaId": 6,
+    "name": "Objeción - Bloqueo Salida Del País"
+  },
+  {
+    "id": 154,
+    "caseAreaId": 6,
+    "name": "Objeción (Bloqueo Salida Del País)"
+  },
+  {
+    "id": 155,
+    "caseAreaId": 6,
+    "name": "Retorno Voluntario"
+  },
+  {
+    "id": 156,
+    "caseAreaId": 6,
+    "name": "Salida Del Territorio Venezolano - Extranjero Irregular (Condición Especial)"
+  },
+  {
+    "id": 157,
+    "caseAreaId": 6,
+    "name": "Salida Del Territorio Venezolano Nna (Doble Nacionalidad)"
+  },
+  {
+    "id": 158,
+    "caseAreaId": 6,
+    "name": "Salvoconducto"
+  },
+  {
+    "id": 159,
+    "caseAreaId": 6,
+    "name": "Sedes Consulares"
+  },
+  {
+    "id": 160,
+    "caseAreaId": 7,
+    "name": "Abuso De Poder"
+  },
+  {
+    "id": 161,
+    "caseAreaId": 7,
+    "name": "Actividad Sospechosa"
+  },
+  {
+    "id": 162,
+    "caseAreaId": 7,
+    "name": "Cobro Por Trámite Gratuito"
+  },
+  {
+    "id": 163,
+    "caseAreaId": 7,
+    "name": "Desvío De Llamada Al Realizar Preguntas De Seguridad"
+  },
+  {
+    "id": 164,
+    "caseAreaId": 7,
+    "name": "Dirección De Oficina"
+  },
+  {
+    "id": 165,
+    "caseAreaId": 7,
+    "name": "Falta De Respuesta Adecuada"
+  },
+  {
+    "id": 166,
+    "caseAreaId": 7,
+    "name": "Horario De Oficina"
+  },
+  {
+    "id": 167,
+    "caseAreaId": 7,
+    "name": "Información Incorrecta, No Brindan Información"
+  },
+  {
+    "id": 168,
+    "caseAreaId": 7,
+    "name": "Irregularidad En Horario De Oficina"
+  },
+  {
+    "id": 169,
+    "caseAreaId": 7,
+    "name": "Lenguage Inaproiado/groserías"
+  },
+  {
+    "id": 170,
+    "caseAreaId": 7,
+    "name": "Llamada Recibida De Tercero (No Se Brinda Información)"
+  },
+  {
+    "id": 171,
+    "caseAreaId": 7,
+    "name": "Mal Trato"
+  },
+  {
+    "id": 172,
+    "caseAreaId": 7,
+    "name": "No Responde Satisfactoriamente Preguntas De Seguridad"
+  },
+  {
+    "id": 173,
+    "caseAreaId": 7,
+    "name": "Oficina No Direcciona Caso De Usuario"
+  },
+  {
+    "id": 174,
+    "caseAreaId": 7,
+    "name": "Omisión De Tramite En Oficina"
+  },
+  {
+    "id": 175,
+    "caseAreaId": 7,
+    "name": "Operatividad De Oficina"
+  },
+  {
+    "id": 176,
+    "caseAreaId": 7,
+    "name": "Remisión Innecesaria A 0800 Saime"
+  },
+  {
+    "id": 177,
+    "caseAreaId": 7,
+    "name": "Solicitud De Pago No Autorizado"
+  },
+  {
+    "id": 178,
+    "caseAreaId": 7,
+    "name": "Sugerencias"
+  },
+  {
+    "id": 179,
+    "caseAreaId": 7,
+    "name": "Suplantación De Identidad / Familiar Directo"
+  },
+  {
+    "id": 180,
+    "caseAreaId": 7,
+    "name": "Suplantación De Identidad A Ciudadano En El Exterior"
+  },
+  {
+    "id": 181,
+    "caseAreaId": 7,
+    "name": "Tiempo Irregular En Entrega De Cédula"
+  }
+]

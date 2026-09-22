@@ -1,0 +1,66 @@
+[
+  {
+    "firstName": "Atención",
+    "lastName": "Ciudadano",
+    "email": "dir.oac@saime.gob.ve",
+    "idCard": "20000001",
+    "directionId": 1,
+    "passwordHash": "$2b$10$TxkT5DcaLytcIw21HngFIeNy0yL2MFAp/LXXSwP/Gdb1FqytTTPnq"
+  },
+  {
+    "firstName": "Tecnología",
+    "lastName": "OTIC",
+    "email": "dir.otic@saime.gob.ve",
+    "idCard": "20000003",
+    "directionId": 3,
+    "passwordHash": "$2b$10$OZEPMn0oHK.OTZqsZLx0D.ssZJztFCacSvzlZ7hMzF7PKqWVGd5eK"
+  },
+  {
+    "firstName": "Identificación",
+    "lastName": "DI",
+    "email": "dir.di@saime.gob.ve",
+    "idCard": "20000004",
+    "directionId": 4,
+    "passwordHash": "$2b$10$pe9nwAUKhCY/BeJDnaqLB.AwYaKia9T9xHhaC7w4JWoPqM4IxQIpi"
+  },
+  {
+    "firstName": "Migración",
+    "lastName": "DM",
+    "email": "dir.dm@saime.gob.ve",
+    "idCard": "20000005",
+    "directionId": 5,
+    "passwordHash": "$2b$10$cefE2D1BCqTXGnlYDS6IMu8wJWtl0qeWyifs9sfjt0W9RbPX8f5Mi"
+  },
+  {
+    "firstName": "Extranjería",
+    "lastName": "DE",
+    "email": "dir.de@saime.gob.ve",
+    "idCard": "20000006",
+    "directionId": 6,
+    "passwordHash": "$2b$10$6Gn47tfow1GDeH5/uXVF.uC9nmpezZnWoTNsVjnm8FSrWRaJs7isC"
+  },
+  {
+    "firstName": "Verificación",
+    "lastName": "DVR",
+    "email": "dir.dvr@saime.gob.ve",
+    "idCard": "20000007",
+    "directionId": 7,
+    "passwordHash": "$2b$10$.8P.FluTd/aKqEPdetUlQ.67LnGOcnIoR9iV4weha.yjoudh7H/6q"
+  },
+  {
+    "firstName": "Emisión",
+    "lastName": "DED",
+    "email": "dir.ded@saime.gob.ve",
+    "idCard": "20000008",
+    "directionId": 8,
+    "passwordHash": "$2b$10$zOqcZKvPrmJo0RcaAsJs4uxRb8LWfoDMUGEkbuf.oxGbFeuHwfbem"
+  },
+  {
+    "firstName": "Regiones",
+    "lastName": "DR",
+    "email": "dir.dr@saime.gob.ve",
+    "idCard": "20000009",
+    "directionId": 9,
+    "passwordHash": "$2b$10$wbFbCXNcHStpeW/JI9AeJOZT.hksx1aYvhEy9tdQ1YRxAaMli6bKW"
+  }
+]

@@ -1,0 +1,9 @@
+[
+  { "slug": "organigrama:view", "description": "Ver el módulo de Organigrama en el menú" },
+  { "slug": "organigrama:read", "description": "Ver el organigrama y estructura jerárquica" },
+  { "slug": "organigrama:read_all", "description": "Ver toda la estructura jerárquica (ignora restricciones de visibilidad)" },
+  { "slug": "organigrama:create", "description": "Crear unidades organizativas y asignar líderes" },
+  { "slug": "organigrama:update", "description": "Editar unidades, mover usuarios y reasignar líderes" },
+  { "slug": "organigrama:delete", "description": "Eliminar unidades organizativas" },
+  { "slug": "organigrama:manage", "description": "Gestionar toda la jerarquía (crear, editar, eliminar, asignar líderes y miembros)" }
+]

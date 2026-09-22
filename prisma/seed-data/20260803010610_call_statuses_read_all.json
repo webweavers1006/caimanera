@@ -1,0 +1,6 @@
+[
+  {
+    "slug": "call_statuses:read_all",
+    "description": "Ver todos los estatus de seguimiento sin restricción de rol."
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "name": "Asesoría",
+    "showCaseArea": true,
+    "showParticipants": false,
+    "sendEmail": true,
+    "showPopularOrg": false,
+    "showCoordinates": true,
+    "showPuntoCuenta": false,
+    "hasComplaint": false,
+    "hasAttentionDetail": false,
+    "showDocuments": true
+  },
+  {
+    "id": 2,
+    "name": "Sugerencia",
+    "showCaseArea": true,
+    "showParticipants": false,
+    "sendEmail": true,
+    "showPopularOrg": false,
+    "showCoordinates": true,
+    "showPuntoCuenta": false,
+    "hasComplaint": false,
+    "hasAttentionDetail": false,
+    "showDocuments": true
+  },
+  {
+    "id": 3,
+    "name": "Queja",
+    "showCaseArea": true,
+    "showParticipants": false,
+    "sendEmail": true,
+    "showPopularOrg": false,
+    "showCoordinates": true,
+    "showPuntoCuenta": false,
+    "hasComplaint": false,
+    "hasAttentionDetail": false,
+    "showDocuments": true
+  },
+  {
+    "id": 4,
+    "name": "Reclamo",
+    "showCaseArea": true,
+    "showParticipants": false,
+    "sendEmail": true,
+    "showPopularOrg": false,
+    "showCoordinates": true,
+    "showPuntoCuenta": false,
+    "hasComplaint": false,
+    "hasAttentionDetail": false,
+    "showDocuments": true
+  },
+  {
+    "id": 5,
+    "name": "Denuncia",
+    "showCaseArea": true,
+    "showParticipants": false,
+    "sendEmail": true,
+    "showPopularOrg": false,
+    "showCoordinates": true,
+    "showPuntoCuenta": false,
+    "hasComplaint": true,
+    "hasAttentionDetail": false,
+    "showDocuments": true
+  },
+  {
+    "id": 6,
+    "name": "Petición",
+    "showCaseArea": true,
+    "showParticipants": false,
+    "sendEmail": true,
+    "showPopularOrg": false,
+    "showCoordinates": true,
+    "showPuntoCuenta": false,
+    "hasComplaint": false,
+    "hasAttentionDetail": true,
+    "showDocuments": true
+  }
+]

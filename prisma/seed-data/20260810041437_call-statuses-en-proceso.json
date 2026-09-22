@@ -1,0 +1,4 @@
+[
+  { "id": 5, "name": "CONTACTADO", "closesCase": false, "caseStatusId": 3 },
+  { "id": 6, "name": "EN ESPERA", "closesCase": false, "caseStatusId": 3 }
+]
