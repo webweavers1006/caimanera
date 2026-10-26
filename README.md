@@ -2,6 +2,8 @@
 
 Plataforma hiperlocal para descubrir partidos y canchas cerca de ti. Los jugadores eligen una ubicación, ven los partidos ordenados por distancia y se inscriben en segundos. El panel administrativo permite gestionar canchas, partidos, inscripciones y pases.
 
+> Estado detallado, decisiones y siguiente bloque de trabajo: [`ESTADO_PROYECTO.md`](./ESTADO_PROYECTO.md).
+
 ## Stack
 
 | Capa | Tecnología |
