@@ -61,7 +61,7 @@ export function LocationPickerDialog({
   geoError = null,
 }) {
   const { UI } = DISCOVERY_CONFIG;
-  const labels = UI.HERO;
+  const labels = UI.LOCATION;
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);

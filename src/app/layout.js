@@ -1,11 +1,6 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
-import { getSession } from "@/features/auth/lib/auth";
-import { validateSessionUser } from "@/features/auth/services/auth.read.service";
-import { getUserPermissions } from "@/features/permissions/services/permission.authorization.service";
-import { PermissionsProvider } from "@/features/permissions/components/PermissionsProvider";
 import { ThemeProvider } from "@/components/shared/providers/theme-provider";
-import { SseProvider } from "@/components/shared/providers/sse-provider";
 import { DevToolsGuard } from "@/components/shared/DevToolsGuard";
 import { SITE_CONFIG } from "@/features/shared";
 import "./globals.css";
@@ -43,11 +38,13 @@ export const metadata = {
   },
 };
 
-export default async function RootLayout({ children }) {
-  const jwtSession = await getSession();
-  const session = jwtSession ? await validateSessionUser(jwtSession) : null;
-  const permissions = session ? await getUserPermissions(session.role) : [];
-
+/**
+ * Root layout: technical providers only.
+ * Session, permissions and SSE are resolved by each surface:
+ * - `(app)` for the player shell.
+ * - `(admin)` for the administrative panel.
+ */
+export default function RootLayout({ children }) {
   return (
     <html
       lang="es"
@@ -58,11 +55,7 @@ export default async function RootLayout({ children }) {
       <body className="antialiased">
         <DevToolsGuard />
         <ThemeProvider>
-          <SseProvider enabled={permissions.includes("notifications:read")}>
-            <PermissionsProvider permissions={permissions}>
-              {children}
-            </PermissionsProvider>
-          </SseProvider>
+          {children}
           <Toaster />
         </ThemeProvider>
       </body>

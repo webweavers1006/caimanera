@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { decrypt, SESSION_COOKIE } from '@/features/auth/lib/auth'
 import { ROUTES } from '@/features/shared/config/navigation/navigation.config'
+import { LANDING_CONFIG } from '@/features/shared/config/app/landing.config'
 import { getHomePathForRole, isManagementRole } from '@/features/auth/config/auth.constants'
 
 // ── Route classification derived from ROUTES (single source of truth) ──────
@@ -8,11 +9,15 @@ const LOGIN_PATH = ROUTES.AUTH.LOGIN.path
 const HOME_PATH = ROUTES.PLAYER.HOME.path
 const { PUBLIC: PUBLIC_API_PATHS } = ROUTES.API
 
+// Legal content now lives in the landing. Old in-app URLs keep working.
+const LEGACY_LEGAL_REDIRECTS = {
+  '/terminos': LANDING_CONFIG.termsUrl,
+  '/privacidad': LANDING_CONFIG.privacyUrl,
+}
+
 // Open pages — no session required.
 const OPEN_PATHS = [
   ROUTES.PUBLIC.MATCHES.path,
-  ROUTES.LEGAL.TERMS.path,
-  ROUTES.LEGAL.PRIVACY.path,
   LOGIN_PATH,
 ]
 
@@ -39,6 +44,13 @@ export async function proxy(req) {
   // Skip static files and Next.js internals
   if (path.startsWith('/_next') || path.startsWith('/static') || path.includes('.')) {
     return NextResponse.next()
+  }
+
+  // Legacy legal URLs: send them to the landing, or to the app entry if the
+  // landing is not configured yet.
+  if (Object.hasOwn(LEGACY_LEGAL_REDIRECTS, path)) {
+    const destination = LEGACY_LEGAL_REDIRECTS[path] || ROUTES.PUBLIC.MATCHES.path
+    return NextResponse.redirect(new URL(destination, req.nextUrl))
   }
 
   const isApiRoute = path.startsWith('/api')

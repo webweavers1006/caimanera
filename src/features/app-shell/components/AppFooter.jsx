@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { SITE_CONFIG, ROUTES } from "@/features/shared";
+import { SITE_CONFIG, ROUTES, LANDING_CONFIG } from "@/features/shared";
 import { APP_SHELL_CONFIG } from "../config/app-shell.constants";
 
 const LABELS = APP_SHELL_CONFIG.UI.FOOTER;
+const LEGAL_LINK_CLASS = "text-muted-foreground hover:text-foreground";
 
 export function AppFooter({ session = null }) {
   const year = new Date().getFullYear();
+  const hasLegalLinks = Boolean(LANDING_CONFIG.termsUrl || LANDING_CONFIG.privacyUrl);
 
   return (
     <footer className="mt-12 hidden border-t border-border/70 bg-card md:block">
@@ -71,23 +73,39 @@ export function AppFooter({ session = null }) {
           </ul>
         </div>
 
-        <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-            {LABELS.LEGAL}
-          </p>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <Link href={ROUTES.LEGAL.TERMS.path} className="text-muted-foreground hover:text-foreground">
-                {LABELS.TERMS}
-              </Link>
-            </li>
-            <li>
-              <Link href={ROUTES.LEGAL.PRIVACY.path} className="text-muted-foreground hover:text-foreground">
-                {LABELS.PRIVACY}
-              </Link>
-            </li>
-          </ul>
-        </div>
+        {hasLegalLinks && (
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              {LABELS.LEGAL}
+            </p>
+            <ul className="space-y-2 text-sm">
+              {LANDING_CONFIG.termsUrl && (
+                <li>
+                  <a
+                    href={LANDING_CONFIG.termsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={LEGAL_LINK_CLASS}
+                  >
+                    {LABELS.TERMS}
+                  </a>
+                </li>
+              )}
+              {LANDING_CONFIG.privacyUrl && (
+                <li>
+                  <a
+                    href={LANDING_CONFIG.privacyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={LEGAL_LINK_CLASS}
+                  >
+                    {LABELS.PRIVACY}
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
       </div>
 
       <div className="border-t px-4 py-4 text-center text-xs text-muted-foreground">

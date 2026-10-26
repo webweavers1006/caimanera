@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { cn } from "@/features/shared";
+import { cn, LANDING_CONFIG } from "@/features/shared";
 import { LoginFields } from "./LoginFields";
 import { AUTH_CONFIG } from "../config/auth.constants";
 
@@ -29,19 +28,31 @@ export function LoginForm({ className, ...props }) {
 
       <p className="border-t border-border/60 pt-4 text-center text-[11px] leading-relaxed text-muted-foreground">
         {FOOTER.TERMS_TEXT}{" "}
-        <Link
-          href="/terminos"
-          className="font-medium text-foreground/80 underline underline-offset-4 hover:text-primary"
-        >
-          {FOOTER.TERMS_LINK}
-        </Link>{" "}
+        {LANDING_CONFIG.termsUrl ? (
+          <a
+            href={LANDING_CONFIG.termsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-foreground/80 underline underline-offset-4 hover:text-primary"
+          >
+            {FOOTER.TERMS_LINK}
+          </a>
+        ) : (
+          FOOTER.TERMS_LINK
+        )}{" "}
         y{" "}
-        <Link
-          href="/privacidad"
-          className="font-medium text-foreground/80 underline underline-offset-4 hover:text-primary"
-        >
-          {FOOTER.PRIVACY_LINK}
-        </Link>
+        {LANDING_CONFIG.privacyUrl ? (
+          <a
+            href={LANDING_CONFIG.privacyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-foreground/80 underline underline-offset-4 hover:text-primary"
+          >
+            {FOOTER.PRIVACY_LINK}
+          </a>
+        ) : (
+          FOOTER.PRIVACY_LINK
+        )}
       </p>
     </div>
   );

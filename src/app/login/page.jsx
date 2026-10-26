@@ -9,7 +9,7 @@ import {
   Ticket,
 } from "lucide-react";
 import { LoginForm } from "@/features/auth/components/LoginForm";
-import { SITE_CONFIG } from "@/features/shared";
+import { SITE_CONFIG, ROUTES } from "@/features/shared";
 
 const BENEFITS = [
   {
@@ -50,14 +50,14 @@ export default function LoginPage() {
         {/* Mobile app bar */}
         <header className="flex items-center justify-between lg:hidden">
           <Link
-            href="/"
+            href={ROUTES.PUBLIC.MATCHES.path}
             aria-label="Volver al inicio"
             className="flex size-10 items-center justify-center rounded-full border border-border/70 bg-card/80 text-foreground shadow-sm backdrop-blur transition-colors hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <ArrowLeft className="size-5" />
           </Link>
 
-          <Link href="/" className="flex items-center gap-2">
+          <Link href={ROUTES.PUBLIC.MATCHES.path} className="flex items-center gap-2">
             <img
               src={SITE_CONFIG.logo}
               alt={SITE_CONFIG.name}
@@ -161,7 +161,7 @@ export default function LoginPage() {
             </div>
 
             <Link
-              href="/"
+              href={ROUTES.PUBLIC.MATCHES.path}
               className="mx-auto mt-5 flex w-fit items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
             >
               Explorar partidos sin cuenta

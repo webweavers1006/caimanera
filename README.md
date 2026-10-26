@@ -46,7 +46,8 @@ La app queda en `http://localhost:3001`.
 | `COOKIE_SECURE` | `false` en desarrollo local sin HTTPS |
 | `ADMIN_PASSWORD_HASH` | Hash bcrypt del admin inicial (solo seed) |
 | `SMTP_*` | Envío de credenciales por correo (opcional) |
-| `NEXT_PUBLIC_SITE_URL` | URL pública para sitemap y enlaces |
+| `NEXT_PUBLIC_SITE_URL` | URL pública de la app para sitemap y enlaces |
+| `NEXT_PUBLIC_LANDING_URL` | URL de la landing (otro dominio) para legales y redirects |
 | `NEXT_PUBLIC_VES_RATE` | Tasa USD → VES para mostrar el total en bolívares (opcional) |
 
 ## Rutas principales
@@ -56,7 +57,8 @@ La app queda en `http://localhost:3001`.
 - `/partidos` — Entrada de la app: búsqueda de partidos, filtros y mapa.
 - `/partidos/[id]` — Detalle público con inscripción.
 - `/login` — Acceso a la cuenta con pantalla adaptada a móvil.
-- `/terminos`, `/privacidad` — Información legal (temporal, hasta moverlas a la landing).
+
+Los textos legales viven en la landing (`NEXT_PUBLIC_LANDING_URL`). Las URLs antiguas `/terminos` y `/privacidad` redirigen allí, o a `/partidos` si la variable no está configurada.
 
 ### App del jugador (sesión)
 

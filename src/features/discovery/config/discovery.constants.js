@@ -90,18 +90,9 @@ export const DISCOVERY_CONFIG = {
         MAP: "Mapa",
       },
     },
-    HERO: {
-      EYEBROW: "Deporte hiperlocal",
-      TITLE: "¿Dónde quieres jugar hoy?",
-      SUBTITLE:
-        "Elige tu ubicación y descubre partidos cerca de ti. Sin llamadas, sin grupos interminables.",
-      SEARCH_PLACEHOLDER: "Busca un partido, deporte o cancha",
-      LOCATION_PLACEHOLDER: "Elige tu ubicación",
-      LOCATION_CTA: "Cambiar",
+    LOCATION: {
       LOCATE: "Usar mi ubicación",
       LOCATING: "Ubicando…",
-      GEO_ERROR:
-        "No pudimos acceder a tu ubicación. Puedes buscar una dirección o elegir una zona.",
       POPULAR: "Zonas populares",
       RECENTS: "Ubicaciones recientes",
       VENUES: "Canchas y clubes",
@@ -113,7 +104,6 @@ export const DISCOVERY_CONFIG = {
       DIALOG_TITLE: "¿Dónde vas a jugar?",
       DIALOG_DESCRIPTION:
         "Selecciona tu ubicación para ordenar los partidos por cercanía.",
-      CLOSE: "Cerrar",
     },
     SECTIONS: {
       MATCHES_TITLE: "Partidos cerca de ti",
@@ -122,22 +112,6 @@ export const DISCOVERY_CONFIG = {
         `${count} ${count === 1 ? "partido disponible" : "partidos disponibles"}`,
       VENUES_TITLE: "Canchas cerca de ti",
       VENUES_SUBTITLE: "Los escenarios donde se juega la comunidad.",
-      HOW_TITLE: "Así de fácil",
-      HOW_SUBTITLE: "Tu próximo partido en tres pasos.",
-      HOW_STEPS: [
-        {
-          title: "Elige tu zona",
-          description: "Comparte tu ubicación o busca tu dirección para ver qué hay cerca.",
-        },
-        {
-          title: "Encuentra tu partido",
-          description: "Filtra por deporte, día y distancia. Mira los cupos en tiempo real.",
-        },
-        {
-          title: "Entra y juega",
-          description: "Inscríbete con tu pase o paga por cupo y preséntate a jugar.",
-        },
-      ],
     },
     MATCHES_STAGE: {
       EYEBROW: "Partidos",
@@ -220,13 +194,6 @@ export const DISCOVERY_CONFIG = {
       LEGEND: "Partidos disponibles",
       YOUR_LOCATION: "Tu ubicación",
       UNAVAILABLE: "El mapa no está disponible en este momento.",
-    },
-    FOOTER: {
-      TAGLINE: "Caimanera — conexión deportiva hiperlocal.",
-      EXPLORE: "Explorar",
-      ACCOUNT: "Cuenta",
-      LEGAL: "Legal",
-      RIGHTS: (year) => `© ${year} Caimanera. Hecho para jugar.`,
     },
   },
 };

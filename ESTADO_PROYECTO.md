@@ -93,9 +93,9 @@ Antes `/` era el dashboard protegido. Ahora:
 | `/admin/roles` | Sesión + permiso | Roles |
 | `/admin/permissions` | Sesión + permiso | Permisos |
 | `/admin/perfil` | Sesión + staff | Perfil y contraseña del staff |
-| `/terminos` | Público | Términos (temporal) |
-| `/privacidad` | Público | Privacidad (temporal) |
 | `/login` | Público | Inicio de sesión |
+
+Los textos legales (`/terminos`, `/privacidad`) ya no viven en la app: se enlazan a la landing con `NEXT_PUBLIC_LANDING_URL`.
 
 Después del login:
 
@@ -333,7 +333,25 @@ Se inició la separación fuerte entre la app del jugador y el panel administrat
   - PLAYER: `/`, `/partidos`, `/mis-partidos`, `/cuenta` → 200; `/admin` y `/admin/perfil` → 307 `/`.
   - ADMIN: `/` → 307 `/admin`; `/admin` y `/admin/perfil` → 200.
 
-**Pendiente del siguiente bloque:** separar `/canchas`, mover legales a la landing, filtros de búsqueda en la URL, extraer `booking` y `location`, y retirar `PermissionsProvider`/`SseProvider` del layout raíz.
+**Pendiente del siguiente bloque:** separar `/canchas`, filtros de búsqueda en la URL, extraer `booking` y `location`, y convertir `/` en un inicio sin buscador embebido.
+
+### 2.16 Cierre de infraestructura del bloque 1 (26 de octubre de 2026)
+
+Se cerraron los pendientes que no requerían rediseñar pantallas:
+
+- **Legales fuera de la app:** se eliminaron `/terminos` y `/privacidad`. `NEXT_PUBLIC_LANDING_URL` centraliza los enlaces a la landing. El login y el footer abren los legales en pestaña nueva; las URLs antiguas redirigen a la landing (o a `/partidos` si la variable no está configurada).
+- **Providers por superficie:** `PermissionsProvider` y `SseProvider` se movieron del layout raíz al layout de `(admin)`. El layout raíz ya no consulta sesión, rol ni permisos; solo monta providers técnicos.
+- **Código muerto eliminado:** `DiscoveryHero`, `DiscoveryHowItWorks`, `DiscoveryResults` y `DiscoveryFilters`, junto con el copy de marketing (`HERO`/`HOW_*`) y el footer duplicado en `discovery.constants`.
+- **Config de ubicación:** los textos del selector de ubicación pasaron de `UI.HERO` a `UI.LOCATION`, que es lo que realmente representan.
+- **Sitemap y redirects:** el sitemap solo lista `/partidos` y `/login`; los legales se resuelven en la landing.
+
+**Verificación adicional:**
+
+- Anónimo: `/terminos` y `/privacidad` → 307 `/partidos` (sin landing configurada).
+- `/login` muestra los textos legales sin enlaces cuando `NEXT_PUBLIC_LANDING_URL` está vacía.
+- ADMIN: `/admin` sigue renderizando el sidebar y la campana de notificaciones con los providers montados en el layout administrativo.
+- `pnpm build` exitoso; `/terminos` y `/privacidad` ya no aparecen en el mapa de rutas.
+- `pnpm test`: 67/67. `npx eslint src`: 0 errores, 18 warnings.
 
 ---
 
@@ -348,9 +366,7 @@ src/app/
 │   │   ├── page.jsx
 │   │   └── [id]/page.jsx
 │   ├── mis-partidos/page.jsx
-│   ├── cuenta/page.jsx
-│   ├── terminos/page.jsx
-│   └── privacidad/page.jsx
+│   └── cuenta/page.jsx
 ├── (admin)/
 │   └── admin/
 │       └── page.jsx

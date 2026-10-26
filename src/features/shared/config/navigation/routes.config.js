@@ -28,12 +28,6 @@ export const ROUTES = {
     ACCOUNT: { path: "/cuenta" },
   },
 
-  // Legal pages — temporary in-app copy until the landing owns them.
-  LEGAL: {
-    TERMS: { path: "/terminos" },
-    PRIVACY: { path: "/privacidad" },
-  },
-
   // Auth & main pages
   AUTH: {
     LOGIN: { path: AUTH_CONFIG.PATH.LOGIN },
