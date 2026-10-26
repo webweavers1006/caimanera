@@ -1,6 +1,6 @@
 /**
- * Mapper for the public discovery experience.
- * Converts Prisma rows into safe, presentation-ready objects.
+ * Mapper for the public catalog (matches and venues) shared by the player
+ * surfaces: home, match search, match detail and venue pages.
  *
  * Public objects deliberately exclude participant names and other PII.
  */
@@ -29,7 +29,7 @@ function resolveDisplayStatus(status, scheduledAt) {
   return status || "OPEN";
 }
 
-export const discoveryMapper = {
+export const publicCatalogMapper = {
   /**
    * Public match card. Includes availability, my enrollment and relative day.
    */
@@ -139,6 +139,20 @@ export const discoveryMapper = {
   toPublicCourtList(list) {
     if (!Array.isArray(list)) return [];
     return list.map((item) => this.toPublicCourt(item));
+  },
+
+  /**
+   * Public venue detail: venue data plus its upcoming match cards.
+   */
+  toPublicCourtDetail(raw, currentUserId = null) {
+    if (!raw) return null;
+    const court = this.toPublicCourt(raw);
+
+    return {
+      ...court,
+      photos: (raw.photos || []).map((photo) => photo.url).filter(Boolean),
+      matches: this.toPublicMatchList(raw.matches, currentUserId),
+    };
   },
 
   /**

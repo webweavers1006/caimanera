@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { CalendarDays, Clock3, MapPin, Users } from "lucide-react";
 import { cn } from "@/features/shared";
 import { formatPrice } from "@/features/shared/lib/format";
@@ -27,14 +28,16 @@ function statusTone(match, available) {
 }
 
 /**
- * Mobile-first match row used in the discovery feed.
- * The first block answers "what, where and when"; the footer condenses
- * availability, occupancy and status so the card stays scannable with a thumb.
+ * Mobile-first match row used across the player surfaces.
+ *
+ * With `href` it is a real link (canonical `/partidos/[id]` navigation); without
+ * it, it behaves as a button for quick previews such as "Mis partidos".
  * `compact` is a horizontal snap card for carousels; `row` fills the list.
  */
 export function DiscoveryMatchCard({
   match,
   onClick,
+  href = null,
   variant = "row",
   className = "",
 }) {
@@ -55,26 +58,16 @@ export function DiscoveryMatchCard({
       ? `${slotsLeft} de ${capacity} cupos`
       : "Cupos por confirmar";
 
-  return (
-    <article
-      role="button"
-      tabIndex={0}
-      aria-label={`Ver ${match.title}`}
-      onClick={onClick}
-      onKeyDown={(event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          onClick?.();
-        }
-      }}
-      className={cn(
-        "group flex cursor-pointer flex-col rounded-3xl border border-border/70 bg-card p-4 shadow-sm transition-colors",
-        "hover:border-primary/40 active:border-primary/50 active:bg-muted/20",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-        variant === "compact" && "min-w-[286px] snap-start",
-        className
-      )}
-    >
+  const rootClassName = cn(
+    "group flex cursor-pointer flex-col rounded-3xl border border-border/70 bg-card p-4 shadow-sm transition-colors",
+    "hover:border-primary/40 active:border-primary/50 active:bg-muted/20",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+    variant === "compact" && "min-w-[286px] snap-start",
+    className
+  );
+
+  const body = (
+    <>
       <div className="flex gap-3">
         <div className="relative size-[76px] shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br from-primary/30 via-primary/10 to-transparent">
           {match.coverPhoto || match.court?.coverPhoto ? (
@@ -160,6 +153,32 @@ export function DiscoveryMatchCard({
           {status}
         </span>
       </div>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link href={href} aria-label={`Ver ${match.title}`} className={rootClassName}>
+        {body}
+      </Link>
+    );
+  }
+
+  return (
+    <article
+      role="button"
+      tabIndex={0}
+      aria-label={`Ver ${match.title}`}
+      onClick={onClick}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onClick?.();
+        }
+      }}
+      className={rootClassName}
+    >
+      {body}
     </article>
   );
 }

@@ -19,6 +19,7 @@ export const ROUTES = {
   // Open app surface — no session required (entry point from the landing).
   PUBLIC: {
     MATCHES: { path: "/partidos" },
+    COURTS: { path: "/canchas" },
   },
 
   // Player surface — requires a session. Staff is redirected to the admin panel.

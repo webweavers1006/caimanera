@@ -18,6 +18,7 @@ const LEGACY_LEGAL_REDIRECTS = {
 // Open pages — no session required.
 const OPEN_PATHS = [
   ROUTES.PUBLIC.MATCHES.path,
+  ROUTES.PUBLIC.COURTS.path,
   LOGIN_PATH,
 ]
 
@@ -68,6 +69,14 @@ export async function proxy(req) {
 
   // App entry: visitors go straight to the match search; staff to the panel.
   if (isHome) {
+    // Legacy `?partido=` deep links now point at the canonical detail.
+    const legacyMatchId = req.nextUrl.searchParams.get('partido')
+    if (legacyMatchId) {
+      return NextResponse.redirect(
+        new URL(`${ROUTES.PUBLIC.MATCHES.path}/${encodeURIComponent(legacyMatchId)}`, req.nextUrl)
+      )
+    }
+
     if (!session) {
       return NextResponse.redirect(new URL(ROUTES.PUBLIC.MATCHES.path, req.nextUrl))
     }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   ArrowLeft,
+  ArrowRight,
   BadgeCheck,
   Bitcoin,
   CalendarDays,
@@ -45,7 +46,7 @@ import { formatPrice, formatVes } from "@/features/shared/lib/format";
 import { enrollInMatchAction, leaveInMatchAction } from "@/features/matches/actions/match.enroll.action";
 import { payAndEnrollInMatchAction } from "@/features/payments/actions/match.payment.action";
 import { PAYMENT_CONFIG, getPaymentMethod } from "@/features/payments/config/payment.constants";
-import { getSportEmoji } from "../config/discovery.constants";
+import { DISCOVERY_CONFIG, getSportEmoji } from "../config/discovery.constants";
 import { distanceInKm, formatDistance } from "../lib/geo";
 import { useDiscoveryLocation } from "../hooks/use-discovery-location";
 
@@ -93,6 +94,7 @@ export function MatchCheckoutSheet({
   canStaffConfirm = false,
   initialStep = "preview",
   nextPath = "/",
+  detailHref = null,
 }) {
   const router = useRouter();
   const { location } = useDiscoveryLocation();
@@ -548,6 +550,19 @@ export function MatchCheckoutSheet({
           <div className="mt-3 border-t border-border/70 pb-[calc(0.25rem+env(safe-area-inset-bottom))] pt-3">
             {step === "preview" && (
               <>
+                {detailHref && (
+                  <Button
+                    asChild
+                    variant="secondary"
+                    className="mb-2 h-11 w-full rounded-full"
+                  >
+                    <Link href={detailHref} onClick={() => onOpenChange(false)}>
+                      {DISCOVERY_CONFIG.UI.CARD.VIEW_FULL}
+                      <ArrowRight data-icon="inline-end" />
+                    </Link>
+                  </Button>
+                )}
+
                 {!isAuthenticated ? (
                   <Button asChild className="h-12 w-full rounded-full font-semibold">
                     <Link href={loginHref}>Iniciar sesión para participar</Link>

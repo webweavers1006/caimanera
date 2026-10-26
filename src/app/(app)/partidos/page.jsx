@@ -1,6 +1,7 @@
 import { Suspense } from "react";
+import { redirect } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
-import { DiscoveryPageContainer } from "@/features/discovery/components/DiscoveryPageContainer";
+import { MatchSearchPageContainer } from "@/features/match-search/components/MatchSearchPageContainer";
 import { SITE_CONFIG } from "@/features/shared";
 
 export const dynamic = "force-dynamic";
@@ -12,7 +13,13 @@ export const metadata = {
     "Explora partidos y canchas disponibles cerca de tu ubicación. Filtra por deporte, día y distancia.",
 };
 
-export default function PublicMatchesPage() {
+export default async function PublicMatchesPage({ searchParams }) {
+  const params = await searchParams;
+  const legacyMatchId = params?.partido;
+
+  // Canonical detail: old `?partido=` links move to `/partidos/[id]`.
+  if (legacyMatchId) redirect(`/partidos/${encodeURIComponent(legacyMatchId)}`);
+
   return (
     <Suspense
       fallback={
@@ -23,7 +30,7 @@ export default function PublicMatchesPage() {
       }
     >
       <div className="mx-auto w-full max-w-7xl px-4 py-6">
-        <DiscoveryPageContainer initialStage="matches" />
+        <MatchSearchPageContainer />
       </div>
     </Suspense>
   );

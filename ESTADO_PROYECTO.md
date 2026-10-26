@@ -1,38 +1,40 @@
 # Estado del proyecto — Caimanera
 
 > **Fecha de corte:** 26 de octubre de 2026  
+> **Resumen:** app y admin ya están separados; bloque 2 verificado y pendiente de commit. Siguiente: extraer `booking` y `location`.  
+> **Última verificación:** 26 oct 2026 · build OK · tests 67/67 · lint 0 errores / 19 warnings  
 > **Rama activa:** `feat/separacion-app-admin`  
-> **Estado general:** funcional, compilando, con tests en verde y sin código pendiente por commitear.  
-> **Fase actual:** separación app / admin. Bloques 1 y 1.5 completados; bloque 2 (pantallas) pendiente.  
-> **Siguiente foco:** convertir `/` en inicio, `/partidos` en buscador con filtros en URL y crear `/canchas` + `/canchas/[id]`.  
-> **Commits de referencia:** `3b5ee56` (checkpoint), `13e5122` (bloque 1), `0582e45` (bloque 1.5).
+> **Estado general:** funcional, compilando, con tests en verde y con el bloque 2 listo para revisar/commitear.  
+> **Fase actual:** separación app / admin completada (bloques 1, 1.5 y 2).  
+> **Siguiente foco:** bloque 3 — extraer `booking` y `location` de `discovery` y limpiar los últimos acoplamientos (sección 7.2).  
+> **Commits de referencia:** `3b5ee56` (checkpoint), `13e5122` (bloque 1), `0582e45` (bloque 1.5), `a734c59` (docs). Bloque 2 en working tree.
 
 ---
 
 ## 0. Cómo continuar en una nueva sesión
 
-1. **Rama:** `git switch feat/separacion-app-admin`. El working tree debe estar limpio; los bloques 1 y 1.5 están commiteados.
+1. **Rama:** `git switch feat/separacion-app-admin`. El working tree contiene el bloque 2; revisar y commitear antes de seguir.
 2. **Variables:** configurar `NEXT_PUBLIC_LANDING_URL` en `.env` (ver `.env.example`). Sin ella, los legales se muestran como texto y las URLs viejas `/terminos` y `/privacidad` redirigen a `/partidos`.
 3. **Entorno:** `pnpm install` si hace falta y `pnpm dev`. El script usa el puerto 3001; si ya hay otro dev server de Next en el repo, Next se niega a arrancar (en esta máquina también apareció uno en 3000).
-4. **Leer primero:** secciones 2.15 (bloque 1), 2.16 (bloque 1.5), 3 (estructura), 7.1 (siguiente bloque) y 8 (riesgos).
-5. **Empezar por:** sección 7.1, “Bloque 2 — separación de pantallas”. No volver a tocar rutas, proxy ni shell salvo que el bloque 2 lo requiera.
+4. **Leer primero:** secciones 2.15 (bloque 1), 2.16 (bloque 1.5), 2.17 (bloque 2), 3 (estructura), 7.1 (bloque 2 completado), 7.2 (siguientes pasos) y 8 (riesgos).
+5. **Empezar por:** sección 7.2, “Siguientes pasos funcionales”. No tocar rutas, proxy ni shell salvo que el bloque 3 lo requiera.
 
 ### Decisiones de producto ya cerradas
 
 - **Entrada según sesión:** anónimo → `/partidos`; jugador → `/`; staff → `/admin`.
-- **Canchas es módulo real:** tendrá `/canchas` y `/canchas/[id]`.
+- **Canchas es módulo real:** `/canchas` y `/canchas/[id]` ya existen.
 - **Legales en la landing:** la app solo enlaza; no vuelven a vivir en este proyecto.
 - **Links legales:** pestaña nueva (`target="_blank"` + `rel="noopener noreferrer"`).
 - **Staff en `/`:** redirige a `/admin`.
 
-### Comportamientos temporales que el bloque 2 debe resolver
+### Comportamientos resueltos en el bloque 2
 
-- `/` todavía renderiza el `DiscoveryView` completo y permite pasar al buscador con `stage` local.
-- `/partidos` fuerza la etapa de búsqueda con `initialStage="matches"`, pero comparte componente con `/`.
-- Los filtros siguen en `useState`, no en la URL.
-- La tarjeta de partido abre el drawer; solo el mapa navega a `/partidos/[id]`. El deep link `?partido=` sigue existiendo.
-- “Canchas” apunta a `/#canchas` porque `/canchas` aún no existe.
-- `DiscoveryPageContainer` y `PublicMatchDetailPageContainer` todavía consultan permisos para `canStaffConfirm`; eso se resuelve al extraer `booking`.
+- `/` es solo inicio: no hay `stage` ni buscador embebido.
+- `/partidos` es el único buscador y sus filtros viven en la URL.
+- Las tarjetas y el mapa del buscador abren un preview; desde ahí un botón lleva a `/partidos/[id]`. El drawer también se usa en “Mis partidos” y como checkout del detalle.
+- “Canchas” navega a `/canchas`; ya no existen anchors `/#canchas` ni `/#partidos`.
+- `?partido=` se redirige al detalle canónico.
+- `booking` y `location` siguen físicamente en `discovery`; su extracción es el bloque 3.
 
 ---
 
@@ -257,18 +259,20 @@ También se mejoró el seed demo existente:
 
 ### 2.10 Nuevo panel móvil y checkout (26 de octubre de 2026)
 
+> Histórico: las pantallas descritas aquí fueron reorganizadas en el bloque 2 (2.17). Se conserva como referencia de la primera iteración móvil.
+
 La experiencia pública se rediseñó con enfoque mobile-first y tema oscuro global:
 
 - **Etapa 1 — Inicio simplificado (módulos):**
   - Módulo de bienvenida con saludo, título y selector de ubicación integrado.
   - Módulo de accesos: buscar partido, canchas y mapa.
   - Mosaico de tres canchas cercanas.
-  - Detalle del rediseño vigente en 2.13.
+  - Detalle histórico en 2.13.
 - **Etapa 2 — Elegir partido:**
   - Módulo superior con título, ubicación y tabs por deporte.
   - Búsqueda, día, distancia y orden dentro de un panel de filtros.
   - Chips de filtros activos, contador de resultados y selector Lista/Mapa.
-  - Detalle del rediseño vigente en 2.14.
+  - Detalle histórico en 2.14.
 - **Preview del partido:** imagen, cancha, fecha, hora, cupos, precio y ubicación.
 - **Checkout:**
   - Métodos: BDT, pago móvil/transferencia, Binance y tarjeta nacional/internacional.
@@ -312,6 +316,8 @@ Se rediseñó `/login` para que se sienta como la pantalla de acceso de una app 
 
 ### 2.13 Módulos del inicio público (26 de octubre de 2026)
 
+> Histórico: reemplazado por el inicio del bloque 2 (2.17). Los archivos `DiscoveryHome.jsx` y `DiscoveryView.jsx` ya no existen.
+
 Se unificó la cabecera del inicio con el lenguaje de módulos del resto de la app:
 
 - **Módulo de bienvenida:** saludo, título y subtítulo dentro de una tarjeta redondeada con borde, fondo y radios del tema.
@@ -322,6 +328,8 @@ Se unificó la cabecera del inicio con el lenguaje de módulos del resto de la a
 - **Verificación:** ESLint sin errores, test de discovery en verde y revisión visual en escritorio con el tema oscuro.
 
 ### 2.14 Etapa “Elegir partido” reorganizada (26 de octubre de 2026)
+
+> Histórico: reemplazada por `/partidos` en el bloque 2 (2.17). `DiscoveryMatchesStage.jsx` y `DiscoveryView.jsx` ya no existen.
 
 Se rediseñó el listado de partidos para que siga el mismo lenguaje de módulos del inicio y se lea como una pantalla nativa:
 
@@ -345,7 +353,7 @@ Se inició la separación fuerte entre la app del jugador y el panel administrat
 **Decisiones de producto:**
 
 - La entrada depende de la sesión: visitante anónimo → `/partidos`; jugador → `/`; staff → `/admin`.
-- “Canchas” será un módulo real con `/canchas` y `/canchas/[id]` (siguiente bloque).
+- “Canchas” quedó como módulo real con `/canchas` y `/canchas/[id]` (completado en el bloque 2, 2.17).
 - Los textos legales se moverán a la landing; la app solo enlazará a ellos.
 
 **Cambios realizados:**
@@ -370,7 +378,7 @@ Se inició la separación fuerte entre la app del jugador y el panel administrat
   - PLAYER: `/`, `/partidos`, `/mis-partidos`, `/cuenta` → 200; `/admin` y `/admin/perfil` → 307 `/`.
   - ADMIN: `/` → 307 `/admin`; `/admin` y `/admin/perfil` → 200.
 
-**Pendiente del siguiente bloque:** separar `/canchas`, filtros de búsqueda en la URL, extraer `booking` y `location`, y convertir `/` en un inicio sin buscador embebido.
+**Completado en el bloque 2 (2.17):** `/canchas`, filtros de búsqueda en la URL y `/` sin buscador embebido. **Pendiente para el bloque 3:** extraer `booking` y `location`.
 
 ### 2.16 Cierre de infraestructura del bloque 1 (26 de octubre de 2026)
 
@@ -390,6 +398,66 @@ Se cerraron los pendientes que no requerían rediseñar pantallas:
 - `pnpm build` exitoso; `/terminos` y `/privacidad` ya no aparecen en el mapa de rutas.
 - `pnpm test`: 67/67. `npx eslint src`: 0 errores, 18 warnings.
 
+### 2.17 Separación app / admin — bloque 2 (26 de octubre de 2026)
+
+Se separaron las pantallas en módulos independientes. `/` dejó de ser un contenedor de búsqueda, `/partidos` pasó a ser el único buscador y “Canchas” estrenó rutas propias.
+
+**Features nuevos:**
+
+- `home`: inicio del jugador con próximo partido, resumen de agenda y accesos.
+- `match-search`: buscador con filtros en URL, lista/mapa y tarjetas canónicas.
+- `match-detail`: detalle público con checkout.
+- `venues`: listado y detalle de canchas con sus próximos partidos.
+
+**Cambios principales:**
+
+- **`/` solo inicio:**
+  - Saludo, ubicación, accesos y mosaico de canchas.
+  - “Tu próximo partido” con estado Confirmado / En espera y CTA al detalle.
+  - Resumen de hasta dos partidos siguientes y enlace a `/mis-partidos`.
+  - Estado vacío con CTA a `/partidos`.
+  - Accesos: Buscar → `/partidos`, Canchas → `/canchas`, Mapa → `/partidos?vista=mapa`.
+- **`/partidos` solo búsqueda:**
+  - Filtros en la URL: `deporte`, `dia`, `radio`, `orden`, `vista`, `lat`, `lng`, `cancha` y `q` para texto libre.
+  - La búsqueda sobrevive recarga, atrás/adelante y se puede compartir.
+  - Lista y mapa son dos vistas de la misma búsqueda.
+  - Las tarjetas y los popups del mapa abren un preview rápido (drawer).
+  - El preview incluye “Ver información completa”, que navega a `/partidos/[id]`.
+  - Chips de filtros activos, contador y limpieza.
+- **Detalle canónico:**
+  - `/partidos/[id]` es el único destino de un partido.
+  - `?partido=` redirige al detalle (incluido `/?partido=`).
+  - La navegación principal del buscador ya no salta directo al detalle: pasa por el preview.
+  - El drawer también se usa para gestionar en `/mis-partidos` y como checkout en el detalle.
+- **`/canchas` y `/canchas/[id]`:**
+  - Nuevo feature `venues` con lectura propia sobre un repositorio público compartido.
+  - Listado con foto, deporte, dirección, distancia y partidos próximos.
+  - Detalle con datos de la cancha, mapa y próximos partidos con CTA.
+  - Header, footer, inicio y sitemap apuntan a `/canchas`.
+- **Limpieza:**
+  - Eliminados `DiscoveryView`, `DiscoveryHome`, `DiscoveryMatchesStage`, `DiscoveryVenues`, `DiscoveryPageContainer`, `PublicMatchDetailPageContainer` y `PublicMatchDetailView`.
+  - Eliminados los anchors `/#partidos`, `/#canchas` y `/#como-funciona` como navegación.
+  - Nuevo repositorio/mapper compartido `public-catalog` para que cada feature tenga su propio servicio de lectura.
+
+**Verificación:**
+
+- `pnpm build` exitoso con `/`, `/partidos`, `/partidos/[id]`, `/canchas`, `/canchas/[id]`, `/mis-partidos`, `/cuenta`, `/admin/*` y `/login`.
+- `pnpm test`: 67/67.
+- `npx eslint src`: 0 errores, 19 warnings (los nuevos son `<img>`).
+- HTTP:
+  - Anónimo: `/` → 307 `/partidos`; `/partidos` y `/canchas` → 200.
+  - `?partido=` → 307 al detalle canónico.
+  - IDs inválidos en `/partidos/[id]` y `/canchas/[id]` → 404.
+  - ADMIN: `/` → 307 `/admin`.
+- Navegador real:
+  - Tarjeta → preview en drawer; “Ver información completa” → `/partidos/[id]`.
+  - Popup del mapa → preview; el mismo CTA lleva al detalle.
+  - Filtro `deporte=Fútbol 7` persiste tras recarga.
+  - `vista=mapa` renderiza Leaflet y conserva los filtros.
+  - `/canchas/[id]` muestra 2 partidos próximos y enlace filtrado a `/partidos?cancha=...`.
+  - Selección de zona actualiza `lat`, `lng` y `ubicacion` en la URL.
+- Revisión visual: escritorio 1440 px y móvil 390×844 en `/partidos` y `/canchas`. Falta la pasada a 375×812 y el detalle de cancha en móvil.
+
 ---
 
 ## 3. Estructura relevante nueva
@@ -398,10 +466,13 @@ Se cerraron los pendientes que no requerían rediseñar pantallas:
 src/app/
 ├── (app)/
 │   ├── layout.jsx
-│   ├── page.jsx
+│   ├── page.jsx                 # inicio del jugador
 │   ├── partidos/
-│   │   ├── page.jsx
-│   │   └── [id]/page.jsx
+│   │   ├── page.jsx             # buscador
+│   │   └── [id]/page.jsx        # detalle canónico
+│   ├── canchas/
+│   │   ├── page.jsx             # listado de canchas
+│   │   └── [id]/page.jsx        # detalle de cancha
 │   ├── mis-partidos/page.jsx
 │   └── cuenta/page.jsx
 ├── (admin)/
@@ -420,9 +491,42 @@ src/features/app-shell/
 │   └── AppBottomNav.jsx
 └── config/app-shell.constants.js
 
-src/features/shared/config/app/
-├── landing.config.js      # NEXT_PUBLIC_LANDING_URL + links legales
-└── site.config.js
+src/features/home/
+├── components/
+│   ├── HomePageContainer.jsx
+│   └── HomeView.jsx
+└── services/home.read.service.js
+
+src/features/match-search/
+├── components/
+│   ├── MatchSearchPageContainer.jsx
+│   └── MatchSearchView.jsx
+├── hooks/
+│   ├── use-match-search-filters.js
+│   └── use-match-search-location.js
+└── services/match-search.read.service.js
+
+src/features/match-detail/
+├── components/
+│   ├── MatchDetailPageContainer.jsx
+│   └── MatchDetailView.jsx
+└── services/match-detail.read.service.js
+
+src/features/venues/
+├── components/
+│   ├── VenuesPageContainer.jsx
+│   ├── VenuesView.jsx
+│   ├── VenueDetailPageContainer.jsx
+│   ├── VenueDetailView.jsx
+│   └── VenueCard.jsx
+└── services/venue.read.service.js
+
+src/features/shared/
+├── config/app/
+│   ├── landing.config.js      # NEXT_PUBLIC_LANDING_URL + links legales
+│   └── site.config.js
+├── mappers/public-catalog.mapper.js
+└── repositories/public-catalog.read.repository.js
 
 src/features/auth/
 ├── components/
@@ -433,15 +537,18 @@ src/features/auth/
 └── ...
 
 src/features/discovery/
-├── components/
+├── components/              # piezas compartidas pendientes de extraer
+│   ├── DiscoveryMatchCard.jsx
+│   ├── DiscoveryFilterSheet.jsx
+│   ├── DiscoveryLocationButton.jsx
+│   ├── LocationPickerDialog.jsx
+│   ├── MatchCheckoutSheet.jsx
+│   ├── DiscoveryMapWrapper.jsx
 │   ├── MyMatchesPageContainer.jsx
-│   ├── MyMatchesView.jsx
-│   └── ...
+│   └── MyMatchesView.jsx
 ├── config/
 ├── hooks/
 ├── lib/
-├── mappers/
-├── repositories/
 └── services/
 
 src/features/matches/
@@ -460,6 +567,8 @@ src/features/payments/
 ---
 
 ## 4. Verificación actual
+
+> Verificado el 26 de octubre de 2026 sobre el working tree del bloque 2.
 
 ### Build
 
@@ -495,7 +604,7 @@ Suites:
 npx eslint src
 ```
 
-Resultado: **0 errores, 18 warnings**.
+Resultado: **0 errores, 19 warnings**.
 
 Los warnings restantes son principalmente `<img>` en lugar de `next/image` y avisos menores de hooks/permisos.
 
@@ -507,6 +616,9 @@ Probado con cookies JWT firmadas contra la base local:
 |------|---------|--------|-------|
 | `/` | 307 `/partidos` | 200 (inicio) | 307 `/admin` |
 | `/partidos` | 200 | 200 | 200 |
+| `/partidos/[id]` | 200 | 200 | 200 |
+| `/canchas` | 200 | 200 | 200 |
+| `/canchas/[id]` | 200 | 200 | 200 |
 | `/mis-partidos` | 307 login | 200 | 200 |
 | `/cuenta` | 307 login | 200 | 200 |
 | `/admin` | 307 login | 307 `/` | 200 |
@@ -527,6 +639,16 @@ Con Playwright + Chrome y Brave:
 - “Mis partidos” con jugador demo: cuatro inscripciones próximas, sin partidos pasados.
 - Apertura del detalle desde “Mis partidos” y disponibilidad de cancelación.
 - Inicio público: módulo de bienvenida con ubicación integrada, módulo de accesos y mosaico de canchas, verificado en escritorio con tema oscuro.
+- Bloque 2:
+  - `/` con jugador demo: saludo, ubicación, accesos, “Tu próximo partido” y resumen de agenda.
+  - `/partidos` sin filtros y con `deporte=Fútbol 7`; la selección persiste tras recarga.
+  - `vista=mapa` con Leaflet y filtros conservados.
+  - Tarjeta de partido → preview en drawer; “Ver información completa” → `/partidos/[id]`.
+  - Popup del mapa → mismo preview; el botón conserva la vista de mapa al volver.
+  - `/canchas` y `/canchas/[id]` con distancia, mapa y partidos próximos.
+  - Enlace “Ver todos los partidos de esta cancha” → `/partidos?cancha=...`.
+  - `?partido=` → redirección al detalle canónico.
+  - ADMIN: `/` → `/admin`.
 - Etapa “Elegir partido”: módulo superior con ubicación y deportes, chips de filtros activos, encabezado de resultados con selector Lista/Mapa, y revisión en móvil (390×844, 375×812) y escritorio (1440 px).
 - Filtros de la etapa de partidos: apertura del panel, selección de día, chip activo, limpieza y estado vacío.
 - Vista de mapa de la etapa de partidos en móvil.
@@ -567,7 +689,9 @@ Con Playwright + Chrome y Brave:
 
 ## 7. Pendientes y próximos pasos
 
-### 7.1 Bloque 2 — separación de pantallas (SIGUIENTE)
+### 7.1 Bloque 2 — separación de pantallas (COMPLETADO)
+
+Estado: implementado el 26 de octubre de 2026. Se mantiene el alcance original como referencia de lo entregado; el detalle de cambios está en 2.17.
 
 Objetivo: que `/`, `/partidos` y `/canchas` sean módulos distintos, con sus propias rutas y features, y que el detalle del partido tenga una URL canónica.
 
@@ -585,14 +709,14 @@ Objetivo: que `/`, `/partidos` y `/canchas` sean módulos distintos, con sus pro
    - Mover los filtros a la URL: `deporte`, `dia`, `radio`, `orden`, `vista`, `lat`, `lng`, `cancha`.
    - La URL debe ser compartible y sobrevivir recarga/atrás.
    - Lista y mapa como vistas de la misma búsqueda.
-   - Las tarjetas navegan a `/partidos/[id]`.
+   - Las tarjetas y los popups del mapa abren un preview con CTA a `/partidos/[id]`.
    - Estados vacíos con acción para limpiar filtros.
 
 3. **Detalle canónico**
    - `/partidos/[id]` es el único destino de un partido.
    - Retirar el deep link `?partido=` (o redirigirlo al detalle).
-   - La tarjeta de la lista deja de abrir el drawer directamente.
-   - El drawer queda como preview rápido dentro del detalle o de “Mis partidos”, no como navegación principal.
+   - La tarjeta de la lista no navega directo: abre el preview y desde ahí se accede al detalle.
+   - El drawer es preview en el buscador y en “Mis partidos”, y checkout en el detalle.
 
 4. **`/canchas` y `/canchas/[id]`**
    - Nuevo feature `venues` con read service/repositorio/mapper propios.
@@ -609,17 +733,17 @@ Objetivo: que `/`, `/partidos` y `/canchas` sean módulos distintos, con sus pro
 ```text
 src/features/
 ├── app-shell/     ✅ existe
-├── home/          ⏳ inicio del jugador
-├── match-search/  ⏳ buscador + filtros + mapa
-├── venues/        ⏳ /canchas y /canchas/[id]
-├── match-detail/  ⏳ detalle público
-├── booking/       ⏳ checkout (después)
-├── player/        ⏳ mis partidos + cuenta (después)
-├── location/      ⏳ ubicación/geocoder (después)
+├── home/          ✅ inicio del jugador
+├── match-search/  ✅ buscador + filtros + mapa
+├── venues/        ✅ /canchas y /canchas/[id]
+├── match-detail/  ✅ detalle público
+├── booking/       ⏳ checkout (bloque 3)
+├── player/        ⏳ mis partidos + cuenta (bloque 3)
+├── location/      ⏳ ubicación/geocoder (bloque 3)
 └── auth/          ✅ existe
 ```
 
-Regla: cada módulo tiene su propio read service; si dos necesitan los mismos selectores, se comparte un helper en `shared`, nunca se importa el repositorio de otro feature.
+Regla: cada módulo tiene su propio read service; si dos necesitan los mismos selectores, se comparte un helper en `shared`, nunca se importa el repositorio de otro feature. En el bloque 2 ese helper quedó en `shared/repositories/public-catalog.read.repository.js` y `shared/mappers/public-catalog.mapper.js`.
 
 #### 7.1.3 Rutas objetivo
 
@@ -637,7 +761,7 @@ Regla: cada módulo tiene su propio read service; si dos necesitan los mismos se
 
 - Un anónimo que entra a `/` termina en `/partidos`; un jugador ve el inicio; el staff termina en `/admin`.
 - Recargar o compartir una búsqueda conserva filtros y vista.
-- Tarjeta, mapa y link directo llevan todos a `/partidos/[id]`.
+- Tarjeta y mapa abren un preview; el botón “Ver información completa” y el link directo llevan a `/partidos/[id]`.
 - `/canchas/[id]` muestra cancha y próximos partidos sin pasar por el admin.
 - No quedan links internos a `/#partidos`, `/#canchas` ni `/#como-funciona`.
 - `pnpm build`, `pnpm test` y `npx eslint src` siguen en verde.
@@ -647,10 +771,24 @@ Regla: cada módulo tiene su propio read service; si dos necesitan los mismos se
 
 `src/app/(app)/page.jsx`, `src/app/(app)/partidos/**`, `src/app/(app)/canchas/**`, `src/features/discovery/**`, `src/features/app-shell/**`, `src/features/shared/config/navigation/**`, `src/features/matches/actions/match.enroll.action.js`, `src/features/payments/actions/match.payment.action.js`, `src/features/matches/components/MatchJoinButton.jsx`.
 
-### 7.2 Otros pendientes funcionales
+### 7.2 Siguientes pasos funcionales (SIGUIENTE)
+
+**Antes de empezar el bloque 3:**
+
+- Revisar `git status` y `git diff` del bloque 2.
+- Confirmar `pnpm build`, `pnpm test` y `npx eslint src` (hoy: build OK, 67/67 tests, 0 errores / 19 warnings).
+- Completar la revisión visual pendiente a 375×812 en `/partidos` y `/canchas/[id]`.
+- Commitear el bloque 2 con un mensaje que describa la separación de `home`, `match-search`, `match-detail` y `venues`.
+
+**Bloque 3 — extracción de booking y location:**
 
 - Extraer `booking` (preview + checkout) y `location` (selector, geocoder, geo utils) de `discovery`.
-- Retirar `getUserPermissions` de `DiscoveryPageContainer` y `PublicMatchDetailPageContainer`; el bypass de staff debe ser una capacidad de `booking`.
+- Retirar `getUserPermissions` de `MatchDetailPageContainer`; el bypass de staff debe ser una capacidad de `booking`.
+- Mover `DiscoveryMatchCard`, `DiscoveryFilterSheet`, `DiscoveryMap*` y `LocationPickerDialog` a sus features definitivas o a `shared` según su uso.
+- Extraer `player` (`/mis-partidos` y `/cuenta`) cuando `booking` ya viva fuera de `discovery`.
+
+**Otros pendientes:**
+
 - Historial de partidos pasados dentro de “Mis partidos” (hoy solo se muestran los próximos).
 - Conectar el webhook real de BDT.
 - Conciliación de transacciones `PENDING` en el panel administrativo.
@@ -707,8 +845,9 @@ Pendiente para una siguiente iteración: recuperación de contraseña y registro
 - **Lista de espera:** al promover a un jugador no se genera cobro; la regla debe definirse antes de producción.
 - **Sesión:** se valida contra base de datos, pero el proxy solo verifica la firma del JWT; las páginas y acciones hacen la validación completa. El redirect de staff en `/` usa el rol del JWT; el layout admin vuelve a validar contra la base.
 - **Landing sin configurar:** si `NEXT_PUBLIC_LANDING_URL` está vacía, los legales se muestran como texto sin enlaces y `/terminos` y `/privacidad` redirigen a `/partidos`. Configurarla antes de producción.
-- **Pantallas aún acopladas:** `/` y `/partidos` comparten `DiscoveryView`; los filtros no están en la URL; las tarjetas abren el drawer y `?partido=` sigue activo. Es lo que resuelve el bloque 2.
-- **“Canchas” temporal:** el header y el footer apuntan a `/#canchas` hasta que exista `/canchas`.
+- **Piezas compartidas aún en `discovery`:** `MatchCheckoutSheet`, `LocationPickerDialog`, `DiscoveryMatchCard`, `DiscoveryFilterSheet` y el mapa siguen ahí; `booking` y `location` se extraen en el bloque 3.
+- **Búsqueda en cliente:** `/partidos` descarga hasta 200 partidos próximos y filtra en el navegador. Si el catálogo crece, mover filtros y paginación al servidor.
+- **Ubicación persistida:** la búsqueda usa `lat`/`lng` de la URL y, si no existen, la última ubicación guardada en `localStorage`. Un enlace compartido sin `lat`/`lng` depende de la ubicación del visitante.
 
 ---
 
@@ -741,8 +880,6 @@ node prisma/seed --only=20260915104819_caimanera-demo-data
 
 ## 10. Conclusión
 
-El sistema está en un estado **estable, compilando y con tests en verde**. La separación app / admin ya tiene su infraestructura: route groups distintos, proxy por superficie, shell de jugador, perfil en `/cuenta`, legales en la landing y providers administrativos aislados. Los jugadores ya no entran al panel.
+El sistema está en un estado **estable, compilando y con tests en verde**. La separación app / admin ya está completa a nivel de pantallas: `/` es el inicio del jugador, `/partidos` es el buscador con filtros en URL, `/partidos/[id]` es el destino canónico y `/canchas` + `/canchas/[id]` son un módulo público real. Los jugadores ya no entran al panel y las canchas dejaron de ser un anchor del inicio.
 
-Lo que falta para que la separación sea visible es el **bloque 2**: convertir `/` en inicio, `/partidos` en buscador con filtros en URL, hacer de `/partidos/[id]` el destino canónico y crear `/canchas` + `/canchas/[id]`. El detalle exacto, las decisiones y los criterios de aceptación están en la sección 7.1.
-
-Después del bloque 2 quedan los pendientes de dominio y producto: extraer `booking` y `location`, historial de partidos, pases, notificaciones y conciliación de pagos. El foco de pagos (webhook BDT y conciliación) sigue pendiente, pero no bloquea la separación de pantallas.
+El siguiente bloque no rediseña pantallas: extrae `booking` y `location` de `discovery` para cerrar los últimos acoplamientos internos (sección 7.2). Después quedan los pendientes de dominio y producto: historial de partidos, pases, notificaciones y conciliación de pagos. El webhook BDT y la conciliación siguen siendo el foco de pagos, pero no bloquean la separación de superficies.

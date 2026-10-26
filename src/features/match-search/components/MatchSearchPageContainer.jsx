@@ -1,26 +1,27 @@
 import { getSession } from "@/features/auth/lib/auth";
 import { validateSessionUser } from "@/features/auth/services/auth.read.service";
 import { getUserPermissions } from "@/features/permissions/services/permission.authorization.service";
-import { fetchDiscoveryData } from "@/features/discovery/services/discovery.read.service";
+import { PARTICIPANT_CONFIG } from "@/features/participants/config/participant.constants";
 import { logger } from "@/features/shared/lib/logger";
 import { ErrorAlert } from "@/components/shared/ErrorAlert";
-import { PARTICIPANT_CONFIG } from "@/features/participants/config/participant.constants";
-import { DiscoveryView } from "./DiscoveryView";
+import { fetchMatchSearchData } from "../services/match-search.read.service";
+import { MatchSearchView } from "./MatchSearchView";
 
 /**
- * Public discovery page container. Works for anonymous visitors and
- * authenticated players alike; personalization is resolved server-side.
+ * Public match search. Anonymous visitors are welcome; the session only adds
+ * "my enrollment" data and a way back to the player home.
  */
-export async function DiscoveryPageContainer({ initialStage = "home" }) {
+export async function MatchSearchPageContainer() {
   const jwtSession = await getSession();
   const session = jwtSession ? await validateSessionUser(jwtSession) : null;
   const permissions = session ? await getUserPermissions(session.role) : [];
+
   let data;
 
   try {
-    data = await fetchDiscoveryData({ currentUserId: session?.id || null });
+    data = await fetchMatchSearchData({ currentUserId: session?.id || null });
   } catch (error) {
-    logger.error("Error loading public discovery", { error: error.message });
+    logger.error("Error loading match search", { error: error.message });
     return (
       <ErrorAlert
         title="No pudimos cargar los partidos"
@@ -30,14 +31,12 @@ export async function DiscoveryPageContainer({ initialStage = "home" }) {
   }
 
   return (
-    <DiscoveryView
+    <MatchSearchView
       matches={data.matches}
       courts={data.courts}
       subscription={data.subscription}
       isAuthenticated={Boolean(session)}
-      userName={session?.firstName || null}
       canStaffConfirm={permissions.includes(PARTICIPANT_CONFIG.PERMISSIONS.WRITE)}
-      initialStage={initialStage}
     />
   );
 }

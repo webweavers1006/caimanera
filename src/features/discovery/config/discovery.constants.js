@@ -7,7 +7,9 @@ export const DISCOVERY_CONFIG = {
   PATHS: {
     HOME: "/",
     MATCHES: "/partidos",
+    VENUES: "/canchas",
     MY_MATCHES: "/mis-partidos",
+    ACCOUNT: "/cuenta",
   },
 
   STORAGE: {
@@ -89,6 +91,16 @@ export const DISCOVERY_CONFIG = {
         COURTS: "Canchas",
         MAP: "Mapa",
       },
+      NEXT_MATCH_TITLE: "Tu próximo partido",
+      NEXT_MATCH_SUBTITLE: "El partido más cercano en tu agenda.",
+      UPCOMING_TITLE: "Mis próximos partidos",
+      UPCOMING_SUBTITLE: "Todo lo que viene después.",
+      VIEW_ALL: "Ver todos",
+      EMPTY_TITLE: "Todavía no tienes partidos",
+      EMPTY_DESCRIPTION:
+        "Busca un partido cerca de ti y asegura tu cupo en segundos.",
+      EMPTY_ACTION: "Buscar partido",
+      VENUES_VIEW_ALL: "Ver todas las canchas",
     },
     LOCATION: {
       LOCATE: "Usar mi ubicación",
@@ -112,6 +124,23 @@ export const DISCOVERY_CONFIG = {
         `${count} ${count === 1 ? "partido disponible" : "partidos disponibles"}`,
       VENUES_TITLE: "Canchas cerca de ti",
       VENUES_SUBTITLE: "Los escenarios donde se juega la comunidad.",
+    },
+    VENUES: {
+      EYEBROW: "Canchas",
+      TITLE: "Canchas y clubes",
+      SUBTITLE: "Encuentra dónde jugar cerca de ti.",
+      COUNT: (n) => `${n} ${n === 1 ? "cancha" : "canchas"}`,
+      EMPTY_TITLE: "Todavía no hay canchas disponibles",
+      EMPTY_DESCRIPTION: "Vuelve pronto o explora los partidos disponibles.",
+      EMPTY_ACTION: "Ver partidos",
+      BACK: "Volver a canchas",
+      DETAIL_MATCHES_TITLE: "Próximos partidos",
+      DETAIL_MATCHES_SUBTITLE: "Asegura tu cupo en esta cancha.",
+      NO_MATCHES_TITLE: "Sin partidos próximos",
+      NO_MATCHES_DESCRIPTION:
+        "Esta cancha no tiene partidos programados por ahora. Explora los demás partidos disponibles.",
+      NO_MATCHES_ACTION: "Ver otros partidos",
+      SEE_MATCHES: "Ver todos los partidos de esta cancha",
     },
     MATCHES_STAGE: {
       EYEBROW: "Partidos",
@@ -151,6 +180,7 @@ export const DISCOVERY_CONFIG = {
       DISTANCE: (value) => `a ${value}`,
       MINUTES: (n) => `~${n} min`,
       VIEW: "Ver partido",
+      VIEW_FULL: "Ver información completa",
       CANCEL: "Cancelar inscripción",
       CANCEL_TITLE: "¿Cancelar tu inscripción?",
       CANCEL_DESCRIPTION:
@@ -170,6 +200,7 @@ export const DISCOVERY_CONFIG = {
       ACTION: "Ver todos los partidos",
       SEARCH_TITLE: "No encontramos partidos con esos filtros",
       SEARCH_DESCRIPTION: "Prueba con otro deporte, otro día o limpia los filtros.",
+      SEARCH_ACTION: "Limpiar filtros",
     },
     MY_MATCHES: {
       EYEBROW: "Tu agenda",

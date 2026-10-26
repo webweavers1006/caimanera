@@ -31,7 +31,7 @@ export function AppFooter({ session = null }) {
               </Link>
             </li>
             <li>
-              <Link href="/#canchas" className="text-muted-foreground hover:text-foreground">
+              <Link href={ROUTES.PUBLIC.COURTS.path} className="text-muted-foreground hover:text-foreground">
                 {APP_SHELL_CONFIG.UI.NAV.COURTS}
               </Link>
             </li>

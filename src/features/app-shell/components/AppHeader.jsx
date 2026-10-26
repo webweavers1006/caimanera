@@ -46,7 +46,7 @@ export function AppHeader({ session = null }) {
               {LABELS.MY_MATCHES}
             </Link>
           )}
-          <Link href="/#canchas" className="transition-colors hover:text-foreground">
+          <Link href={ROUTES.PUBLIC.COURTS.path} className="transition-colors hover:text-foreground">
             {LABELS.COURTS}
           </Link>
         </nav>

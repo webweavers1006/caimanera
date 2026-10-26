@@ -61,11 +61,30 @@ function groupByCourt(matches) {
   return [...groups.values()];
 }
 
+function MatchPopupBody({ match }) {
+  return (
+    <>
+      <span className="block font-semibold text-foreground">{match.title}</span>
+      <span className="block text-muted-foreground">
+        {match.dateLabel} · {match.timeLabel} · {formatPrice(match.pricePerSlot)}
+      </span>
+      <span className="block text-primary">
+        {match.slotsLeft === 0 ? "Sin cupos" : `${match.slotsLeft} cupos libres`}
+      </span>
+    </>
+  );
+}
+
 /**
  * OSM map of available matches. Grouped by court so overlapping starts stay
  * usable. Loaded through a dynamic wrapper to keep Leaflet client-only.
  */
-export function DiscoveryMap({ matches = [], location = null, height = 520 }) {
+export function DiscoveryMap({
+  matches = [],
+  location = null,
+  height = 520,
+  onSelectMatch = null,
+}) {
   const markers = useMemo(() => groupByCourt(matches), [matches]);
   const center = useMemo(
     () => location || getMapCenter(matches),
@@ -115,23 +134,26 @@ export function DiscoveryMap({ matches = [], location = null, height = 520 }) {
                   )}
                 </div>
                 <div className="space-y-1.5">
-                  {marker.matches.slice(0, 4).map((match) => (
-                    <Link
-                      key={match.id}
-                      href={`${DISCOVERY_CONFIG.PATHS.MATCHES}/${match.id}`}
-                      className="block rounded-lg border p-2 text-xs transition-colors hover:bg-muted"
-                    >
-                      <span className="block font-semibold text-foreground">{match.title}</span>
-                      <span className="block text-muted-foreground">
-                        {match.dateLabel} · {match.timeLabel} · {formatPrice(match.pricePerSlot)}
-                      </span>
-                      <span className="block text-primary">
-                        {match.slotsLeft === 0
-                          ? "Sin cupos"
-                          : `${match.slotsLeft} cupos libres`}
-                      </span>
-                    </Link>
-                  ))}
+                  {marker.matches.slice(0, 4).map((match) =>
+                    onSelectMatch ? (
+                      <button
+                        key={match.id}
+                        type="button"
+                        onClick={() => onSelectMatch(match)}
+                        className="block w-full rounded-lg border p-2 text-left text-xs transition-colors hover:bg-muted"
+                      >
+                        <MatchPopupBody match={match} />
+                      </button>
+                    ) : (
+                      <Link
+                        key={match.id}
+                        href={`${DISCOVERY_CONFIG.PATHS.MATCHES}/${match.id}`}
+                        className="block rounded-lg border p-2 text-xs transition-colors hover:bg-muted"
+                      >
+                        <MatchPopupBody match={match} />
+                      </Link>
+                    )
+                  )}
                 </div>
               </div>
             </Popup>

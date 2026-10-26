@@ -24,7 +24,7 @@ export function DiscoveryEmpty({
       </p>
       <div className="mt-5 flex flex-wrap justify-center gap-2">
         {hasFilters ? (
-          <Button onClick={onClearFilters}>{labels.ACTION}</Button>
+          <Button onClick={onClearFilters}>{labels.SEARCH_ACTION}</Button>
         ) : (
           <Button onClick={onExpandRadius} className="gap-2">
             <MapPin data-icon="inline-start" />

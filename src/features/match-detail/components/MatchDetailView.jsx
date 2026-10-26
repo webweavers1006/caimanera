@@ -17,13 +17,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MATCH_CONFIG } from "@/features/matches/config/match.constants";
 import { formatPrice } from "@/features/shared/lib/format";
-import { DISCOVERY_CONFIG, getSportEmoji } from "../config/discovery.constants";
-import { distanceInKm, formatDistance } from "../lib/geo";
-import { useDiscoveryLocation } from "../hooks/use-discovery-location";
-import { DiscoveryMapWrapper } from "./DiscoveryMapWrapper";
-import { MatchCheckoutSheet } from "./MatchCheckoutSheet";
+import { DISCOVERY_CONFIG, getSportEmoji } from "@/features/discovery/config/discovery.constants";
+import { distanceInKm, formatDistance } from "@/features/discovery/lib/geo";
+import { useDiscoveryLocation } from "@/features/discovery/hooks/use-discovery-location";
+import { DiscoveryMapWrapper } from "@/features/discovery/components/DiscoveryMapWrapper";
+import { MatchCheckoutSheet } from "@/features/discovery/components/MatchCheckoutSheet";
 
-export function PublicMatchDetailView({
+export function MatchDetailView({
   match,
   isAuthenticated = false,
   subscription = null,

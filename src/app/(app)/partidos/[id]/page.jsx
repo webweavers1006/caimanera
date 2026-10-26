@@ -1,4 +1,4 @@
-import { PublicMatchDetailPageContainer } from "@/features/discovery/components/PublicMatchDetailPageContainer";
+import { MatchDetailPageContainer } from "@/features/match-detail/components/MatchDetailPageContainer";
 import { SITE_CONFIG } from "@/features/shared";
 
 export const dynamic = "force-dynamic";
@@ -11,5 +11,5 @@ export const metadata = {
 
 export default async function PublicMatchPage({ params }) {
   const { id } = await params;
-  return <PublicMatchDetailPageContainer matchId={id} />;
+  return <MatchDetailPageContainer matchId={id} />;
 }

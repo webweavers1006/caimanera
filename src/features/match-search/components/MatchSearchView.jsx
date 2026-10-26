@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import {
   ArrowLeft,
   List,
@@ -10,44 +12,76 @@ import {
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/features/shared";
-import { DISCOVERY_CONFIG, getSportEmoji } from "../config/discovery.constants";
-import { DiscoveryEmpty } from "./DiscoveryEmpty";
-import { DiscoveryFilterSheet } from "./DiscoveryFilterSheet";
-import { DiscoveryLocationButton } from "./DiscoveryLocationButton";
-import { DiscoveryMapWrapper } from "./DiscoveryMapWrapper";
-import { DiscoveryMatchCard } from "./DiscoveryMatchCard";
+import { ROUTES, cn } from "@/features/shared";
+import {
+  DISCOVERY_CONFIG,
+  getSportEmoji,
+} from "@/features/discovery/config/discovery.constants";
+import { DiscoveryEmpty } from "@/features/discovery/components/DiscoveryEmpty";
+import { DiscoveryFilterSheet } from "@/features/discovery/components/DiscoveryFilterSheet";
+import { DiscoveryLocationButton } from "@/features/discovery/components/DiscoveryLocationButton";
+import { DiscoveryMapWrapper } from "@/features/discovery/components/DiscoveryMapWrapper";
+import { DiscoveryMatchCard } from "@/features/discovery/components/DiscoveryMatchCard";
+import { LocationPickerDialog } from "@/features/discovery/components/LocationPickerDialog";
+import { MatchCheckoutSheet } from "@/features/discovery/components/MatchCheckoutSheet";
+import { useMatchSearchFilters } from "../hooks/use-match-search-filters";
+import { useMatchSearchLocation } from "../hooks/use-match-search-location";
 
 /**
- * Stage 2: pick a match. It follows the same module language as the home:
- * one rounded card for title, location and sport tabs, section heading for the
- * results, and a single-column feed that never stretches past a phone width.
+ * `/partidos`: the only match search surface.
+ *
+ * Every filter is kept in the URL. Tapping a card opens a quick preview drawer;
+ * the full information lives at the canonical `/partidos/[id]` route and is
+ * reachable from the preview CTA.
  */
-export function DiscoveryMatchesStage({
+export function MatchSearchView({
   matches = [],
-  sports = [],
-  filters,
-  setters,
-  view,
-  setView,
-  location,
-  onBack,
-  onOpenMatch,
-  onOpenLocationPicker,
-  hasActiveFilters,
-  clearFilters,
-  showAllMatches,
-  distanceEnabled = false,
+  courts = [],
+  subscription = null,
+  isAuthenticated = false,
+  canStaffConfirm = false,
 }) {
   const [filterOpen, setFilterOpen] = useState(false);
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [selectedMatch, setSelectedMatch] = useState(null);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const {
+    location,
+    recentLocations,
+    selectLocation,
+    clearRecentLocations,
+    locate,
+    isLocating,
+    geoError,
+  } = useMatchSearchLocation();
+
+  const {
+    filters,
+    setters,
+    sports,
+    filteredMatches,
+    hasActiveFilters,
+    clearFilters,
+    showAllMatches,
+    distanceEnabled,
+  } = useMatchSearchFilters(matches, location);
+
   const labels = DISCOVERY_CONFIG.UI.MATCHES_STAGE;
   const filterLabels = DISCOVERY_CONFIG.UI.FILTERS;
   const sectionLabels = DISCOVERY_CONFIG.UI.SECTIONS;
+
+  const courtFilter = filters.courtId
+    ? courts.find((court) => court.id === filters.courtId)
+    : null;
 
   const filtersCount = [
     Boolean(filters.searchTerm?.trim()),
     filters.dateFilter !== "all",
     filters.radius !== DISCOVERY_CONFIG.RADIUS.DEFAULT,
+    Boolean(filters.courtId),
   ].filter(Boolean).length;
 
   const dateOption = DISCOVERY_CONFIG.DATE_FILTERS.find(
@@ -80,23 +114,38 @@ export function DiscoveryMatchesStage({
       onRemove: () => setters.setRadius(DISCOVERY_CONFIG.RADIUS.DEFAULT),
     });
   }
+  if (courtFilter) {
+    activeChips.push({
+      key: "court",
+      label: courtFilter.name,
+      onRemove: () => setters.setCourtFilter(null),
+    });
+  }
 
-  const hasMatches = matches.length > 0;
+  const hasMatches = filteredMatches.length > 0;
+  const nextPath = searchParams.toString()
+    ? `${pathname}?${searchParams.toString()}`
+    : pathname;
+
+  const openPreview = (match) => {
+    setSelectedMatch(match);
+    setPreviewOpen(true);
+  };
 
   return (
     <div className="mx-auto w-full max-w-2xl space-y-5">
       <section className="rounded-3xl border border-border/70 bg-card p-5 shadow-sm sm:p-6">
         <div className="flex items-start gap-1">
-          {onBack && (
+          {isAuthenticated && (
             <Button
-              type="button"
+              asChild
               variant="ghost"
               size="icon"
-              onClick={onBack}
-              aria-label={labels.BACK}
               className="-ml-2 mt-0.5 shrink-0 rounded-full"
             >
-              <ArrowLeft />
+              <Link href={ROUTES.PLAYER.HOME.path} aria-label={labels.BACK}>
+                <ArrowLeft />
+              </Link>
             </Button>
           )}
 
@@ -131,7 +180,7 @@ export function DiscoveryMatchesStage({
 
         <DiscoveryLocationButton
           location={location}
-          onClick={onOpenLocationPicker}
+          onClick={() => setPickerOpen(true)}
           className="mt-4"
         />
 
@@ -214,7 +263,7 @@ export function DiscoveryMatchesStage({
               {location ? sectionLabels.MATCHES_TITLE : sectionLabels.MATCHES_TITLE_ALL}
             </h2>
             <p className="mt-0.5 text-xs text-muted-foreground">
-              {sectionLabels.MATCHES_SUBTITLE(matches.length)}
+              {sectionLabels.MATCHES_SUBTITLE(filteredMatches.length)}
             </p>
           </div>
 
@@ -225,12 +274,12 @@ export function DiscoveryMatchesStage({
           >
             <button
               type="button"
-              onClick={() => setView(DISCOVERY_CONFIG.VIEW.LIST)}
-              aria-pressed={view === DISCOVERY_CONFIG.VIEW.LIST}
+              onClick={() => setters.setView(DISCOVERY_CONFIG.VIEW.LIST)}
+              aria-pressed={filters.view === DISCOVERY_CONFIG.VIEW.LIST}
               aria-label={filterLabels.VIEW_LIST}
               className={cn(
                 "inline-flex h-7 items-center gap-1.5 rounded-full px-2.5 text-[11px] font-semibold transition-colors",
-                view === DISCOVERY_CONFIG.VIEW.LIST
+                filters.view === DISCOVERY_CONFIG.VIEW.LIST
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground"
               )}
@@ -240,12 +289,12 @@ export function DiscoveryMatchesStage({
             </button>
             <button
               type="button"
-              onClick={() => setView(DISCOVERY_CONFIG.VIEW.MAP)}
-              aria-pressed={view === DISCOVERY_CONFIG.VIEW.MAP}
+              onClick={() => setters.setView(DISCOVERY_CONFIG.VIEW.MAP)}
+              aria-pressed={filters.view === DISCOVERY_CONFIG.VIEW.MAP}
               aria-label={filterLabels.VIEW_MAP}
               className={cn(
                 "inline-flex h-7 items-center gap-1.5 rounded-full px-2.5 text-[11px] font-semibold transition-colors",
-                view === DISCOVERY_CONFIG.VIEW.MAP
+                filters.view === DISCOVERY_CONFIG.VIEW.MAP
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground"
               )}
@@ -263,19 +312,36 @@ export function DiscoveryMatchesStage({
           onClearFilters={clearFilters}
           onExpandRadius={showAllMatches}
         />
-      ) : view === DISCOVERY_CONFIG.VIEW.MAP ? (
-        <DiscoveryMapWrapper matches={matches} location={location} height={520} />
+      ) : filters.view === DISCOVERY_CONFIG.VIEW.MAP ? (
+        <DiscoveryMapWrapper
+          matches={filteredMatches}
+          location={location}
+          height={520}
+          onSelectMatch={openPreview}
+        />
       ) : (
         <div className="space-y-2.5 pb-2">
-          {matches.map((match) => (
+          {filteredMatches.map((match) => (
             <DiscoveryMatchCard
               key={match.id}
               match={match}
-              onClick={() => onOpenMatch?.(match)}
+              onClick={() => openPreview(match)}
             />
           ))}
         </div>
       )}
+
+      <LocationPickerDialog
+        open={pickerOpen}
+        onOpenChange={setPickerOpen}
+        courts={courts}
+        recentLocations={recentLocations}
+        onSelect={selectLocation}
+        onLocate={locate}
+        onClearRecents={clearRecentLocations}
+        isLocating={isLocating}
+        geoError={geoError}
+      />
 
       <DiscoveryFilterSheet
         open={filterOpen}
@@ -285,6 +351,21 @@ export function DiscoveryMatchesStage({
         hasActiveFilters={hasActiveFilters}
         clearFilters={clearFilters}
         distanceEnabled={distanceEnabled}
+      />
+
+      <MatchCheckoutSheet
+        match={selectedMatch}
+        open={previewOpen}
+        onOpenChange={setPreviewOpen}
+        isAuthenticated={isAuthenticated}
+        subscription={subscription}
+        canStaffConfirm={canStaffConfirm}
+        nextPath={nextPath}
+        detailHref={
+          selectedMatch
+            ? `${DISCOVERY_CONFIG.PATHS.MATCHES}/${selectedMatch.id}`
+            : null
+        }
       />
     </div>
   );

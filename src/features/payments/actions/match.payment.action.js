@@ -13,6 +13,7 @@ function revalidateMatchPaths(matchId) {
   revalidatePath(ROUTES.PLAYER.HOME.path);
   revalidatePath(ROUTES.PUBLIC.MATCHES.path);
   revalidatePath(`${ROUTES.PUBLIC.MATCHES.path}/${matchId}`);
+  revalidatePath(ROUTES.PUBLIC.COURTS.path);
   revalidatePath(ROUTES.PLAYER.MY_MATCHES.path);
   revalidatePath(MATCH_CONFIG.PATH);
   revalidatePath(`${MATCH_CONFIG.PATH}/${matchId}`);
