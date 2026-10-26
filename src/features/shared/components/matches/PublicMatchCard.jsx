@@ -8,17 +8,22 @@ import { MATCH_UI } from "@/features/shared/config/match-ui.constants";
 import { getSportEmoji } from "@/features/shared/lib/sport";
 
 function statusLabel(match) {
+  if (match.isPast || match.status === "COMPLETED") {
+    return match.isEnrolled ? "Jugado" : "Finalizado";
+  }
+  if (match.status === "CANCELED") return "Cancelado";
   if (match.isEnrolled) {
     return match.myStatus === "WAITLIST" ? "En espera" : "Confirmado";
   }
-  if (match.isFull) return "Lleno";
   if (match.status === "IN_PROGRESS") return "En curso";
-  if (match.status === "COMPLETED") return "Finalizado";
-  if (match.status === "CANCELED") return "Cancelado";
+  if (match.isFull) return "Lleno";
   return "Disponible";
 }
 
 function statusTone(match, available) {
+  if (match.isPast || match.status === "COMPLETED" || match.status === "CANCELED") {
+    return "bg-muted text-muted-foreground";
+  }
   if (match.isEnrolled) {
     return match.myStatus === "WAITLIST"
       ? "bg-amber-500/10 text-amber-700 dark:text-amber-300"
@@ -53,6 +58,7 @@ export function PublicMatchCard({
     !match.isFull &&
     !match.isPast &&
     !["CANCELED", "COMPLETED", "IN_PROGRESS"].includes(match.status);
+  const closed = match.isPast || ["CANCELED", "COMPLETED"].includes(match.status);
   const status = statusLabel(match);
   const slotsText =
     capacity > 0
@@ -139,7 +145,11 @@ export function PublicMatchCard({
           <span
             className={cn(
               "block h-full rounded-full transition-all",
-              filled >= 100 || !available ? "bg-amber-400" : "bg-primary"
+              closed
+                ? "bg-muted-foreground/30"
+                : filled >= 100 || !available
+                  ? "bg-amber-400"
+                  : "bg-primary"
             )}
             style={{ width: `${filled}%` }}
           />

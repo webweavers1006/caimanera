@@ -3,6 +3,7 @@ import { publicCatalogMapper } from "@/features/shared/mappers/public-catalog.ma
 
 const UPCOMING_STATUSES = ["OPEN", "FULL", "IN_PROGRESS"];
 const MAX_PUBLIC_MATCHES = 200;
+const MAX_PLAYER_HISTORY = 50;
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 function isUuid(value) {
@@ -76,6 +77,29 @@ export const publicCatalogReadRepository = {
       },
       orderBy: { scheduledAt: "asc" },
       ...(take ? { take } : {}),
+      include: PUBLIC_MATCH_INCLUDE,
+    });
+
+    return publicCatalogMapper.toPublicMatchList(matches, userId);
+  },
+
+  /**
+   * Past matches the player was enrolled in, most recent first. Canceled
+   * matches are excluded: the history only lists matches that took place.
+   */
+  async findMyPastMatches(userId, { take = MAX_PLAYER_HISTORY } = {}) {
+    if (!userId) return [];
+
+    const matches = await prisma.match.findMany({
+      where: {
+        deletedAt: null,
+        status: { not: "CANCELED" },
+        scheduledAt: { lt: new Date() },
+        participants: { some: { userId } },
+        court: { is: { deletedAt: null } },
+      },
+      orderBy: { scheduledAt: "desc" },
+      take,
       include: PUBLIC_MATCH_INCLUDE,
     });
 

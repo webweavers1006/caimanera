@@ -2,12 +2,12 @@
 
 > **Fecha de corte:** 26 de octubre de 2026  
 > **Resumen:** app y admin separados; bloques 1, 1.5, 2 y 3 completados. `discovery` ya no existe: `booking`, `location` y `player` viven en sus propios features.  
-> **Última verificación:** 26 oct 2026 · build OK · tests 67/67 · lint 0 errores / 19 warnings  
+> **Última verificación:** 26 oct 2026 · build OK · tests 70/70 · lint 0 errores / 19 warnings  
 > **Rama activa:** `feat/separacion-app-admin`  
 > **Estado general:** funcional, compilando, con tests en verde y sin piezas compartidas dentro de `discovery`.  
 > **Fase actual:** separación app / admin completada (bloques 1, 1.5, 2 y 3).  
 > **Siguiente foco:** pendientes de dominio y producto (historial, pases, webhook BDT y conciliación) — sección 7.2.  
-> **Commits de referencia:** `3b5ee56` (checkpoint), `13e5122` (bloque 1), `0582e45` (bloque 1.5), `a734c59` (docs), `d28c385` (bloque 2). Bloque 3 en el commit actual.
+> **Commits de referencia:** `3b5ee56` (checkpoint), `13e5122` (bloque 1), `0582e45` (bloque 1.5), `a734c59` (docs), `d28c385` (bloque 2), `481b471` (bloque 3). Historial de partidos en el commit actual.
 
 ---
 
@@ -65,7 +65,7 @@ La app ya permite:
 - Iniciar el pago con BDT, pago móvil/transferencia, Binance o tarjeta (transacción `PENDING`).
 - Usar créditos de un pase activo.
 - Ver el detalle público del partido sin exponer datos personales.
-- Consultar sus próximos partidos y cancelar desde “Mis partidos”, sin entrar al panel administrativo.
+- Consultar sus próximos partidos, ver el historial de los jugados y cancelar desde “Mis partidos”, sin entrar al panel administrativo.
 - Iniciar sesión desde una pantalla de acceso adaptada a móvil y al tema oscuro de la app.
 - Usar un tema oscuro global, también en el panel administrativo.
 
@@ -506,6 +506,21 @@ Se eliminó `discovery`: ya no queda ninguna pieza compartida ahí. Las superfic
 
 ---
 
+### 2.19 Historial de partidos pasados (26 de octubre de 2026)
+
+“Mis partidos” dejó de mostrar solo la agenda próxima.
+
+- Dos pestañas: **Próximos** e **Historial**, con contador por pestaña.
+- `findMyPastMatches` lee hasta 50 partidos pasados del jugador, más reciente primero y sin cancelados.
+- `fetchMyMatches` devuelve `{ upcoming, past }` con ambas consultas en paralelo.
+- Si el jugador no tiene próximos pero sí historial, la vista abre directamente en Historial.
+- El historial es de solo lectura: la tarjeta enlaza a `/partidos/[id]`, sin checkout ni cancelación.
+- La tarjeta pública distingue “Jugado” (pasado con inscripción) de “Finalizado” y usa un tono neutro; ya no muestra “Confirmado” en partidos cerrados.
+- Se añadió `public-catalog.mapper.test.js` para el estado público de partidos pasados.
+- Verificación: build OK, **70/70 tests**, lint 0 errores / 19 warnings; con sesión PLAYER `/mis-partidos` → 200 y renderiza la pestaña Historial (1 partido pasado en los datos demo).
+
+---
+
 ## 3. Estructura relevante nueva
 
 ```text
@@ -647,7 +662,7 @@ Resultado: **exitoso**, sin errores. `/login`, `/robots.txt` y `/sitemap.xml` se
 pnpm test
 ```
 
-Resultado: **67 tests aprobados / 67**.
+Resultado: **70 tests aprobados / 70**.
 
 Suites:
 
@@ -658,6 +673,7 @@ Suites:
 - Jerarquía.
 - Fechas/timezone.
 - Geo/distancia (`location-geo`).
+- Catálogo público (`public-catalog.mapper`).
 - Validación de partidos.
 - Validación de métodos de pago.
 
@@ -699,8 +715,9 @@ También se verificó que `/admin` sigue renderizando sidebar y campana con los 
 Con Playwright + Chrome y Brave:
 
 - Home público en móvil (390×844) y escritorio.
-- “Mis partidos” con jugador demo: cuatro inscripciones próximas, sin partidos pasados.
+- “Mis partidos” con jugador demo: inscripciones próximas e historial (1 partido pasado), pestañas y contadores.
 - Apertura del detalle desde “Mis partidos” y disponibilidad de cancelación.
+- Historial de “Mis partidos”: la tarjeta pasada muestra “Jugado” y abre `/partidos/[id]` sin checkout.
 - Inicio público: módulo de bienvenida con ubicación integrada, módulo de accesos y mosaico de canchas, verificado en escritorio con tema oscuro.
 - Bloque 2:
   - `/` con jugador demo: saludo, ubicación, accesos, “Tu próximo partido” y resumen de agenda.
@@ -846,7 +863,6 @@ Regla: cada módulo tiene su propio read service; si dos necesitan los mismos se
 
 **Pendientes de dominio y producto:**
 
-- Historial de partidos pasados dentro de “Mis partidos” (hoy solo se muestran los próximos).
 - Conectar el webhook real de BDT.
 - Conciliación de transacciones `PENDING` en el panel administrativo.
 - Cobro al promover un jugador desde lista de espera.
@@ -865,14 +881,14 @@ Objetivo: que un jugador vea sus partidos sin entrar a `/admin`.
 
 Implementado:
 - Página `/mis-partidos` en el shell público, protegida por sesión y excluida en `robots.txt`.
-- Consulta de inscripciones del jugador con `scheduledAt >= now`; excluye partidos pasados, completados y cancelados.
+- Pestaña **Próximos** con `scheduledAt >= now`; excluye partidos pasados, completados y cancelados.
+- Pestaña **Historial** con los últimos 50 partidos pasados, más reciente primero y sin cancelados.
 - Entrada en la barra inferior pública (Inicio, Partidos, Mis partidos, Perfil), en el header de escritorio y en el pie.
-- Tarjetas reutilizadas del descubrimiento, con estado **Confirmado** o **En espera**.
-- Al tocar una tarjeta: preview del partido, estado de inscripción y cancelación con el mismo checkout.
-- Estado vacío con CTA para buscar partido.
+- Tarjeta pública compartida, con estado **Confirmado**, **En espera**, **Jugado** o **Finalizado**.
+- En próximos: preview del partido, estado de inscripción y cancelación con el mismo checkout.
+- En historial: solo lectura, con enlace al detalle canónico.
+- Estado vacío por pestaña, con CTA para buscar partido.
 - Sin acceder al panel administrativo.
-
-Pendiente para una siguiente iteración: historial de partidos pasados.
 
 ### 7.4 Login móvil (completado)
 

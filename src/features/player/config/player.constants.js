@@ -1,17 +1,28 @@
 /**
- * Player surface copy. `mis-partidos` is the player's private agenda.
+ * Player surface copy. `mis-partidos` is the player's private agenda, split
+ * into upcoming matches and the history of matches already played.
  */
 export const PLAYER_CONFIG = {
   MY_MATCHES: {
     EYEBROW: "Tu agenda",
     TITLE: "Mis partidos",
-    SUBTITLE: "Tus próximos partidos, ordenados por fecha.",
+    SUBTITLE: "Tus próximos partidos y el historial de los que ya jugaste.",
     HINT: "Toca un partido para ver el detalle o cancelar tu inscripción.",
+    HISTORY_HINT: "Toca un partido para ver la información completa.",
     COUNT: (n) => `${n} ${n === 1 ? "partido" : "partidos"}`,
+    TABS: {
+      UPCOMING: "Próximos",
+      HISTORY: "Historial",
+    },
     EMPTY_TITLE: "Todavía no tienes partidos",
     EMPTY_DESCRIPTION:
       "Cuando te inscribas en un partido, aparecerá aquí para que no pierdas el hilo.",
     EMPTY_ACTION: "Buscar partido",
+    HISTORY_EMPTY_TITLE: "Todavía no hay historial",
+    HISTORY_EMPTY_DESCRIPTION:
+      "Cuando juegues tu primer partido, aparecerá aquí con su resultado.",
+    HISTORY_EMPTY_ACTION: "Buscar partido",
+    HISTORY_COUNT: (n) => `${n} ${n === 1 ? "partido jugado" : "partidos jugados"}`,
     STATUS_CONFIRMED: "Tu cupo está confirmado",
     STATUS_WAITLIST: "Estás en lista de espera",
   },

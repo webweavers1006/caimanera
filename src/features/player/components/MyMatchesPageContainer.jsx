@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getSession } from "@/features/auth/lib/auth";
 import { validateSessionUser } from "@/features/auth/services/auth.read.service";
-import { fetchMyUpcomingMatches } from "../services/player.read.service";
+import { fetchMyMatches } from "../services/player.read.service";
 import { logger } from "@/features/shared/lib/logger";
 import { ErrorAlert } from "@/components/shared/ErrorAlert";
 import { ROUTES } from "@/features/shared";
@@ -22,10 +22,10 @@ export async function MyMatchesPageContainer() {
     redirect(`/login?next=${encodeURIComponent(ROUTES.PLAYER.MY_MATCHES.path)}`);
   }
 
-  let matches;
+  let data;
 
   try {
-    matches = await fetchMyUpcomingMatches(session.id);
+    data = await fetchMyMatches(session.id);
   } catch (error) {
     logger.error("Error loading player matches", { error: error.message });
     return (
@@ -38,5 +38,5 @@ export async function MyMatchesPageContainer() {
     );
   }
 
-  return <MyMatchesView matches={matches} />;
+  return <MyMatchesView upcoming={data.upcoming} past={data.past} />;
 }
