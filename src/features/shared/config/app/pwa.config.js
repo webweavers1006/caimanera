@@ -13,6 +13,9 @@ export const PWA_CONFIG = {
     INSTALL_ACTION_IOS: "Añadir a inicio",
     INSTALL_IOS_HINT:
       "En Safari toca Compartir y luego “Añadir a pantalla de inicio”.",
+    INSTALL_FIREFOX_TITLE: "Para instalarla, abre Caimanera en Chrome",
+    INSTALL_FIREFOX_DESCRIPTION:
+      "Firefox en Android solo crea un acceso directo y abre la app dentro del navegador. Abre esta misma dirección en Chrome y elige “Instalar app” (o “Añadir a pantalla de inicio”).",
     OFFLINE: "Sin conexión. Algunas funciones no están disponibles.",
     OFFLINE_TITLE: "Sin conexión",
     OFFLINE_DESCRIPTION: (appName) =>

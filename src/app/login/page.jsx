@@ -50,14 +50,14 @@ export default function LoginPage() {
         {/* Mobile app bar */}
         <header className="flex items-center justify-between lg:hidden">
           <Link
-            href={ROUTES.PUBLIC.MATCHES.path}
+            href={ROUTES.PLAYER.HOME.path}
             aria-label="Volver al inicio"
             className="flex size-10 items-center justify-center rounded-full border border-border/70 bg-card/80 text-foreground shadow-sm backdrop-blur transition-colors hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <ArrowLeft className="size-5" />
           </Link>
 
-          <Link href={ROUTES.PUBLIC.MATCHES.path} className="flex items-center gap-2">
+          <Link href={ROUTES.PLAYER.HOME.path} className="flex items-center gap-2">
             <img
               src={SITE_CONFIG.logo}
               alt={SITE_CONFIG.name}
@@ -87,7 +87,7 @@ export default function LoginPage() {
                   <img
                     src={SITE_CONFIG.logo}
                     alt={SITE_CONFIG.name}
-                    className="size-14 rounded-2xl border border-border/60 bg-card p-1 shadow-sm"
+                    className="size-14 rounded-2xl shadow-sm"
                   />
                   <div>
                     <p className="text-lg font-bold tracking-tight">{SITE_CONFIG.name}</p>
@@ -151,7 +151,7 @@ export default function LoginPage() {
                 <img
                   src={SITE_CONFIG.logo}
                   alt={SITE_CONFIG.name}
-                  className="relative size-20 rounded-[1.5rem] border border-border/70 bg-card p-2 shadow-xl"
+                  className="relative size-20 rounded-[1.5rem] shadow-xl"
                 />
               </div>
             </div>

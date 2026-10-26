@@ -600,10 +600,11 @@ La app se preparó para instalarse como aplicación y funcionar sin conexión en
 - `src/app/layout.js` enlaza el manifest, declara iconos PWA, `appleWebApp.capable` y `theme-color` vía el export `viewport`.
 - Compatibilidad iOS: `apple-mobile-web-app-capable`, `apple-mobile-web-app-title` y `statusBarStyle: black-translucent`; el header de la app y el del admin reservan `env(safe-area-inset-top)`.
 - Iconos generados con `pnpm pwa:icons` (`scripts/generate-pwa-icons.mjs`, sharp) a partir de `public/img/caimanera_icon.png`. El maskable usa el propio verde del icono como fondo, dentro de la safe zone de Android.
+- Assets de marca con `pnpm brand:assets` (`scripts/build-brand-assets.mjs` + `generate-pwa-icons.mjs`): recorta el arte maestro `public/img/logocaimanera.jpg`, reconstruye el canal alfa y escribe `caimanera-logo.png` (lockup), `caimanera-emblem.png` (emblema), `caimanera_icon.png`, `apple-touch-icon.png` y `src/app/icon.svg`. Si cambia el arte, basta con reemplazar el JPG maestro y volver a correrlo.
 
 **Service worker (manual, sin dependencias):**
 
-- `public/sw.js` con versión `caimanera-v1` y dos cachés: estáticos e imágenes.
+- `public/sw.js` con versión `caimanera-v2` y dos cachés: estáticos e imágenes.
 - Precache: `/offline`, su CSS/JS/fuentes hasheados, el manifest, los iconos y el logo. Así la página offline se ve bien incluso si el usuario se queda sin red antes de navegar.
 - `/_next/static/*` → cache-first; imágenes e iconos → stale-while-revalidate con tope de 80 entradas.
 - **Navegación → network-only.** Nunca se cachea HTML. Si falla la red (o el proxy responde 502/503/504) se sirve `/offline`; jamás el render de otro usuario. Esto protege `/cuenta`, `/mis-partidos`, `/admin` y el inicio personalizado.
@@ -614,7 +615,7 @@ La app se preparó para instalarse como aplicación y funcionar sin conexión en
 
 - `/offline` es estática y pública: el proxy la deja pasar antes de validar sesión (si no, un staff terminaría cacheando el HTML de `/admin`). También queda fuera de `robots.txt`.
 - `OfflineBanner` avisa “Sin conexión” sobre la barra inferior móvil y se oculta al volver la red.
-- `InstallAppButton` aparece en `/cuenta`: usa `beforeinstallprompt` en Chromium y muestra las instrucciones manuales en iOS Safari; se oculta si ya corre en modo standalone.
+- `InstallAppButton` aparece en `/cuenta`: usa `beforeinstallprompt` en Chromium y muestra las instrucciones manuales en iOS Safari; se oculta si ya corre en modo standalone. En Firefox Android no se puede instalar una PWA (solo crea un acceso directo), así que la tarjeta lo explica y recomienda abrir en Chrome.
 - `PwaRegister` registra el SW solo en producción (`pnpm build && pnpm start`), para no interferir con el HMR de Turbopack.
 - `next.config.mjs`: `worker-src`/`manifest-src` en la CSP, `Cache-Control: max-age=0, must-revalidate` y `Service-Worker-Allowed: /` para `/sw.js`, y `application/manifest+json` para el manifest.
 
@@ -1116,7 +1117,7 @@ Pendiente para una siguiente iteración: recuperación de contraseña y registro
 - **Búsqueda en cliente:** `/partidos` descarga hasta 200 partidos próximos y filtra en el navegador. Si el catálogo crece, mover filtros y paginación al servidor.
 - **Ubicación persistida:** la búsqueda usa `lat`/`lng` de la URL y, si no existen, la última ubicación guardada en `localStorage`. Un enlace compartido sin `lat`/`lng` depende de la ubicación del visitante.
 - **PWA y caché:** el service worker **nunca** cachea HTML; solo assets inmutables, imágenes y `/offline`. Cualquier cambio en `public/sw.js` debe conservar esa regla para no filtrar datos entre sesiones. Subir `VERSION` invalida y limpia las cachés anteriores.
-- **Instalación PWA:** requiere HTTPS en producción (localhost es la excepción). El manifest, el SW y los iconos deben publicarse sin redirección a login; hoy el proxy los deja pasar por su extensión y por el bypass explícito de `/offline`.
+- **Instalación PWA:** requiere HTTPS en producción (localhost es la excepción). En Android solo Chrome (con Google Play Services) y Samsung Internet instalan WebAPK; Firefox y otros navegadores solo crean un acceso directo que abre dentro del navegador. El manifest, el SW y los iconos deben publicarse sin redirección a login; hoy el proxy los deja pasar por su extensión y por el bypass explícito de `/offline`.
 - **Offline parcial:** sin red solo hay shell estático y página offline; inscripciones, pagos y notificaciones SSE necesitan conexión. El mapa tampoco carga tiles sin red.
 
 ---
@@ -1146,7 +1147,10 @@ node prisma/seed --only=20261025000000_caimanera-public-launch
 node prisma/seed --only=20260915104819_caimanera-demo-data
 node prisma/seed --only=20261027090000_caimanera-player-passes
 
-# PWA — regenerar iconos desde public/img/caimanera_icon.png
+# PWA — regenerar assets de marca e iconos desde public/img/logocaimanera.jpg
+pnpm brand:assets
+
+# Solo iconos, desde public/img/caimanera_icon.png
 pnpm pwa:icons
 
 # Base de datos

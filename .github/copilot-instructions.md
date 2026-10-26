@@ -311,7 +311,7 @@ import { PageHeader } from "@/components/shared/PageHeader";
 
 **Reglas:**
 - `showNav={false}` en páginas admin (los botones back/forward son para páginas públicas como tomar turno).
-- La imagen por defecto es `SITE_CONFIG.PAGE_HEADER.imageSrc` (`/img/saime_logo.png`). Para páginas sin imagen usar `imageSrc={null}`.
+- La imagen por defecto es `SITE_CONFIG.PAGE_HEADER.imageSrc` (`/img/caimanera-emblem.png`, el emblema "ca" sin fondo para el panel verde). Para páginas sin imagen usar `imageSrc={null}`.
 - Para páginas de detalle (ej: `CaseDetailPageContainer`) que ya tienen breadcrumb con back-link, **no** usar `PageHeader` — mantener su header específico.
 - El `PageHeader` es `"use client"` (por `window.history`). Esto no afecta el container que es Server Component — Next.js hidrata el client component dentro del RSC sin problema.
 
