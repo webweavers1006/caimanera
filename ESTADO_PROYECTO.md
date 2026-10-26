@@ -79,9 +79,11 @@ Antes `/` era el dashboard protegido. Ahora:
 
 | Ruta | Acceso | Propósito |
 |------|--------|-----------|
-| `/` | Público | Descubrimiento de partidos |
-| `/partidos` | Público | Listado público |
+| `/partidos` | Público | Entrada de la app: búsqueda, filtros y mapa |
 | `/partidos/[id]` | Público | Detalle y inscripción |
+| `/` | Sesión (jugador) | Inicio personalizado; anónimo → `/partidos`, staff → `/admin` |
+| `/mis-partidos` | Sesión | Agenda del jugador |
+| `/cuenta` | Sesión | Perfil del jugador |
 | `/admin` | Sesión + permiso | Dashboard administrativo |
 | `/admin/partidos` | Sesión + permiso | Gestión de partidos |
 | `/admin/canchas` | Sesión + permiso | Gestión de canchas |
@@ -90,15 +92,16 @@ Antes `/` era el dashboard protegido. Ahora:
 | `/admin/users` | Sesión + permiso | Usuarios |
 | `/admin/roles` | Sesión + permiso | Roles |
 | `/admin/permissions` | Sesión + permiso | Permisos |
-| `/admin/perfil` | Sesión | Perfil y contraseña |
-| `/terminos` | Público | Términos |
-| `/privacidad` | Público | Privacidad |
+| `/admin/perfil` | Sesión + staff | Perfil y contraseña del staff |
+| `/terminos` | Público | Términos (temporal) |
+| `/privacidad` | Público | Privacidad (temporal) |
 | `/login` | Público | Inicio de sesión |
 
 Después del login:
 
 - **ADMIN / COURT_MANAGER** → `/admin`.
 - **PLAYER / otros roles** → `/`.
+- Los jugadores nunca entran al layout administrativo: cualquier intento los redirige a `/`.
 
 ### 2.3 Reglas de inscripción
 
@@ -298,22 +301,57 @@ Se rediseñó el listado de partidos para que siga el mismo lenguaje de módulos
 - **Archivos:** `DiscoveryMatchesStage.jsx`, `DiscoveryMatchCard.jsx`, `DiscoveryLocationButton.jsx`, `DiscoveryHome.jsx`, `PublicBottomNav.jsx`, `DiscoveryView.jsx` y `discovery.constants.js`.
 - **Verificación:** revisión visual en 390×844 y 375×812 con Chrome (lista, filtros activos, mapa y estado vacío) y en escritorio a 1440 px; ESLint sin errores.
 
+### 2.15 Separación app / admin — primer bloque (26 de octubre de 2026)
+
+Se inició la separación fuerte entre la app del jugador y el panel administrativo. Este bloque no rediseña pantallas: establece rutas, shell y límites de acceso.
+
+**Decisiones de producto:**
+
+- La entrada depende de la sesión: visitante anónimo → `/partidos`; jugador → `/`; staff → `/admin`.
+- “Canchas” será un módulo real con `/canchas` y `/canchas/[id]` (siguiente bloque).
+- Los textos legales se moverán a la landing; la app solo enlazará a ellos.
+
+**Cambios realizados:**
+
+- **Route groups renombrados:** `(public)` → `(app)` y `(root)` → `(admin)`. Las URLs no cambian.
+- **Rutas por superficie:** `ROUTES.PUBLIC` (solo `/partidos`), `ROUTES.PLAYER` (`/`, `/mis-partidos`, `/cuenta`) y `ROUTES.LEGAL` (temporal).
+- **Proxy reescrito:** clasificación explícita de rutas abiertas y privadas. `/` ya no es público; redirige según sesión y rol. `/cuenta` entra en la lista de rutas con sesión.
+- **Shell de la app:** `PublicHeader`, `PublicFooter` y `PublicBottomNav` se movieron a `features/app-shell` y se renombraron a `AppHeader`, `AppFooter` y `AppBottomNav`. El shell ya no consulta permisos ni conoce `matches:create`.
+- **Jugador fuera del admin:** el perfil vive en `/cuenta` dentro del shell de la app. El layout de `(admin)` redirige a `/` a cualquier rol que no sea `ADMIN` o `COURT_MANAGER`.
+- **`/partidos` independiente del inicio:** la página fuerza la etapa de búsqueda con `initialStage="matches"`; `/` mantiene el inicio. El botón “volver” solo aparece cuando hay sesión.
+- **Dominio desacoplado:** `match.enroll.action.js` y `match.payment.action.js` ya no importan `DISCOVERY_CONFIG`; usan `ROUTES` para revalidar.
+- **Limpieza:** se eliminó el anchor muerto `#como-funciona` del navegador de discovery.
+- **Enlaces actualizados:** sidebar admin y navegación móvil del admin apuntan a `/partidos` para “Descubrir”; `robots.txt` bloquea `/cuenta`.
+
+**Verificación:**
+
+- `pnpm build` exitoso con las rutas `/`, `/partidos`, `/partidos/[id]`, `/mis-partidos`, `/cuenta`, `/admin/*`, `/login`.
+- `pnpm test`: 67/67.
+- `npx eslint src`: 0 errores, 18 warnings.
+- Pruebas HTTP con sesión real:
+  - Anónimo: `/` → 307 `/partidos`; `/mis-partidos` y `/cuenta` → 307 `/login`; `/partidos` → 200.
+  - PLAYER: `/`, `/partidos`, `/mis-partidos`, `/cuenta` → 200; `/admin` y `/admin/perfil` → 307 `/`.
+  - ADMIN: `/` → 307 `/admin`; `/admin` y `/admin/perfil` → 200.
+
+**Pendiente del siguiente bloque:** separar `/canchas`, mover legales a la landing, filtros de búsqueda en la URL, extraer `booking` y `location`, y retirar `PermissionsProvider`/`SseProvider` del layout raíz.
+
 ---
 
 ## 3. Estructura relevante nueva
 
 ```text
 src/app/
-├── (public)/
+├── (app)/
 │   ├── layout.jsx
 │   ├── page.jsx
 │   ├── partidos/
 │   │   ├── page.jsx
 │   │   └── [id]/page.jsx
 │   ├── mis-partidos/page.jsx
+│   ├── cuenta/page.jsx
 │   ├── terminos/page.jsx
 │   └── privacidad/page.jsx
-├── (root)/
+├── (admin)/
 │   └── admin/
 │       └── page.jsx
 ├── login/page.jsx
@@ -321,6 +359,13 @@ src/app/
     └── geo/
         ├── search/route.js
         └── reverse/route.js
+
+src/features/app-shell/
+├── components/
+│   ├── AppHeader.jsx
+│   ├── AppFooter.jsx
+│   └── AppBottomNav.jsx
+└── config/app-shell.constants.js
 
 src/features/auth/
 ├── components/

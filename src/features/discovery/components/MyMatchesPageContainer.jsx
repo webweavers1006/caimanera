@@ -4,7 +4,7 @@ import { validateSessionUser } from "@/features/auth/services/auth.read.service"
 import { fetchMyUpcomingMatches } from "../services/discovery.read.service";
 import { logger } from "@/features/shared/lib/logger";
 import { ErrorAlert } from "@/components/shared/ErrorAlert";
-import { DISCOVERY_CONFIG } from "../config/discovery.constants";
+import { ROUTES } from "@/features/shared";
 import { MyMatchesView } from "./MyMatchesView";
 
 /**
@@ -14,12 +14,12 @@ import { MyMatchesView } from "./MyMatchesView";
 export async function MyMatchesPageContainer() {
   const jwtSession = await getSession();
   if (!jwtSession) {
-    redirect(`/login?next=${encodeURIComponent(DISCOVERY_CONFIG.PATHS.MY_MATCHES)}`);
+    redirect(`/login?next=${encodeURIComponent(ROUTES.PLAYER.MY_MATCHES.path)}`);
   }
 
   const session = await validateSessionUser(jwtSession);
   if (!session) {
-    redirect(`/login?next=${encodeURIComponent(DISCOVERY_CONFIG.PATHS.MY_MATCHES)}`);
+    redirect(`/login?next=${encodeURIComponent(ROUTES.PLAYER.MY_MATCHES.path)}`);
   }
 
   let matches;

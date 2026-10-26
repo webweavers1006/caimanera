@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { CalendarCheck, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/features/shared";
 import { DISCOVERY_CONFIG } from "../config/discovery.constants";
 import { distanceInKm, formatDistance } from "../lib/geo";
 import { useDiscoveryLocation } from "../hooks/use-discovery-location";
@@ -72,7 +73,7 @@ export function MyMatchesView({ matches = [] }) {
             {labels.EMPTY_DESCRIPTION}
           </p>
           <Button asChild className="mt-5 gap-2 rounded-full">
-            <Link href="/#partidos">
+            <Link href={ROUTES.PUBLIC.MATCHES.path}>
               <Search data-icon="inline-start" />
               {labels.EMPTY_ACTION}
             </Link>
@@ -98,7 +99,7 @@ export function MyMatchesView({ matches = [] }) {
         open={checkoutOpen}
         onOpenChange={setCheckoutOpen}
         isAuthenticated
-        nextPath={DISCOVERY_CONFIG.PATHS.MY_MATCHES}
+        nextPath={ROUTES.PLAYER.MY_MATCHES.path}
       />
     </div>
   );

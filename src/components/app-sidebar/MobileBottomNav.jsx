@@ -55,9 +55,9 @@ export function MobileBottomNav() {
       }
     : {
         label: "Descubrir",
-        href: ROUTES.PUBLIC.DISCOVERY.path,
+        href: ROUTES.PUBLIC.MATCHES.path,
         icon: Compass,
-        isActive: (value) => value === ROUTES.PUBLIC.DISCOVERY.path,
+        isActive: (value) => value.startsWith(ROUTES.PUBLIC.MATCHES.path),
       };
 
   const items = [

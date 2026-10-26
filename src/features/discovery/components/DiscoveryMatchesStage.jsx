@@ -87,16 +87,18 @@ export function DiscoveryMatchesStage({
     <div className="mx-auto w-full max-w-2xl space-y-5">
       <section className="rounded-3xl border border-border/70 bg-card p-5 shadow-sm sm:p-6">
         <div className="flex items-start gap-1">
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            onClick={onBack}
-            aria-label={labels.BACK}
-            className="-ml-2 mt-0.5 shrink-0 rounded-full"
-          >
-            <ArrowLeft />
-          </Button>
+          {onBack && (
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              onClick={onBack}
+              aria-label={labels.BACK}
+              className="-ml-2 mt-0.5 shrink-0 rounded-full"
+            >
+              <ArrowLeft />
+            </Button>
+          )}
 
           <div className="min-w-0 flex-1 pl-1">
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">

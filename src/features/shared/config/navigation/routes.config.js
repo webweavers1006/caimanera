@@ -16,11 +16,20 @@ import { SSE_MONITOR_CONFIG } from "@/features/sse-monitor/config/sse-monitor.co
 import { PROFILE_CONFIG } from "@/features/profile/config/profile.constants"
 
 export const ROUTES = {
-  // Public experience — no session required
+  // Open app surface — no session required (entry point from the landing).
   PUBLIC: {
-    DISCOVERY: { path: "/" },
     MATCHES: { path: "/partidos" },
+  },
+
+  // Player surface — requires a session. Staff is redirected to the admin panel.
+  PLAYER: {
+    HOME: { path: "/" },
     MY_MATCHES: { path: "/mis-partidos" },
+    ACCOUNT: { path: "/cuenta" },
+  },
+
+  // Legal pages — temporary in-app copy until the landing owns them.
+  LEGAL: {
     TERMS: { path: "/terminos" },
     PRIVACY: { path: "/privacidad" },
   },

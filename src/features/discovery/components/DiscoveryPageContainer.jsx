@@ -11,7 +11,7 @@ import { DiscoveryView } from "./DiscoveryView";
  * Public discovery page container. Works for anonymous visitors and
  * authenticated players alike; personalization is resolved server-side.
  */
-export async function DiscoveryPageContainer() {
+export async function DiscoveryPageContainer({ initialStage = "home" }) {
   const jwtSession = await getSession();
   const session = jwtSession ? await validateSessionUser(jwtSession) : null;
   const permissions = session ? await getUserPermissions(session.role) : [];
@@ -37,6 +37,7 @@ export async function DiscoveryPageContainer() {
       isAuthenticated={Boolean(session)}
       userName={session?.firstName || null}
       canStaffConfirm={permissions.includes(PARTICIPANT_CONFIG.PERMISSIONS.WRITE)}
+      initialStage={initialStage}
     />
   );
 }

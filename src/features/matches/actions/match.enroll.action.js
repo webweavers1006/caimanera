@@ -1,5 +1,6 @@
 "use server";
 
+import { ROUTES } from "@/features/shared";
 import { createProtectedFunction } from "@/features/shared/lib/safe-action";
 import { revalidatePath } from "next/cache";
 import {
@@ -7,14 +8,13 @@ import {
   leaveCurrentUserFromMatch,
 } from "../services/match.enroll.service";
 import { MATCH_CONFIG } from "../config/match.constants";
-import { DISCOVERY_CONFIG } from "@/features/discovery/config/discovery.constants";
 import { PARTICIPANT_CONFIG } from "@/features/participants/config/participant.constants";
 
 function revalidateMatchPaths(matchId) {
-  revalidatePath(DISCOVERY_CONFIG.PATHS.HOME);
-  revalidatePath(DISCOVERY_CONFIG.PATHS.MATCHES);
-  revalidatePath(`${DISCOVERY_CONFIG.PATHS.MATCHES}/${matchId}`);
-  revalidatePath(DISCOVERY_CONFIG.PATHS.MY_MATCHES);
+  revalidatePath(ROUTES.PLAYER.HOME.path);
+  revalidatePath(ROUTES.PUBLIC.MATCHES.path);
+  revalidatePath(`${ROUTES.PUBLIC.MATCHES.path}/${matchId}`);
+  revalidatePath(ROUTES.PLAYER.MY_MATCHES.path);
   revalidatePath(MATCH_CONFIG.PATH);
   revalidatePath(`${MATCH_CONFIG.PATH}/${matchId}`);
   revalidatePath(PARTICIPANT_CONFIG.PATH);

@@ -23,7 +23,7 @@ export default function PublicMatchesPage() {
       }
     >
       <div className="mx-auto w-full max-w-7xl px-4 py-6">
-        <DiscoveryPageContainer />
+        <DiscoveryPageContainer initialStage="matches" />
       </div>
     </Suspense>
   );

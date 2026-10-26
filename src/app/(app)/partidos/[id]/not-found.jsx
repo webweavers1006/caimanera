@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MapPinOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ROUTES } from "@/features/shared";
 
 export default function MatchNotFound() {
   return (
@@ -13,7 +14,7 @@ export default function MatchNotFound() {
         Puede que haya sido cancelado o que el enlace ya no esté disponible.
       </p>
       <Button asChild className="mt-6">
-        <Link href="/#partidos">Ver otros partidos</Link>
+        <Link href={ROUTES.PUBLIC.MATCHES.path}>Ver otros partidos</Link>
       </Button>
     </div>
   );

@@ -22,13 +22,13 @@ export default function sitemap() {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}${ROUTES.PUBLIC.TERMS.path}`,
+      url: `${baseUrl}${ROUTES.LEGAL.TERMS.path}`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
-      url: `${baseUrl}${ROUTES.PUBLIC.PRIVACY.path}`,
+      url: `${baseUrl}${ROUTES.LEGAL.PRIVACY.path}`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.3,

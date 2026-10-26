@@ -129,14 +129,24 @@ export const AUTH_CONFIG = {
 const MANAGEMENT_ROLES = new Set(['ADMIN', 'COURT_MANAGER']);
 
 /**
+ * Whether a role belongs to the administrative panel.
+ *
+ * @param {string} roleName
+ * @returns {boolean}
+ */
+export function isManagementRole(roleName) {
+  return MANAGEMENT_ROLES.has(roleName);
+}
+
+/**
  * Resolves the post-login/home path for a role.
- * Players go to the public discovery feed; staff go to the admin panel.
+ * Players go to the app home; staff go to the admin panel.
  *
  * @param {string} roleName
  * @returns {string}
  */
 export function getHomePathForRole(roleName) {
-  return MANAGEMENT_ROLES.has(roleName)
+  return isManagementRole(roleName)
     ? AUTH_CONFIG.PATH.DASHBOARD
     : AUTH_CONFIG.PATH.DISCOVERY;
 }

@@ -1,19 +1,19 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { ROUTES } from "@/features/shared";
 import { createProtectedAction } from "@/features/shared/lib/safe-action";
 import { verifyPermission } from "@/features/permissions/services/permission.authorization.service";
 import { PARTICIPANT_CONFIG } from "@/features/participants/config/participant.constants";
 import { MATCH_CONFIG } from "@/features/matches/config/match.constants";
-import { DISCOVERY_CONFIG } from "@/features/discovery/config/discovery.constants";
 import { matchPaymentSchema } from "../schemas/payment.schema";
 import { payAndEnrollCurrentUserInMatch } from "../services/match.payment.service";
 
 function revalidateMatchPaths(matchId) {
-  revalidatePath(DISCOVERY_CONFIG.PATHS.HOME);
-  revalidatePath(DISCOVERY_CONFIG.PATHS.MATCHES);
-  revalidatePath(`${DISCOVERY_CONFIG.PATHS.MATCHES}/${matchId}`);
-  revalidatePath(DISCOVERY_CONFIG.PATHS.MY_MATCHES);
+  revalidatePath(ROUTES.PLAYER.HOME.path);
+  revalidatePath(ROUTES.PUBLIC.MATCHES.path);
+  revalidatePath(`${ROUTES.PUBLIC.MATCHES.path}/${matchId}`);
+  revalidatePath(ROUTES.PLAYER.MY_MATCHES.path);
   revalidatePath(MATCH_CONFIG.PATH);
   revalidatePath(`${MATCH_CONFIG.PATH}/${matchId}`);
   revalidatePath(PARTICIPANT_CONFIG.PATH);

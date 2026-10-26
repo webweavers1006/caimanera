@@ -51,14 +51,18 @@ La app queda en `http://localhost:3001`.
 
 ## Rutas principales
 
-### Público (sin sesión)
+### App pública (sin sesión)
 
-- `/` — Descubrimiento: ubicación, filtros y partidos cercanos.
-- `/partidos` — Listado público de partidos.
+- `/partidos` — Entrada de la app: búsqueda de partidos, filtros y mapa.
 - `/partidos/[id]` — Detalle público con inscripción.
 - `/login` — Acceso a la cuenta con pantalla adaptada a móvil.
-- `/mis-partidos` — Agenda del jugador (requiere sesión).
-- `/terminos`, `/privacidad` — Información legal.
+- `/terminos`, `/privacidad` — Información legal (temporal, hasta moverlas a la landing).
+
+### App del jugador (sesión)
+
+- `/` — Inicio personalizado del jugador. Un visitante anónimo es redirigido a `/partidos`; el staff va a `/admin`.
+- `/mis-partidos` — Agenda del jugador.
+- `/cuenta` — Perfil y cambio de contraseña del jugador.
 
 ### Panel administrativo (sesión + permisos)
 
@@ -68,7 +72,7 @@ La app queda en `http://localhost:3001`.
 - `/admin/participantes` — Inscripciones.
 - `/admin/suscripciones` — Planes y pases.
 - `/admin/users`, `/admin/roles`, `/admin/permissions` — Administración.
-- `/admin/perfil` — Cuenta y cambio de contraseña.
+- `/admin/perfil` — Cuenta y cambio de contraseña del staff.
 
 ## Usuarios demo
 

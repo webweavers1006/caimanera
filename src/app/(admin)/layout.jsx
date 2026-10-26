@@ -1,6 +1,7 @@
 import { getSession } from '@/features/auth/lib/auth'
 import { validateSessionUser } from '@/features/auth/services/auth.read.service'
 import { getUserPermissions } from '@/features/permissions/services/permission.authorization.service'
+import { isManagementRole } from '@/features/auth/config/auth.constants'
 import { redirect } from 'next/navigation'
 import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar/AppSidebar"
@@ -17,6 +18,9 @@ export default async function DashboardLayout({ children }) {
 
   const session = await validateSessionUser(jwtSession)
   if (!session) redirect('/login')
+
+  // Players never enter the administrative shell. Their account lives at /cuenta.
+  if (!isManagementRole(session.role)) redirect('/')
 
   const permissions = await getUserPermissions(session.role)
   const canReadNotifications = permissions.includes('notifications:read')

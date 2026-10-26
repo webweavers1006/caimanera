@@ -39,7 +39,7 @@ export const SIDEBAR_CONFIG = {
     items: [
       {
         title: "Descubrir",
-        url: ROUTES.PUBLIC.DISCOVERY.path,
+        url: ROUTES.PUBLIC.MATCHES.path,
         icon: Compass,
       },
       {

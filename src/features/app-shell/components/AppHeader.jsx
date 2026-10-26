@@ -1,20 +1,33 @@
 import Link from "next/link";
 import { LayoutDashboard, LogOut, Trophy, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SITE_CONFIG } from "@/features/shared";
+import { SITE_CONFIG, ROUTES } from "@/features/shared";
+import { isManagementRole } from "@/features/auth/config/auth.constants";
 import { logoutAction } from "@/features/auth/actions/auth.logout.action";
+import { APP_SHELL_CONFIG } from "../config/app-shell.constants";
+
+const LABELS = APP_SHELL_CONFIG.UI.NAV;
 
 /**
- * Lightweight public header. The admin shell is intentionally not used here.
+ * Player-facing app header. Administrative navigation lives in the admin shell.
  */
-export function PublicHeader({ session = null, isManager = false }) {
-  const accountHref = session ? (isManager ? "/admin" : "/admin/perfil") : "/login";
-  const accountLabel = session ? (isManager ? "Ir al panel" : "Mi perfil") : "Ingresar";
+export function AppHeader({ session = null }) {
+  const isStaff = Boolean(session && isManagementRole(session.role));
+  const accountHref = session
+    ? isStaff
+      ? ROUTES.DASHBOARD.path
+      : ROUTES.PLAYER.ACCOUNT.path
+    : ROUTES.AUTH.LOGIN.path;
+  const accountLabel = session
+    ? isStaff
+      ? LABELS.DASHBOARD
+      : LABELS.ACCOUNT
+    : LABELS.LOGIN;
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-14 w-full max-w-7xl items-center gap-3 px-4 sm:h-16">
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href={ROUTES.PLAYER.HOME.path} className="flex items-center gap-2.5">
           <img src={SITE_CONFIG.logo} alt={SITE_CONFIG.name} className="size-8 rounded-xl sm:size-9" />
           <span className="flex flex-col leading-tight">
             <span className="text-sm font-bold tracking-tight">{SITE_CONFIG.name}</span>
@@ -25,37 +38,30 @@ export function PublicHeader({ session = null, isManager = false }) {
         </Link>
 
         <nav className="ml-8 hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex">
-          <Link href="/#partidos" className="transition-colors hover:text-foreground">
-            Partidos
+          <Link href={ROUTES.PUBLIC.MATCHES.path} className="transition-colors hover:text-foreground">
+            {LABELS.MATCHES}
           </Link>
           {session && (
-            <Link href="/mis-partidos" className="transition-colors hover:text-foreground">
-              Mis partidos
+            <Link href={ROUTES.PLAYER.MY_MATCHES.path} className="transition-colors hover:text-foreground">
+              {LABELS.MY_MATCHES}
             </Link>
           )}
           <Link href="/#canchas" className="transition-colors hover:text-foreground">
-            Canchas
-          </Link>
-          <Link href="/#como-funciona" className="transition-colors hover:text-foreground">
-            Cómo funciona
+            {LABELS.COURTS}
           </Link>
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
           <Link
-            href="/#partidos"
+            href={ROUTES.PUBLIC.MATCHES.path}
             className="hidden items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground sm:flex"
           >
             <Trophy className="size-4" />
-            Explorar
+            {LABELS.EXPLORE}
           </Link>
           <Button asChild size="sm" className="gap-2 rounded-full">
             <Link href={accountHref} aria-label={accountLabel}>
-              {session ? (
-                <LayoutDashboard className="size-4" />
-              ) : (
-                <UserRound className="size-4" />
-              )}
+              {isStaff ? <LayoutDashboard className="size-4" /> : <UserRound className="size-4" />}
               <span className="hidden sm:inline">{accountLabel}</span>
             </Link>
           </Button>
@@ -65,8 +71,8 @@ export function PublicHeader({ session = null, isManager = false }) {
                 type="submit"
                 variant="ghost"
                 size="icon"
-                aria-label="Cerrar sesión"
-                title="Cerrar sesión"
+                aria-label={LABELS.LOGOUT}
+                title={LABELS.LOGOUT}
                 className="rounded-full"
               >
                 <LogOut />

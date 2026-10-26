@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ROUTES } from "@/features/shared";
 import { useDiscoveryLocation } from "../hooks/use-discovery-location";
 import { useDiscoveryFilters } from "../hooks/use-discovery-filters";
 import { orderByDistanceKm } from "../lib/geo";
@@ -27,8 +28,9 @@ export function DiscoveryView({
   isAuthenticated = false,
   userName = null,
   canStaffConfirm = false,
+  initialStage = "home",
 }) {
-  const [stage, setStage] = useState("home");
+  const [stage, setStage] = useState(initialStage);
   const [view, setView] = useState("list");
   const [pickerOpen, setPickerOpen] = useState(false);
   const [selectedMatch, setSelectedMatch] = useState(null);
@@ -82,12 +84,7 @@ export function DiscoveryView({
         requestAnimationFrame(() => {
           document.getElementById("canchas")?.scrollIntoView({ behavior: "smooth", block: "start" });
         });
-      } else if (hash === "#como-funciona") {
-        setStage("home");
-        requestAnimationFrame(() => {
-          document.getElementById("como-funciona")?.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      } else {
+      } else if (initialStage !== "matches") {
         setStage("home");
       }
     };
@@ -95,7 +92,7 @@ export function DiscoveryView({
     applyHash();
     window.addEventListener("hashchange", applyHash);
     return () => window.removeEventListener("hashchange", applyHash);
-  }, []);
+  }, [initialStage]);
 
   const handleSelectLocation = (nextLocation) => {
     selectLocation(nextLocation);
@@ -175,7 +172,7 @@ export function DiscoveryView({
           view={view}
           setView={setView}
           location={location}
-          onBack={goHome}
+          onBack={isAuthenticated ? goHome : undefined}
           onOpenMatch={handleOpenMatch}
           onOpenLocationPicker={() => setPickerOpen(true)}
           hasActiveFilters={hasActiveFilters}
@@ -205,7 +202,7 @@ export function DiscoveryView({
         subscription={subscription}
         canStaffConfirm={canStaffConfirm}
         initialStep={checkoutStep}
-        nextPath="/"
+        nextPath={stage === "matches" ? ROUTES.PUBLIC.MATCHES.path : ROUTES.PLAYER.HOME.path}
       />
     </div>
   );
