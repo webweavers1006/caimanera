@@ -13,7 +13,7 @@
  * To ship changes, bump `VERSION`; `activate` deletes every cache from older
  * versions.
  */
-const VERSION = "caimanera-v1"
+const VERSION = "caimanera-v2"
 const STATIC_CACHE = `${VERSION}-static`
 const ASSET_CACHE = `${VERSION}-assets`
 const OFFLINE_URL = "/offline"
@@ -25,7 +25,8 @@ const PRECACHE_URLS = [
   "/icons/icon-192.png",
   "/icons/icon-512.png",
   "/img/apple-touch-icon.png",
-  "/img/caimanera_logo.svg",
+  "/img/caimanera_icon.png",
+  "/img/caimanera-emblem.png",
 ]
 
 /**

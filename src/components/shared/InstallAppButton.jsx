@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { Download, Share } from "lucide-react";
+import { Download, Info, Share } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PWA_CONFIG } from "@/features/shared";
 
@@ -34,10 +34,20 @@ function isIOSDevice() {
 }
 
 /**
+ * Firefox on Android cannot install a PWA: it can only create a browser
+ * shortcut. Detect it to explain the limitation instead of hiding the card.
+ */
+function isFirefoxAndroid() {
+  const ua = navigator.userAgent;
+  return /android/i.test(ua) && /firefox/i.test(ua);
+}
+
+/**
  * "Install app" card.
  *
  * - Android/desktop Chromium: uses the captured `beforeinstallprompt` event.
  * - iOS Safari does not expose that event, so it shows the manual steps.
+ * - Firefox Android cannot install PWAs; it shows an explanation.
  * - Hidden when the app is already running in standalone mode.
  */
 export function InstallAppButton() {
@@ -63,9 +73,30 @@ export function InstallAppButton() {
 
   const isStandalone = isClient ? isStandaloneMode() : true;
   const isIOS = isClient ? isIOSDevice() : false;
+  const isFirefox = isClient ? isFirefoxAndroid() : false;
   const canPrompt = Boolean(deferredPrompt);
 
-  if (isStandalone || (!canPrompt && !isIOS)) return null;
+  if (isStandalone) return null;
+
+  if (isFirefox) {
+    return (
+      <div className="rounded-3xl border border-border/70 bg-card p-4 shadow-sm">
+        <div className="flex items-start gap-3">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+            <Info className="size-5" />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="font-semibold">{UI.INSTALL_FIREFOX_TITLE}</p>
+            <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
+              {UI.INSTALL_FIREFOX_DESCRIPTION}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!canPrompt && !isIOS) return null;
 
   const handleInstall = async () => {
     if (!deferredPrompt) return;
