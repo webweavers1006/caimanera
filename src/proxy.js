@@ -7,6 +7,7 @@ import { getHomePathForRole, isManagementRole } from '@/features/auth/config/aut
 // ── Route classification derived from ROUTES (single source of truth) ──────
 const LOGIN_PATH = ROUTES.AUTH.LOGIN.path
 const HOME_PATH = ROUTES.PLAYER.HOME.path
+const OFFLINE_PATH = '/offline'
 const { PUBLIC: PUBLIC_API_PATHS } = ROUTES.API
 
 // Legal content now lives in the landing. Old in-app URLs keep working.
@@ -42,6 +43,13 @@ export async function proxy(req) {
 
   // Skip static files and Next.js internals
   if (path.startsWith('/_next') || path.startsWith('/static') || path.includes('.')) {
+    return NextResponse.next()
+  }
+
+  // The offline fallback is precached by the service worker and must render
+  // without a session, even for staff (who would otherwise be redirected to
+  // /admin and end up caching the wrong document).
+  if (path === OFFLINE_PATH) {
     return NextResponse.next()
   }
 

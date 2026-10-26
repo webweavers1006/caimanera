@@ -38,7 +38,7 @@
 
 - Íconos: `lucide-react`.
 - Notificaciones toast: `sonner`.
-- Puerto: **3001**.
+- Puerto: **4000**.
 
 ---
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ReceiptText, Ticket, UserRound } from "lucide-react";
 import { ROUTES } from "@/features/shared";
+import { InstallAppButton } from "@/components/shared/InstallAppButton";
 import { PLAYER_CONFIG } from "../config/player.constants";
 
 const labels = PLAYER_CONFIG.ACCOUNT;
@@ -73,6 +74,8 @@ export function AccountHub({
           description={labels.PROFILE_DESCRIPTION}
         />
       </div>
+
+      <InstallAppButton />
     </section>
   );
 }

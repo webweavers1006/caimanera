@@ -3,6 +3,7 @@ import { validateSessionUser } from "@/features/auth/services/auth.read.service"
 import { AppHeader } from "@/features/app-shell/components/AppHeader";
 import { AppFooter } from "@/features/app-shell/components/AppFooter";
 import { AppBottomNav } from "@/features/app-shell/components/AppBottomNav";
+import { OfflineBanner } from "@/components/shared/OfflineBanner";
 
 /**
  * Player-facing app shell — discovery, venues, match detail and player pages.
@@ -18,6 +19,7 @@ export default async function AppLayout({ children }) {
       <main className="flex-1 pb-20 md:pb-0">{children}</main>
       <AppFooter session={session} />
       <AppBottomNav session={session} />
+      <OfflineBanner />
     </div>
   );
 }

@@ -34,7 +34,7 @@ export default async function DashboardLayout({ children }) {
           <TooltipProvider>
             <AppSidebar user={session} />
             <SidebarInset className="overflow-x-hidden">
-              <header className="sticky top-0 z-30 flex h-16 shrink-0 items-center gap-2 border-b bg-background/80 backdrop-blur">
+              <header className="sticky top-0 z-30 flex min-h-16 shrink-0 items-center gap-2 border-b bg-background/80 pt-[env(safe-area-inset-top)] backdrop-blur">
                 <div className="flex items-center gap-2 px-4 flex-1 min-w-0">
                   <SidebarTrigger className="-ml-1" />
                   <Separator orientation="vertical" className="mr-2 hidden h-4 md:block" />

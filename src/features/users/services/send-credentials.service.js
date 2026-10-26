@@ -131,7 +131,7 @@ export async function sendCredentials({ userIds, actorUserId, loginUrl }) {
       roleName,
       email: user.email,
       password: plainPassword,
-      loginUrl: loginUrl || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3001",
+      loginUrl: loginUrl || process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:4000",
     });
     const smtpResult = await sendMail({ to: user.email, subject, html });
 
