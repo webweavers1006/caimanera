@@ -5,7 +5,14 @@ import { ROUTES } from '@/features/shared/config/navigation/navigation.config'
  * Blocks all crawlers from admin routes and login, allows the rest.
  */
 export default function robots() {
-  const adminPaths = Object.values(ROUTES.ADMIN).map((r) => r.path)
+  const adminPaths = [
+    ROUTES.PUBLIC.MY_MATCHES.path,
+    ROUTES.DASHBOARD.path,
+    ...Object.values(ROUTES.ADMIN).map((route) => route.path),
+    ROUTES.AUDIT.path,
+    ...Object.values(ROUTES.CATALOGS).map((route) => route.path),
+    ROUTES.PROFILE.path,
+  ]
 
   return {
     rules: [

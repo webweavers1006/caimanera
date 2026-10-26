@@ -3,15 +3,18 @@
 import { CalendarDays, Clock, DollarSign, MapPin, Trophy, UserCheck, Users } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { StatCard } from "@/components/shared/StatCard";
+import { formatPrice } from "@/features/shared/lib/format";
+import { MatchJoinButton } from "./MatchJoinButton";
 import { MatchCourtTab } from "./MatchCourtTab";
 import { MatchParticipantsTab } from "./MatchParticipantsTab";
 import { MATCH_CONFIG } from "../config/match.constants";
 
-export function MatchDetailView({ match }) {
+export function MatchDetailView({ match, isAuthenticated = false, canViewParticipants = true, loginPath }) {
   const { DETAIL } = MATCH_CONFIG.UI.LABELS;
   const { STATUS } = MATCH_CONFIG;
 
   const confirmed = (match.participants || []).filter((p) => p.status === "CONFIRMED").length;
+  const slotsLeft = Math.max(0, (match.capacity || 0) - confirmed);
 
   const statusBadge = (
     <span className="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-sm font-medium">
@@ -49,13 +52,38 @@ export function MatchDetailView({ match }) {
         </div>
       </div>
 
+      {/* Availability + enrollment */}
+      <div className="flex flex-col gap-4 rounded-2xl border bg-card p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3">
+          <div className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <Users className="h-5 w-5" />
+          </div>
+          <div>
+            <p className="font-semibold">
+              {slotsLeft === 0 ? "Sin cupos disponibles" : `${slotsLeft} ${slotsLeft === 1 ? "cupo libre" : "cupos libres"}`}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              {confirmed} de {match.capacity} jugadores confirmados
+            </p>
+          </div>
+        </div>
+        <div className="sm:min-w-48">
+          <MatchJoinButton
+            match={match}
+            isAuthenticated={isAuthenticated}
+            loginPath={loginPath}
+            className="w-full"
+          />
+        </div>
+      </div>
+
       {/* Stat cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard icon={Users} title={DETAIL.STATS.CAPACITY} value={match.capacity ?? 0} />
         <StatCard
           icon={DollarSign}
           title={DETAIL.STATS.PRICE}
-          value={match.pricePerSlot ?? 0}
+          value={formatPrice(match.pricePerSlot)}
           subtitle={DETAIL.STATS.PRICE_SUBTITLE}
           variant="closed"
         />
@@ -81,19 +109,23 @@ export function MatchDetailView({ match }) {
             <Trophy className="h-4 w-4" />
             {DETAIL.TABS.COURT}
           </TabsTrigger>
-          <TabsTrigger value="participants" className="gap-2">
-            <Users className="h-4 w-4" />
-            {DETAIL.TABS.PARTICIPANTS}
-          </TabsTrigger>
+          {canViewParticipants && (
+            <TabsTrigger value="participants" className="gap-2">
+              <Users className="h-4 w-4" />
+              {DETAIL.TABS.PARTICIPANTS}
+            </TabsTrigger>
+          )}
         </TabsList>
 
         <TabsContent value="court" className="mt-4">
           <MatchCourtTab court={match.court} />
         </TabsContent>
 
-        <TabsContent value="participants" className="mt-4">
-          <MatchParticipantsTab participants={match.participants} />
-        </TabsContent>
+        {canViewParticipants && (
+          <TabsContent value="participants" className="mt-4">
+            <MatchParticipantsTab participants={match.participants} />
+          </TabsContent>
+        )}
       </Tabs>
     </div>
   );

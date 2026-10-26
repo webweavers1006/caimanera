@@ -10,6 +10,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
 import { getSession } from "@/features/auth/lib/auth";
+import { validateSessionUser } from "@/features/auth/services/auth.read.service";
 import { verifyPermission } from "@/features/permissions/services/permission.authorization.service";
 import { logger } from "@/features/shared";
 
@@ -18,7 +19,8 @@ const MAX_SIZE = 5 * 1024 * 1024;
 
 export async function POST(request) {
   try {
-    const session = await getSession();
+    const jwtSession = await getSession();
+    const session = jwtSession ? await validateSessionUser(jwtSession) : null;
     if (!session) {
       return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }

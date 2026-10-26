@@ -12,11 +12,13 @@
 
 import { eventBus } from "@/features/shared/lib/event-bus";
 import { getSession } from "@/features/auth/lib/auth";
+import { validateSessionUser } from "@/features/auth/services/auth.read.service";
 import { SSE_EVENTS, SSE_CONFIG } from "@/features/shared/config/event.constants";
 import { connectionTracker } from "@/features/sse-monitor/lib/connection-tracker";
 
 export async function GET(request) {
-  const session = await getSession();
+  const jwtSession = await getSession();
+  const session = jwtSession ? await validateSessionUser(jwtSession) : null;
 
   if (!session?.id) {
     return new Response("Unauthorized", { status: 401 });

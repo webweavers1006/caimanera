@@ -4,7 +4,7 @@ import { useMatchDialogs } from "../hooks/use-match-table-dialogs";
 import { useMatchTableFilters } from "../hooks/use-match-table-filters";
 import { MatchTableView } from "./MatchTableView";
 
-export function MatchTable({ data, pagination }) {
+export function MatchTable({ data, pagination, isAuthenticated = true }) {
   const dialogState = useMatchDialogs();
   const { isPending, filters, paginationState, handlers } = useMatchTableFilters(pagination);
 
@@ -16,6 +16,7 @@ export function MatchTable({ data, pagination }) {
       filters={filters}
       handlers={handlers}
       dialogState={dialogState}
+      isAuthenticated={isAuthenticated}
     />
   );
 }

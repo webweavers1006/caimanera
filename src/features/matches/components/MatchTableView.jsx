@@ -11,11 +11,14 @@ export function MatchTableView({
   filters,
   handlers,
   dialogState,
+  isAuthenticated = true,
 }) {
   return (
     <div className="space-y-4">
       <MatchToolbar
         searchTerm={filters.searchTerm}
+        status={filters.status}
+        onStatusChange={handlers.handleStatusChange}
         onSearchChange={handlers.handleSearchChange}
         onReset={handlers.handleReset}
         onCreate={dialogState.handleCreate}
@@ -27,6 +30,8 @@ export function MatchTableView({
         pagination={pagination}
         filters={filters}
         handlers={handlers}
+        dialogState={dialogState}
+        isAuthenticated={isAuthenticated}
       />
 
       <MatchTableDialogs

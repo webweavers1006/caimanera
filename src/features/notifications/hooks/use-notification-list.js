@@ -30,7 +30,9 @@ export function useNotificationList({ onRead }) {
 
   // Stable ref to latest items for rollback (avoids stale closure issues)
   const itemsRef = useRef(items);
-  itemsRef.current = items;
+  useEffect(() => {
+    itemsRef.current = items;
+  }, [items]);
 
   // Fetch notification list on mount
   useEffect(() => {
@@ -53,8 +55,8 @@ export function useNotificationList({ onRead }) {
         }
       }
     }
-    load();
-    return () => { cancelled = true; };
+    const timer = setTimeout(load, 0);
+    return () => { cancelled = true; clearTimeout(timer); };
   }, []);
 
   const handleMarkAsRead = useCallback(

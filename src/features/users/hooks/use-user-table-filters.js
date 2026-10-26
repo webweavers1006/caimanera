@@ -108,7 +108,10 @@ export function useUserTableFilters(pagination) {
 
   const handleReset = useCallback(() => {
     handleSearchChange("");
-  }, [handleSearchChange]);
+    startTransition(() => {
+      router.push("?", { scroll: false });
+    });
+  }, [handleSearchChange, router, startTransition]);
 
   return {
     isPending,

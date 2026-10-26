@@ -23,17 +23,18 @@ const MIN_REFRESH_INTERVAL_MS = 2000;
  */
 export function useSseMonitor(initialStats) {
   const [stats, setStats] = useState(initialStats);
-  // Defer timestamp to client-only — toLocaleTimeString is timezone-sensitive.
-  // Server runs TZ=UTC, client runs America/Caracas (UTC-4).
-  // Initializing with null avoids hydration mismatch.
   const [lastUpdated, setLastUpdated] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const lastRefreshRef = useRef(0);
   const pendingRefreshRef = useRef(false);
+  const trailingTimerRef = useRef(null);
+  const refreshRef = useRef(null);
 
-  // Set initial timestamp on client mount only (avoids hydration mismatch)
+  // Set the initial timestamp on the client only (toLocaleTimeString is
+  // timezone-sensitive and would cause a hydration mismatch).
   useEffect(() => {
-    setLastUpdated(new Date());
+    const timer = setTimeout(() => setLastUpdated(new Date()), 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const refresh = useCallback(async () => {
@@ -44,9 +45,9 @@ export function useSseMonitor(initialStats) {
     if (now - lastRefreshRef.current < MIN_REFRESH_INTERVAL_MS) {
       if (!pendingRefreshRef.current) {
         pendingRefreshRef.current = true;
-        setTimeout(() => {
+        trailingTimerRef.current = setTimeout(() => {
           pendingRefreshRef.current = false;
-          refresh();
+          refreshRef.current?.();
         }, MIN_REFRESH_INTERVAL_MS - (now - lastRefreshRef.current));
       }
       return;
@@ -64,6 +65,13 @@ export function useSseMonitor(initialStats) {
       setIsLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    refreshRef.current = refresh;
+    return () => {
+      if (trailingTimerRef.current) clearTimeout(trailingTimerRef.current);
+    };
+  }, [refresh]);
 
   // Real-time refresh via SSE — when any user connects/disconnects,
   // connectionTracker emits sse:connections-changed → instant refresh.

@@ -1,24 +1,33 @@
 import { NextResponse } from 'next/server'
 import { decrypt, SESSION_COOKIE } from '@/features/auth/lib/auth'
 import { ROUTES } from '@/features/shared/config/navigation/navigation.config'
+import { getHomePathForRole } from '@/features/auth/config/auth.constants'
 
 // ── Route classification derived from ROUTES (single source of truth) ──────
 const LOGIN_PATH = ROUTES.AUTH.LOGIN.path
-const DASHBOARD_PATH = ROUTES.DASHBOARD.path
 const { PUBLIC: PUBLIC_API_PATHS } = ROUTES.API
 
 // Public page routes — no session required
-const PUBLIC_PATHS = [LOGIN_PATH]
+const PUBLIC_PATHS = [
+  ROUTES.PUBLIC.DISCOVERY.path,
+  ROUTES.PUBLIC.MATCHES.path,
+  ROUTES.PUBLIC.TERMS.path,
+  ROUTES.PUBLIC.PRIVACY.path,
+  LOGIN_PATH,
+]
 
 function isPublicPath(path) {
   // Uses '/' and '?' as explicit delimiters after the prefix to avoid collisions.
-  // E.g. '/turnos' matches '/turnos', '/turnos/123', '/turnos?office=1'
-  // but NOT '/turnos-admin' (no '/' or '?' immediately after the prefix).
-  return PUBLIC_PATHS.some(p => path === p || path.startsWith(p + '/') || path.startsWith(p + '?'))
+  return PUBLIC_PATHS.some(
+    (publicPath) =>
+      path === publicPath ||
+      path.startsWith(publicPath + '/') ||
+      path.startsWith(publicPath + '?')
+  )
 }
 
 function isPublicApiPath(path) {
-  return PUBLIC_API_PATHS.some(p => path.startsWith(p))
+  return PUBLIC_API_PATHS.some((publicPath) => path.startsWith(publicPath))
 }
 
 export async function proxy(req) {
@@ -44,12 +53,16 @@ export async function proxy(req) {
 
   // Page routes without session → redirect to login
   if (isProtected && !session && !isApiRoute) {
-    return NextResponse.redirect(new URL(LOGIN_PATH, req.nextUrl))
+    const loginUrl = new URL(LOGIN_PATH, req.nextUrl)
+    if (path !== '/') loginUrl.searchParams.set('next', path + req.nextUrl.search)
+    return NextResponse.redirect(loginUrl)
   }
 
   // Already authenticated → redirect away from login page
   if (session && isLoginPage) {
-    return NextResponse.redirect(new URL(DASHBOARD_PATH, req.nextUrl))
+    const next = req.nextUrl.searchParams.get('next')
+    const safeNext = next && next.startsWith('/') && !next.startsWith('//') ? next : null
+    return NextResponse.redirect(new URL(safeNext || getHomePathForRole(session.role), req.nextUrl))
   }
 
   return NextResponse.next()

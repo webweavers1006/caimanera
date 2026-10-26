@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { getSession } from "@/features/auth/lib/auth";
+import { validateSessionUser } from "@/features/auth/services/auth.read.service";
 import { getUserPermissions } from "@/features/permissions/services/permission.authorization.service";
 import { PermissionsProvider } from "@/features/permissions/components/PermissionsProvider";
 import { ThemeProvider } from "@/components/shared/providers/theme-provider";
@@ -43,20 +44,21 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const session = await getSession();
+  const jwtSession = await getSession();
+  const session = jwtSession ? await validateSessionUser(jwtSession) : null;
   const permissions = session ? await getUserPermissions(session.role) : [];
 
   return (
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable}`}
+      className={`dark ${geistSans.variable} ${geistMono.variable} ${inter.variable}`}
     >
       <head />
       <body className="antialiased">
         <DevToolsGuard />
         <ThemeProvider>
-          <SseProvider>
+          <SseProvider enabled={permissions.includes("notifications:read")}>
             <PermissionsProvider permissions={permissions}>
               {children}
             </PermissionsProvider>

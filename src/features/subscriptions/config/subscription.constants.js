@@ -4,7 +4,7 @@
 
 export const SUBSCRIPTION_CONFIG = {
   PATH: '/admin/suscripciones',
-  TITLE: 'Planes de Suscripción',
+  TITLE: 'Pases',
 
   PERMISSIONS: {
     VIEW: 'subscriptions:view',
@@ -33,9 +33,9 @@ export const SUBSCRIPTION_CONFIG = {
       VIP_ANNUAL: 'VIP Anual',
     },
     BADGES: {
-      BASIC_PASS: 'bg-slate-100 text-slate-700',
-      PRO_MONTHLY: 'bg-blue-100 text-blue-700',
-      VIP_ANNUAL: 'bg-amber-100 text-amber-700',
+      BASIC_PASS: 'bg-muted text-muted-foreground',
+      PRO_MONTHLY: 'bg-blue-400/15 text-blue-300',
+      VIP_ANNUAL: 'bg-amber-400/15 text-amber-300',
     },
   },
 
@@ -94,7 +94,7 @@ export const SUBSCRIPTION_CONFIG = {
         DIVIDER_SEARCH: 'Buscar por Nombre',
         DIVIDER_ACTIONS: 'Gestión de Planes',
       },
-      DESCRIPTION: 'Administra los planes de suscripción de PlayMatch.',
+      DESCRIPTION: 'Administra los planes de suscripción de Caimanera.',
       MESSAGES: {
         SUCCESS: {
           CREATE: 'Plan creado exitosamente.',

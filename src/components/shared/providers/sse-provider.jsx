@@ -55,7 +55,7 @@ export function useSseSubscription(eventType, callback, { enabled = true } = {})
  * SseProvider — wraps the app with a single, shared EventSource connection.
  * Place inside ThemeProvider in RootLayout.
  */
-export function SseProvider({ children }) {
+export function SseProvider({ children, enabled = true }) {
   const [isConnected, setIsConnected] = useState(false);
   const eventSourceRef = useRef(null);
   const reconnectTimerRef = useRef(null);
@@ -145,6 +145,11 @@ export function SseProvider({ children }) {
 
   useEffect(() => {
     mountedRef.current = true;
+    if (!enabled) {
+      return () => {
+        mountedRef.current = false;
+      };
+    }
     connect();
 
     return () => {
@@ -158,7 +163,7 @@ export function SseProvider({ children }) {
         reconnectTimerRef.current = null;
       }
     };
-  }, [connect]);
+  }, [connect, enabled]);
 
   return (
     <SseContext.Provider value={{ isConnected, subscribe }}>

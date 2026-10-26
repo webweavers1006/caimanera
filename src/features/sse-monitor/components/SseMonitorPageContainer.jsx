@@ -14,12 +14,14 @@ const { LABELS } = UI;
  * to the ConnectionStatsTable client component for real-time SSE updates.
  */
 export async function SseMonitorPageContainer() {
-  try {
-    const initialStats = await fetchConnectionStats();
+  let initialStats;
 
-    return <ConnectionStatsTable initialStats={initialStats} />;
+  try {
+    initialStats = await fetchConnectionStats();
   } catch (error) {
     logger.error("Failed to load SSE connection stats", { error: error.message });
     return <ErrorAlert message={LABELS.ERROR} />;
   }
+
+  return <ConnectionStatsTable initialStats={initialStats} />;
 }

@@ -16,11 +16,23 @@ import { SSE_MONITOR_CONFIG } from "@/features/sse-monitor/config/sse-monitor.co
 import { PROFILE_CONFIG } from "@/features/profile/config/profile.constants"
 
 export const ROUTES = {
+  // Public experience — no session required
+  PUBLIC: {
+    DISCOVERY: { path: "/" },
+    MATCHES: { path: "/partidos" },
+    MY_MATCHES: { path: "/mis-partidos" },
+    TERMS: { path: "/terminos" },
+    PRIVACY: { path: "/privacidad" },
+  },
+
   // Auth & main pages
   AUTH: {
     LOGIN: { path: AUTH_CONFIG.PATH.LOGIN },
   },
-  DASHBOARD: { path: AUTH_CONFIG.PATH.DASHBOARD },
+  DASHBOARD: {
+    path: "/admin",
+    permission: "matches:create",
+  },
   PROFILE: { path: PROFILE_CONFIG.PATH },
 
   // Sports modules
@@ -93,8 +105,7 @@ export const ROUTES = {
   },
 
   // API routes — public endpoints that don't require a user session.
-  // Used by proxy.js to allow display screens, health checks, etc.
   API: {
-    PUBLIC: [],
+    PUBLIC: ["/api/geo"],
   },
 }

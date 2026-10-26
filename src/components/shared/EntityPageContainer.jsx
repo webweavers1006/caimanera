@@ -31,11 +31,17 @@ export async function EntityPageContainer({
   let data;
   try {
     const params = (await searchParams) || {};
-    const page = params.page ? Number(params.page) : 1;
-    const pageSize = params.pageSize ? Number(params.pageSize) : config.PAGINATION.DEFAULT_PAGE_SIZE;
+    const parsedPage = Number.parseInt(params.page, 10);
+    const parsedPageSize = Number.parseInt(params.pageSize, 10);
+    const page = Number.isFinite(parsedPage) && parsedPage > 0 ? parsedPage : 1;
+    const maxPageSize = config.PAGINATION?.MAX_PAGE_SIZE || 100;
+    const pageSize =
+      Number.isFinite(parsedPageSize) && parsedPageSize > 0
+        ? Math.min(parsedPageSize, maxPageSize)
+        : config.PAGINATION.DEFAULT_PAGE_SIZE;
     const searchTerm = params.q || "";
     const sortKey = params.sortKey || defaultSort.key;
-    const sortDirection = params.sortDirection || defaultSort.direction;
+    const sortDirection = params.sortDirection === "asc" ? "asc" : params.sortDirection === "desc" ? "desc" : defaultSort.direction;
 
     data = await fetchData({ page, pageSize, searchTerm, sortKey, sortDirection });
   } catch (error) {
@@ -58,7 +64,7 @@ export async function EntityPageContainer({
   return (
     <>
       {children}
-      <div className="flex flex-col gap-6 p-6">
+      <div className="flex flex-col gap-6">
         <PageHeader title={config.TITLE} subtitle={LABELS.DESCRIPTION} showNav={false} />
         <Suspense fallback={<TableSkeleton />}>
           {renderTable({ data: data.items, pagination })}

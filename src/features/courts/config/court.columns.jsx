@@ -3,6 +3,7 @@
 import { createActionsColumn } from "@/components/shared/TableUtils";
 import { Warehouse, Check, X } from "lucide-react";
 import { COURT_CONFIG } from "./court.constants";
+import { formatPrice } from "@/features/shared/lib/format";
 
 export const getCourtTableColumns = (onEdit, onDelete, can, isPending) => {
   const { LABELS } = COURT_CONFIG.UI;
@@ -48,7 +49,7 @@ export const getCourtTableColumns = (onEdit, onDelete, can, isPending) => {
       width: "90",
       cell: (row) =>
         row.hourlyRate != null ? (
-          <span className="font-mono text-xs">{Number(row.hourlyRate).toFixed(2)}</span>
+          <span className="text-xs font-medium">{formatPrice(row.hourlyRate)}</span>
         ) : (
           <span className="text-muted-foreground">—</span>
         ),

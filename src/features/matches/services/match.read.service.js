@@ -14,20 +14,20 @@ export async function fetchMatchesList(params) {
   }
 }
 
-export async function fetchMatchById(id) {
+export async function fetchMatchById(id, currentUserId = null) {
   try {
     if (!id) throw new Error("ID requerido");
-    return await matchReadRepository.findById(id);
+    return await matchReadRepository.findById(id, currentUserId);
   } catch (error) {
     logger.error("Failed to fetch match by id", { error: error.message, matchId: id });
     throw new Error("No se pudo obtener el registro.");
   }
 }
 
-export async function fetchMatchDetail(id) {
+export async function fetchMatchDetail(id, currentUserId = null, includeParticipantNames = true) {
   try {
     if (!id) throw new Error("ID requerido");
-    return await matchReadRepository.findByIdWithParticipants(id);
+    return await matchReadRepository.findByIdWithParticipants(id, currentUserId, includeParticipantNames);
   } catch (error) {
     logger.error("Failed to fetch match detail", { error: error.message, matchId: id });
     throw new Error("No se pudo obtener el detalle del partido.");

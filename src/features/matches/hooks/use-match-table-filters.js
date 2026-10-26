@@ -4,6 +4,8 @@ import { useCallback, useTransition } from "react";
 import { useDebouncedSearch } from "@/features/shared/hooks/use-debounced-search";
 import { useRouter, useSearchParams } from "next/navigation";
 
+const DEFAULT_STATUS = "upcoming";
+
 export function useMatchTableFilters(pagination) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -12,8 +14,9 @@ export function useMatchTableFilters(pagination) {
   const currentPage = pagination?.page || Number(searchParams.get("page") || 1);
   const totalPages = pagination?.totalPages || 1;
   const totalCount = pagination?.totalCount || 0;
+  const status = searchParams.get("status") || DEFAULT_STATUS;
   const sortKey = searchParams.get("sortKey") || "";
-  const sortDirection = searchParams.get("sortDirection") || "desc";
+  const sortDirection = searchParams.get("sortDirection") || "asc";
 
   const navigateWithParams = useCallback(
     (next) => {
@@ -48,19 +51,36 @@ export function useMatchTableFilters(pagination) {
     [navigateWithParams]
   );
 
+  const handleStatusChange = useCallback(
+    (value) => navigateWithParams({ status: value, page: 1 }),
+    [navigateWithParams]
+  );
+
   const { searchTerm: localSearchTerm, setSearchTerm: handleSearchChange } = useDebouncedSearch(
-    searchParams.get("q") || "", 400, (v) => navigateWithParams({ q: v, page: 1 })
+    searchParams.get("q") || "",
+    400,
+    (value) => navigateWithParams({ q: value, page: 1 })
   );
 
   const handleReset = useCallback(() => {
     handleSearchChange("");
-  }, [handleSearchChange]);
+    const params = new URLSearchParams();
+    startTransition(() => {
+      router.push(params.toString() ? `?${params.toString()}` : "?", { scroll: false });
+    });
+  }, [handleSearchChange, router]);
 
   return {
     isPending,
-    filters: { searchTerm: localSearchTerm },
+    filters: { searchTerm: localSearchTerm, status },
     paginationState: { currentPage, totalPages, totalCount },
     sortConfig: { key: sortKey || null, direction: sortDirection === "desc" ? "desc" : "asc" },
-    handlers: { handleSearchChange, handlePageChange, handleSortChange, handleReset },
+    handlers: {
+      handleSearchChange,
+      handlePageChange,
+      handleSortChange,
+      handleStatusChange,
+      handleReset,
+    },
   };
 }

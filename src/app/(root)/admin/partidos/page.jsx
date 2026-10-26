@@ -13,11 +13,11 @@ export const metadata = {
 };
 
 export default async function MatchesPage({ searchParams }) {
-  const { authorized } = await checkPageAccess(MATCH_CONFIG.PERMISSIONS.VIEW);
+  const { authorized, session } = await checkPageAccess(MATCH_CONFIG.PERMISSIONS.VIEW);
 
   if (!authorized) {
     return <AccessDenied />;
   }
 
-  return <Suspense fallback={<TableSkeleton />}><MatchPageContainer searchParams={searchParams} /></Suspense>;
+  return <Suspense fallback={<TableSkeleton />}><MatchPageContainer searchParams={searchParams} session={session} /></Suspense>;
 }

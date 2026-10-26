@@ -27,7 +27,8 @@
     { "slug": "subscriptions:delete", "description": "Eliminar planes de suscripción" },
     { "slug": "participants:view", "description": "Ver el módulo de Participantes en el menú" },
     { "slug": "participants:read", "description": "Ver inscripciones de jugadores" },
-    { "slug": "participants:create", "description": "Inscribir jugadores en partidos" },
+    { "slug": "participants:create", "description": "Inscribir jugadores en partidos (administrativo)" },
+    { "slug": "participants:self_enroll", "description": "Inscribirse y cancelar la propia inscripción" },
     { "slug": "participants:update", "description": "Editar inscripciones" },
     { "slug": "participants:delete", "description": "Eliminar inscripciones" },
     { "slug": "transactions:view", "description": "Ver el módulo de Transacciones en el menú" },
@@ -40,13 +41,13 @@
     "COURT_MANAGER": [
       "courts:view", "courts:read", "courts:create", "courts:update",
       "matches:view", "matches:read", "matches:create", "matches:update",
-      "participants:view", "participants:read",
+      "participants:self_enroll",
       "transactions:view", "transactions:read",
       "subscriptions:view", "subscriptions:read"
     ],
     "PLAYER": [
       "matches:view", "matches:read",
-      "participants:read", "participants:create",
+      "participants:self_enroll",
       "subscriptions:view", "subscriptions:read",
       "courts:view", "courts:read"
     ]

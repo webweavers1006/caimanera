@@ -1,8 +1,13 @@
 import prisma from "@/features/shared/lib/prisma";
 import { courtMapper } from "../mappers/court.mapper";
 
+const COURT_INCLUDE = {
+  manager: { select: { id: true, firstName: true, lastName: true } },
+  photos: { where: { deletedAt: null }, orderBy: { sortOrder: "asc" } },
+};
+
 export const courtReadRepository = {
-  async findMany({ page, pageSize, searchTerm, sortKey, sortDirection }) {
+  async findMany({ page, pageSize, searchTerm, sortKey, sortDirection, isActive }) {
     const skip = (page - 1) * pageSize;
     const dbKey = courtMapper.toSortKey(sortKey);
     const orderBy = { [dbKey]: sortDirection || "asc" };
@@ -12,8 +17,10 @@ export const courtReadRepository = {
         OR: [
           { name: { contains: searchTerm, mode: "insensitive" } },
           { sport: { contains: searchTerm, mode: "insensitive" } },
+          { address: { contains: searchTerm, mode: "insensitive" } },
         ],
       }),
+      ...(typeof isActive === "boolean" && { isActive }),
       deletedAt: null,
     };
 
@@ -24,7 +31,7 @@ export const courtReadRepository = {
         skip,
         take: pageSize,
         orderBy,
-        include: { manager: { select: { id: true, firstName: true, lastName: true } } },
+        include: COURT_INCLUDE,
       }),
     ]);
 
@@ -38,12 +45,9 @@ export const courtReadRepository = {
   },
 
   async findById(id) {
-    const item = await prisma.court.findUnique({
-      where: { id },
-      include: {
-        manager: { select: { id: true, firstName: true, lastName: true } },
-        photos: { where: { deletedAt: null }, orderBy: { sortOrder: "asc" } },
-      },
+    const item = await prisma.court.findFirst({
+      where: { id, deletedAt: null },
+      include: COURT_INCLUDE,
     });
     return courtMapper.toDomain(item);
   },

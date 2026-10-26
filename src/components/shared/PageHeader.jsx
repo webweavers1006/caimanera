@@ -4,8 +4,8 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn, SITE_CONFIG } from "@/features/shared";
 
 /**
- * Shared page header panel with primary background, optional image/icon,
- * title/subtitle, and built-in browser navigation buttons.
+ * Shared page header panel with the Caimanera brand gradient,
+ * optional image/icon, title/subtitle, and optional navigation buttons.
  *
  * @param {Object} props
  * @param {string} props.title - Main heading text.
@@ -13,7 +13,7 @@ import { cn, SITE_CONFIG } from "@/features/shared";
  * @param {React.ReactNode} [props.children] - Replaces the default logo image when provided (icon, avatar, etc.).
  * @param {string} [props.imageSrc] - URL for the default logo image. Ignored if children is provided.
  * @param {string} [props.imageAlt] - Alt text for the logo image.
- * @param {boolean} [props.showNav=true] - Whether to show back/forward browser navigation buttons.
+ * @param {boolean} [props.showNav=false] - Whether to show back/forward browser navigation buttons.
  * @param {string} [props.className] - Additional CSS classes for the root container.
  * @param {string} [props.imageClassName] - Additional CSS classes for the image wrapper.
  */
@@ -23,52 +23,34 @@ export function PageHeader({
   children,
   imageSrc = SITE_CONFIG.PAGE_HEADER.imageSrc,
   imageAlt = SITE_CONFIG.PAGE_HEADER.imageAlt,
-  showNav = true,
+  showNav = false,
   className,
   imageClassName,
 }) {
   return (
     <div
       className={cn(
-        "relative rounded-2xl px-5 pt-10 pb-10 md:col-span-2 overflow-hidden",
+        "relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-[oklch(0.42_0.13_157)] to-[oklch(0.28_0.06_165)] px-5 py-6 text-primary-foreground shadow-sm sm:px-6 sm:py-7",
         className
       )}
-      style={{
-        background: `
-          linear-gradient(160deg, oklch(0.48 0.04 254) 0%, var(--primary) 50%, oklch(0.34 0.02 250) 100%)
-        `,
-      }}
     >
-      {/* Pulse accent dot — bottom-right */}
-      <span className="absolute bottom-3 right-3 z-10 flex size-3" aria-hidden="true">
-        <span
-          className="absolute inset-0 rounded-full animate-ping opacity-40"
-          style={{ background: "oklch(0.88 0.18 90)" }}
-        />
-        <span
-          className="relative size-3 rounded-full"
-          style={{
-            background: "oklch(0.88 0.18 90)",
-            boxShadow: "0 0 10px oklch(0.88 0.18 90 / 0.6)",
-          }}
-        />
-      </span>
+      <div className="pointer-events-none absolute -right-12 -top-16 size-48 rounded-full bg-white/10 blur-2xl" />
+      <div className="pointer-events-none absolute -bottom-20 left-1/4 size-48 rounded-full bg-black/10 blur-2xl" />
 
-      {/* Browser navigation buttons */}
       {showNav && (
-        <div className="absolute top-3 right-3 flex gap-2 rounded-lg bg-zinc-600/80 p-1 backdrop-blur-sm">
+        <div className="absolute right-3 top-3 z-10 flex gap-1 rounded-lg bg-black/20 p-1 backdrop-blur-sm">
           <button
-            className="rounded-full p-1 transition-colors hover:bg-white/10"
+            className="rounded-full p-1 transition-colors hover:bg-white/15"
             onClick={() => window.history.back()}
-            aria-label="Go back"
+            aria-label="Atrás"
             type="button"
           >
             <ArrowLeft className="h-4 w-4 text-white" />
           </button>
           <button
-            className="rounded-full p-1 transition-colors hover:bg-white/10"
+            className="rounded-full p-1 transition-colors hover:bg-white/15"
             onClick={() => window.history.forward()}
-            aria-label="Go forward"
+            aria-label="Adelante"
             type="button"
           >
             <ArrowRight className="h-4 w-4 text-white" />
@@ -76,33 +58,25 @@ export function PageHeader({
         </div>
       )}
 
-      {/* Content row: image/icon + title block */}
-      <div className="flex items-center">
-        {/* Left slot: custom children or default image */}
+      <div className="relative z-10 flex items-center gap-4">
         {children ? (
           <div className={cn("shrink-0", imageClassName)}>{children}</div>
         ) : imageSrc ? (
           <div className={cn("shrink-0", imageClassName)}>
             <img
-              className="size-25 rounded-2xl object-cover"
+              className="size-14 rounded-2xl bg-white/10 object-contain p-1.5 sm:size-16"
               src={imageSrc}
               alt={imageAlt}
             />
           </div>
         ) : null}
 
-        {/* Title + subtitle */}
-        <div
-          className={cn(
-            "flex flex-col justify-center",
-            (children || imageSrc) && "ml-4"
-          )}
-        >
-          <h2 className="text-4xl font-semibold tracking-tight text-white sm:text-4xl">
+        <div className="min-w-0">
+          <h1 className="truncate text-2xl font-bold tracking-tight sm:text-3xl">
             {title}
-          </h2>
+          </h1>
           {subtitle && (
-            <p className="text-base/7 font-semibold text-primary-foreground/80">
+            <p className="mt-1 line-clamp-2 text-sm text-primary-foreground/80 sm:text-base">
               {subtitle}
             </p>
           )}

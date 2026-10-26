@@ -86,6 +86,14 @@ async function sendMail({ to, subject, html }) {
  * @returns {Promise<{success: boolean, results: Array, summary?: string, error?: string}>}
  */
 export async function sendCredentials({ userIds, actorUserId, loginUrl }) {
+  if (!process.env.SMTP_HOST) {
+    return {
+      success: false,
+      error: "El envío de correos no está configurado (SMTP_HOST). No se modificó ninguna contraseña.",
+      results: [],
+    };
+  }
+
   let users;
   try {
     users = await findUsersForCredentials(userIds);
@@ -116,23 +124,8 @@ export async function sendCredentials({ userIds, actorUserId, loginUrl }) {
       continue;
     }
 
-    // 1. Hash + update password in DB
-    try {
-      const passwordHash = await bcrypt.hash(plainPassword, SALT_ROUNDS);
-      await updateUserPassword(user.id, passwordHash);
-    } catch (error) {
-      logger.error("Failed to update password for user", { userId: user.id, error: error.message });
-      results.push({
-        userId: user.id,
-        email: user.email,
-        userName,
-        success: false,
-        error: "Error al actualizar la contraseña.",
-      });
-      continue;
-    }
-
-    // 2. Build + send email
+    // 1. Build + send the email first. If delivery fails, the user keeps
+    // their current password instead of being locked out silently.
     const { subject, html } = buildCredentialsEmail({
       userName,
       roleName,
@@ -142,12 +135,39 @@ export async function sendCredentials({ userIds, actorUserId, loginUrl }) {
     });
     const smtpResult = await sendMail({ to: user.email, subject, html });
 
+    if (!smtpResult.success) {
+      results.push({
+        userId: user.id,
+        email: user.email,
+        userName,
+        success: false,
+        error: smtpResult.error || "No se pudo enviar el correo.",
+      });
+      continue;
+    }
+
+    // 2. Persist the new password only after delivery succeeded.
+    try {
+      const passwordHash = await bcrypt.hash(plainPassword, SALT_ROUNDS);
+      await updateUserPassword(user.id, passwordHash);
+    } catch (error) {
+      logger.error("Failed to persist password after email delivery", { userId: user.id, error: error.message });
+      results.push({
+        userId: user.id,
+        email: user.email,
+        userName,
+        success: false,
+        error: "El correo se envió pero no se pudo guardar la nueva contraseña. Contacta al administrador.",
+      });
+      continue;
+    }
+
     results.push({
       userId: user.id,
       email: user.email,
       userName,
-      success: smtpResult.success,
-      error: smtpResult.error || null,
+      success: true,
+      error: null,
     });
   }
 

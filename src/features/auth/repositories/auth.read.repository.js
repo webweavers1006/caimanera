@@ -53,6 +53,23 @@ export const authReadRepository = {
     });
   },
 
+  /**
+   * Lightweight session validation: confirms the account still exists and
+   * returns its current role. Used to invalidate stale JWTs after a role
+   * change or soft delete.
+   */
+  async findSessionUser(id) {
+    return await prisma.user.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        firstName: true,
+        deletedAt: true,
+        role: { select: { name: true, deletedAt: true } },
+      },
+    });
+  },
+
   async findByIdCard(idCard) {
     const rawUser = await prisma.user.findUnique({
       where: { idCard },

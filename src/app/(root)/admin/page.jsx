@@ -13,8 +13,8 @@ export const metadata = {
   description: DASHBOARD_CONFIG.METADATA.DESCRIPTION,
 };
 
-export default async function DashboardPage({ searchParams }) {
-  const { authorized } = await checkPageAccess();
+export default async function AdminDashboardPage() {
+  const { authorized } = await checkPageAccess(DASHBOARD_CONFIG.PERMISSION);
 
   if (!authorized) {
     return <AccessDenied />;
@@ -22,7 +22,7 @@ export default async function DashboardPage({ searchParams }) {
 
   return (
     <Suspense fallback={<TableSkeleton />}>
-      <DashboardPageContainer searchParams={searchParams} />
+      <DashboardPageContainer />
     </Suspense>
   );
 }

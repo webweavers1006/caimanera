@@ -1,5 +1,5 @@
 /**
- * PM2 Ecosystem Configuration — Admin Starter
+ * PM2 Ecosystem Configuration — Caimanera
  *
  * ⚠️  SECURITY: This file is committed to git.
  *     NEVER put secrets (JWT_SECRET, DATABASE_URL) here.
@@ -20,9 +20,9 @@
 module.exports = {
   apps: [
     {
-      name: "admin-starter",
+      name: "caimanera",
       script: "node_modules/next/dist/bin/next",
-      args: "start -p 3000",
+      args: "start -p 3001",
       // --use-system-ca makes Node.js trust the OS certificate store (macOS Keychain,
       // Windows cert store, Linux /etc/ssl). Required for corporate SMTP servers that
       // use internal CAs not included in Node's bundled Mozilla CA store.

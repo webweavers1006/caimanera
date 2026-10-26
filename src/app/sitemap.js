@@ -12,8 +12,26 @@ export default function sitemap() {
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
+      changeFrequency: 'daily',
       priority: 1,
+    },
+    {
+      url: `${baseUrl}${ROUTES.PUBLIC.MATCHES.path}`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}${ROUTES.PUBLIC.TERMS.path}`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}${ROUTES.PUBLIC.PRIVACY.path}`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
     },
     {
       url: `${baseUrl}${ROUTES.AUTH.LOGIN.path}`,

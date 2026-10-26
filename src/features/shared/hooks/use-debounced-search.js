@@ -13,8 +13,14 @@ import { useRef, useCallback, useState, useEffect } from "react";
  */
 export function useDebouncedSearch(defaultValue = "", delay = 400, onDebounce) {
   const timerRef = useRef(null);
+  const onDebounceRef = useRef(onDebounce);
+  const isFirstRun = useRef(true);
   const [searchTerm, setSearchTermState] = useState(defaultValue);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(defaultValue);
+
+  useEffect(() => {
+    onDebounceRef.current = onDebounce;
+  }, [onDebounce]);
 
   const setSearchTerm = useCallback((value) => {
     setSearchTermState(value);
@@ -24,12 +30,22 @@ export function useDebouncedSearch(defaultValue = "", delay = 400, onDebounce) {
     }, delay);
   }, [delay]);
 
-  // Call onDebounce when debounced value changes
+  // Fire the callback on actual user-driven changes. Skipping the first run
+  // avoids an unnecessary navigation on mount, and no longer compares against
+  // defaultValue (which prevented clearing the search back to the URL value).
   useEffect(() => {
-    if (onDebounce && debouncedSearchTerm !== defaultValue) {
-      onDebounce(debouncedSearchTerm);
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
     }
-  }, [debouncedSearchTerm, defaultValue, onDebounce]);
+    onDebounceRef.current?.(debouncedSearchTerm);
+  }, [debouncedSearchTerm]);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   return { searchTerm, debouncedSearchTerm, setSearchTerm };
 }

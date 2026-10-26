@@ -41,10 +41,11 @@ export function useNotificationPolling() {
 
   useEffect(() => {
     mountedRef.current = true;
-    fetchCount(true);
+    const initial = setTimeout(() => fetchCount(true), 0);
     intervalRef.current = setInterval(() => fetchCount(), INTERVAL_MS);
     return () => {
       mountedRef.current = false;
+      clearTimeout(initial);
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, [fetchCount]);

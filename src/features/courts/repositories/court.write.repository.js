@@ -24,23 +24,28 @@ export const courtWriteRepository = {
 
   async update(id, data) {
     const persistence = courtMapper.toPersistence(data);
-    const photos = data.photos || [];
+    const photos = Array.isArray(data.photos) ? data.photos : null;
 
-    // Media rows are replaced on save (delete + recreate) — court photos are
-    // assets, not business entities referenced elsewhere.
-    await prisma.courtPhoto.deleteMany({ where: { courtId: id } });
+    return await prisma.$transaction(async (tx) => {
+      // Media rows are replaced only when the client explicitly sends a
+      // photo list. Updates from other flows (or partial payloads) must not
+      // wipe the gallery.
+      if (photos) {
+        await tx.courtPhoto.deleteMany({ where: { courtId: id } });
+      }
 
-    const item = await prisma.court.update({
-      where: { id },
-      data: {
-        ...persistence,
-        photos: photos.length > 0
-          ? { create: photos.map((url, index) => ({ url, sortOrder: index })) }
-          : undefined,
-      },
-      include: PHOTO_INCLUDE,
+      const item = await tx.court.update({
+        where: { id },
+        data: {
+          ...persistence,
+          ...(photos && photos.length > 0
+            ? { photos: { create: photos.map((url, index) => ({ url, sortOrder: index })) } }
+            : {}),
+        },
+        include: PHOTO_INCLUDE,
+      });
+      return courtMapper.toDomain(item);
     });
-    return courtMapper.toDomain(item);
   },
 
   async softDelete(id) {

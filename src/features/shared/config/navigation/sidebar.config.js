@@ -9,8 +9,6 @@ import {
   UserLock,
   ShieldCheck,
   LayoutDashboard,
-  FolderTree,
-  Globe,
   ClipboardList,
   Activity,
   Ban,
@@ -18,6 +16,7 @@ import {
   Trophy,
   CreditCard,
   UserPlus,
+  Compass,
 } from "lucide-react"
 import { ROUTES } from "./routes.config"
 
@@ -39,9 +38,16 @@ export const SIDEBAR_CONFIG = {
   NAV: {
     items: [
       {
-        title: "Dashboard",
+        title: "Descubrir",
+        url: ROUTES.PUBLIC.DISCOVERY.path,
+        icon: Compass,
+      },
+      {
+        title: "Panel",
         url: ROUTES.DASHBOARD.path,
         icon: LayoutDashboard,
+        permission: ROUTES.DASHBOARD.permission,
+        exact: true,
       },
       {
         title: "Deporte",
@@ -72,14 +78,6 @@ export const SIDEBAR_CONFIG = {
         items: [
           { title: ROUTES.ADMIN.ROLES.title, url: ROUTES.ADMIN.ROLES.path, permission: ROUTES.ADMIN.ROLES.permission, icon: UserLock },
           { title: ROUTES.ADMIN.PERMISSIONS.title, url: ROUTES.ADMIN.PERMISSIONS.path, permission: ROUTES.ADMIN.PERMISSIONS.permission, icon: ShieldCheck },
-        ],
-      },
-      {
-        title: "Catálogos",
-        url: "#",
-        icon: FolderTree,
-        items: [
-          { title: ROUTES.CATALOGS.COUNTRIES.title, url: ROUTES.CATALOGS.COUNTRIES.path, permission: ROUTES.CATALOGS.COUNTRIES.permission, icon: Globe },
         ],
       },
     ],

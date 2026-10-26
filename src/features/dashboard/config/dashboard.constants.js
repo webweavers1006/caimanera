@@ -1,14 +1,15 @@
 /**
- * Centralized configuration for the Caimanera Dashboard.
+ * Centralized configuration for the Caimanera admin dashboard.
  * Read-only dashboard — no CRUD operations.
  */
 
 export const DASHBOARD_CONFIG = {
-  PATH: '/',
-  TITLE: 'Caimanera',
+  PATH: '/admin',
+  PERMISSION: 'matches:create',
+  TITLE: 'Panel de control',
 
   METADATA: {
-    DESCRIPTION: 'Panel de inicio de Caimanera — indicadores deportivos en tiempo real.',
+    DESCRIPTION: 'Resumen operativo de Caimanera: canchas, partidos y jugadores.',
   },
 
   UI: {

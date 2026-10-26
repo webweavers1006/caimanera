@@ -42,8 +42,11 @@ export function useNotificationSSE() {
 
   useEffect(() => {
     mountedRef.current = true;
-    fetchCount();
-    return () => { mountedRef.current = false; };
+    const timer = setTimeout(() => fetchCount(), 0);
+    return () => {
+      mountedRef.current = false;
+      clearTimeout(timer);
+    };
   }, [fetchCount]);
 
   const refresh = useCallback(() => fetchCount(), [fetchCount]);

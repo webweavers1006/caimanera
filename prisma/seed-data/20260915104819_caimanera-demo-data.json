@@ -92,6 +92,42 @@
       "pricePerSlot": 5,
       "allowSubscription": true,
       "status": "FULL"
+    },
+    {
+      "title": "Fútbol 5 — Pichanga de hoy",
+      "sport": "Fútbol 5",
+      "courtName": "Cancha La Caimanera",
+      "hostIdCard": "V-10000002",
+      "daysFromNow": 0.35,
+      "durationMins": 60,
+      "capacity": 10,
+      "pricePerSlot": 4,
+      "allowSubscription": true,
+      "status": "OPEN"
+    },
+    {
+      "title": "Fútbol 7 — Viernes de liga",
+      "sport": "Fútbol 7",
+      "courtName": "Cancha Los Mangos",
+      "hostIdCard": "V-10000003",
+      "daysFromNow": 2.5,
+      "durationMins": 90,
+      "capacity": 14,
+      "pricePerSlot": 6,
+      "allowSubscription": true,
+      "status": "OPEN"
+    },
+    {
+      "title": "Pádel — Mixto nocturno",
+      "sport": "Pádel",
+      "courtName": "Cancha El Parque",
+      "hostIdCard": "V-10000002",
+      "daysFromNow": 1.6,
+      "durationMins": 90,
+      "capacity": 4,
+      "pricePerSlot": 8,
+      "allowSubscription": false,
+      "status": "OPEN"
     }
   ],
   "participants": [
@@ -156,6 +192,34 @@
       "matchTitle": "Fútbol 5 — Revancha del Sábado",
       "status": "CONFIRMED",
       "position": "Defensa",
+      "paymentType": "PAY_PER_MATCH"
+    },
+    {
+      "userIdCard": "V-10000002",
+      "matchTitle": "Fútbol 5 — Pichanga de hoy",
+      "status": "CONFIRMED",
+      "position": "Mediocampista",
+      "paymentType": "PAY_PER_MATCH"
+    },
+    {
+      "userIdCard": "V-20000001",
+      "matchTitle": "Fútbol 5 — Pichanga de hoy",
+      "status": "CONFIRMED",
+      "position": "Defensa",
+      "paymentType": "PAY_PER_MATCH"
+    },
+    {
+      "userIdCard": "V-10000001",
+      "matchTitle": "Fútbol 7 — Viernes de liga",
+      "status": "CONFIRMED",
+      "position": "Delantero",
+      "paymentType": "SUBSCRIPTION_CREDIT"
+    },
+    {
+      "userIdCard": "V-10000003",
+      "matchTitle": "Pádel — Mixto nocturno",
+      "status": "CONFIRMED",
+      "position": "Delantero",
       "paymentType": "PAY_PER_MATCH"
     }
   ],

@@ -1,17 +1,23 @@
 import { getSession } from "@/features/auth/lib/auth";
+import { validateSessionUser } from "@/features/auth/services/auth.read.service";
 import { verifyPermission } from "@/features/permissions/services/permission.authorization.service";
 import { redirect } from "next/navigation";
 
 /**
  * Verifica si el usuario actual tiene acceso a un recurso.
- * Redirige a login si no hay sesión.
+ * Redirige a login si no hay sesión o si la cuenta/rol ya no es válido.
  * 
- * @param {string} requiredSlug - Slug del permiso requerido (ej. 'users:read')
+ * @param {string} requiredSlug - Slug del permiso requerido (ej: 'users:read')
  * @returns {Promise<{authorized: boolean, session: object}>}
  */
 export async function checkPageAccess(requiredSlug) {
-  const session = await getSession();
+  const jwtSession = await getSession();
   
+  if (!jwtSession) {
+    redirect("/login");
+  }
+
+  const session = await validateSessionUser(jwtSession);
   if (!session) {
     redirect("/login");
   }

@@ -24,7 +24,7 @@ export const permissionMapper = {
 
     return {
       slug:        domain.slug?.trim(),
-      description: domain.description?.trim().toUpperCase(),
+      description: domain.description?.trim(),
     };
   },
 

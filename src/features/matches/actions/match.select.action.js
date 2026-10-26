@@ -16,7 +16,8 @@ export const getMatchesForSelectAction = createAuthenticatedFunction(
       pageSize: 300,
       searchTerm: searchTerm || "",
       sortKey: "scheduledAt",
-      sortDirection: "desc",
+      sortDirection: "asc",
+      statusFilter: "upcoming",
     });
     return result.items.map((item) => ({
       label: item.title,

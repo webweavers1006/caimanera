@@ -12,6 +12,7 @@ export const PARTICIPANT_CONFIG = {
     WRITE: 'participants:create',
     UPDATE: 'participants:update',
     DELETE: 'participants:delete',
+    SELF_ENROLL: 'participants:self_enroll',
   },
 
   PAGINATION: {
@@ -31,8 +32,8 @@ export const PARTICIPANT_CONFIG = {
       WAITLIST: 'Lista de espera',
     },
     BADGES: {
-      CONFIRMED: 'bg-emerald-100 text-emerald-700',
-      WAITLIST: 'bg-amber-100 text-amber-700',
+      CONFIRMED: 'bg-emerald-400/15 text-emerald-300',
+      WAITLIST: 'bg-amber-400/15 text-amber-300',
     },
   },
 
@@ -47,8 +48,8 @@ export const PARTICIPANT_CONFIG = {
       SUBSCRIPTION_CREDIT: 'Crédito de suscripción',
     },
     BADGES: {
-      PAY_PER_MATCH: 'bg-blue-100 text-blue-700',
-      SUBSCRIPTION_CREDIT: 'bg-violet-100 text-violet-700',
+      PAY_PER_MATCH: 'bg-blue-400/15 text-blue-300',
+      SUBSCRIPTION_CREDIT: 'bg-violet-400/15 text-violet-300',
     },
   },
 

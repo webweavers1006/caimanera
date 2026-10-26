@@ -6,9 +6,10 @@ import { fetchDashboardStats } from "../services/dashboard.read.service";
 import { DASHBOARD_CONFIG } from "../config/dashboard.constants";
 
 export async function DashboardPageContainer() {
+  let stats;
+
   try {
-    const stats = await fetchDashboardStats();
-    return <DashboardView stats={stats} />;
+    stats = await fetchDashboardStats();
   } catch (error) {
     logger.error("Error loading dashboard", { error: error.message });
     return (
@@ -18,4 +19,6 @@ export async function DashboardPageContainer() {
       />
     );
   }
+
+  return <DashboardView stats={stats} />;
 }
