@@ -19,9 +19,6 @@ const nextConfig = {
   experimental: {
     serverActions: {
       bodySizeLimit: '10mb',
-      // Trust our own reverse proxy (nginx) so legitimate requests
-      // forwarded with x-forwarded-host don't get blocked.
-      allowedForwardedHosts: ['siac.saime.gob.ve'],
     },
   },
 
@@ -53,7 +50,7 @@ const nextConfig = {
               "default-src 'self'",
               `script-src 'self' 'unsafe-inline' ${!isProduction ? "'unsafe-eval'" : ''}`,
               "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: blob: https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://cdnjs.cloudflare.com",
+              "img-src 'self' data: blob: https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://picsum.photos https://fastly.picsum.photos https://cdnjs.cloudflare.com",
               "font-src 'self' data:",
               "connect-src 'self' https://tile.openstreetmap.org https://*.tile.openstreetmap.org ws://127.0.0.1:3002 wss://127.0.0.1:3002 ws://127.0.0.1:3003/ wss://127.0.0.1:3003/ http://tablet.sigwebtablet.com:47289 https://tablet.sigwebtablet.com:47290",
               "frame-ancestors 'none'",

@@ -61,4 +61,18 @@ export const participantReadRepository = {
       },
     });
   },
+
+  /**
+   * Confirmed players in a match, optionally excluding one participant
+   * (used when editing an existing enrollment).
+   */
+  async countConfirmedByMatch(matchId, excludeId = null) {
+    return await prisma.participant.count({
+      where: {
+        matchId,
+        status: "CONFIRMED",
+        ...(excludeId && { id: { not: excludeId } }),
+      },
+    });
+  },
 };

@@ -1166,6 +1166,16 @@ model Seeder {
 enum PaymentType {
   PAY_PER_MATCH
   SUBSCRIPTION_CREDIT
+  SUBSCRIPTION_PURCHASE
+}
+
+enum PaymentMethod {
+  BDT
+  MOBILE_PAYMENT
+  BINANCE
+  CARD
+  SUBSCRIPTION_CREDIT
+  STAFF_BYPASS
 }
 
 enum SubscriptionTier {
@@ -1296,14 +1306,18 @@ model UserSubscription {
 }
 
 model Transaction {
-  id        String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId    String            @map("usuario_id") @db.Uuid
-  matchId   String?           @map("partido_id") @db.Uuid
-  amount    Float             @map("monto")
-  type      PaymentType       @map("tipo")
-  status    TransactionStatus @default(PENDING) @map("estado")
-  reference String?           @map("referencia") @db.VarChar(255)
-  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id          String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId      String            @map("usuario_id") @db.Uuid
+  matchId     String?           @map("partido_id") @db.Uuid
+  amount      Float             @map("monto")
+  amountVes   Float?            @map("monto_ves")
+  currency    String            @default("USD") @map("moneda") @db.VarChar(3)
+  type        PaymentType       @map("tipo")
+  method      PaymentMethod?    @map("metodo")
+  status      TransactionStatus @default(PENDING) @map("estado")
+  reference   String?           @map("referencia") @db.VarChar(255)
+  metadata    Json?             @map("metadatos")
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime? @default(now()) @map("creado_en") @db.Timestamptz(6)
   updatedAt DateTime? @updatedAt @map("actualizado_en") @db.Timestamptz(6)

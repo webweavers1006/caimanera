@@ -5,6 +5,7 @@ describe('authMapper', () => {
   const mockEntity = {
     id: 'uuid-123',
     idCard: '12345678',
+    firstName: 'Ada',
     password: '$2a$10$hashed',
     deletedAt: null,
     role: { name: 'ADMIN' },
@@ -32,7 +33,7 @@ describe('authMapper', () => {
       expect(result).toEqual({
         id: 'uuid-123',
         idCard: '12345678',
-        password: '$2a$10$hashed',
+        firstName: 'Ada',
         deletedAt: null,
         roleName: 'ADMIN',
       })

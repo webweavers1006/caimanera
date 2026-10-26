@@ -6,6 +6,10 @@ vi.mock('@/features/auth/lib/auth', () => ({
   getSession: vi.fn(),
 }))
 
+vi.mock('@/features/auth/services/auth.read.service', () => ({
+  validateSessionUser: vi.fn(async (session) => (session?.id ? session : null)),
+}))
+
 vi.mock('@/features/permissions/services/permission.authorization.service', () => ({
   verifyPermission: vi.fn(),
 }))

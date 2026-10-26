@@ -37,11 +37,11 @@ export const MATCH_CONFIG = {
       CANCELED: 'Cancelado',
     },
     BADGES: {
-      OPEN: 'bg-emerald-100 text-emerald-700',
-      FULL: 'bg-amber-100 text-amber-700',
-      IN_PROGRESS: 'bg-blue-100 text-blue-700',
-      COMPLETED: 'bg-slate-100 text-slate-700',
-      CANCELED: 'bg-red-100 text-red-700',
+      OPEN: 'bg-emerald-400/15 text-emerald-300',
+      FULL: 'bg-amber-400/15 text-amber-300',
+      IN_PROGRESS: 'bg-blue-400/15 text-blue-300',
+      COMPLETED: 'bg-muted text-muted-foreground',
+      CANCELED: 'bg-red-400/15 text-red-300',
     },
   },
 
@@ -106,9 +106,22 @@ export const MATCH_CONFIG = {
         EMPTY_SEARCH: 'No se encontraron partidos con los criterios de búsqueda.',
       },
       CARD: {
-        JOIN: 'Inscribirse',
+        JOIN: 'Inscribirme',
+        JOIN_WAITLIST: 'Unirme a la lista',
+        JOINED: 'Ya estás inscrito',
+        WAITLISTED: 'En lista de espera',
+        LOGIN: 'Iniciar sesión para unirte',
+        CANCEL_TITLE: '¿Cancelar tu inscripción?',
+        CANCEL_DESCRIPTION:
+          'Tu cupo volverá a estar disponible y, si hay alguien en lista de espera, subirá automáticamente.',
+        KEEP: 'Mantener inscripción',
+        CONFIRM_CANCEL: 'Sí, cancelar',
+        CANCEL_SUCCESS: 'Inscripción cancelada.',
         SLOTS: 'cupos',
         PRICE: 'por jugador',
+        SLOTS_LEFT: (n) =>
+          n === 0 ? 'Sin cupos disponibles' : `${n} ${n === 1 ? 'cupo libre' : 'cupos libres'}`,
+        DISTANCE: (value) => `a ${value}`,
       },
       TOOLBAR: {
         SEARCH_PLACEHOLDER: 'Buscar partidos...',

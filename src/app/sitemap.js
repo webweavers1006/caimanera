@@ -1,8 +1,9 @@
 import { ROUTES } from '@/features/shared/config/navigation/navigation.config'
 
 /**
- * Generates sitemap.xml with static public routes.
- * Admin routes are excluded (protected by auth + robots.txt).
+ * Generates sitemap.xml with the public app route.
+ * Player, match search, venue and admin routes are excluded because they
+ * require a session (see robots.txt).
  */
 export default function sitemap() {
   // NEXT_PUBLIC_SITE_URL must be set in production to avoid localhost fallback.
@@ -10,9 +11,9 @@ export default function sitemap() {
 
   return [
     {
-      url: baseUrl,
+      url: `${baseUrl}${ROUTES.PLAYER.HOME.path}`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
+      changeFrequency: 'daily',
       priority: 1,
     },
     {

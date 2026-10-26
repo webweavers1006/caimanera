@@ -204,6 +204,8 @@ exports.run = async (prisma, log) => {
       'participantes_caso', 'mediaciones', 'seguimientos_caso',
       'documentos_caso', 'remisiones_caso', 'denuncias_caso', 'coordenadas_caso',
       'turnos', 'correos_enviados', 'casos', 'contador_casos',
+      'participantes', 'transacciones', 'suscripciones_usuario',
+      'partidos', 'fotos_cancha', 'canchas', 'planes_suscripcion',
       'personas',
       'usuarios',
       'roles_permisos', 'direcciones_areas',

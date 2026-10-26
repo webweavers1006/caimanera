@@ -17,6 +17,7 @@ export const getCourtsForSelectAction = createAuthenticatedFunction(
       searchTerm: searchTerm || "",
       sortKey: "name",
       sortDirection: "asc",
+      isActive: true,
     });
     return result.items.map((item) => ({
       label: item.name,

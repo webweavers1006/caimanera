@@ -43,7 +43,15 @@ export function useAuthLogin() {
         }
       } else if (result?.success) {
         toast.success(AUTH_CONFIG.UI.LABELS.WELCOME_MESSAGE);
-        router.push('/');
+        const nextParam =
+          typeof window !== "undefined"
+            ? new URLSearchParams(window.location.search).get("next")
+            : null;
+        const safeNext =
+          nextParam && nextParam.startsWith("/") && !nextParam.startsWith("//")
+            ? nextParam
+            : null;
+        router.push(safeNext || result.redirectTo || AUTH_CONFIG.PATH.DISCOVERY);
       }
     } catch (error) {
       logger.error(error);

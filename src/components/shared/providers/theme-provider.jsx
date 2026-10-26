@@ -97,8 +97,8 @@ export function ThemeProvider({ children }) {
     <NextThemesProvider
       attribute="class"
       storageKey="theme-mode"
-      defaultTheme="system"
-      enableSystem
+      defaultTheme="dark"
+      enableSystem={false}
       disableTransitionOnChange
       themes={["light", "dark"]}
     >

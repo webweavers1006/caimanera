@@ -24,9 +24,9 @@ export const CONTENT_W = PAGE_W - MARGIN * 2;
 export const FOOTER_HEIGHT = 20;
 export const PAGE_BOTTOM = PAGE_H - FOOTER_HEIGHT;
 
-// SAIME color palette (matches case-sheets and case-stats)
+// Caimanera brand palette
 export const COLORS = {
-  SAIME_BLUE: [25, 55, 90],
+  BRAND_GREEN: [21, 128, 61],
   DARK_TEXT: [40, 40, 40],
   LIGHT_GRAY: [100, 100, 100],
   BORDER_GRAY: [230, 230, 230],
@@ -38,12 +38,12 @@ export const COLORS = {
 
 // Cintillo config
 export const CINTILLO = {
-  PATH: "public/img/cintillo.jpg",
+  PATH: "public/img/caimanera_icon.png",
   X: 10,
   Y: 10,
-  WIDTH: 190,
-  HEIGHT: 25,
-  FORMAT: "JPEG",
+  WIDTH: 22,
+  HEIGHT: 22,
+  FORMAT: "PNG",
 };
 
 // ── Cintillo cache ───────────────────────────────────────────────────────────
@@ -52,7 +52,7 @@ let _cintilloBase64 = null;
 export function getCintilloBase64() {
   if (_cintilloBase64 !== null) return _cintilloBase64;
   try {
-    const cintilloPath = resolve(process.cwd(), CINTILLO.PATH);
+    const cintilloPath = resolve(/* turbopackIgnore: true */ process.cwd(), CINTILLO.PATH);
     if (!existsSync(cintilloPath)) {
       logger.warn("Cintillo image not found", { path: cintilloPath });
       _cintilloBase64 = "";
@@ -60,7 +60,7 @@ export function getCintilloBase64() {
     }
     const buffer = readFileSync(cintilloPath);
     const base64 = buffer.toString("base64");
-    _cintilloBase64 = `data:image/jpeg;base64,${base64}`;
+    _cintilloBase64 = `data:image/png;base64,${base64}`;
     return _cintilloBase64;
   } catch (error) {
     logger.error("Failed to load cintillo image", { error: error.message });
@@ -99,7 +99,7 @@ export function addFooter(doc) {
 
   doc.setFontSize(7);
   doc.setFont("helvetica", "bold");
-  doc.setTextColor(...COLORS.SAIME_BLUE);
+  doc.setTextColor(...COLORS.BRAND_GREEN);
   doc.text(L.FOOTER_WEB, PAGE_W / 2, footerY + 16, { align: "center" });
 }
 
@@ -111,7 +111,7 @@ export function drawReportHeader(doc, dateFrom, dateTo, userCount) {
 
   doc.setFontSize(14);
   doc.setFont("helvetica", "bold");
-  doc.setTextColor(...COLORS.SAIME_BLUE);
+  doc.setTextColor(...COLORS.BRAND_GREEN);
   doc.text(L.TITLE, PAGE_W / 2, y, { align: "center" });
   y += 7;
 
@@ -134,7 +134,7 @@ export function drawReportHeader(doc, dateFrom, dateTo, userCount) {
 // ── Section header ───────────────────────────────────────────────────────────
 
 export function sectionHeader(doc, text, y) {
-  doc.setFillColor(...COLORS.SAIME_BLUE);
+  doc.setFillColor(...COLORS.BRAND_GREEN);
   doc.rect(MARGIN, y, CONTENT_W, 6, "F");
   doc.setTextColor(...COLORS.WHITE);
   doc.setFontSize(7);
@@ -167,7 +167,7 @@ export function drawTable(doc, { cols, rows, startY }) {
   const resolvedCols = resolveColWidths(cols, availW);
 
   function drawHeader(atY) {
-    doc.setFillColor(...COLORS.SAIME_BLUE);
+    doc.setFillColor(...COLORS.BRAND_GREEN);
     doc.rect(MARGIN, atY, CONTENT_W, headerH, "F");
     doc.setTextColor(...COLORS.WHITE);
     doc.setFontSize(6.5);

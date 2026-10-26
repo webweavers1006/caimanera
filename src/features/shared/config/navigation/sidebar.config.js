@@ -9,8 +9,6 @@ import {
   UserLock,
   ShieldCheck,
   LayoutDashboard,
-  FolderTree,
-  Globe,
   ClipboardList,
   Activity,
   Ban,
@@ -18,6 +16,7 @@ import {
   Trophy,
   CreditCard,
   UserPlus,
+  ReceiptText,
 } from "lucide-react"
 import { ROUTES } from "./routes.config"
 
@@ -39,9 +38,11 @@ export const SIDEBAR_CONFIG = {
   NAV: {
     items: [
       {
-        title: "Dashboard",
+        title: "Panel",
         url: ROUTES.DASHBOARD.path,
         icon: LayoutDashboard,
+        permission: ROUTES.DASHBOARD.permission,
+        exact: true,
       },
       {
         title: "Deporte",
@@ -51,6 +52,7 @@ export const SIDEBAR_CONFIG = {
           { title: ROUTES.PLAYMATCH.COURTS.title, url: ROUTES.PLAYMATCH.COURTS.path, permission: ROUTES.PLAYMATCH.COURTS.permission, icon: Warehouse },
           { title: ROUTES.PLAYMATCH.MATCHES.title, url: ROUTES.PLAYMATCH.MATCHES.path, permission: ROUTES.PLAYMATCH.MATCHES.permission, icon: Trophy },
           { title: ROUTES.PLAYMATCH.SUBSCRIPTIONS.title, url: ROUTES.PLAYMATCH.SUBSCRIPTIONS.path, permission: ROUTES.PLAYMATCH.SUBSCRIPTIONS.permission, icon: CreditCard },
+          { title: ROUTES.PLAYMATCH.TRANSACTIONS.title, url: ROUTES.PLAYMATCH.TRANSACTIONS.path, permission: ROUTES.PLAYMATCH.TRANSACTIONS.permission, icon: ReceiptText },
           { title: ROUTES.PLAYMATCH.PARTICIPANTS.title, url: ROUTES.PLAYMATCH.PARTICIPANTS.path, permission: ROUTES.PLAYMATCH.PARTICIPANTS.permission, icon: UserPlus },
         ],
       },
@@ -72,14 +74,6 @@ export const SIDEBAR_CONFIG = {
         items: [
           { title: ROUTES.ADMIN.ROLES.title, url: ROUTES.ADMIN.ROLES.path, permission: ROUTES.ADMIN.ROLES.permission, icon: UserLock },
           { title: ROUTES.ADMIN.PERMISSIONS.title, url: ROUTES.ADMIN.PERMISSIONS.path, permission: ROUTES.ADMIN.PERMISSIONS.permission, icon: ShieldCheck },
-        ],
-      },
-      {
-        title: "Catálogos",
-        url: "#",
-        icon: FolderTree,
-        items: [
-          { title: ROUTES.CATALOGS.COUNTRIES.title, url: ROUTES.CATALOGS.COUNTRIES.path, permission: ROUTES.CATALOGS.COUNTRIES.permission, icon: Globe },
         ],
       },
     ],

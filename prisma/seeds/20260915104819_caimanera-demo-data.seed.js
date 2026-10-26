@@ -65,25 +65,28 @@ exports.run = async (prisma, log) => {
       continue
     }
     const scheduledAt = new Date(Date.now() + (m.daysFromNow || 1) * 24 * 60 * 60 * 1000)
+    const payload = {
+      title: m.title,
+      sport: m.sport,
+      scheduledAt,
+      durationMins: m.durationMins,
+      capacity: m.capacity,
+      pricePerSlot: m.pricePerSlot,
+      allowSubscription: m.allowSubscription,
+      status: m.status,
+      hostId: host.id,
+      courtId: court.id,
+      deletedAt: null,
+    }
+
     let match = await prisma.match.findFirst({ where: { title: m.title, deletedAt: null } })
     if (!match) {
-      match = await prisma.match.create({
-        data: {
-          title: m.title,
-          sport: m.sport,
-          scheduledAt,
-          durationMins: m.durationMins,
-          capacity: m.capacity,
-          pricePerSlot: m.pricePerSlot,
-          allowSubscription: m.allowSubscription,
-          status: m.status,
-          hostId: host.id,
-          courtId: court.id,
-        },
-      })
+      match = await prisma.match.create({ data: payload })
       log.success(`  ✓ ${match.title}`)
     } else {
-      log.info(`  · ${match.title} ya existe`)
+      // Demo seeder: keep schedules fresh every time it is executed.
+      match = await prisma.match.update({ where: { id: match.id }, data: payload })
+      log.info(`  · ${match.title} actualizado`)
     }
     matchMap[m.title] = match
   }
@@ -113,6 +116,18 @@ exports.run = async (prisma, log) => {
     }
   }
   log.success(`  ✓ ${participantCount} participantes`)
+
+  // Recalculate match status from real occupancy so a "FULL" match cannot
+  // have free slots (or vice versa) in the demo dataset.
+  for (const match of Object.values(matchMap)) {
+    const confirmed = await prisma.participant.count({
+      where: { matchId: match.id, status: 'CONFIRMED' },
+    })
+    const nextStatus = confirmed >= match.capacity ? 'FULL' : 'OPEN'
+    if (match.status !== nextStatus && !['CANCELED', 'COMPLETED', 'IN_PROGRESS'].includes(match.status)) {
+      await prisma.match.update({ where: { id: match.id }, data: { status: nextStatus } })
+    }
+  }
 
   // 4. Transactions
   log.info('📌 Transacciones demo…')
@@ -153,7 +168,7 @@ exports.run = async (prisma, log) => {
       continue
     }
     const existing = await prisma.userSubscription.findFirst({
-      where: { userId: user.id, planId: plan.id, isActive: true },
+      where: { userId: user.id, planId: plan.id, deletedAt: null },
     })
     if (!existing) {
       await prisma.userSubscription.create({
@@ -167,6 +182,17 @@ exports.run = async (prisma, log) => {
         },
       })
       subscriptionCount++
+    } else {
+      // Demo data should stay usable after the original end date.
+      await prisma.userSubscription.update({
+        where: { id: existing.id },
+        data: {
+          startDate: new Date(),
+          endDate: new Date(Date.now() + s.daysValid * 24 * 60 * 60 * 1000),
+          isActive: s.isActive,
+          remainingMatches: Math.max(existing.remainingMatches, s.remainingMatches),
+        },
+      })
     }
   }
   log.success(`  ✓ ${subscriptionCount} suscripciones`)

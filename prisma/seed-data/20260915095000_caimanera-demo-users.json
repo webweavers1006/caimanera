@@ -1,0 +1,50 @@
+{
+  "password": "caimanera123",
+  "users": [
+    {
+      "firstName": "Carlos",
+      "lastName": "Pérez",
+      "email": "carlos.perez@caimanera.app",
+      "idCard": "V-10000001",
+      "role": "PLAYER",
+      "skillLevel": 4,
+      "reliability": 92
+    },
+    {
+      "firstName": "María",
+      "lastName": "Rodríguez",
+      "email": "maria.rodriguez@caimanera.app",
+      "idCard": "V-10000002",
+      "role": "PLAYER",
+      "skillLevel": 3,
+      "reliability": 85
+    },
+    {
+      "firstName": "Luis",
+      "lastName": "Gómez",
+      "email": "luis.gomez@caimanera.app",
+      "idCard": "V-10000003",
+      "role": "PLAYER",
+      "skillLevel": 5,
+      "reliability": 97
+    },
+    {
+      "firstName": "Ana",
+      "lastName": "Torres",
+      "email": "ana.torres@caimanera.app",
+      "idCard": "V-20000001",
+      "role": "COURT_MANAGER",
+      "skillLevel": null,
+      "reliability": null
+    },
+    {
+      "firstName": "Pedro",
+      "lastName": "Rivas",
+      "email": "pedro.rivas@caimanera.app",
+      "idCard": "V-20000002",
+      "role": "COURT_MANAGER",
+      "skillLevel": null,
+      "reliability": null
+    }
+  ]
+}

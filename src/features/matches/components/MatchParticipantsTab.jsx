@@ -59,12 +59,12 @@ export function MatchParticipantsTab({ participants }) {
 
               <div className="mt-2 flex flex-wrap gap-1.5">
                 <span
-                  className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${STATUS.BADGES[p.status] || "bg-slate-100 text-slate-700"}`}
+                  className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${STATUS.BADGES[p.status] || "bg-muted text-muted-foreground"}`}
                 >
                   {STATUS.LABELS[p.status] || p.status}
                 </span>
                 <span
-                  className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${PAYMENT_TYPE.BADGES[p.paymentType] || "bg-slate-100 text-slate-700"}`}
+                  className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${PAYMENT_TYPE.BADGES[p.paymentType] || "bg-muted text-muted-foreground"}`}
                 >
                   {PAYMENT_TYPE.LABELS[p.paymentType] || p.paymentType}
                 </span>

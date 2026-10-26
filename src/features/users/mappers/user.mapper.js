@@ -79,8 +79,8 @@ export const userMapper = {
 
     const entity = {};
 
-    if (domain.firstName !== undefined) entity.firstName = domain.firstName?.trim().toUpperCase();
-    if (domain.lastName  !== undefined) entity.lastName  = domain.lastName?.trim().toUpperCase();
+    if (domain.firstName !== undefined) entity.firstName = domain.firstName?.trim();
+    if (domain.lastName  !== undefined) entity.lastName  = domain.lastName?.trim();
     if (domain.idCard    !== undefined) entity.idCard    = domain.idCard?.trim();
     if (domain.email     !== undefined) entity.email     = domain.email?.trim().toLowerCase();
     if (domain.password  !== undefined) entity.password  = domain.password;

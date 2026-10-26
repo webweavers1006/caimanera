@@ -10,7 +10,7 @@ export const getMatchTableColumns = (onEdit, onDelete, can, isPending, onView) =
 
   const renderStatus = (value) => (
     <span
-      className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${STATUS.BADGES[value] || "bg-slate-100 text-slate-700"}`}
+      className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${STATUS.BADGES[value] || "bg-muted text-muted-foreground"}`}
     >
       {STATUS.LABELS[value] || value}
     </span>

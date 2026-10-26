@@ -38,7 +38,7 @@ export function StatCard({ icon: Icon, title, value, subtitle, variant = "defaul
       </CardHeader>
       <CardContent>
         <p className={`text-3xl font-bold ${valueClassName}`} style={valueStyle}>
-          {value.toLocaleString("es-VE")}
+          {typeof value === "number" ? value.toLocaleString("es-VE") : value}
         </p>
         {subtitle && (
           <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>

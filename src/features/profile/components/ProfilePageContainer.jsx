@@ -42,7 +42,7 @@ export async function ProfilePageContainer({ session }) {
     session.role;
 
   return (
-    <div className="flex flex-col gap-6 p-6">
+    <div className="flex flex-col gap-6">
       <PageHeader title={LABELS.TITLE} subtitle={LABELS.DESCRIPTION} showNav={false} />
 
       <div className="grid gap-6 lg:grid-cols-2">

@@ -15,21 +15,21 @@ import { logger } from "@/features/shared";
 // Column widths in approximate mm-equivalent Excel units
 
 export const COLORS = {
-  SAIME_BLUE: "FF19375A",
-  SAIME_BLUE_LIGHT: "FF2B4F7A",
+  BRAND_GREEN: "FF15803D",
+  BRAND_GREEN_LIGHT: "FF16A34A",
   DARK_TEXT: "FF282828",
   LIGHT_GRAY: "FF646464",
   BORDER_GRAY: "FFE6E6E6",
   WHITE: "FFFFFFFF",
   TABLE_STRIPE: "FFF8FAFC",
-  TABLE_HEADER_BG: "FF19375A",
+  TABLE_HEADER_BG: "FF15803D",
   TABLE_HEADER_FG: "FFFFFFFF",
 };
 
 export const CINTILLO = {
-  PATH: "public/img/cintillo.jpg",
-  WIDTH: 520,   // px in Excel
-  HEIGHT: 68,   // px in Excel
+  PATH: "public/img/caimanera_icon.png",
+  WIDTH: 32,    // px in Excel
+  HEIGHT: 32,   // px in Excel
 };
 
 // Column definitions matching the PDF 5-column layout
@@ -47,7 +47,7 @@ let _cintilloBuffer = null;
 export function getCintilloBuffer() {
   if (_cintilloBuffer !== null) return _cintilloBuffer;
   try {
-    const cintilloPath = resolve(process.cwd(), CINTILLO.PATH);
+    const cintilloPath = resolve(/* turbopackIgnore: true */ process.cwd(), CINTILLO.PATH);
     if (!existsSync(cintilloPath)) {
       logger.warn("Cintillo image not found for Excel", { path: cintilloPath });
       _cintilloBuffer = null;
@@ -99,7 +99,7 @@ export function applyDataCellStyle(cell, isEvenRow) {
 
 export function applyTitleStyle(cell, text) {
   cell.value = text;
-  cell.font = { name: "Helvetica", size: 14, bold: true, color: { argb: COLORS.SAIME_BLUE } };
+  cell.font = { name: "Helvetica", size: 14, bold: true, color: { argb: COLORS.BRAND_GREEN } };
   cell.alignment = { vertical: "middle", horizontal: "center" };
 }
 
@@ -111,6 +111,6 @@ export function applySubtitleStyle(cell, text) {
 
 export function applyFooterStyle(cell, text, isBold = false) {
   cell.value = text;
-  cell.font = { name: "Helvetica", size: 7, bold: isBold, color: { argb: isBold ? COLORS.SAIME_BLUE : COLORS.LIGHT_GRAY } };
+  cell.font = { name: "Helvetica", size: 7, bold: isBold, color: { argb: isBold ? COLORS.BRAND_GREEN : COLORS.LIGHT_GRAY } };
   cell.alignment = { vertical: "middle", horizontal: "center" };
 }

@@ -10,7 +10,7 @@ export const getParticipantTableColumns = (onEdit, onDelete, can, isPending) => 
 
   const renderBadge = (value, catalog) => (
     <span
-      className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${catalog.BADGES[value] || "bg-slate-100 text-slate-700"}`}
+      className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${catalog.BADGES[value] || "bg-muted text-muted-foreground"}`}
     >
       {catalog.LABELS[value] || value}
     </span>
@@ -62,6 +62,7 @@ export const getParticipantTableColumns = (onEdit, onDelete, can, isPending) => 
       onEdit,
       onDelete,
       can,
+      permissions: PARTICIPANT_CONFIG.PERMISSIONS,
       isPending,
     }),
   ];

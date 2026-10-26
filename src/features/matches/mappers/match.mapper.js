@@ -3,44 +3,78 @@
  * Centralizes transformation between Prisma and Domain.
  */
 
-// Formats a Date server-side to avoid client-side hydration mismatches.
-function formatDateTime(value) {
-  if (!value) return null;
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return null;
-  return new Intl.DateTimeFormat("es-VE", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(d);
+import {
+  formatDateShort,
+  formatDateTime,
+  formatTime,
+  isPastDate,
+} from "@/features/shared/lib/datetime";
+
+function resolveDisplayStatus(status, scheduledAt) {
+  if (status === "CANCELED") return "CANCELED";
+  if (status === "COMPLETED") return "COMPLETED";
+  if (isPastDate(scheduledAt)) return "COMPLETED";
+  return status || "OPEN";
+}
+
+function getCounts(participants = []) {
+  const confirmedCount = participants.filter((p) => p.status === "CONFIRMED").length;
+  const waitlistCount = participants.filter((p) => p.status === "WAITLIST").length;
+  return { confirmedCount, waitlistCount };
 }
 
 export const matchMapper = {
   /**
    * Transforms a Prisma record into a Domain object.
    */
-  toDomain(raw) {
+  toDomain(raw, currentUserId = null) {
     if (!raw) return null;
+
+    const { confirmedCount, waitlistCount } = getCounts(raw.participants);
+    const capacity = raw.capacity ?? 0;
+    const slotsLeft = Math.max(0, capacity - confirmedCount);
+    const mine = currentUserId
+      ? (raw.participants || []).find((p) => p.userId === currentUserId)
+      : null;
+
     return {
       id: raw.id,
       title: raw.title,
       sport: raw.sport,
       scheduledAt: raw.scheduledAt ? new Date(raw.scheduledAt).toISOString() : null,
       scheduledAtDisplay: formatDateTime(raw.scheduledAt),
+      dateLabel: formatDateShort(raw.scheduledAt),
+      timeLabel: formatTime(raw.scheduledAt),
       durationMins: raw.durationMins,
-      capacity: raw.capacity,
+      capacity,
       pricePerSlot: raw.pricePerSlot,
       allowSubscription: raw.allowSubscription,
-      status: raw.status,
+      status: resolveDisplayStatus(raw.status, raw.scheduledAt),
+      rawStatus: raw.status,
       hostId: raw.hostId,
       hostName: raw.host
         ? `${raw.host.firstName} ${raw.host.lastName || ""}`.trim()
         : null,
       courtId: raw.courtId,
       courtName: raw.court?.name || null,
+      court: raw.court
+        ? {
+            id: raw.court.id,
+            name: raw.court.name,
+            address: raw.court.address || null,
+            latitude: raw.court.latitude,
+            longitude: raw.court.longitude,
+            coverPhoto: raw.court.photos?.[0]?.url || null,
+          }
+        : null,
       coverPhoto: raw.court?.photos?.[0]?.url || null,
+      confirmedCount,
+      waitlistCount,
+      slotsLeft,
+      isFull: slotsLeft === 0 || raw.status === "FULL",
+      isPast: isPastDate(raw.scheduledAt),
+      isEnrolled: Boolean(mine),
+      myStatus: mine?.status || null,
       createdAt: raw.createdAt,
       updatedAt: raw.updatedAt,
     };
@@ -49,17 +83,17 @@ export const matchMapper = {
   /**
    * Transforms a list of Prisma records.
    */
-  toDomainList(list) {
+  toDomainList(list, currentUserId = null) {
     if (!list) return [];
-    return list.map(this.toDomain);
+    return list.map((item) => this.toDomain(item, currentUserId));
   },
 
   /**
    * Transforms a Prisma record (with court + participants) into a detail object.
    */
-  toDetail(raw) {
+  toDetail(raw, currentUserId = null) {
     if (!raw) return null;
-    const base = this.toDomain(raw);
+    const base = this.toDomain(raw, currentUserId);
     return {
       ...base,
       court: raw.court
@@ -81,6 +115,7 @@ export const matchMapper = {
         : null,
       participants: (raw.participants || []).map((p) => ({
         id: p.id,
+        userId: p.userId,
         userName: p.user
           ? `${p.user.firstName} ${p.user.lastName || ""}`.trim()
           : null,

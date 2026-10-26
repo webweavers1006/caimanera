@@ -72,7 +72,9 @@ export function SidebarNav() {
         {authorizedItems.map((item) => {
           // Si no tiene items hijos, renderiza un link simple
           if (!item.items?.length) {
-            const isActive = pathname === item.url || pathname.startsWith(item.url + "/")
+            const isActive = item.exact
+              ? pathname === item.url
+              : pathname === item.url || pathname.startsWith(item.url + "/")
             return (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild tooltip={item.title} {...(isActive && { isActive })}>

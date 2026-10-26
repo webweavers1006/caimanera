@@ -3,6 +3,7 @@
 import { createActionsColumn } from "@/components/shared/TableUtils";
 import { BadgeCheck, Check, X } from "lucide-react";
 import { SUBSCRIPTION_CONFIG } from "./subscription.constants";
+import { formatPrice } from "@/features/shared/lib/format";
 
 export const getSubscriptionTableColumns = (onEdit, onDelete, can, isPending) => {
   const { LABELS } = SUBSCRIPTION_CONFIG.UI;
@@ -17,7 +18,7 @@ export const getSubscriptionTableColumns = (onEdit, onDelete, can, isPending) =>
 
   const renderTier = (value) => (
     <span
-      className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${TIER.BADGES[value] || "bg-slate-100 text-slate-700"}`}
+      className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${TIER.BADGES[value] || "bg-muted text-muted-foreground"}`}
     >
       {TIER.LABELS[value] || value}
     </span>
@@ -50,7 +51,7 @@ export const getSubscriptionTableColumns = (onEdit, onDelete, can, isPending) =>
       width: "90",
       cell: (row) =>
         row.price != null ? (
-          <span className="font-mono text-xs">{Number(row.price).toFixed(2)}</span>
+          <span className="text-xs font-medium">{formatPrice(row.price)}</span>
         ) : (
           <span className="text-muted-foreground">—</span>
         ),

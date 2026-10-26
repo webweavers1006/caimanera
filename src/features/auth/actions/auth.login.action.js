@@ -4,7 +4,7 @@ import { headers } from 'next/headers'
 import { loginSchema } from '../schemas/login.schema'
 import { authenticateUser, loginUserSession } from '../services/auth.service'
 import { loginRateLimiter } from '../lib/rate-limiter'
-import { AUTH_CONFIG } from '../config/auth.constants'
+import { AUTH_CONFIG, getHomePathForRole } from '../config/auth.constants'
 import { createAuditEntry } from '@/features/audit-logs/services/audit-log.write.service'
 import { logger } from '@/features/shared'
 
@@ -72,5 +72,8 @@ export async function loginAction(prevState, formData) {
     action: 'Inicio de sesión exitoso',
   }).catch(err => logger.error('Audit log failed for login', { userId: authResult.user.id, error: err.message }));
 
-  return { success: true }
+  return {
+    success: true,
+    redirectTo: getHomePathForRole(authResult.user.roleName),
+  }
 }

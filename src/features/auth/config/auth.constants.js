@@ -6,7 +6,8 @@ export const AUTH_CONFIG = {
   // Module routes
   PATH: {
     LOGIN: '/login',
-    DASHBOARD: '/',
+    DASHBOARD: '/admin',
+    DISCOVERY: '/',
     LOGIN_LOCKS: '/admin/bloqueos-login',
   },
 
@@ -79,18 +80,21 @@ export const AUTH_CONFIG = {
         SUBTITLE: 'PLATAFORMA HIPERLOCAL DE CONEXIÓN DEPORTIVA',
       },
       CARD: {
-        TITLE: 'Bienvenido',
-        DESCRIPTION: 'Ingresa tus credenciales para acceder al panel',
+        TITLE: 'Bienvenido de nuevo',
+        DESCRIPTION: 'Inicia sesión para reservar tu cupo y seguir jugando.',
       },
       FORM: {
-        EMAIL: 'Correo Electrónico',
-        EMAIL_PLACEHOLDER: 'usuario@ejemplo.com',
+        EMAIL: 'Correo electrónico',
+        EMAIL_PLACEHOLDER: 'tucorreo@ejemplo.com',
         PASSWORD: 'Contraseña',
-        PASSWORD_PLACEHOLDER: '••••••',
-        SUBMIT: 'Iniciar Sesión',
+        PASSWORD_PLACEHOLDER: 'Tu contraseña',
+        SUBMIT: 'Iniciar sesión',
+        SUBMITTING: 'Ingresando...',
+        SHOW_PASSWORD: 'Mostrar contraseña',
+        HIDE_PASSWORD: 'Ocultar contraseña',
       },
       FOOTER: {
-        TERMS_TEXT: 'Al iniciar sesión, aceptas los',
+        TERMS_TEXT: 'Al continuar, aceptas los',
         TERMS_LINK: 'Términos de Servicio',
         PRIVACY_LINK: 'Política de Privacidad',
       }
@@ -120,3 +124,29 @@ export const AUTH_CONFIG = {
     },
   },
 };
+
+/** Roles that land in the management panel after login. */
+const MANAGEMENT_ROLES = new Set(['ADMIN', 'COURT_MANAGER']);
+
+/**
+ * Whether a role belongs to the administrative panel.
+ *
+ * @param {string} roleName
+ * @returns {boolean}
+ */
+export function isManagementRole(roleName) {
+  return MANAGEMENT_ROLES.has(roleName);
+}
+
+/**
+ * Resolves the post-login/home path for a role.
+ * Players go to the app home; staff go to the admin panel.
+ *
+ * @param {string} roleName
+ * @returns {string}
+ */
+export function getHomePathForRole(roleName) {
+  return isManagementRole(roleName)
+    ? AUTH_CONFIG.PATH.DASHBOARD
+    : AUTH_CONFIG.PATH.DISCOVERY;
+}

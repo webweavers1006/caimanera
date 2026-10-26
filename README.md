@@ -1,262 +1,186 @@
-# Admin Starter
+# Caimanera
 
-Panel de administración genérico con autenticación, gestión de usuarios, roles y permisos.
+Plataforma hiperlocal para descubrir partidos y canchas cerca de ti. Los jugadores eligen una ubicación, ven los partidos ordenados por distancia y se inscriben en segundos. El panel administrativo permite gestionar canchas, partidos, inscripciones y pases.
 
-## 🧱 Stack Tecnológico
+> Estado detallado, decisiones y siguiente bloque de trabajo: [`ESTADO_PROYECTO.md`](./ESTADO_PROYECTO.md).
+
+## Stack
 
 | Capa | Tecnología |
 |------|-----------|
-| **Framework** | Next.js 16.2 (App Router) |
-| **UI** | React 19 + Tailwind CSS 4 |
-| **Componentes** | shadcn/ui (Radix) |
-| **ORM** | Prisma 7.5 |
-| **Base de Datos** | PostgreSQL |
-| **Auth** | JWT (jose) + bcrypt |
-| **Validación** | Zod + react-hook-form |
-| **Notificaciones** | sonner |
-| **Íconos** | lucide-react |
+| Framework | Next.js 16.2 (App Router) |
+| UI | React 19 + Tailwind CSS 4 + shadcn/ui |
+| ORM | Prisma 7 + PostgreSQL |
+| Auth | JWT (`jose`) + bcrypt |
+| Validación | Zod + react-hook-form |
+| Mapas | Leaflet + react-leaflet |
+| Geolocalización | Nominatim + `geolib` |
+| Fechas | date-fns + date-fns-tz (`America/Caracas`) |
+| Notificaciones | sonner |
+| Pagos | BDT, pago móvil, Binance y tarjeta (transacciones `PENDING`) |
 
-## 🚀 Instalación y Configuración
+## Requisitos
 
-### 1. Clonar e instalar dependencias
-
-```bash
-git clone <repo-url>
-cd admin-starter
-pnpm install
-```
-
-### 2. Configurar variables de entorno
-
-```bash
-cp .env.example .env
-# Edita .env con tus credenciales
-```
-
-Variables requeridas:
-- `DATABASE_URL` — Conexión PostgreSQL
-- `JWT_SECRET` — Clave secreta para tokens (mín 32 chars)
-
-### 3. Base de Datos
-
-```bash
-pnpm prisma generate
-pnpm prisma migrate dev --name init
-pnpm seed          # o: pnpm prisma db seed
-```
-
-El seed puebla 5 fases: catálogos base, geografía, personas, auth (roles/permisos/admin) y casos de ejemplo. Cada fase puede ejecutarse por separado si solo necesitas resembrar una parte:
-
-```bash
-node prisma/seeds/seed-catalogs.js   # Solo catálogos
-node prisma/seeds/seed-geography.js  # Solo geografía
-node prisma/seeds/seed-persons.js    # Solo personas
-node prisma/seeds/seed-auth.js       # Solo auth
-node prisma/seeds/seed-cases.js      # Solo casos (requiere auth previo)
-```
-
-### 4. Iniciar
-
-```bash
-pnpm dev
-# Abre http://localhost:3001
-```
-
-### Credenciales por defecto
-
-| Campo | Valor |
-|-------|-------|
-| **Email** | admin@admin.starter |
-| **Password** | admin123 |
-
-## 📁 Estructura del Proyecto
-
-```
-src/
-├── app/                    # Rutas Next.js (solo ruteo)
-│   ├── login/              # Página de login
-│   └── (root)/             # Dashboard protegido
-│       └── admin/          # Panel de administración
-│           ├── usuarios/   # CRUD de Usuarios
-│           └── roles/      # CRUD de Roles y Permisos
-├── features/
-│   ├── auth/               # Autenticación (login, sesión, JWT)
-│   ├── users/              # Gestión de Usuarios (CRUD)
-│   ├── roles/              # Gestión de Roles (CRUD)
-│   ├── permissions/        # Control de acceso RBAC
-│   └── shared/             # Infraestructura compartida
-│       ├── lib/            # Prisma, safe-action, logger
-│       ├── config/         # Rutas, site, constantes
-│       └── hooks/          # Hooks genéricos
-└── components/
-    ├── ui/                 # Átomos shadcn/ui
-    └── shared/             # DataTable, Toolbar, Providers
-```
-
-## 🏗️ Arquitectura A-S-R-M
-
-Cada feature sigue el patrón de capas:
-
-| Capa | Responsabilidad |
-|------|----------------|
-| **Actions** | Orquestación Next.js, validación Zod, sesión |
-| **Services** | Lógica de dominio y negocio |
-| **Repositories** | Acceso a datos (único lugar con Prisma) |
-| **Mappers** | Transformación de datos |
-
-## 🔐 Modelo de Seguridad
-
-- **JWT** en cookies HTTP-only (8h expiración)
-- **RBAC**: Roles → Permisos
-- **Server Actions** protegidas con `createProtectedAction`
-- **Middleware** de protección de rutas
-
-## � Despliegue en Producción
-
-### Prerrequisitos
-
-- Node.js 20+
-- PostgreSQL 15+
+- Node.js 20.19+
 - pnpm
-- PM2 (instalado globalmente: `pnpm add -g pm2`)
+- PostgreSQL 15+
 
-### 1. Variables de Entorno del Sistema
-
-**En producción NUNCA debes usar archivos `.env`.** Los secrets deben venir de variables del sistema operativo o un secret manager.
-
-**Opción A — `/etc/environment` (recomendado para VPS):**
-```bash
-sudo nano /etc/environment
-```
-```ini
-# Agregar al final del archivo:
-NODE_ENV="production"
-JWT_SECRET="<generado con: openssl rand -base64 32>"
-DATABASE_URL="postgresql://usuario:password@localhost:5432/siac_saime"
-```
-```bash
-# Recargar sin reiniciar
-source /etc/environment
-```
-
-**Opción B — Perfil de usuario (`~/.bashrc` o `~/.zshrc`):**
-```bash
-export NODE_ENV=production
-export JWT_SECRET="<openssl rand -base64 32>"
-export DATABASE_URL="postgresql://..."
-```
-
-**Opción C — Secret Manager (cloud):**
-- AWS Secrets Manager / Parameter Store
-- HashiCorp Vault
-- Doppler / Infisical
-
-> ⚠️  **NUNCA** escribas secrets en `ecosystem.config.js`, `.env`, o cualquier archivo que se commitee a git.
-
-### 2. Build y Deploy
+## Instalación
 
 ```bash
-# Instalar dependencias de producción
-pnpm install --prod
-
-# Generar cliente de Prisma
+pnpm install
+cp .env.example .env
+# Edita DATABASE_URL y JWT_SECRET
 pnpm prisma generate
-
-# Ejecutar migraciones pendientes
 pnpm prisma migrate deploy
-
-# Build de Next.js
-pnpm build
-
-# Iniciar con PM2
-pm2 start ecosystem.config.js
-pm2 save
-pm2 startup   # Auto-inicio al reiniciar el servidor
+pnpm seed
+pnpm dev
 ```
 
-### 3. Verificar el despliegue
+La app queda en `http://localhost:3001`.
 
-```bash
-pm2 status
-pm2 logs admin-starter
-curl http://localhost:3001
+## Variables de entorno
+
+| Variable | Descripción |
+|----------|-------------|
+| `DATABASE_URL` | Conexión PostgreSQL |
+| `JWT_SECRET` | Clave de firma (mínimo 32 caracteres) |
+| `COOKIE_SECURE` | `false` en desarrollo local sin HTTPS |
+| `ADMIN_PASSWORD_HASH` | Hash bcrypt del admin inicial (solo seed) |
+| `SMTP_*` | Envío de credenciales por correo (opcional) |
+| `NEXT_PUBLIC_SITE_URL` | URL pública de la app para sitemap y enlaces |
+| `NEXT_PUBLIC_LANDING_URL` | URL de la landing (otro dominio) para legales y redirects |
+| `NEXT_PUBLIC_VES_RATE` | Tasa USD → VES para mostrar el total en bolívares (opcional) |
+
+## Rutas principales
+
+### App pública (sin sesión)
+
+- `/` — Inicio público: bienvenida, ubicación, accesos y mosaico de canchas.
+- `/login` — Acceso a la cuenta con pantalla adaptada a móvil.
+- `/partidos`, `/partidos/[id]`, `/canchas` y `/canchas/[id]` requieren sesión; si un visitante entra, se le pide iniciar sesión y se le devuelve a la ruta solicitada.
+
+Los textos legales viven en la landing (`NEXT_PUBLIC_LANDING_URL`). Las URLs antiguas `/terminos` y `/privacidad` redirigen allí, o a `/` si la variable no está configurada.
+
+### App del jugador (sesión)
+
+- `/` — Inicio personalizado del jugador. Un visitante anónimo ve el inicio público; el staff va a `/admin`.
+- `/partidos` y `/partidos/[id]` — Búsqueda, detalle e inscripción.
+- `/canchas` y `/canchas/[id]` — Listado y detalle de canchas.
+- `/mis-partidos` — Agenda e historial del jugador.
+- `/cuenta` — Hub de cuenta: pase, pagos y perfil.
+- `/cuenta/pases` — Pase activo, compra/renovación e historial de pases.
+- `/cuenta/pagos` — Historial de pagos de partidos y pases.
+
+### Panel administrativo (sesión + permisos)
+
+- `/admin` — Panel de control.
+- `/admin/partidos` — Gestión de partidos.
+- `/admin/canchas` — Gestión de canchas y fotos.
+- `/admin/participantes` — Inscripciones.
+- `/admin/suscripciones` — Catálogo de planes y pases.
+- `/admin/pagos` — Transacciones y confirmación de pagos pendientes.
+- `/admin/users`, `/admin/roles`, `/admin/permissions` — Administración.
+- `/admin/perfil` — Cuenta y cambio de contraseña del staff.
+
+## Usuarios demo
+
+| Rol | Correo | Contraseña |
+|-----|--------|------------|
+| ADMIN | `admin@caimanera.app` | `admin123` |
+| PLAYER | `carlos.perez@caimanera.app` | `caimanera123` |
+| PLAYER | `maria.rodriguez@caimanera.app` | `caimanera123` |
+| PLAYER | `luis.gomez@caimanera.app` | `caimanera123` |
+| COURT_MANAGER | `ana.torres@caimanera.app` | `caimanera123` |
+| COURT_MANAGER | `pedro.rivas@caimanera.app` | `caimanera123` |
+
+Los jugadores y encargados vienen de `prisma/seeds/20260915095000_caimanera-demo-users.seed.js`. El admin viene del seed de auth y su contraseña se configura con `ADMIN_PASSWORD_HASH` o `ADMIN_DEFAULT_PASSWORD`.
+
+> Cambia estas credenciales antes de exponer el sistema a Internet.
+
+## Panel público móvil
+
+La experiencia pública se organiza en dos etapas:
+
+1. **Inicio público:** módulo de bienvenida con saludo y selector de ubicación integrado, tarjeta con tres accesos directos (buscar partido, canchas y mapa) y un mosaico de canchas cercanas. Se ve sin iniciar sesión; los accesos y las canchas piden login y devuelven al jugador a la ruta solicitada.
+2. **Elegir partido (sesión):** módulo superior con selector de ubicación y deportes, panel de filtros, chips de filtros activos, contador de resultados y vista de lista o mapa. Las tarjetas reutilizan el lenguaje visual de los módulos del inicio.
+
+Al tocar un partido se abre un **preview** con horario, cancha, cupos y precio. Desde ahí:
+
+- Se confirma la participación y se elige un método de pago: **BDT**, pago móvil/transferencia, Binance o tarjeta.
+- Los pagos externos crean una transacción en estado `PENDING`; la inscripción queda reservada hasta la conciliación.
+- Los jugadores con pase activo pueden usar un crédito sin pasar por la pasarela.
+- El staff con permiso `participants:create` puede confirmar sin pago.
+- El checkout también se puede abrir directo con `/?partido=<id>`.
+
+### Pases y pagos del jugador
+
+- `/cuenta` es el hub: muestra el pase activo y enlaza a pases, pagos y perfil.
+- `/cuenta/pases` permite consultar pases activos, comprar o renovar un plan y revisar el historial.
+- La compra crea una transacción `SUBSCRIPTION_PURCHASE` en estado `PENDING`; al confirmarla el admin, se activa o renueva el pase.
+- `/cuenta/pagos` muestra el historial de pagos de partidos y pases con método, estado y referencia.
+- `/admin/pagos` lista las transacciones y permite confirmar los pagos pendientes.
+
+- El selector de ubicación acepta la ubicación actual del navegador, búsqueda de direcciones (Nominatim) y zonas/canchas sugeridas.
+- La última ubicación y las recientes se guardan en `localStorage`.
+- Las distancias y el orden por cercanía usan `geolib`.
+- El mapa usa OpenStreetMap y agrupa los partidos por cancha.
+- El tema oscuro es el predeterminado en toda la aplicación.
+
+## Login móvil
+
+`/login` tiene un shell propio, sin header ni footer público:
+
+- En móvil: barra superior con volver y marca, logo destacado, formulario en tarjeta redondeada y CTA a ancho completo.
+- Campos de 48 px, íconos, mostrar/ocultar contraseña, estado de carga y error de credenciales integrado.
+- Safe areas (`env(safe-area-inset-*)`) y `min-h-dvh` para navegadores móviles.
+- En tablet se mantiene una sola columna; desde `lg` aparece el panel de marca con beneficios junto al formulario.
+- Redirección por rol: staff → `/admin`; jugadores → `/`.
+- Se respeta `?next=` con validación de rutas internas.
+
+## Arquitectura
+
+Cada feature sigue el patrón A-S-R-M:
+
+```
+src/features/[feature]/
+├── actions/       # Server Actions protegidas (sesión + permisos + Zod)
+├── components/    # UI
+├── config/        # Constantes, labels y columnas
+├── hooks/         # Estado de cliente
+├── mappers/       # Prisma ↔ Dominio
+├── repositories/  # Único lugar con Prisma
+├── schemas/       # Zod
+└── services/      # Reglas de negocio
 ```
 
-El sistema estará disponible en `http://<ip-del-servidor>:3001`.
+Reglas clave:
 
-Para producción real, coloca un reverse proxy (Nginx, Caddy) con HTTPS delante.
+- La UI pública no expone datos personales de los jugadores.
+- Las mutaciones pasan por `createProtectedAction` / `createProtectedFunction`.
+- El registro de inscripciones es transaccional (cupos, lista de espera y créditos de pase).
+- Las fechas se persisten en UTC y se muestran en `America/Caracas`.
 
-## 🌱 Sistema de Seeds
-
-El seed se organiza en módulos independientes dentro de `prisma/seeds/`:
-
-```
-prisma/seeds/
-├── index.js              # Orquestador principal (5 fases)
-├── seed-catalogs.js      # 14 catálogos base (países, estatus, canales…)
-├── seed-geography.js     # Geografía venezolana (26 estados, 336 municipios, 1135 parroquias)
-├── seed-persons.js       # Personas (terceros + personas de caso)
-├── seed-auth.js          # Roles, 71 permisos, usuario admin
-├── seed-cases.js         # Casos de ejemplo con entidades relacionadas
-├── lib/                  # Logger y cliente Prisma compartidos
-└── data/                 # Constantes de auth (ROLES, PERMISSIONS, ADMIN_USER)
-```
-
-Los datos viven en `prisma/seed-data/` — **28 archivos JSON individuales**, uno por entidad. Nada está hardcodeado en el código.
-
-### Convención de casing en catálogos
-- **Title Case**: statuses, channels, areas, types, reasons, países, geografía
-- **UPPERCASE**: entes adscritos, direcciones administrativas (nombres institucionales)
-- **Mixto (códigos)**: oficinas ("OF016 - Guasdualito")
-
-## 📜 Scripts Disponibles
+## Scripts
 
 | Comando | Descripción |
-|---------|------------|
-| `pnpm dev` | Servidor de desarrollo (puerto 3001) |
+|---------|-------------|
+| `pnpm dev` | Servidor de desarrollo (3001) |
 | `pnpm build` | Build de producción |
-| `pnpm start` | Iniciar build de producción (puerto 3001) |
-| `pnpm lint` | Ejecutar ESLint |
-| `pnpm test` | Ejecutar tests (40 tests, 4 suites) |
-| `pnpm test:watch` | Tests en modo watch (desarrollo) |
-| `pnpm seed` | Sembrar base de datos (28 archivos JSON, 5 fases) |
+| `pnpm start` | Servidor de producción (3001) |
+| `pnpm lint` | ESLint |
+| `pnpm test` | Tests (Vitest) |
+| `pnpm seed` | Ejecuta seeders pendientes |
+| `node prisma/seed --only=<nombre>` | Ejecuta un seeder específico |
 
-## 🧪 Testing
-
-### Stack
-
-- **Vitest** — Test runner rápido con API compatible con Jest
-- **@testing-library/react** — Tests de componentes React
-- **@testing-library/jest-dom** — Matchers adicionales (toBeInTheDocument, etc.)
-- **jsdom** — Simula el DOM en Node.js
-
-### Configuración
+## Despliegue
 
 ```bash
-vitest.config.js       # Configuración de Vitest + path aliases
-src/__tests__/setup.js # Setup global (jest-dom matchers)
+pnpm install --prod
+pnpm prisma generate
+pnpm prisma migrate deploy
+pnpm build
+pm2 start ecosystem.config.js
 ```
 
-### Suites de Tests
-
-| Suite | Tests | Qué cubre |
-|-------|-------|-----------|
-| `rate-limiter.test.js` | 7 | Rate limiting — límites, ventanas, reset, IPs independientes |
-| `auth.mapper.test.js` | 12 | Mapper de autenticación — toDomain, toDomainList, toSortKey |
-| `permission.mapper.test.js` | 13 | Mapper de permisos — toDomain, toPersistence, toSortKey |
-| `safe-action.test.js` | 8 | Core de seguridad — CSRF, sesión, permisos, validación Zod |
-
-### Ejecutar
-
-```bash
-pnpm test              # Todos los tests (40 tests)
-pnpm test:watch        # Modo watch (re-ejecuta al guardar)
-pnpm test -- --reporter=verbose  # Salida detallada
-```
-
-### Convenciones
-
-- Archivos: `src/__tests__/**/*.test.js`
-- Tests de lógica pura (mappers, rate limiter) — sin dependencias externas
-- Tests de Server Actions — con mocks de sesión, permisos y CSRF
-- Sin tests de integración con BD (requiere PostgreSQL, se agrega con CI/CD)
+Configura los secretos por variables del sistema, nunca en archivos versionados. Coloca Nginx/Caddy con HTTPS delante de la app.

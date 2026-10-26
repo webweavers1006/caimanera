@@ -1,15 +1,11 @@
 import { MATCH_CONFIG } from "./match.constants";
 import { getUsersForSelectAction } from "@/features/users/actions/user.select.action";
 import { getCourtsForSelectAction } from "@/features/courts/actions/court.select.action";
+import { toZonedInputValue } from "@/features/shared/lib/datetime";
 
-// Converts an ISO date string into a datetime-local input value.
-const toDateTimeLocalValue = (value) => {
-  if (!value) return "";
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return "";
-  const pad = (n) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-};
+// Converts an ISO date string into a datetime-local input value in the
+// business timezone (America/Caracas), so the server and browser agree.
+const toDateTimeLocalValue = (value) => toZonedInputValue(value);
 
 export const getMatchFormConfig = () => {
   const { LABELS } = MATCH_CONFIG.UI;

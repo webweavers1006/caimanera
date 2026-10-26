@@ -1,17 +1,26 @@
-import { matchReadRepository } from "../repositories/match.read.repository";
-import { enrollPlayerInMatch } from "@/features/participants/services/participant.integration.service";
+import { matchEnrollmentRepository } from "../repositories/match.enrollment.repository";
 
 /**
- * Enrolls the current user in a match, deciding status by capacity.
+ * Enrolls the current user in a match.
+ * All capacity/payment/re-enrollment rules are resolved atomically in the
+ * repository transaction; this layer only exposes the use case.
  */
 export async function enrollCurrentUserInMatch(matchId, userId) {
-  const match = await matchReadRepository.findByIdWithParticipants(matchId);
-  if (!match) {
-    return { success: false, error: "El partido no existe." };
+  if (!matchId || !userId) {
+    return { success: false, error: "Datos de inscripción inválidos." };
   }
 
-  const confirmed = (match.participants || []).filter((p) => p.status === "CONFIRMED").length;
-  const status = confirmed < match.capacity ? "CONFIRMED" : "WAITLIST";
+  return matchEnrollmentRepository.enroll({ matchId, userId });
+}
 
-  return enrollPlayerInMatch({ userId, matchId, status, paymentType: "PAY_PER_MATCH" });
+/**
+ * Cancels the current user's enrollment and promotes the next waitlisted
+ * player when a confirmed slot is freed.
+ */
+export async function leaveCurrentUserFromMatch(matchId, userId) {
+  if (!matchId || !userId) {
+    return { success: false, error: "Datos de inscripción inválidos." };
+  }
+
+  return matchEnrollmentRepository.leave({ matchId, userId });
 }

@@ -1,0 +1,26 @@
+{
+  "adminEmail": {
+    "from": "admin@admin.starter",
+    "to": "admin@caimanera.app"
+  },
+  "permissions": [
+    {
+      "slug": "participants:self_enroll",
+      "description": "Inscribirse y cancelar la propia inscripción en partidos"
+    }
+  ],
+  "rolePermissions": {
+    "ADMIN": {
+      "add": ["participants:self_enroll"],
+      "remove": []
+    },
+    "COURT_MANAGER": {
+      "add": ["participants:self_enroll"],
+      "remove": []
+    },
+    "PLAYER": {
+      "add": ["participants:self_enroll"],
+      "remove": ["participants:create", "participants:view", "participants:read"]
+    }
+  }
+}

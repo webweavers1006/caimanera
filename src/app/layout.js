@@ -1,10 +1,6 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
-import { getSession } from "@/features/auth/lib/auth";
-import { getUserPermissions } from "@/features/permissions/services/permission.authorization.service";
-import { PermissionsProvider } from "@/features/permissions/components/PermissionsProvider";
 import { ThemeProvider } from "@/components/shared/providers/theme-provider";
-import { SseProvider } from "@/components/shared/providers/sse-provider";
 import { DevToolsGuard } from "@/components/shared/DevToolsGuard";
 import { SITE_CONFIG } from "@/features/shared";
 import "./globals.css";
@@ -42,25 +38,24 @@ export const metadata = {
   },
 };
 
-export default async function RootLayout({ children }) {
-  const session = await getSession();
-  const permissions = session ? await getUserPermissions(session.role) : [];
-
+/**
+ * Root layout: technical providers only.
+ * Session, permissions and SSE are resolved by each surface:
+ * - `(app)` for the player shell.
+ * - `(admin)` for the administrative panel.
+ */
+export default function RootLayout({ children }) {
   return (
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable}`}
+      className={`dark ${geistSans.variable} ${geistMono.variable} ${inter.variable}`}
     >
       <head />
       <body className="antialiased">
         <DevToolsGuard />
         <ThemeProvider>
-          <SseProvider>
-            <PermissionsProvider permissions={permissions}>
-              {children}
-            </PermissionsProvider>
-          </SseProvider>
+          {children}
           <Toaster />
         </ThemeProvider>
       </body>

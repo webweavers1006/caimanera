@@ -14,13 +14,32 @@ import { SUBSCRIPTION_CONFIG } from "@/features/subscriptions/config/subscriptio
 import { PARTICIPANT_CONFIG } from "@/features/participants/config/participant.constants"
 import { SSE_MONITOR_CONFIG } from "@/features/sse-monitor/config/sse-monitor.constants"
 import { PROFILE_CONFIG } from "@/features/profile/config/profile.constants"
+import { TRANSACTION_CONFIG } from "@/features/transactions/config/transaction.constants"
 
 export const ROUTES = {
+  // Open app surface — no session required (entry point from the landing).
+  PUBLIC: {
+    MATCHES: { path: "/partidos" },
+    COURTS: { path: "/canchas" },
+  },
+
+  // Player surface — requires a session. Staff is redirected to the admin panel.
+  PLAYER: {
+    HOME: { path: "/" },
+    MY_MATCHES: { path: "/mis-partidos" },
+    ACCOUNT: { path: "/cuenta" },
+    PASSES: { path: "/cuenta/pases" },
+    PAYMENTS: { path: "/cuenta/pagos" },
+  },
+
   // Auth & main pages
   AUTH: {
     LOGIN: { path: AUTH_CONFIG.PATH.LOGIN },
   },
-  DASHBOARD: { path: AUTH_CONFIG.PATH.DASHBOARD },
+  DASHBOARD: {
+    path: "/admin",
+    permission: "matches:create",
+  },
   PROFILE: { path: PROFILE_CONFIG.PATH },
 
   // Sports modules
@@ -44,6 +63,11 @@ export const ROUTES = {
       path: PARTICIPANT_CONFIG.PATH,
       permission: PARTICIPANT_CONFIG.PERMISSIONS.VIEW,
       title: PARTICIPANT_CONFIG.TITLE,
+    },
+    TRANSACTIONS: {
+      path: TRANSACTION_CONFIG.PATH,
+      permission: TRANSACTION_CONFIG.PERMISSIONS.VIEW,
+      title: TRANSACTION_CONFIG.TITLE,
     },
   },
 
@@ -93,8 +117,7 @@ export const ROUTES = {
   },
 
   // API routes — public endpoints that don't require a user session.
-  // Used by proxy.js to allow display screens, health checks, etc.
   API: {
-    PUBLIC: [],
+    PUBLIC: ["/api/geo"],
   },
 }

@@ -8,12 +8,6 @@ import { ROUTES } from "@/features/shared";
 
 const ITEMS = [
   {
-    label: "Inicio",
-    href: ROUTES.DASHBOARD.path,
-    icon: LayoutDashboard,
-    isActive: (pathname) => pathname === ROUTES.DASHBOARD.path,
-  },
-  {
     label: "Partidos",
     href: ROUTES.PLAYMATCH.MATCHES.path,
     icon: Trophy,
@@ -51,11 +45,24 @@ export function MobileBottomNav() {
   const { can } = usePermission();
   const pathname = usePathname();
 
-  const items = ITEMS.filter((item) => !item.permission || can(item.permission));
+  const homeItem = {
+    label: "Panel",
+    href: ROUTES.DASHBOARD.path,
+    icon: LayoutDashboard,
+    isActive: (value) => value === ROUTES.DASHBOARD.path,
+  };
+
+  const items = [
+    homeItem,
+    ...ITEMS.filter((item) => !item.permission || can(item.permission)),
+  ].slice(0, 5);
 
   return (
     <nav className="fixed inset-x-0 bottom-0 z-40 border-t bg-background/95 backdrop-blur md:hidden">
-      <div className="grid grid-cols-5">
+      <div
+        className="grid"
+        style={{ gridTemplateColumns: `repeat(${Math.max(items.length, 1)}, minmax(0, 1fr))` }}
+      >
         {items.map((item) => {
           const active = item.isActive(pathname);
           const Icon = item.icon;

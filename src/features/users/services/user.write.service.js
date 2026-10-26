@@ -10,7 +10,7 @@ import { validateUserUniqueness } from "./user.validation.service";
 import { USER_CONFIG } from "../config/user.constants";
 import { logger } from "@/features/shared";
 
-const DEFAULT_ROLE_NAME = "EMPLEADO";
+const DEFAULT_ROLE_NAME = "PLAYER";
 const { MESSAGES } = USER_CONFIG.UI.LABELS;
 
 /**
@@ -54,6 +54,9 @@ export async function createUser(data) {
  */
 export async function updateUser(id, data) {
   try {
+    const uniquenessCheck = await validateUserUniqueness(data.idCard, data.email, id);
+    if (!uniquenessCheck.success) return uniquenessCheck;
+
     const domainDto = { ...data };
 
     // Only hash if a new password is provided

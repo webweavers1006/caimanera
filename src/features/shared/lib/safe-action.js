@@ -1,4 +1,5 @@
 import { getSession } from "@/features/auth/lib/auth";
+import { validateSessionUser } from "@/features/auth/services/auth.read.service";
 import { verifyPermission } from "@/features/permissions/services/permission.authorization.service";
 import { validateCsrf } from "@/features/shared/lib/csrf-guard";
 import { logger } from "@/features/shared";
@@ -19,7 +20,8 @@ export function createProtectedAction(permissionSlug, schema, handler) {
       await validateCsrf();
 
       // 1. Verificar Sesión
-      const session = await getSession();
+      const jwtSession = await getSession();
+      const session = await validateSessionUser(jwtSession);
       if (!session) {
         return { success: false, error: "No autorizado. Por favor inicia sesión nuevamente." };
       }
@@ -96,7 +98,8 @@ export function createProtectedFunction(permissionSlug, handler) {
             // CSRF Protection
             await validateCsrf();
 
-            const session = await getSession();
+            const jwtSession = await getSession();
+            const session = await validateSessionUser(jwtSession);
             if (!session) return { success: false, error: "No autorizado" };
 
             const hasAccess = await verifyPermission(session.role, permissionSlug);
@@ -110,6 +113,37 @@ export function createProtectedFunction(permissionSlug, handler) {
             return { success: false, error: "Error interno." };
         }
     }
+}
+
+/**
+ * Crea una función segura que requiere al menos uno de varios permisos.
+ * Útil para selects compartidos entre módulos con alcances distintos.
+ *
+ * @param {string[]} permissionSlugs - Slugs aceptados (cualquiera concede acceso).
+ * @param {Function} handler - Función (args, session) => Promise<Result>.
+ */
+export function createAnyPermissionProtectedFunction(permissionSlugs, handler) {
+  return async (...args) => {
+    try {
+      await validateCsrf();
+
+      const jwtSession = await getSession();
+      const session = await validateSessionUser(jwtSession);
+      if (!session) return { success: false, error: "No autorizado" };
+
+      const results = await Promise.all(
+        permissionSlugs.map((slug) => verifyPermission(session.role, slug))
+      );
+      if (!results.some(Boolean)) {
+        return { success: false, error: "Acceso denegado. No tienes permisos suficientes para realizar esta acción." };
+      }
+
+      return await handler(...args, session);
+    } catch (error) {
+      logger.error("ProtectedFunction error", { error: error.message });
+      return { success: false, error: "Error interno." };
+    }
+  };
 }
 
 /**
@@ -130,7 +164,8 @@ export function createAuthenticatedFunction(handler) {
             // CSRF Protection
             await validateCsrf();
 
-            const session = await getSession();
+            const jwtSession = await getSession();
+            const session = await validateSessionUser(jwtSession);
             if (!session) return { success: false, error: "No autorizado" };
 
             return await handler(...args, session);
