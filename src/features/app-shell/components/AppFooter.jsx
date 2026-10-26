@@ -5,9 +5,19 @@ import { APP_SHELL_CONFIG } from "../config/app-shell.constants";
 const LABELS = APP_SHELL_CONFIG.UI.FOOTER;
 const LEGAL_LINK_CLASS = "text-muted-foreground hover:text-foreground";
 
+function loginHref(nextPath) {
+  return `${ROUTES.AUTH.LOGIN.path}?next=${encodeURIComponent(nextPath)}`;
+}
+
 export function AppFooter({ session = null }) {
   const year = new Date().getFullYear();
   const hasLegalLinks = Boolean(LANDING_CONFIG.termsUrl || LANDING_CONFIG.privacyUrl);
+  const matchesHref = session
+    ? ROUTES.PUBLIC.MATCHES.path
+    : loginHref(ROUTES.PUBLIC.MATCHES.path);
+  const courtsHref = session
+    ? ROUTES.PUBLIC.COURTS.path
+    : loginHref(ROUTES.PUBLIC.COURTS.path);
 
   return (
     <footer className="mt-12 hidden border-t border-border/70 bg-card md:block">
@@ -26,12 +36,12 @@ export function AppFooter({ session = null }) {
           </p>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link href={ROUTES.PUBLIC.MATCHES.path} className="text-muted-foreground hover:text-foreground">
+              <Link href={matchesHref} className="text-muted-foreground hover:text-foreground">
                 {APP_SHELL_CONFIG.UI.NAV.MATCHES}
               </Link>
             </li>
             <li>
-              <Link href={ROUTES.PUBLIC.COURTS.path} className="text-muted-foreground hover:text-foreground">
+              <Link href={courtsHref} className="text-muted-foreground hover:text-foreground">
                 {APP_SHELL_CONFIG.UI.NAV.COURTS}
               </Link>
             </li>

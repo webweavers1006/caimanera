@@ -6,12 +6,16 @@ import { ROUTES } from '@/features/shared/config/navigation/navigation.config'
  */
 export default function robots() {
   const privatePaths = [
+    ROUTES.PUBLIC.MATCHES.path,
+    ROUTES.PUBLIC.COURTS.path,
     ROUTES.PLAYER.MY_MATCHES.path,
+    ROUTES.PLAYER.ACCOUNT.path,
+    ROUTES.PLAYER.PASSES.path,
+    ROUTES.PLAYER.PAYMENTS.path,
     ROUTES.DASHBOARD.path,
     ...Object.values(ROUTES.ADMIN).map((route) => route.path),
     ROUTES.AUDIT.path,
     ...Object.values(ROUTES.CATALOGS).map((route) => route.path),
-    ROUTES.PLAYER.ACCOUNT.path,
     ROUTES.PROFILE.path,
   ]
 

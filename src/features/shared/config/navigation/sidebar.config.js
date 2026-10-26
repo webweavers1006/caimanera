@@ -16,7 +16,7 @@ import {
   Trophy,
   CreditCard,
   UserPlus,
-  Compass,
+  ReceiptText,
 } from "lucide-react"
 import { ROUTES } from "./routes.config"
 
@@ -38,11 +38,6 @@ export const SIDEBAR_CONFIG = {
   NAV: {
     items: [
       {
-        title: "Descubrir",
-        url: ROUTES.PUBLIC.MATCHES.path,
-        icon: Compass,
-      },
-      {
         title: "Panel",
         url: ROUTES.DASHBOARD.path,
         icon: LayoutDashboard,
@@ -57,6 +52,7 @@ export const SIDEBAR_CONFIG = {
           { title: ROUTES.PLAYMATCH.COURTS.title, url: ROUTES.PLAYMATCH.COURTS.path, permission: ROUTES.PLAYMATCH.COURTS.permission, icon: Warehouse },
           { title: ROUTES.PLAYMATCH.MATCHES.title, url: ROUTES.PLAYMATCH.MATCHES.path, permission: ROUTES.PLAYMATCH.MATCHES.permission, icon: Trophy },
           { title: ROUTES.PLAYMATCH.SUBSCRIPTIONS.title, url: ROUTES.PLAYMATCH.SUBSCRIPTIONS.path, permission: ROUTES.PLAYMATCH.SUBSCRIPTIONS.permission, icon: CreditCard },
+          { title: ROUTES.PLAYMATCH.TRANSACTIONS.title, url: ROUTES.PLAYMATCH.TRANSACTIONS.path, permission: ROUTES.PLAYMATCH.TRANSACTIONS.permission, icon: ReceiptText },
           { title: ROUTES.PLAYMATCH.PARTICIPANTS.title, url: ROUTES.PLAYMATCH.PARTICIPANTS.path, permission: ROUTES.PLAYMATCH.PARTICIPANTS.permission, icon: UserPlus },
         ],
       },

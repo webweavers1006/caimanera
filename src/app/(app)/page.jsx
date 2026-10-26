@@ -7,9 +7,9 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata = {
-  title: `${SITE_CONFIG.name} — Tu inicio`,
+  title: `${SITE_CONFIG.name} — Encuentra tu próximo partido`,
   description:
-    "Tu próximo partido, tus canchas cercanas y los accesos para seguir jugando.",
+    "Descubre canchas y partidos cerca de ti. Inicia sesión para inscribirte, comprar tu pase y ver tus pagos.",
 };
 
 function HomeFallback() {

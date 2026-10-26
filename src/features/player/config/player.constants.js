@@ -3,6 +3,23 @@
  * into upcoming matches and the history of matches already played.
  */
 export const PLAYER_CONFIG = {
+  ACCOUNT: {
+    EYEBROW: "Tu cuenta",
+    TITLE: "Mi cuenta",
+    SUBTITLE: "Tu pase, tus pagos y los datos de tu cuenta.",
+    GREETING: (name) => `Hola, ${name || "jugador"} 👋`,
+    PASS_TITLE: "Mi pase",
+    PASS_ACTIVE: (name, credits) => `${name} · ${credits} créditos`,
+    PASS_MULTIPLE: (count, credits) =>
+      `${count} pases activos · ${credits} créditos`,
+    PASS_EMPTY: "Sin pase activo",
+    PASS_DESCRIPTION: "Consulta, compra o renueva tu pase.",
+    PAYMENTS_TITLE: "Mis pagos",
+    PAYMENTS_DESCRIPTION: "Historial de pagos de partidos y pases.",
+    OPEN: "Abrir",
+    PROFILE_TITLE: "Mis datos",
+    PROFILE_DESCRIPTION: "Información de la cuenta y cambio de contraseña.",
+  },
   MY_MATCHES: {
     EYEBROW: "Tu agenda",
     TITLE: "Mis partidos",

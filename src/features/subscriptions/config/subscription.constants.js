@@ -12,6 +12,15 @@ export const SUBSCRIPTION_CONFIG = {
     WRITE: 'subscriptions:create',
     UPDATE: 'subscriptions:update',
     DELETE: 'subscriptions:delete',
+    PURCHASE: 'subscriptions:purchase',
+  },
+
+  // Duration used when a purchase is confirmed. The plan model stores the
+  // number of matches, not the duration; these are the business defaults.
+  DURATION_DAYS: {
+    BASIC_PASS: 30,
+    PRO_MONTHLY: 30,
+    VIP_ANNUAL: 365,
   },
 
   PAGINATION: {
@@ -41,6 +50,54 @@ export const SUBSCRIPTION_CONFIG = {
 
   UI: {
     ITEMS_PER_PAGE: 10,
+    PLAYER: {
+      EYEBROW: 'Tu membresía',
+      TITLE: 'Mi pase',
+      SUBTITLE: 'Consulta tu pase activo, compra o renueva y revisa tu historial.',
+      ACTIVE_TITLE: 'Pase activo',
+      ACTIVE_EMPTY: 'No tienes un pase activo',
+      ACTIVE_EMPTY_DESCRIPTION:
+        'Compra un pase para reservar tus partidos con créditos y prioridad.',
+      CREDITS: (remaining, total) => `${remaining} de ${total} partidos disponibles`,
+      CREDITS_LEFT: (count) =>
+        `${count} ${count === 1 ? 'partido disponible' : 'partidos disponibles'}`,
+      VALID_UNTIL: (date) => `Vigente hasta ${date}`,
+      PRIORITY: 'Reserva prioritaria',
+      PLANS_TITLE: 'Planes disponibles',
+      PLANS_SUBTITLE: 'Elige el pase que mejor se adapte a cómo juegas.',
+      BUY: 'Comprar pase',
+      RENEW: 'Renovar pase',
+      INCLUDES: (count) =>
+        `${count} ${count === 1 ? 'partido incluido' : 'partidos incluidos'}`,
+      HISTORY_TITLE: 'Historial de pases',
+      HISTORY_SUBTITLE: 'Tus compras y renovaciones anteriores.',
+      HISTORY_EMPTY: 'Todavía no has comprado un pase.',
+      PENDING_TITLE: 'Compras pendientes de validación',
+      PENDING_DESCRIPTION:
+        'El pago se registró y el pase se activará cuando el equipo lo confirme.',
+      VIEW_PAYMENTS: 'Ver mis pagos',
+      STATUS: {
+        ACTIVE: 'Activo',
+        EXPIRED: 'Vencido',
+        DEPLETED: 'Sin créditos',
+      },
+      PURCHASE: {
+        TITLE: 'Comprar pase',
+        DESCRIPTION: (name) => `Configura el pago de ${name}.`,
+        METHOD: 'Método de pago',
+        REFERENCE: 'Referencia (opcional)',
+        REFERENCE_PLACEHOLDER: 'Ej: 12345678',
+        REFERENCE_HINT:
+          'Si tu banco o billetera te dio una referencia, colócala aquí.',
+        SUBMIT: 'Confirmar compra',
+        PROCESSING: 'Registrando compra…',
+        SUCCESS:
+          'Compra registrada. Tu pase se activará cuando el pago sea validado.',
+        ERROR: 'No se pudo registrar la compra. Intenta nuevamente.',
+        TOTAL: 'Total a pagar',
+        SECURE_NOTE: 'Tus datos de pago no se almacenan en Caimanera.',
+      },
+    },
     LABELS: {
       CLEAN_BUTTON: 'Limpiar',
       FORM: {

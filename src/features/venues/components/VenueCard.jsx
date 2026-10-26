@@ -10,14 +10,14 @@ const labels = VENUE_CONFIG.UI.DETAIL;
  * Public venue card shared by home and `/canchas`.
  * It always navigates to the venue detail, never to the admin panel.
  */
-export function VenueCard({ venue, distanceLabel = null, variant = "default", className = "" }) {
+export function VenueCard({ venue, distanceLabel = null, variant = "default", className = "", href = null }) {
   if (!venue) return null;
 
   const compact = variant === "compact";
 
   return (
     <Link
-      href={`${ROUTES.PUBLIC.COURTS.path}/${venue.id}`}
+      href={href || `${ROUTES.PUBLIC.COURTS.path}/${venue.id}`}
       className={cn(
         "group relative block overflow-hidden rounded-3xl border border-border/70 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         compact ? "aspect-[4/5]" : "aspect-[16/10]",

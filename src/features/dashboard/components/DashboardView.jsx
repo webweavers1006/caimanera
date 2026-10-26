@@ -3,11 +3,11 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  ArrowUpRight,
   CalendarCheck,
   CalendarDays,
   CreditCard,
   Plus,
+  ReceiptText,
   Trophy,
   UserPlus,
   Users,
@@ -59,9 +59,9 @@ export function DashboardView({ stats }) {
         </div>
         <div className="flex flex-wrap gap-2">
           <Button asChild variant="secondary" size="sm">
-            <Link href="/">
-              Ver app pública
-              <ArrowUpRight data-icon="inline-end" />
+            <Link href="/admin/pagos">
+              Revisar pagos
+              <ReceiptText data-icon="inline-end" />
             </Link>
           </Button>
           <Button asChild size="sm" className="bg-white/15 hover:bg-white/25">

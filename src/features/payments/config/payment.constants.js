@@ -15,6 +15,9 @@ export const PAYMENT_METHOD_VALUES = [
   "STAFF_BYPASS",
 ];
 
+// Methods a player can use to buy or renew a pass.
+export const PASS_PAYMENT_METHOD_VALUES = ["BDT", "MOBILE_PAYMENT", "BINANCE", "CARD"];
+
 export const PAYMENT_CONFIG = {
   CURRENCY: "USD",
   VES_CURRENCY: "VES",
@@ -51,6 +54,19 @@ export const PAYMENT_CONFIG = {
   UI: {
     TITLE: "Métodos de pago",
     DESCRIPTION: "Elige cómo quieres pagar tu cupo.",
+    PLAYER: {
+      EYEBROW: "Tu actividad",
+      TITLE: "Mis pagos",
+      SUBTITLE: "Historial de pagos de partidos y compras de pases.",
+      EMPTY_TITLE: "Todavía no tienes pagos",
+      EMPTY_DESCRIPTION:
+        "Cuando reserves un partido o compres un pase, el movimiento aparecerá aquí.",
+      REFERENCE: "Referencia",
+      PENDING_NOTE:
+        "Los pagos pendientes se activan cuando el equipo confirma la transacción.",
+      DATE: "Fecha",
+      AMOUNT: "Monto",
+    },
     TOTAL: "Total a pagar",
     CONTINUE: "Continuar",
     PROCESSING: "Procesando…",
@@ -76,8 +92,38 @@ export const PAYMENT_CONFIG = {
     REFUNDED: "Reembolsado",
     FAILED: "Fallido",
   },
+
+  STATUS_BADGES: {
+    PENDING: "bg-amber-400/15 text-amber-300",
+    COMPLETED: "bg-emerald-400/15 text-emerald-300",
+    REFUNDED: "bg-sky-400/15 text-sky-300",
+    FAILED: "bg-rose-400/15 text-rose-300",
+  },
+
+  METHOD_LABELS: {
+    BDT: "BDT",
+    MOBILE_PAYMENT: "Pago móvil / transferencia",
+    BINANCE: "Binance",
+    CARD: "Tarjeta",
+    SUBSCRIPTION_CREDIT: "Crédito de pase",
+    STAFF_BYPASS: "Confirmación staff",
+  },
+
+  TYPE_LABELS: {
+    PAY_PER_MATCH: "Pago de partido",
+    SUBSCRIPTION_CREDIT: "Crédito de pase",
+    SUBSCRIPTION_PURCHASE: "Compra de pase",
+  },
 };
 
 export function getPaymentMethod(value) {
   return PAYMENT_CONFIG.METHODS.find((method) => method.value === value) || null;
+}
+
+export function getPaymentMethodLabel(value) {
+  return PAYMENT_CONFIG.METHOD_LABELS[value] || value || "—";
+}
+
+export function getPaymentTypeLabel(value) {
+  return PAYMENT_CONFIG.TYPE_LABELS[value] || value || "—";
 }

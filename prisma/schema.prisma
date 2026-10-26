@@ -1166,6 +1166,7 @@ model Seeder {
 enum PaymentType {
   PAY_PER_MATCH
   SUBSCRIPTION_CREDIT
+  SUBSCRIPTION_PURCHASE
 }
 
 enum PaymentMethod {

@@ -8,11 +8,21 @@ import { APP_SHELL_CONFIG } from "../config/app-shell.constants";
 
 const LABELS = APP_SHELL_CONFIG.UI.NAV;
 
+function loginHref(nextPath) {
+  return `${ROUTES.AUTH.LOGIN.path}?next=${encodeURIComponent(nextPath)}`;
+}
+
 /**
  * Player-facing app header. Administrative navigation lives in the admin shell.
  */
 export function AppHeader({ session = null }) {
   const isStaff = Boolean(session && isManagementRole(session.role));
+  const matchesHref = session
+    ? ROUTES.PUBLIC.MATCHES.path
+    : loginHref(ROUTES.PUBLIC.MATCHES.path);
+  const courtsHref = session
+    ? ROUTES.PUBLIC.COURTS.path
+    : loginHref(ROUTES.PUBLIC.COURTS.path);
   const accountHref = session
     ? isStaff
       ? ROUTES.DASHBOARD.path
@@ -38,7 +48,7 @@ export function AppHeader({ session = null }) {
         </Link>
 
         <nav className="ml-8 hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex">
-          <Link href={ROUTES.PUBLIC.MATCHES.path} className="transition-colors hover:text-foreground">
+          <Link href={matchesHref} className="transition-colors hover:text-foreground">
             {LABELS.MATCHES}
           </Link>
           {session && (
@@ -46,14 +56,14 @@ export function AppHeader({ session = null }) {
               {LABELS.MY_MATCHES}
             </Link>
           )}
-          <Link href={ROUTES.PUBLIC.COURTS.path} className="transition-colors hover:text-foreground">
+          <Link href={courtsHref} className="transition-colors hover:text-foreground">
             {LABELS.COURTS}
           </Link>
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
           <Link
-            href={ROUTES.PUBLIC.MATCHES.path}
+            href={matchesHref}
             className="hidden items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground sm:flex"
           >
             <Trophy className="size-4" />

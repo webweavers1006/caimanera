@@ -14,6 +14,7 @@ import { SUBSCRIPTION_CONFIG } from "@/features/subscriptions/config/subscriptio
 import { PARTICIPANT_CONFIG } from "@/features/participants/config/participant.constants"
 import { SSE_MONITOR_CONFIG } from "@/features/sse-monitor/config/sse-monitor.constants"
 import { PROFILE_CONFIG } from "@/features/profile/config/profile.constants"
+import { TRANSACTION_CONFIG } from "@/features/transactions/config/transaction.constants"
 
 export const ROUTES = {
   // Open app surface — no session required (entry point from the landing).
@@ -27,6 +28,8 @@ export const ROUTES = {
     HOME: { path: "/" },
     MY_MATCHES: { path: "/mis-partidos" },
     ACCOUNT: { path: "/cuenta" },
+    PASSES: { path: "/cuenta/pases" },
+    PAYMENTS: { path: "/cuenta/pagos" },
   },
 
   // Auth & main pages
@@ -60,6 +63,11 @@ export const ROUTES = {
       path: PARTICIPANT_CONFIG.PATH,
       permission: PARTICIPANT_CONFIG.PERMISSIONS.VIEW,
       title: PARTICIPANT_CONFIG.TITLE,
+    },
+    TRANSACTIONS: {
+      path: TRANSACTION_CONFIG.PATH,
+      permission: TRANSACTION_CONFIG.PERMISSIONS.VIEW,
+      title: TRANSACTION_CONFIG.TITLE,
     },
   },
 

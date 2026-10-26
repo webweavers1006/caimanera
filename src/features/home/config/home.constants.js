@@ -5,8 +5,13 @@
 export const HOME_CONFIG = {
   UI: {
     GREETING: (name) => `Hola, ${name || "jugador"} 👋`,
+    GUEST_GREETING: "Bienvenido a Caimanera 👋",
     TITLE: "¿Dónde jugamos hoy?",
     SUBTITLE: "Encuentra tu próximo partido y las canchas cerca de ti.",
+    GUEST_CTA_TITLE: "Inicia sesión para jugar",
+    GUEST_CTA_DESCRIPTION:
+      "Guarda tu agenda, compra tu pase y consulta tus pagos desde tu cuenta.",
+    GUEST_CTA_ACTION: "Ingresar",
     ACTIONS_TITLE: "¿Qué quieres hacer?",
     ACTIONS_SUBTITLE: "Elige cómo empezar.",
     SERVICES: {

@@ -56,17 +56,21 @@ La app queda en `http://localhost:3001`.
 
 ### App pública (sin sesión)
 
-- `/partidos` — Entrada de la app: búsqueda de partidos, filtros y mapa.
-- `/partidos/[id]` — Detalle público con inscripción.
+- `/` — Inicio público: bienvenida, ubicación, accesos y mosaico de canchas.
 - `/login` — Acceso a la cuenta con pantalla adaptada a móvil.
+- `/partidos`, `/partidos/[id]`, `/canchas` y `/canchas/[id]` requieren sesión; si un visitante entra, se le pide iniciar sesión y se le devuelve a la ruta solicitada.
 
-Los textos legales viven en la landing (`NEXT_PUBLIC_LANDING_URL`). Las URLs antiguas `/terminos` y `/privacidad` redirigen allí, o a `/partidos` si la variable no está configurada.
+Los textos legales viven en la landing (`NEXT_PUBLIC_LANDING_URL`). Las URLs antiguas `/terminos` y `/privacidad` redirigen allí, o a `/` si la variable no está configurada.
 
 ### App del jugador (sesión)
 
-- `/` — Inicio personalizado del jugador. Un visitante anónimo es redirigido a `/partidos`; el staff va a `/admin`.
-- `/mis-partidos` — Agenda del jugador.
-- `/cuenta` — Perfil y cambio de contraseña del jugador.
+- `/` — Inicio personalizado del jugador. Un visitante anónimo ve el inicio público; el staff va a `/admin`.
+- `/partidos` y `/partidos/[id]` — Búsqueda, detalle e inscripción.
+- `/canchas` y `/canchas/[id]` — Listado y detalle de canchas.
+- `/mis-partidos` — Agenda e historial del jugador.
+- `/cuenta` — Hub de cuenta: pase, pagos y perfil.
+- `/cuenta/pases` — Pase activo, compra/renovación e historial de pases.
+- `/cuenta/pagos` — Historial de pagos de partidos y pases.
 
 ### Panel administrativo (sesión + permisos)
 
@@ -74,7 +78,8 @@ Los textos legales viven en la landing (`NEXT_PUBLIC_LANDING_URL`). Las URLs ant
 - `/admin/partidos` — Gestión de partidos.
 - `/admin/canchas` — Gestión de canchas y fotos.
 - `/admin/participantes` — Inscripciones.
-- `/admin/suscripciones` — Planes y pases.
+- `/admin/suscripciones` — Catálogo de planes y pases.
+- `/admin/pagos` — Transacciones y confirmación de pagos pendientes.
 - `/admin/users`, `/admin/roles`, `/admin/permissions` — Administración.
 - `/admin/perfil` — Cuenta y cambio de contraseña del staff.
 
@@ -89,14 +94,16 @@ Los textos legales viven en la landing (`NEXT_PUBLIC_LANDING_URL`). Las URLs ant
 | COURT_MANAGER | `ana.torres@caimanera.app` | `caimanera123` |
 | COURT_MANAGER | `pedro.rivas@caimanera.app` | `caimanera123` |
 
+Los jugadores y encargados vienen de `prisma/seeds/20260915095000_caimanera-demo-users.seed.js`. El admin viene del seed de auth y su contraseña se configura con `ADMIN_PASSWORD_HASH` o `ADMIN_DEFAULT_PASSWORD`.
+
 > Cambia estas credenciales antes de exponer el sistema a Internet.
 
 ## Panel público móvil
 
 La experiencia pública se organiza en dos etapas:
 
-1. **Inicio:** módulo de bienvenida con saludo y selector de ubicación integrado, tarjeta con tres accesos directos (buscar partido, canchas y mapa) y un mosaico de canchas cercanas.
-2. **Elegir partido:** módulo superior con selector de ubicación y deportes, panel de filtros, chips de filtros activos, contador de resultados y vista de lista o mapa. Las tarjetas reutilizan el lenguaje visual de los módulos del inicio.
+1. **Inicio público:** módulo de bienvenida con saludo y selector de ubicación integrado, tarjeta con tres accesos directos (buscar partido, canchas y mapa) y un mosaico de canchas cercanas. Se ve sin iniciar sesión; los accesos y las canchas piden login y devuelven al jugador a la ruta solicitada.
+2. **Elegir partido (sesión):** módulo superior con selector de ubicación y deportes, panel de filtros, chips de filtros activos, contador de resultados y vista de lista o mapa. Las tarjetas reutilizan el lenguaje visual de los módulos del inicio.
 
 Al tocar un partido se abre un **preview** con horario, cancha, cupos y precio. Desde ahí:
 
@@ -105,6 +112,14 @@ Al tocar un partido se abre un **preview** con horario, cancha, cupos y precio. 
 - Los jugadores con pase activo pueden usar un crédito sin pasar por la pasarela.
 - El staff con permiso `participants:create` puede confirmar sin pago.
 - El checkout también se puede abrir directo con `/?partido=<id>`.
+
+### Pases y pagos del jugador
+
+- `/cuenta` es el hub: muestra el pase activo y enlaza a pases, pagos y perfil.
+- `/cuenta/pases` permite consultar pases activos, comprar o renovar un plan y revisar el historial.
+- La compra crea una transacción `SUBSCRIPTION_PURCHASE` en estado `PENDING`; al confirmarla el admin, se activa o renueva el pase.
+- `/cuenta/pagos` muestra el historial de pagos de partidos y pases con método, estado y referencia.
+- `/admin/pagos` lista las transacciones y permite confirmar los pagos pendientes.
 
 - El selector de ubicación acepta la ubicación actual del navegador, búsqueda de direcciones (Nominatim) y zonas/canchas sugeridas.
 - La última ubicación y las recientes se guardan en `localStorage`.

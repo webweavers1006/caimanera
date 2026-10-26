@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, CalendarCheck, Map as MapIcon, MapPin, Search } from "lucide-react";
+import { ArrowRight, CalendarCheck, LogIn, Map as MapIcon, MapPin, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ROUTES, cn } from "@/features/shared";
 import { HOME_CONFIG } from "../config/home.constants";
@@ -16,34 +16,43 @@ import { VenueCard } from "@/features/venues/components/VenueCard";
 const labels = HOME_CONFIG.UI;
 const sectionLabels = HOME_CONFIG.SECTIONS;
 
-const SERVICES = [
-  {
-    key: "matches",
-    label: labels.SERVICES.MATCHES,
-    href: ROUTES.PUBLIC.MATCHES.path,
-    icon: Search,
-    featured: true,
-  },
-  {
-    key: "courts",
-    label: labels.SERVICES.COURTS,
-    href: ROUTES.PUBLIC.COURTS.path,
-    icon: MapPin,
-  },
-  {
-    key: "map",
-    label: labels.SERVICES.MAP,
-    href: `${ROUTES.PUBLIC.MATCHES.path}?vista=mapa`,
-    icon: MapIcon,
-  },
-];
+function loginHref(nextPath) {
+  return `${ROUTES.AUTH.LOGIN.path}?next=${encodeURIComponent(nextPath)}`;
+}
+
+function getServices(isGuest) {
+  return [
+    {
+      key: "matches",
+      label: labels.SERVICES.MATCHES,
+      href: isGuest ? loginHref(ROUTES.PUBLIC.MATCHES.path) : ROUTES.PUBLIC.MATCHES.path,
+      icon: Search,
+      featured: true,
+    },
+    {
+      key: "courts",
+      label: labels.SERVICES.COURTS,
+      href: isGuest ? loginHref(ROUTES.PUBLIC.COURTS.path) : ROUTES.PUBLIC.COURTS.path,
+      icon: MapPin,
+    },
+    {
+      key: "map",
+      label: labels.SERVICES.MAP,
+      href: isGuest
+        ? loginHref(`${ROUTES.PUBLIC.MATCHES.path}?vista=mapa`)
+        : `${ROUTES.PUBLIC.MATCHES.path}?vista=mapa`,
+      icon: MapIcon,
+    },
+  ];
+}
 
 /**
  * Player home. It answers "what is next for me?" and routes every search,
  * venue and map intent to its own page — no embedded match picker here.
  */
-export function HomeView({ matches = [], courts = [], userName = null }) {
+export function HomeView({ matches = [], courts = [], userName = null, isGuest = false }) {
   const [pickerOpen, setPickerOpen] = useState(false);
+  const services = getServices(isGuest);
 
   const {
     location,
@@ -77,7 +86,7 @@ export function HomeView({ matches = [], courts = [], userName = null }) {
         <div className="relative flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
           <div className="min-w-0">
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              {labels.GREETING(userName)}
+              {isGuest ? labels.GUEST_GREETING : labels.GREETING(userName)}
             </p>
             <h1 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
               {labels.TITLE}
@@ -102,7 +111,7 @@ export function HomeView({ matches = [], courts = [], userName = null }) {
         </div>
 
         <div className="grid grid-cols-3 gap-2.5">
-          {SERVICES.map((service) => {
+          {services.map((service) => {
             const Icon = service.icon;
             return (
               <Link
@@ -130,68 +139,90 @@ export function HomeView({ matches = [], courts = [], userName = null }) {
         </div>
       </section>
 
-      <section className="space-y-3">
-        <div className="flex items-end justify-between gap-3 px-1">
-          <div className="min-w-0">
-            <h2 className="text-lg font-bold tracking-tight">{labels.NEXT_MATCH_TITLE}</h2>
-            <p className="text-xs text-muted-foreground">{labels.NEXT_MATCH_SUBTITLE}</p>
-          </div>
-          {nextMatch && (
-            <Link
-              href={ROUTES.PLAYER.MY_MATCHES.path}
-              className="shrink-0 text-xs font-semibold text-primary hover:underline"
-            >
-              {labels.VIEW_ALL}
-            </Link>
-          )}
-        </div>
-
-        {nextMatch ? (
-          <PublicMatchCard
-            match={nextMatch}
-            href={`${ROUTES.PUBLIC.MATCHES.path}/${nextMatch.id}`}
-          />
-        ) : (
-          <div className="flex flex-col items-center rounded-3xl border border-dashed bg-card px-6 py-10 text-center">
-            <span className="mb-4 flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
-              <CalendarCheck className="size-6" />
-            </span>
-            <h3 className="text-lg font-semibold">{labels.EMPTY_TITLE}</h3>
-            <p className="mt-1 max-w-sm text-sm text-muted-foreground">
-              {labels.EMPTY_DESCRIPTION}
-            </p>
-            <Button asChild className="mt-5 gap-2 rounded-full">
-              <Link href={ROUTES.PUBLIC.MATCHES.path}>
-                <Search data-icon="inline-start" />
-                {labels.EMPTY_ACTION}
-              </Link>
-            </Button>
-          </div>
-        )}
-      </section>
-
-      {upcomingMatches.length > 0 && (
-        <section className="space-y-2.5">
-          <div className="px-1">
-            <h2 className="text-lg font-bold tracking-tight">{labels.UPCOMING_TITLE}</h2>
-            <p className="text-xs text-muted-foreground">{labels.UPCOMING_SUBTITLE}</p>
-          </div>
-
-          {upcomingMatches.map((match) => (
-            <PublicMatchCard
-              key={match.id}
-              match={match}
-              href={`${ROUTES.PUBLIC.MATCHES.path}/${match.id}`}
-            />
-          ))}
-
-          <Button asChild variant="secondary" className="w-full gap-2 rounded-full">
-            <Link href={ROUTES.PLAYER.MY_MATCHES.path}>
-              {labels.VIEW_ALL}
-              <ArrowRight data-icon="inline-end" />
+      {isGuest && (
+        <section className="flex flex-col items-center rounded-3xl border border-dashed bg-card px-6 py-10 text-center">
+          <span className="mb-4 flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+            <LogIn className="size-6" />
+          </span>
+          <h2 className="text-lg font-semibold">{labels.GUEST_CTA_TITLE}</h2>
+          <p className="mt-1 max-w-sm text-sm text-muted-foreground">
+            {labels.GUEST_CTA_DESCRIPTION}
+          </p>
+          <Button asChild className="mt-5 gap-2 rounded-full">
+            <Link href={loginHref(ROUTES.PLAYER.HOME.path)}>
+              <LogIn data-icon="inline-start" />
+              {labels.GUEST_CTA_ACTION}
             </Link>
           </Button>
         </section>
+      )}
+
+      {!isGuest && (
+        <>
+          <section className="space-y-3">
+            <div className="flex items-end justify-between gap-3 px-1">
+              <div className="min-w-0">
+                <h2 className="text-lg font-bold tracking-tight">{labels.NEXT_MATCH_TITLE}</h2>
+                <p className="text-xs text-muted-foreground">{labels.NEXT_MATCH_SUBTITLE}</p>
+              </div>
+              {nextMatch && (
+                <Link
+                  href={ROUTES.PLAYER.MY_MATCHES.path}
+                  className="shrink-0 text-xs font-semibold text-primary hover:underline"
+                >
+                  {labels.VIEW_ALL}
+                </Link>
+              )}
+            </div>
+
+            {nextMatch ? (
+              <PublicMatchCard
+                match={nextMatch}
+                href={`${ROUTES.PUBLIC.MATCHES.path}/${nextMatch.id}`}
+              />
+            ) : (
+              <div className="flex flex-col items-center rounded-3xl border border-dashed bg-card px-6 py-10 text-center">
+                <span className="mb-4 flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+                  <CalendarCheck className="size-6" />
+                </span>
+                <h3 className="text-lg font-semibold">{labels.EMPTY_TITLE}</h3>
+                <p className="mt-1 max-w-sm text-sm text-muted-foreground">
+                  {labels.EMPTY_DESCRIPTION}
+                </p>
+                <Button asChild className="mt-5 gap-2 rounded-full">
+                  <Link href={ROUTES.PUBLIC.MATCHES.path}>
+                    <Search data-icon="inline-start" />
+                    {labels.EMPTY_ACTION}
+                  </Link>
+                </Button>
+              </div>
+            )}
+          </section>
+
+          {upcomingMatches.length > 0 && (
+            <section className="space-y-2.5">
+              <div className="px-1">
+                <h2 className="text-lg font-bold tracking-tight">{labels.UPCOMING_TITLE}</h2>
+                <p className="text-xs text-muted-foreground">{labels.UPCOMING_SUBTITLE}</p>
+              </div>
+
+              {upcomingMatches.map((match) => (
+                <PublicMatchCard
+                  key={match.id}
+                  match={match}
+                  href={`${ROUTES.PUBLIC.MATCHES.path}/${match.id}`}
+                />
+              ))}
+
+              <Button asChild variant="secondary" className="w-full gap-2 rounded-full">
+                <Link href={ROUTES.PLAYER.MY_MATCHES.path}>
+                  {labels.VIEW_ALL}
+                  <ArrowRight data-icon="inline-end" />
+                </Link>
+              </Button>
+            </section>
+          )}
+        </>
       )}
 
       {sortedCourts.length > 0 && (
@@ -204,7 +235,11 @@ export function HomeView({ matches = [], courts = [], userName = null }) {
               <p className="text-xs text-muted-foreground">{sectionLabels.VENUES_SUBTITLE}</p>
             </div>
             <Link
-              href={ROUTES.PUBLIC.COURTS.path}
+              href={
+                isGuest
+                  ? loginHref(ROUTES.PUBLIC.COURTS.path)
+                  : ROUTES.PUBLIC.COURTS.path
+              }
               className="shrink-0 text-xs font-semibold text-primary hover:underline"
             >
               {labels.VENUES_VIEW_ALL}
@@ -218,6 +253,11 @@ export function HomeView({ matches = [], courts = [], userName = null }) {
                 venue={court}
                 distanceLabel={court.distanceLabel}
                 variant="compact"
+                href={
+                  isGuest
+                    ? loginHref(`${ROUTES.PUBLIC.COURTS.path}/${court.id}`)
+                    : undefined
+                }
               />
             ))}
           </div>

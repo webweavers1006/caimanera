@@ -8,6 +8,10 @@ import { APP_SHELL_CONFIG } from "../config/app-shell.constants";
 
 const LABELS = APP_SHELL_CONFIG.UI.NAV;
 
+function loginHref(nextPath) {
+  return `${ROUTES.AUTH.LOGIN.path}?next=${encodeURIComponent(nextPath)}`;
+}
+
 const ITEMS = [
   {
     label: LABELS.HOME,
@@ -47,10 +51,11 @@ export function AppBottomNav({ session = null }) {
         {ITEMS.map((item) => {
           const active = item.active(pathname);
           const Icon = item.icon;
+          const href = session ? item.href : loginHref(item.href);
           return (
             <Link
               key={item.label}
-              href={item.href}
+              href={href}
               className={`flex min-h-14 flex-col items-center justify-center gap-1 rounded-2xl text-[10px] font-semibold transition-colors ${
                 active ? "text-primary" : "text-muted-foreground"
               }`}

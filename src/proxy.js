@@ -16,11 +16,9 @@ const LEGACY_LEGAL_REDIRECTS = {
 }
 
 // Open pages — no session required.
-const OPEN_PATHS = [
-  ROUTES.PUBLIC.MATCHES.path,
-  ROUTES.PUBLIC.COURTS.path,
-  LOGIN_PATH,
-]
+// The home is the public entry point: it shows the welcome, quick actions and
+// nearby venues. Everything else that is not explicitly open needs a session.
+const OPEN_PATHS = [HOME_PATH, LOGIN_PATH]
 
 function matchesPath(path, base) {
   // Uses '/' and '?' as explicit delimiters after the prefix to avoid collisions.
@@ -67,7 +65,8 @@ export async function proxy(req) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  // App entry: visitors go straight to the match search; staff to the panel.
+  // App entry: public home. Visitors see the welcome, quick actions and the
+  // venue mosaic; staff goes to the panel; players stay on their home.
   if (isHome) {
     // Legacy `?partido=` deep links now point at the canonical detail.
     const legacyMatchId = req.nextUrl.searchParams.get('partido')
@@ -77,10 +76,7 @@ export async function proxy(req) {
       )
     }
 
-    if (!session) {
-      return NextResponse.redirect(new URL(ROUTES.PUBLIC.MATCHES.path, req.nextUrl))
-    }
-    if (isManagementRole(session.role)) {
+    if (session && isManagementRole(session.role)) {
       return NextResponse.redirect(new URL(ROUTES.DASHBOARD.path, req.nextUrl))
     }
     return NextResponse.next()
@@ -91,6 +87,14 @@ export async function proxy(req) {
     const next = req.nextUrl.searchParams.get('next')
     const safeNext = next && next.startsWith('/') && !next.startsWith('//') ? next : null
     return NextResponse.redirect(new URL(safeNext || getHomePathForRole(session.role), req.nextUrl))
+  }
+
+  // Staff lives in the administrative panel. If they open a player surface,
+  // send them back to the dashboard instead of mixing both experiences.
+  const isAdminPath =
+    path === ROUTES.DASHBOARD.path || path.startsWith(`${ROUTES.DASHBOARD.path}/`)
+  if (session && isManagementRole(session.role) && !isAdminPath && !isApiRoute) {
+    return NextResponse.redirect(new URL(ROUTES.DASHBOARD.path, req.nextUrl))
   }
 
   // Everything that is not explicitly open requires a session.

@@ -10,6 +10,7 @@ const LABELS = {
   canchas: "Canchas",
   participantes: "Jugadores",
   suscripciones: "Pases",
+  pagos: "Pagos",
   users: "Usuarios",
   roles: "Roles",
   permissions: "Permisos",

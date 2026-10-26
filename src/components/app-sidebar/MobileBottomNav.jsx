@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Compass, LayoutDashboard, Trophy, Warehouse, UserPlus, CreditCard } from "lucide-react";
+import { LayoutDashboard, Trophy, Warehouse, UserPlus, CreditCard } from "lucide-react";
 import { usePermission } from "@/features/permissions/components/PermissionsProvider";
 import { ROUTES } from "@/features/shared";
 
@@ -44,21 +44,13 @@ const ITEMS = [
 export function MobileBottomNav() {
   const { can } = usePermission();
   const pathname = usePathname();
-  const isManager = can(ROUTES.DASHBOARD.permission);
 
-  const homeItem = isManager
-    ? {
-        label: "Panel",
-        href: ROUTES.DASHBOARD.path,
-        icon: LayoutDashboard,
-        isActive: (value) => value === ROUTES.DASHBOARD.path,
-      }
-    : {
-        label: "Descubrir",
-        href: ROUTES.PUBLIC.MATCHES.path,
-        icon: Compass,
-        isActive: (value) => value.startsWith(ROUTES.PUBLIC.MATCHES.path),
-      };
+  const homeItem = {
+    label: "Panel",
+    href: ROUTES.DASHBOARD.path,
+    icon: LayoutDashboard,
+    isActive: (value) => value === ROUTES.DASHBOARD.path,
+  };
 
   const items = [
     homeItem,
