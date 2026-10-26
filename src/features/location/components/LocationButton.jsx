@@ -2,14 +2,14 @@
 
 import { ChevronDown, MapPin } from "lucide-react";
 import { cn } from "@/features/shared";
-import { DISCOVERY_CONFIG } from "../config/discovery.constants";
+import { LOCATION_CONFIG } from "../config/location.constants";
 
 /**
- * Shared location selector used by the home welcome module and the match
- * picker, so the same control looks and behaves identically in both stages.
+ * Shared location selector used by the home, search and venue surfaces so the
+ * same control looks and behaves identically everywhere.
  */
-export function DiscoveryLocationButton({ location, onClick, className = "" }) {
-  const labels = DISCOVERY_CONFIG.UI.HOME;
+export function LocationButton({ location, onClick, className = "" }) {
+  const labels = LOCATION_CONFIG.UI;
 
   return (
     <button
@@ -26,10 +26,10 @@ export function DiscoveryLocationButton({ location, onClick, className = "" }) {
       </span>
       <span className="min-w-0 flex-1">
         <span className="block text-[10px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-          {location ? labels.LOCATION_NEAR : labels.LOCATION_LABEL}
+          {location ? labels.BUTTON_NEAR : labels.BUTTON_LABEL}
         </span>
         <span className="block truncate text-sm font-medium">
-          {location?.label || labels.LOCATION_PLACEHOLDER}
+          {location?.label || labels.BUTTON_PLACEHOLDER}
         </span>
       </span>
       <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-background text-muted-foreground">

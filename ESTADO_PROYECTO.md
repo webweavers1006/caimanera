@@ -1,23 +1,23 @@
 # Estado del proyecto — Caimanera
 
 > **Fecha de corte:** 26 de octubre de 2026  
-> **Resumen:** app y admin ya están separados; bloque 2 verificado y pendiente de commit. Siguiente: extraer `booking` y `location`.  
+> **Resumen:** app y admin separados; bloques 1, 1.5, 2 y 3 completados. `discovery` ya no existe: `booking`, `location` y `player` viven en sus propios features.  
 > **Última verificación:** 26 oct 2026 · build OK · tests 67/67 · lint 0 errores / 19 warnings  
 > **Rama activa:** `feat/separacion-app-admin`  
-> **Estado general:** funcional, compilando, con tests en verde y con el bloque 2 listo para revisar/commitear.  
-> **Fase actual:** separación app / admin completada (bloques 1, 1.5 y 2).  
-> **Siguiente foco:** bloque 3 — extraer `booking` y `location` de `discovery` y limpiar los últimos acoplamientos (sección 7.2).  
-> **Commits de referencia:** `3b5ee56` (checkpoint), `13e5122` (bloque 1), `0582e45` (bloque 1.5), `a734c59` (docs). Bloque 2 en working tree.
+> **Estado general:** funcional, compilando, con tests en verde y sin piezas compartidas dentro de `discovery`.  
+> **Fase actual:** separación app / admin completada (bloques 1, 1.5, 2 y 3).  
+> **Siguiente foco:** pendientes de dominio y producto (historial, pases, webhook BDT y conciliación) — sección 7.2.  
+> **Commits de referencia:** `3b5ee56` (checkpoint), `13e5122` (bloque 1), `0582e45` (bloque 1.5), `a734c59` (docs), `d28c385` (bloque 2). Bloque 3 en el commit actual.
 
 ---
 
 ## 0. Cómo continuar en una nueva sesión
 
-1. **Rama:** `git switch feat/separacion-app-admin`. El working tree contiene el bloque 2; revisar y commitear antes de seguir.
+1. **Rama:** `git switch feat/separacion-app-admin`. El bloque 2 está commiteado en `d28c385`; el bloque 3 quedó en el commit actual.
 2. **Variables:** configurar `NEXT_PUBLIC_LANDING_URL` en `.env` (ver `.env.example`). Sin ella, los legales se muestran como texto y las URLs viejas `/terminos` y `/privacidad` redirigen a `/partidos`.
 3. **Entorno:** `pnpm install` si hace falta y `pnpm dev`. El script usa el puerto 3001; si ya hay otro dev server de Next en el repo, Next se niega a arrancar (en esta máquina también apareció uno en 3000).
-4. **Leer primero:** secciones 2.15 (bloque 1), 2.16 (bloque 1.5), 2.17 (bloque 2), 3 (estructura), 7.1 (bloque 2 completado), 7.2 (siguientes pasos) y 8 (riesgos).
-5. **Empezar por:** sección 7.2, “Siguientes pasos funcionales”. No tocar rutas, proxy ni shell salvo que el bloque 3 lo requiera.
+4. **Leer primero:** secciones 2.15 (bloque 1), 2.16 (bloque 1.5), 2.17 (bloque 2), 2.18 (bloque 3), 3 (estructura), 7.1 (bloque 2 completado), 7.2 (siguientes pasos) y 8 (riesgos).
+5. **Empezar por:** sección 7.2, “Siguientes pasos funcionales”. La separación de superficies ya está cerrada; el trabajo nuevo es de dominio y producto.
 
 ### Decisiones de producto ya cerradas
 
@@ -34,7 +34,7 @@
 - Las tarjetas y el mapa del buscador abren un preview; desde ahí un botón lleva a `/partidos/[id]`. El drawer también se usa en “Mis partidos” y como checkout del detalle.
 - “Canchas” navega a `/canchas`; ya no existen anchors `/#canchas` ni `/#partidos`.
 - `?partido=` se redirige al detalle canónico.
-- `booking` y `location` siguen físicamente en `discovery`; su extracción es el bloque 3.
+- `booking` y `location` ya viven fuera de `discovery` (bloque 3, sección 2.18).
 
 ---
 
@@ -460,6 +460,52 @@ Se separaron las pantallas en módulos independientes. `/` dejó de ser un conte
 
 ---
 
+### 2.18 Separación app / admin — bloque 3 (26 de octubre de 2026)
+
+Se eliminó `discovery`: ya no queda ninguna pieza compartida ahí. Las superficies públicas quedaron repartidas por responsabilidad.
+
+**Features nuevos:**
+
+- `location`: selector de ubicación, geocoder de Nominatim, utilidades geo y persistencia en `localStorage`.
+- `booking`: preview + checkout (`MatchCheckoutSheet`) y las capacidades de reserva de la sesión.
+- `player`: “Mis partidos” (`/mis-partidos`) con su propio servicio de lectura.
+
+**Movimientos:**
+
+- `DiscoveryMatchCard` → `shared/components/matches/PublicMatchCard.jsx`.
+- `DiscoveryMap` y `DiscoveryMapWrapper` → `shared/components/matches/MatchesMap.jsx` y `MatchesMapWrapper.jsx`.
+- `DiscoveryFilterSheet` → `match-search/components/MatchSearchFiltersSheet.jsx`.
+- `DiscoveryEmpty` → `match-search/components/MatchSearchEmpty.jsx`.
+- `LocationPickerDialog` y `DiscoveryLocationButton` → `location/components/` (`LocationButton`).
+- `MatchCheckoutSheet` → `booking/components/`.
+- `MyMatchesPageContainer`, `MyMatchesView` y `fetchMyUpcomingMatches` → `player/`.
+- El test de distancias pasó a `src/__tests__/location-geo.test.js`.
+
+**Copia y configuración repartida:**
+
+- `shared/config/match-ui.constants.js` (`MATCH_UI`): tarjeta, mapa y CTA del checkout.
+- `shared/lib/sport.js`: `getSportEmoji`.
+- `location/config/location.constants.js`: storage, zonas y copia del selector.
+- `match-search/config/match-search.constants.js`: radio, día, orden, vista y filtros.
+- `home/config/home.constants.js`, `venues/config/venue.constants.js` y `player/config/player.constants.js`.
+- Las rutas usan `ROUTES` de `shared`; se eliminó el duplicado `DISCOVERY_CONFIG.PATHS`.
+
+**Autorización:**
+
+- `MatchDetailPageContainer` ya no consulta permisos.
+- `getBookingCapabilities(session)` en `booking/services/booking.authorization.service.js` decide `canStaffConfirm`; el bypass de staff es ahora una capacidad de `booking`.
+
+**Decisión:** `/cuenta` sigue usando `features/profile` porque el perfil es compartido con `/admin/perfil`; `player` posee la agenda y puede absorber la cuenta cuando el perfil se separe.
+
+**Verificación:**
+
+- `pnpm build` exitoso con las mismas rutas.
+- `pnpm test`: 67/67.
+- `npx eslint src`: 0 errores, 19 warnings (solo `<img>` y hooks heredados).
+- Smoke HTTP con `next start`: `/partidos` y `/canchas` → 200; `/mis-partidos` sin sesión → 307; ID inválido → 404.
+
+---
+
 ## 3. Estructura relevante nueva
 
 ```text
@@ -495,12 +541,16 @@ src/features/home/
 ├── components/
 │   ├── HomePageContainer.jsx
 │   └── HomeView.jsx
+├── config/home.constants.js
 └── services/home.read.service.js
 
 src/features/match-search/
 ├── components/
 │   ├── MatchSearchPageContainer.jsx
-│   └── MatchSearchView.jsx
+│   ├── MatchSearchView.jsx
+│   ├── MatchSearchFiltersSheet.jsx
+│   └── MatchSearchEmpty.jsx
+├── config/match-search.constants.js
 ├── hooks/
 │   ├── use-match-search-filters.js
 │   └── use-match-search-location.js
@@ -519,12 +569,19 @@ src/features/venues/
 │   ├── VenueDetailPageContainer.jsx
 │   ├── VenueDetailView.jsx
 │   └── VenueCard.jsx
+├── config/venue.constants.js
 └── services/venue.read.service.js
 
 src/features/shared/
 ├── config/app/
 │   ├── landing.config.js      # NEXT_PUBLIC_LANDING_URL + links legales
 │   └── site.config.js
+├── config/match-ui.constants.js
+├── components/matches/
+│   ├── PublicMatchCard.jsx
+│   ├── MatchesMap.jsx
+│   └── MatchesMapWrapper.jsx
+├── lib/sport.js
 ├── mappers/public-catalog.mapper.js
 └── repositories/public-catalog.read.repository.js
 
@@ -536,20 +593,26 @@ src/features/auth/
 ├── hooks/use-auth-login.js
 └── ...
 
-src/features/discovery/
-├── components/              # piezas compartidas pendientes de extraer
-│   ├── DiscoveryMatchCard.jsx
-│   ├── DiscoveryFilterSheet.jsx
-│   ├── DiscoveryLocationButton.jsx
-│   ├── LocationPickerDialog.jsx
-│   ├── MatchCheckoutSheet.jsx
-│   ├── DiscoveryMapWrapper.jsx
+src/features/location/
+├── components/
+│   ├── LocationButton.jsx
+│   └── LocationPickerDialog.jsx
+├── config/location.constants.js   # storage, zonas, copia
+├── hooks/use-location.js
+└── lib/
+    ├── geo.js                     # distancias, orden, centro
+    └── geocoder.js                # Nominatim (solo servidor)
+
+src/features/booking/
+├── components/MatchCheckoutSheet.jsx   # preview + checkout
+└── services/booking.authorization.service.js
+
+src/features/player/
+├── components/
 │   ├── MyMatchesPageContainer.jsx
 │   └── MyMatchesView.jsx
-├── config/
-├── hooks/
-├── lib/
-└── services/
+├── config/player.constants.js
+└── services/player.read.service.js
 
 src/features/matches/
 ├── components/MatchJoinButton.jsx
@@ -568,7 +631,7 @@ src/features/payments/
 
 ## 4. Verificación actual
 
-> Verificado el 26 de octubre de 2026 sobre el working tree del bloque 2.
+> Verificado el 26 de octubre de 2026 sobre el working tree del bloque 3.
 
 ### Build
 
@@ -594,7 +657,7 @@ Suites:
 - Safe action.
 - Jerarquía.
 - Fechas/timezone.
-- Geo/distancia.
+- Geo/distancia (`location-geo`).
 - Validación de partidos.
 - Validación de métodos de pago.
 
@@ -737,9 +800,9 @@ src/features/
 ├── match-search/  ✅ buscador + filtros + mapa
 ├── venues/        ✅ /canchas y /canchas/[id]
 ├── match-detail/  ✅ detalle público
-├── booking/       ⏳ checkout (bloque 3)
-├── player/        ⏳ mis partidos + cuenta (bloque 3)
-├── location/      ⏳ ubicación/geocoder (bloque 3)
+├── booking/       ✅ checkout + capacidades de reserva (bloque 3)
+├── player/        ✅ mis partidos (bloque 3); cuenta sigue en `profile`
+├── location/      ✅ ubicación/geocoder (bloque 3)
 └── auth/          ✅ existe
 ```
 
@@ -773,21 +836,15 @@ Regla: cada módulo tiene su propio read service; si dos necesitan los mismos se
 
 ### 7.2 Siguientes pasos funcionales (SIGUIENTE)
 
-**Antes de empezar el bloque 3:**
+**Estado:** bloques 1, 1.5, 2 y 3 completados. La separación de superficies está cerrada; no quedan piezas compartidas en `discovery`.
 
-- Revisar `git status` y `git diff` del bloque 2.
-- Confirmar `pnpm build`, `pnpm test` y `npx eslint src` (hoy: build OK, 67/67 tests, 0 errores / 19 warnings).
+**Deuda menor antes de release:**
+
 - Completar la revisión visual pendiente a 375×812 en `/partidos` y `/canchas/[id]`.
-- Commitear el bloque 2 con un mensaje que describa la separación de `home`, `match-search`, `match-detail` y `venues`.
+- Confirmar `NEXT_PUBLIC_LANDING_URL` en el entorno de producción.
+- Decidir si `player` absorbe `/cuenta` (hoy el perfil es compartido con `/admin/perfil` desde `features/profile`).
 
-**Bloque 3 — extracción de booking y location:**
-
-- Extraer `booking` (preview + checkout) y `location` (selector, geocoder, geo utils) de `discovery`.
-- Retirar `getUserPermissions` de `MatchDetailPageContainer`; el bypass de staff debe ser una capacidad de `booking`.
-- Mover `DiscoveryMatchCard`, `DiscoveryFilterSheet`, `DiscoveryMap*` y `LocationPickerDialog` a sus features definitivas o a `shared` según su uso.
-- Extraer `player` (`/mis-partidos` y `/cuenta`) cuando `booking` ya viva fuera de `discovery`.
-
-**Otros pendientes:**
+**Pendientes de dominio y producto:**
 
 - Historial de partidos pasados dentro de “Mis partidos” (hoy solo se muestran los próximos).
 - Conectar el webhook real de BDT.
@@ -845,7 +902,7 @@ Pendiente para una siguiente iteración: recuperación de contraseña y registro
 - **Lista de espera:** al promover a un jugador no se genera cobro; la regla debe definirse antes de producción.
 - **Sesión:** se valida contra base de datos, pero el proxy solo verifica la firma del JWT; las páginas y acciones hacen la validación completa. El redirect de staff en `/` usa el rol del JWT; el layout admin vuelve a validar contra la base.
 - **Landing sin configurar:** si `NEXT_PUBLIC_LANDING_URL` está vacía, los legales se muestran como texto sin enlaces y `/terminos` y `/privacidad` redirigen a `/partidos`. Configurarla antes de producción.
-- **Piezas compartidas aún en `discovery`:** `MatchCheckoutSheet`, `LocationPickerDialog`, `DiscoveryMatchCard`, `DiscoveryFilterSheet` y el mapa siguen ahí; `booking` y `location` se extraen en el bloque 3.
+- **Piezas compartidas:** ya no hay acoplamientos en `discovery`. La tarjeta y el mapa públicos viven en `shared/components/matches`; `booking` y `location` tienen sus propios features. `profile` sigue siendo compartido entre `/cuenta` y `/admin/perfil`.
 - **Búsqueda en cliente:** `/partidos` descarga hasta 200 partidos próximos y filtra en el navegador. Si el catálogo crece, mover filtros y paginación al servidor.
 - **Ubicación persistida:** la búsqueda usa `lat`/`lng` de la URL y, si no existen, la última ubicación guardada en `localStorage`. Un enlace compartido sin `lat`/`lng` depende de la ubicación del visitante.
 
@@ -880,6 +937,6 @@ node prisma/seed --only=20260915104819_caimanera-demo-data
 
 ## 10. Conclusión
 
-El sistema está en un estado **estable, compilando y con tests en verde**. La separación app / admin ya está completa a nivel de pantallas: `/` es el inicio del jugador, `/partidos` es el buscador con filtros en URL, `/partidos/[id]` es el destino canónico y `/canchas` + `/canchas/[id]` son un módulo público real. Los jugadores ya no entran al panel y las canchas dejaron de ser un anchor del inicio.
+El sistema está en un estado **estable, compilando y con tests en verde**. La separación app / admin está completa: `/` es el inicio del jugador, `/partidos` es el buscador con filtros en URL, `/partidos/[id]` es el destino canónico y `/canchas` + `/canchas/[id]` son un módulo público real. Los jugadores ya no entran al panel y las canchas dejaron de ser un anchor del inicio.
 
-El siguiente bloque no rediseña pantallas: extrae `booking` y `location` de `discovery` para cerrar los últimos acoplamientos internos (sección 7.2). Después quedan los pendientes de dominio y producto: historial de partidos, pases, notificaciones y conciliación de pagos. El webhook BDT y la conciliación siguen siendo el foco de pagos, pero no bloquean la separación de superficies.
+Los bloques 1, 1.5, 2 y 3 cerraron la separación de superficies: `home`, `match-search`, `match-detail`, `venues`, `booking`, `location` y `player` tienen su propio feature, servicios y copia. `discovery` desapareció. Lo que queda es de dominio y producto: historial de partidos, pases, notificaciones y conciliación de pagos. El webhook BDT y la conciliación siguen siendo el foco de pagos.

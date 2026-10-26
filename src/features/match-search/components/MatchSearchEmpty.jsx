@@ -2,14 +2,14 @@
 
 import { MapPin, SearchX, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { DISCOVERY_CONFIG } from "../config/discovery.constants";
+import { MATCH_SEARCH_CONFIG } from "../config/match-search.constants";
 
-export function DiscoveryEmpty({
+export function MatchSearchEmpty({
   hasFilters,
   onClearFilters,
   onExpandRadius,
 }) {
-  const labels = DISCOVERY_CONFIG.UI.EMPTY;
+  const labels = MATCH_SEARCH_CONFIG.UI.EMPTY;
 
   return (
     <div className="flex flex-col items-center justify-center rounded-3xl border border-dashed bg-card px-6 py-14 text-center">

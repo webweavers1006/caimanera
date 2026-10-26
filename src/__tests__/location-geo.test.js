@@ -4,12 +4,12 @@ import {
   formatDistance,
   orderByDistanceKm,
   getMapCenter,
-} from "@/features/discovery/lib/geo";
+} from "@/features/location/lib/geo";
 
 const CARACAS = { latitude: 10.4806, longitude: -66.9036 };
 const CHACAO = { latitude: 10.4961, longitude: -66.8537 };
 
-describe("discovery geo helpers", () => {
+describe("location geo helpers", () => {
   it("calculates distance in kilometers", () => {
     const km = distanceInKm(CARACAS, CHACAO);
     expect(km).toBeGreaterThan(5);

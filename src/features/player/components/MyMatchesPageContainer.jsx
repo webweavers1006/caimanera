@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getSession } from "@/features/auth/lib/auth";
 import { validateSessionUser } from "@/features/auth/services/auth.read.service";
-import { fetchMyUpcomingMatches } from "../services/discovery.read.service";
+import { fetchMyUpcomingMatches } from "../services/player.read.service";
 import { logger } from "@/features/shared/lib/logger";
 import { ErrorAlert } from "@/components/shared/ErrorAlert";
 import { ROUTES } from "@/features/shared";

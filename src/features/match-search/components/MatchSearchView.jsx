@@ -13,17 +13,15 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ROUTES, cn } from "@/features/shared";
-import {
-  DISCOVERY_CONFIG,
-  getSportEmoji,
-} from "@/features/discovery/config/discovery.constants";
-import { DiscoveryEmpty } from "@/features/discovery/components/DiscoveryEmpty";
-import { DiscoveryFilterSheet } from "@/features/discovery/components/DiscoveryFilterSheet";
-import { DiscoveryLocationButton } from "@/features/discovery/components/DiscoveryLocationButton";
-import { DiscoveryMapWrapper } from "@/features/discovery/components/DiscoveryMapWrapper";
-import { DiscoveryMatchCard } from "@/features/discovery/components/DiscoveryMatchCard";
-import { LocationPickerDialog } from "@/features/discovery/components/LocationPickerDialog";
-import { MatchCheckoutSheet } from "@/features/discovery/components/MatchCheckoutSheet";
+import { MATCH_SEARCH_CONFIG } from "../config/match-search.constants";
+import { getSportEmoji } from "@/features/shared/lib/sport";
+import { MatchSearchEmpty } from "./MatchSearchEmpty";
+import { MatchSearchFiltersSheet } from "./MatchSearchFiltersSheet";
+import { LocationButton } from "@/features/location/components/LocationButton";
+import { MatchesMapWrapper } from "@/features/shared/components/matches/MatchesMapWrapper";
+import { PublicMatchCard } from "@/features/shared/components/matches/PublicMatchCard";
+import { LocationPickerDialog } from "@/features/location/components/LocationPickerDialog";
+import { MatchCheckoutSheet } from "@/features/booking/components/MatchCheckoutSheet";
 import { useMatchSearchFilters } from "../hooks/use-match-search-filters";
 import { useMatchSearchLocation } from "../hooks/use-match-search-location";
 
@@ -69,9 +67,9 @@ export function MatchSearchView({
     distanceEnabled,
   } = useMatchSearchFilters(matches, location);
 
-  const labels = DISCOVERY_CONFIG.UI.MATCHES_STAGE;
-  const filterLabels = DISCOVERY_CONFIG.UI.FILTERS;
-  const sectionLabels = DISCOVERY_CONFIG.UI.SECTIONS;
+  const labels = MATCH_SEARCH_CONFIG.UI.STAGE;
+  const filterLabels = MATCH_SEARCH_CONFIG.UI.FILTERS;
+  const sectionLabels = MATCH_SEARCH_CONFIG.UI.SECTIONS;
 
   const courtFilter = filters.courtId
     ? courts.find((court) => court.id === filters.courtId)
@@ -80,14 +78,14 @@ export function MatchSearchView({
   const filtersCount = [
     Boolean(filters.searchTerm?.trim()),
     filters.dateFilter !== "all",
-    filters.radius !== DISCOVERY_CONFIG.RADIUS.DEFAULT,
+    filters.radius !== MATCH_SEARCH_CONFIG.RADIUS.DEFAULT,
     Boolean(filters.courtId),
   ].filter(Boolean).length;
 
-  const dateOption = DISCOVERY_CONFIG.DATE_FILTERS.find(
+  const dateOption = MATCH_SEARCH_CONFIG.DATE_FILTERS.find(
     (option) => option.value === filters.dateFilter
   );
-  const radiusOption = DISCOVERY_CONFIG.RADIUS.OPTIONS.find(
+  const radiusOption = MATCH_SEARCH_CONFIG.RADIUS.OPTIONS.find(
     (option) => String(option.value) === String(filters.radius)
   );
 
@@ -107,11 +105,11 @@ export function MatchSearchView({
       onRemove: () => setters.setDateFilter("all"),
     });
   }
-  if (radiusOption && filters.radius !== DISCOVERY_CONFIG.RADIUS.DEFAULT) {
+  if (radiusOption && filters.radius !== MATCH_SEARCH_CONFIG.RADIUS.DEFAULT) {
     activeChips.push({
       key: "radius",
       label: radiusOption.label,
-      onRemove: () => setters.setRadius(DISCOVERY_CONFIG.RADIUS.DEFAULT),
+      onRemove: () => setters.setRadius(MATCH_SEARCH_CONFIG.RADIUS.DEFAULT),
     });
   }
   if (courtFilter) {
@@ -178,7 +176,7 @@ export function MatchSearchView({
           </Button>
         </div>
 
-        <DiscoveryLocationButton
+        <LocationButton
           location={location}
           onClick={() => setPickerOpen(true)}
           className="mt-4"
@@ -274,12 +272,12 @@ export function MatchSearchView({
           >
             <button
               type="button"
-              onClick={() => setters.setView(DISCOVERY_CONFIG.VIEW.LIST)}
-              aria-pressed={filters.view === DISCOVERY_CONFIG.VIEW.LIST}
+              onClick={() => setters.setView(MATCH_SEARCH_CONFIG.VIEW.LIST)}
+              aria-pressed={filters.view === MATCH_SEARCH_CONFIG.VIEW.LIST}
               aria-label={filterLabels.VIEW_LIST}
               className={cn(
                 "inline-flex h-7 items-center gap-1.5 rounded-full px-2.5 text-[11px] font-semibold transition-colors",
-                filters.view === DISCOVERY_CONFIG.VIEW.LIST
+                filters.view === MATCH_SEARCH_CONFIG.VIEW.LIST
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground"
               )}
@@ -289,12 +287,12 @@ export function MatchSearchView({
             </button>
             <button
               type="button"
-              onClick={() => setters.setView(DISCOVERY_CONFIG.VIEW.MAP)}
-              aria-pressed={filters.view === DISCOVERY_CONFIG.VIEW.MAP}
+              onClick={() => setters.setView(MATCH_SEARCH_CONFIG.VIEW.MAP)}
+              aria-pressed={filters.view === MATCH_SEARCH_CONFIG.VIEW.MAP}
               aria-label={filterLabels.VIEW_MAP}
               className={cn(
                 "inline-flex h-7 items-center gap-1.5 rounded-full px-2.5 text-[11px] font-semibold transition-colors",
-                filters.view === DISCOVERY_CONFIG.VIEW.MAP
+                filters.view === MATCH_SEARCH_CONFIG.VIEW.MAP
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground"
               )}
@@ -307,13 +305,13 @@ export function MatchSearchView({
       )}
 
       {!hasMatches ? (
-        <DiscoveryEmpty
+        <MatchSearchEmpty
           hasFilters={hasActiveFilters}
           onClearFilters={clearFilters}
           onExpandRadius={showAllMatches}
         />
-      ) : filters.view === DISCOVERY_CONFIG.VIEW.MAP ? (
-        <DiscoveryMapWrapper
+      ) : filters.view === MATCH_SEARCH_CONFIG.VIEW.MAP ? (
+        <MatchesMapWrapper
           matches={filteredMatches}
           location={location}
           height={520}
@@ -322,7 +320,7 @@ export function MatchSearchView({
       ) : (
         <div className="space-y-2.5 pb-2">
           {filteredMatches.map((match) => (
-            <DiscoveryMatchCard
+            <PublicMatchCard
               key={match.id}
               match={match}
               onClick={() => openPreview(match)}
@@ -343,7 +341,7 @@ export function MatchSearchView({
         geoError={geoError}
       />
 
-      <DiscoveryFilterSheet
+      <MatchSearchFiltersSheet
         open={filterOpen}
         onOpenChange={setFilterOpen}
         filters={filters}
@@ -363,7 +361,7 @@ export function MatchSearchView({
         nextPath={nextPath}
         detailHref={
           selectedMatch
-            ? `${DISCOVERY_CONFIG.PATHS.MATCHES}/${selectedMatch.id}`
+            ? `${ROUTES.PUBLIC.MATCHES.path}/${selectedMatch.id}`
             : null
         }
       />

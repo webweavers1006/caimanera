@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { MapPin, Trophy } from "lucide-react";
-import { cn } from "@/features/shared";
-import { DISCOVERY_CONFIG, getSportEmoji } from "@/features/discovery/config/discovery.constants";
+import { ROUTES, cn } from "@/features/shared";
+import { VENUE_CONFIG } from "../config/venue.constants";
+import { getSportEmoji } from "@/features/shared/lib/sport";
 
-const labels = DISCOVERY_CONFIG.UI;
+const labels = VENUE_CONFIG.UI.DETAIL;
 
 /**
  * Public venue card shared by home and `/canchas`.
@@ -16,7 +17,7 @@ export function VenueCard({ venue, distanceLabel = null, variant = "default", cl
 
   return (
     <Link
-      href={`${DISCOVERY_CONFIG.PATHS.VENUES}/${venue.id}`}
+      href={`${ROUTES.PUBLIC.COURTS.path}/${venue.id}`}
       className={cn(
         "group relative block overflow-hidden rounded-3xl border border-border/70 bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         compact ? "aspect-[4/5]" : "aspect-[16/10]",

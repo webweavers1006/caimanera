@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { lightApiLimiter, getClientIp } from "@/features/shared/lib/api-rate-limiter";
-import { searchAddresses } from "@/features/discovery/lib/geocoder";
+import { searchAddresses } from "@/features/location/lib/geocoder";
 import { logger } from "@/features/shared/lib/logger";
 
 /**

@@ -46,9 +46,10 @@ import { formatPrice, formatVes } from "@/features/shared/lib/format";
 import { enrollInMatchAction, leaveInMatchAction } from "@/features/matches/actions/match.enroll.action";
 import { payAndEnrollInMatchAction } from "@/features/payments/actions/match.payment.action";
 import { PAYMENT_CONFIG, getPaymentMethod } from "@/features/payments/config/payment.constants";
-import { DISCOVERY_CONFIG, getSportEmoji } from "../config/discovery.constants";
-import { distanceInKm, formatDistance } from "../lib/geo";
-import { useDiscoveryLocation } from "../hooks/use-discovery-location";
+import { MATCH_UI } from "@/features/shared/config/match-ui.constants";
+import { getSportEmoji } from "@/features/shared/lib/sport";
+import { distanceInKm, formatDistance } from "@/features/location/lib/geo";
+import { useLocation } from "@/features/location/hooks/use-location";
 
 const METHOD_ICONS = {
   landmark: Landmark,
@@ -97,7 +98,7 @@ export function MatchCheckoutSheet({
   detailHref = null,
 }) {
   const router = useRouter();
-  const { location } = useDiscoveryLocation();
+  const { location } = useLocation();
   const [step, setStep] = useState(initialStep);
   const [method, setMethod] = useState("BDT");
   const [reference, setReference] = useState("");
@@ -557,7 +558,7 @@ export function MatchCheckoutSheet({
                     className="mb-2 h-11 w-full rounded-full"
                   >
                     <Link href={detailHref} onClick={() => onOpenChange(false)}>
-                      {DISCOVERY_CONFIG.UI.CARD.VIEW_FULL}
+                      {MATCH_UI.CARD.VIEW_FULL}
                       <ArrowRight data-icon="inline-end" />
                     </Link>
                   </Button>

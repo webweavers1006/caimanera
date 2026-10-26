@@ -2,8 +2,8 @@
 
 import { useCallback, useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useDiscoveryLocation } from "@/features/discovery/hooks/use-discovery-location";
-import { normalizeLocation } from "@/features/discovery/lib/geo";
+import { useLocation } from "@/features/location/hooks/use-location";
+import { normalizeLocation } from "@/features/location/lib/geo";
 
 function readNumber(value) {
   if (value == null || value === "") return null;
@@ -28,7 +28,7 @@ export function useMatchSearchLocation() {
     isLocating,
     geoError,
     clearGeoError,
-  } = useDiscoveryLocation();
+  } = useLocation();
 
   const lat = readNumber(searchParams.get("lat"));
   const lng = readNumber(searchParams.get("lng"));

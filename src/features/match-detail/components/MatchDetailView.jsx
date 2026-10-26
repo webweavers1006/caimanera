@@ -17,11 +17,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MATCH_CONFIG } from "@/features/matches/config/match.constants";
 import { formatPrice } from "@/features/shared/lib/format";
-import { DISCOVERY_CONFIG, getSportEmoji } from "@/features/discovery/config/discovery.constants";
-import { distanceInKm, formatDistance } from "@/features/discovery/lib/geo";
-import { useDiscoveryLocation } from "@/features/discovery/hooks/use-discovery-location";
-import { DiscoveryMapWrapper } from "@/features/discovery/components/DiscoveryMapWrapper";
-import { MatchCheckoutSheet } from "@/features/discovery/components/MatchCheckoutSheet";
+import { MATCH_UI } from "@/features/shared/config/match-ui.constants";
+import { getSportEmoji } from "@/features/shared/lib/sport";
+import { ROUTES } from "@/features/shared";
+import { distanceInKm, formatDistance } from "@/features/location/lib/geo";
+import { useLocation } from "@/features/location/hooks/use-location";
+import { MatchesMapWrapper } from "@/features/shared/components/matches/MatchesMapWrapper";
+import { MatchCheckoutSheet } from "@/features/booking/components/MatchCheckoutSheet";
 
 export function MatchDetailView({
   match,
@@ -29,13 +31,13 @@ export function MatchDetailView({
   subscription = null,
   canStaffConfirm = false,
 }) {
-  const { location } = useDiscoveryLocation();
+  const { location } = useLocation();
   const [activePhoto, setActivePhoto] = useState(0);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const photos = match.photos?.length ? match.photos : match.court?.coverPhoto ? [match.court.coverPhoto] : [];
   const confirmed = match.confirmedCount || 0;
   const filled = match.capacity > 0 ? Math.min(100, (confirmed / match.capacity) * 100) : 0;
-  const labels = DISCOVERY_CONFIG.UI.CARD;
+  const labels = MATCH_UI.CARD;
 
   const distance = useMemo(() => {
     if (!location || !match.court) return null;
@@ -60,7 +62,7 @@ export function MatchDetailView({
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-6">
       <Link
-        href={DISCOVERY_CONFIG.PATHS.MATCHES}
+        href={ROUTES.PUBLIC.MATCHES.path}
         className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft className="size-4" />
@@ -153,7 +155,7 @@ export function MatchDetailView({
           {match.court?.latitude != null && match.court?.longitude != null && (
             <div className="space-y-2">
               <h2 className="text-lg font-semibold">Ubicación de la cancha</h2>
-              <DiscoveryMapWrapper matches={[match]} location={location} height={320} />
+              <MatchesMapWrapper matches={[match]} location={location} height={320} />
               {match.court.address && (
                 <p className="flex items-start gap-1.5 text-sm text-muted-foreground">
                   <MapPin className="mt-0.5 size-4 shrink-0" />
@@ -258,7 +260,7 @@ export function MatchDetailView({
         isAuthenticated={isAuthenticated}
         subscription={subscription}
         canStaffConfirm={canStaffConfirm}
-        nextPath={`${DISCOVERY_CONFIG.PATHS.MATCHES}/${match.id}`}
+        nextPath={`${ROUTES.PUBLIC.MATCHES.path}/${match.id}`}
       />
     </div>
   );

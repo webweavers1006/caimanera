@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { MyMatchesPageContainer } from "@/features/discovery/components/MyMatchesPageContainer";
+import { MyMatchesPageContainer } from "@/features/player/components/MyMatchesPageContainer";
 import { SITE_CONFIG } from "@/features/shared";
 
 export const dynamic = "force-dynamic";

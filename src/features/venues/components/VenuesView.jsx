@@ -5,14 +5,14 @@ import Link from "next/link";
 import { MapPin, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/features/shared";
-import { DISCOVERY_CONFIG } from "@/features/discovery/config/discovery.constants";
-import { formatDistance, orderByDistanceKm } from "@/features/discovery/lib/geo";
-import { useDiscoveryLocation } from "@/features/discovery/hooks/use-discovery-location";
-import { DiscoveryLocationButton } from "@/features/discovery/components/DiscoveryLocationButton";
-import { LocationPickerDialog } from "@/features/discovery/components/LocationPickerDialog";
+import { VENUE_CONFIG } from "../config/venue.constants";
+import { formatDistance, orderByDistanceKm } from "@/features/location/lib/geo";
+import { useLocation } from "@/features/location/hooks/use-location";
+import { LocationButton } from "@/features/location/components/LocationButton";
+import { LocationPickerDialog } from "@/features/location/components/LocationPickerDialog";
 import { VenueCard } from "./VenueCard";
 
-const labels = DISCOVERY_CONFIG.UI.VENUES;
+const labels = VENUE_CONFIG.UI.LIST;
 
 /**
  * Public venue listing. The location selector orders venues by distance and
@@ -28,7 +28,7 @@ export function VenuesView({ venues = [] }) {
     locate,
     isLocating,
     geoError,
-  } = useDiscoveryLocation();
+  } = useLocation();
 
   const items = useMemo(() => {
     const ordered = location ? orderByDistanceKm(venues, location) : venues;
@@ -47,7 +47,7 @@ export function VenuesView({ venues = [] }) {
         <h1 className="mt-1 text-2xl font-bold tracking-tight">{labels.TITLE}</h1>
         <p className="mt-1 text-sm text-muted-foreground">{labels.SUBTITLE}</p>
 
-        <DiscoveryLocationButton
+        <LocationButton
           location={location}
           onClick={() => setPickerOpen(true)}
           className="mt-4"
@@ -74,7 +74,7 @@ export function VenuesView({ venues = [] }) {
         <>
           <div className="flex items-center justify-between gap-3 px-1">
             <h2 className="text-lg font-bold tracking-tight">
-              {DISCOVERY_CONFIG.UI.SECTIONS.VENUES_TITLE}
+              {VENUE_CONFIG.SECTIONS.TITLE}
             </h2>
             <span className="shrink-0 rounded-full bg-primary/15 px-3 py-1 text-xs font-semibold text-primary">
               {labels.COUNT(items.length)}

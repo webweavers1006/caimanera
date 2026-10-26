@@ -11,7 +11,7 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
-import { DISCOVERY_CONFIG } from "../config/discovery.constants";
+import { MATCH_SEARCH_CONFIG } from "../config/match-search.constants";
 
 function Chip({ active, children, onClick, disabled = false }) {
   return (
@@ -42,7 +42,7 @@ function Section({ title, children }) {
   );
 }
 
-export function DiscoveryFilterSheet({
+export function MatchSearchFiltersSheet({
   open,
   onOpenChange,
   filters,
@@ -51,7 +51,7 @@ export function DiscoveryFilterSheet({
   clearFilters,
   distanceEnabled = false,
 }) {
-  const labels = DISCOVERY_CONFIG.UI.FILTERS;
+  const labels = MATCH_SEARCH_CONFIG.UI.FILTERS;
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
@@ -91,7 +91,7 @@ export function DiscoveryFilterSheet({
             </div>
 
             <Section title={labels.DATE}>
-              {DISCOVERY_CONFIG.DATE_FILTERS.map((option) => (
+              {MATCH_SEARCH_CONFIG.DATE_FILTERS.map((option) => (
                 <Chip
                   key={option.value}
                   active={filters.dateFilter === option.value}
@@ -103,7 +103,7 @@ export function DiscoveryFilterSheet({
             </Section>
 
             <Section title={labels.RADIUS}>
-              {DISCOVERY_CONFIG.RADIUS.OPTIONS.map((option) => (
+              {MATCH_SEARCH_CONFIG.RADIUS.OPTIONS.map((option) => (
                 <Chip
                   key={option.value}
                   active={String(filters.radius) === String(option.value)}
@@ -121,7 +121,7 @@ export function DiscoveryFilterSheet({
             )}
 
             <Section title={labels.SORT}>
-              {DISCOVERY_CONFIG.SORT.OPTIONS.filter(
+              {MATCH_SEARCH_CONFIG.SORT.OPTIONS.filter(
                 (option) => option.value !== "distance" || distanceEnabled
               ).map((option) => (
                 <Chip

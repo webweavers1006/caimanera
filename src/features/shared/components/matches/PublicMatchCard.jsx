@@ -4,7 +4,8 @@ import Link from "next/link";
 import { CalendarDays, Clock3, MapPin, Users } from "lucide-react";
 import { cn } from "@/features/shared";
 import { formatPrice } from "@/features/shared/lib/format";
-import { DISCOVERY_CONFIG, getSportEmoji } from "../config/discovery.constants";
+import { MATCH_UI } from "@/features/shared/config/match-ui.constants";
+import { getSportEmoji } from "@/features/shared/lib/sport";
 
 function statusLabel(match) {
   if (match.isEnrolled) {
@@ -34,14 +35,14 @@ function statusTone(match, available) {
  * it, it behaves as a button for quick previews such as "Mis partidos".
  * `compact` is a horizontal snap card for carousels; `row` fills the list.
  */
-export function DiscoveryMatchCard({
+export function PublicMatchCard({
   match,
   onClick,
   href = null,
   variant = "row",
   className = "",
 }) {
-  const labels = DISCOVERY_CONFIG.UI.CARD;
+  const labels = MATCH_UI.CARD;
   const capacity = Number(match.capacity || 0);
   const slotsLeft = Number(match.slotsLeft ?? 0);
   const filled =

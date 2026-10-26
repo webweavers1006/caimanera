@@ -5,16 +5,16 @@ import Link from "next/link";
 import { ArrowRight, CalendarCheck, Map as MapIcon, MapPin, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ROUTES, cn } from "@/features/shared";
-import { DISCOVERY_CONFIG } from "@/features/discovery/config/discovery.constants";
-import { orderByDistanceKm, formatDistance } from "@/features/discovery/lib/geo";
-import { useDiscoveryLocation } from "@/features/discovery/hooks/use-discovery-location";
-import { DiscoveryLocationButton } from "@/features/discovery/components/DiscoveryLocationButton";
-import { DiscoveryMatchCard } from "@/features/discovery/components/DiscoveryMatchCard";
-import { LocationPickerDialog } from "@/features/discovery/components/LocationPickerDialog";
+import { HOME_CONFIG } from "../config/home.constants";
+import { orderByDistanceKm, formatDistance } from "@/features/location/lib/geo";
+import { useLocation } from "@/features/location/hooks/use-location";
+import { LocationButton } from "@/features/location/components/LocationButton";
+import { PublicMatchCard } from "@/features/shared/components/matches/PublicMatchCard";
+import { LocationPickerDialog } from "@/features/location/components/LocationPickerDialog";
 import { VenueCard } from "@/features/venues/components/VenueCard";
 
-const labels = DISCOVERY_CONFIG.UI.HOME;
-const sectionLabels = DISCOVERY_CONFIG.UI.SECTIONS;
+const labels = HOME_CONFIG.UI;
+const sectionLabels = HOME_CONFIG.SECTIONS;
 
 const SERVICES = [
   {
@@ -53,7 +53,7 @@ export function HomeView({ matches = [], courts = [], userName = null }) {
     locate,
     isLocating,
     geoError,
-  } = useDiscoveryLocation();
+  } = useLocation();
 
   const sortedCourts = useMemo(() => {
     const ordered = location ? orderByDistanceKm(courts, location) : courts;
@@ -87,7 +87,7 @@ export function HomeView({ matches = [], courts = [], userName = null }) {
             </p>
           </div>
 
-          <DiscoveryLocationButton
+          <LocationButton
             location={location}
             onClick={() => setPickerOpen(true)}
             className="lg:w-80 lg:shrink-0"
@@ -147,9 +147,9 @@ export function HomeView({ matches = [], courts = [], userName = null }) {
         </div>
 
         {nextMatch ? (
-          <DiscoveryMatchCard
+          <PublicMatchCard
             match={nextMatch}
-            href={`${DISCOVERY_CONFIG.PATHS.MATCHES}/${nextMatch.id}`}
+            href={`${ROUTES.PUBLIC.MATCHES.path}/${nextMatch.id}`}
           />
         ) : (
           <div className="flex flex-col items-center rounded-3xl border border-dashed bg-card px-6 py-10 text-center">
@@ -178,10 +178,10 @@ export function HomeView({ matches = [], courts = [], userName = null }) {
           </div>
 
           {upcomingMatches.map((match) => (
-            <DiscoveryMatchCard
+            <PublicMatchCard
               key={match.id}
               match={match}
-              href={`${DISCOVERY_CONFIG.PATHS.MATCHES}/${match.id}`}
+              href={`${ROUTES.PUBLIC.MATCHES.path}/${match.id}`}
             />
           ))}
 

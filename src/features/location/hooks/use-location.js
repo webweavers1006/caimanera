@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState, useSyncExternalStore } from "react";
-import { DISCOVERY_CONFIG } from "../config/discovery.constants";
+import { LOCATION_CONFIG } from "../config/location.constants";
 import { normalizeLocation } from "../lib/geo";
 
 const LOCATION_EVENT = "caimanera:location-changed";
@@ -32,10 +32,10 @@ function writeStorage(key, value) {
 }
 
 /**
- * Exposes the selected discovery location and the recent locations list.
+ * Exposes the selected location and the recent locations list.
  * Persisted in localStorage and shared across components via custom events.
  */
-export function useDiscoveryLocation() {
+export function useLocation() {
   const locationRaw = useSyncExternalStore(
     (callback) => {
       window.addEventListener(LOCATION_EVENT, callback);
@@ -45,7 +45,7 @@ export function useDiscoveryLocation() {
         window.removeEventListener("storage", callback);
       };
     },
-    () => readStorage(DISCOVERY_CONFIG.STORAGE.LOCATION),
+    () => readStorage(LOCATION_CONFIG.STORAGE.LOCATION),
     () => EMPTY
   );
 
@@ -58,7 +58,7 @@ export function useDiscoveryLocation() {
         window.removeEventListener("storage", callback);
       };
     },
-    () => readStorage(DISCOVERY_CONFIG.STORAGE.RECENTS),
+    () => readStorage(LOCATION_CONFIG.STORAGE.RECENTS),
     () => EMPTY
   );
 
@@ -91,7 +91,7 @@ export function useDiscoveryLocation() {
     if (!normalized) return;
     setGeoError(null);
 
-    writeStorage(DISCOVERY_CONFIG.STORAGE.LOCATION, JSON.stringify(normalized));
+    writeStorage(LOCATION_CONFIG.STORAGE.LOCATION, JSON.stringify(normalized));
     emit(LOCATION_EVENT);
 
     const entry = {
@@ -101,7 +101,7 @@ export function useDiscoveryLocation() {
 
     const current = (() => {
       try {
-        const parsed = JSON.parse(readStorage(DISCOVERY_CONFIG.STORAGE.RECENTS) || "[]");
+        const parsed = JSON.parse(readStorage(LOCATION_CONFIG.STORAGE.RECENTS) || "[]");
         return Array.isArray(parsed) ? parsed : [];
       } catch {
         return [];
@@ -117,14 +117,14 @@ export function useDiscoveryLocation() {
     });
 
     writeStorage(
-      DISCOVERY_CONFIG.STORAGE.RECENTS,
-      JSON.stringify([entry, ...deduped].slice(0, DISCOVERY_CONFIG.MAX_RECENTS))
+      LOCATION_CONFIG.STORAGE.RECENTS,
+      JSON.stringify([entry, ...deduped].slice(0, LOCATION_CONFIG.MAX_RECENTS))
     );
     emit(RECENTS_EVENT);
   }, []);
 
   const clearRecentLocations = useCallback(() => {
-    writeStorage(DISCOVERY_CONFIG.STORAGE.RECENTS, "");
+    writeStorage(LOCATION_CONFIG.STORAGE.RECENTS, "");
     emit(RECENTS_EVENT);
   }, []);
 

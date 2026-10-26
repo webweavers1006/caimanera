@@ -2,11 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import {
-  DISCOVERY_CONFIG,
-  getSportEmoji,
-} from "@/features/discovery/config/discovery.constants";
-import { distanceInKm, estimateMinutes, formatDistance } from "@/features/discovery/lib/geo";
+import { MATCH_SEARCH_CONFIG } from "../config/match-search.constants";
+import { getSportEmoji } from "@/features/shared/lib/sport";
+import { distanceInKm, estimateMinutes, formatDistance } from "@/features/location/lib/geo";
 
 const normalizeText = (value) =>
   String(value || "")
@@ -15,9 +13,9 @@ const normalizeText = (value) =>
     .toLowerCase()
     .trim();
 
-const DATE_VALUES = new Set(DISCOVERY_CONFIG.DATE_FILTERS.map((option) => option.value));
-const SORT_VALUES = new Set(DISCOVERY_CONFIG.SORT.OPTIONS.map((option) => option.value));
-const RADIUS_VALUES = new Set(DISCOVERY_CONFIG.RADIUS.OPTIONS.map((option) => String(option.value)));
+const DATE_VALUES = new Set(MATCH_SEARCH_CONFIG.DATE_FILTERS.map((option) => option.value));
+const SORT_VALUES = new Set(MATCH_SEARCH_CONFIG.SORT.OPTIONS.map((option) => option.value));
+const RADIUS_VALUES = new Set(MATCH_SEARCH_CONFIG.RADIUS.OPTIONS.map((option) => String(option.value)));
 
 /**
  * Match search filters backed by the URL.
@@ -80,10 +78,10 @@ export function useMatchSearchFilters(matches = [], location = null) {
 
   const setSport = (value) => setParam("deporte", value, "all");
   const setDateFilter = (value) => setParam("dia", value, "all");
-  const setRadius = (value) => setParam("radio", value, DISCOVERY_CONFIG.RADIUS.DEFAULT);
-  const setSort = (value) => setParam("orden", value, DISCOVERY_CONFIG.SORT.DEFAULT);
+  const setRadius = (value) => setParam("radio", value, MATCH_SEARCH_CONFIG.RADIUS.DEFAULT);
+  const setSort = (value) => setParam("orden", value, MATCH_SEARCH_CONFIG.SORT.DEFAULT);
   const setView = (value) =>
-    setParam("vista", value === DISCOVERY_CONFIG.VIEW.MAP ? "mapa" : null);
+    setParam("vista", value === MATCH_SEARCH_CONFIG.VIEW.MAP ? "mapa" : null);
   const setCourtFilter = (courtId) => setParam("cancha", courtId);
 
   const sport = searchParams.get("deporte") || "all";
@@ -96,14 +94,14 @@ export function useMatchSearchFilters(matches = [], location = null) {
       ? "all"
       : radiusRaw && RADIUS_VALUES.has(radiusRaw)
         ? Number(radiusRaw)
-        : DISCOVERY_CONFIG.RADIUS.DEFAULT;
+        : MATCH_SEARCH_CONFIG.RADIUS.DEFAULT;
 
-  const sortRaw = searchParams.get("orden") || DISCOVERY_CONFIG.SORT.DEFAULT;
-  const sort = SORT_VALUES.has(sortRaw) ? sortRaw : DISCOVERY_CONFIG.SORT.DEFAULT;
+  const sortRaw = searchParams.get("orden") || MATCH_SEARCH_CONFIG.SORT.DEFAULT;
+  const sort = SORT_VALUES.has(sortRaw) ? sortRaw : MATCH_SEARCH_CONFIG.SORT.DEFAULT;
 
   const viewRaw = searchParams.get("vista");
   const view =
-    viewRaw === "mapa" || viewRaw === "map" ? DISCOVERY_CONFIG.VIEW.MAP : DISCOVERY_CONFIG.VIEW.LIST;
+    viewRaw === "mapa" || viewRaw === "map" ? MATCH_SEARCH_CONFIG.VIEW.MAP : MATCH_SEARCH_CONFIG.VIEW.LIST;
 
   const courtId = searchParams.get("cancha") || null;
 
@@ -200,7 +198,7 @@ export function useMatchSearchFilters(matches = [], location = null) {
     searchTerm.trim() !== "" ||
     sport !== "all" ||
     dateFilter !== "all" ||
-    radius !== DISCOVERY_CONFIG.RADIUS.DEFAULT ||
+    radius !== MATCH_SEARCH_CONFIG.RADIUS.DEFAULT ||
     Boolean(courtId);
 
   const clearFilters = () => {

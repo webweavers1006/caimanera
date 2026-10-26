@@ -7,8 +7,10 @@ import { Circle, MapContainer, Marker, Popup, TileLayer, useMap } from "react-le
 import "leaflet/dist/leaflet.css";
 import { MapPin } from "lucide-react";
 import { formatPrice } from "@/features/shared/lib/format";
-import { getSportEmoji, DISCOVERY_CONFIG } from "../config/discovery.constants";
-import { getMapCenter } from "../lib/geo";
+import { ROUTES } from "@/features/shared";
+import { getSportEmoji } from "@/features/shared/lib/sport";
+import { MATCH_UI } from "@/features/shared/config/match-ui.constants";
+import { getMapCenter } from "@/features/location/lib/geo";
 
 function FitBounds({ points }) {
   const map = useMap();
@@ -79,7 +81,7 @@ function MatchPopupBody({ match }) {
  * OSM map of available matches. Grouped by court so overlapping starts stay
  * usable. Loaded through a dynamic wrapper to keep Leaflet client-only.
  */
-export function DiscoveryMap({
+export function MatchesMap({
   matches = [],
   location = null,
   height = 520,
@@ -147,7 +149,7 @@ export function DiscoveryMap({
                     ) : (
                       <Link
                         key={match.id}
-                        href={`${DISCOVERY_CONFIG.PATHS.MATCHES}/${match.id}`}
+                        href={`${ROUTES.PUBLIC.MATCHES.path}/${match.id}`}
                         className="block rounded-lg border p-2 text-xs transition-colors hover:bg-muted"
                       >
                         <MatchPopupBody match={match} />
@@ -165,7 +167,7 @@ export function DiscoveryMap({
 
       <div className="pointer-events-none absolute right-3 top-3 z-[400] flex items-center gap-1.5 rounded-full bg-background/95 px-3 py-1.5 text-xs font-medium shadow">
         <MapPin className="size-3.5 text-primary" />
-        {DISCOVERY_CONFIG.UI.MAP.LEGEND}
+        {MATCH_UI.MAP.LEGEND}
       </div>
     </div>
   );

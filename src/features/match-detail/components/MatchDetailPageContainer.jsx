@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
 import { getSession } from "@/features/auth/lib/auth";
 import { validateSessionUser } from "@/features/auth/services/auth.read.service";
-import { getUserPermissions } from "@/features/permissions/services/permission.authorization.service";
-import { PARTICIPANT_CONFIG } from "@/features/participants/config/participant.constants";
+import { getBookingCapabilities } from "@/features/booking/services/booking.authorization.service";
 import { logger } from "@/features/shared/lib/logger";
 import { ErrorAlert } from "@/components/shared/ErrorAlert";
 import { fetchMatchDetailPageData } from "../services/match-detail.read.service";
@@ -11,7 +10,7 @@ import { MatchDetailView } from "./MatchDetailView";
 export async function MatchDetailPageContainer({ matchId }) {
   const jwtSession = await getSession();
   const session = jwtSession ? await validateSessionUser(jwtSession) : null;
-  const permissions = session ? await getUserPermissions(session.role) : [];
+  const { canStaffConfirm } = await getBookingCapabilities(session);
 
   let data;
 
@@ -39,7 +38,7 @@ export async function MatchDetailPageContainer({ matchId }) {
       match={data.match}
       isAuthenticated={Boolean(session)}
       subscription={data.subscription}
-      canStaffConfirm={permissions.includes(PARTICIPANT_CONFIG.PERMISSIONS.WRITE)}
+      canStaffConfirm={canStaffConfirm}
     />
   );
 }

@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { DISCOVERY_CONFIG } from "../config/discovery.constants";
+import { LOCATION_CONFIG } from "../config/location.constants";
 
 function ResultRow({ icon: Icon, title, subtitle, onClick, badge }) {
   return (
@@ -60,8 +60,7 @@ export function LocationPickerDialog({
   isLocating = false,
   geoError = null,
 }) {
-  const { UI } = DISCOVERY_CONFIG;
-  const labels = UI.LOCATION;
+  const labels = LOCATION_CONFIG.UI;
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -292,7 +291,7 @@ export function LocationPickerDialog({
                 <p className="px-3 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                   {labels.POPULAR}
                 </p>
-                {DISCOVERY_CONFIG.ZONES.map((zone) => (
+                {LOCATION_CONFIG.ZONES.map((zone) => (
                   <ResultRow
                     key={zone.label}
                     icon={MapPin}

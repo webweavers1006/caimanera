@@ -6,19 +6,17 @@ import { ArrowLeft, Clock3, MapPin, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/features/shared";
 import { formatPrice } from "@/features/shared/lib/format";
-import {
-  DISCOVERY_CONFIG,
-  getSportEmoji,
-} from "@/features/discovery/config/discovery.constants";
-import { distanceInKm, formatDistance } from "@/features/discovery/lib/geo";
-import { useDiscoveryLocation } from "@/features/discovery/hooks/use-discovery-location";
-import { DiscoveryMapWrapper } from "@/features/discovery/components/DiscoveryMapWrapper";
-import { DiscoveryMatchCard } from "@/features/discovery/components/DiscoveryMatchCard";
+import { VENUE_CONFIG } from "../config/venue.constants";
+import { getSportEmoji } from "@/features/shared/lib/sport";
+import { distanceInKm, formatDistance } from "@/features/location/lib/geo";
+import { useLocation } from "@/features/location/hooks/use-location";
+import { MatchesMapWrapper } from "@/features/shared/components/matches/MatchesMapWrapper";
+import { PublicMatchCard } from "@/features/shared/components/matches/PublicMatchCard";
 
-const labels = DISCOVERY_CONFIG.UI.VENUES;
+const labels = VENUE_CONFIG.UI.LIST;
 
 export function VenueDetailView({ venue }) {
-  const { location } = useDiscoveryLocation();
+  const { location } = useLocation();
 
   const distance = useMemo(() => {
     if (!location) return null;
@@ -28,7 +26,7 @@ export function VenueDetailView({ venue }) {
 
   const matches = venue.matches || [];
   const cover = venue.photo || venue.photos?.[0] || null;
-  const matchesHref = `${DISCOVERY_CONFIG.PATHS.MATCHES}?cancha=${venue.id}`;
+  const matchesHref = `${ROUTES.PUBLIC.MATCHES.path}?cancha=${venue.id}`;
 
   return (
     <div className="mx-auto w-full max-w-3xl space-y-5 px-4 py-6">
@@ -88,7 +86,7 @@ export function VenueDetailView({ venue }) {
             <Clock3 className="size-3" /> Próximos partidos
           </p>
           <p className="mt-1 text-sm font-semibold">
-            {DISCOVERY_CONFIG.UI.VENUE.MATCHES(venue.upcomingMatches ?? matches.length)}
+            {VENUE_CONFIG.UI.DETAIL.MATCHES(venue.upcomingMatches ?? matches.length)}
           </p>
         </div>
         <div className="rounded-2xl border border-border/70 bg-card p-4">
@@ -116,7 +114,7 @@ export function VenueDetailView({ venue }) {
       )}
 
       {matches.length > 0 && venue.latitude != null && venue.longitude != null && (
-        <DiscoveryMapWrapper matches={matches} location={location} height={280} />
+        <MatchesMapWrapper matches={matches} location={location} height={280} />
       )}
 
       <section className="space-y-3">
@@ -151,10 +149,10 @@ export function VenueDetailView({ venue }) {
         ) : (
           <div className="space-y-2.5 pb-2">
             {matches.map((match) => (
-              <DiscoveryMatchCard
+              <PublicMatchCard
                 key={match.id}
                 match={match}
-                href={`${DISCOVERY_CONFIG.PATHS.MATCHES}/${match.id}`}
+                href={`${ROUTES.PUBLIC.MATCHES.path}/${match.id}`}
               />
             ))}
           </div>

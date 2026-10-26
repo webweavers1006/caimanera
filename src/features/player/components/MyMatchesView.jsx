@@ -5,20 +5,20 @@ import Link from "next/link";
 import { CalendarCheck, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/features/shared";
-import { DISCOVERY_CONFIG } from "../config/discovery.constants";
-import { distanceInKm, formatDistance } from "../lib/geo";
-import { useDiscoveryLocation } from "../hooks/use-discovery-location";
-import { DiscoveryMatchCard } from "./DiscoveryMatchCard";
-import { MatchCheckoutSheet } from "./MatchCheckoutSheet";
+import { PLAYER_CONFIG } from "../config/player.constants";
+import { distanceInKm, formatDistance } from "@/features/location/lib/geo";
+import { useLocation } from "@/features/location/hooks/use-location";
+import { PublicMatchCard } from "@/features/shared/components/matches/PublicMatchCard";
+import { MatchCheckoutSheet } from "@/features/booking/components/MatchCheckoutSheet";
 
 /**
  * Public "Mis partidos" list: only the player's upcoming enrollments.
- * Reuses the discovery card and checkout sheet so managing a booking feels
+ * Reuses the public match card and checkout sheet so managing a booking feels
  * identical to joining one, without entering the admin panel.
  */
 export function MyMatchesView({ matches = [] }) {
-  const labels = DISCOVERY_CONFIG.UI.MY_MATCHES;
-  const { location } = useDiscoveryLocation();
+  const labels = PLAYER_CONFIG.MY_MATCHES;
+  const { location } = useLocation();
   const [selectedMatch, setSelectedMatch] = useState(null);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
 
@@ -82,7 +82,7 @@ export function MyMatchesView({ matches = [] }) {
       ) : (
         <div className="mt-5 space-y-2.5 pb-2">
           {items.map((match) => (
-            <DiscoveryMatchCard
+            <PublicMatchCard
               key={match.id}
               match={match}
               onClick={() => handleOpenMatch(match)}
