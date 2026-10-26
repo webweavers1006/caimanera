@@ -17,6 +17,8 @@ export default function robots() {
     ROUTES.AUDIT.path,
     ...Object.values(ROUTES.CATALOGS).map((route) => route.path),
     ROUTES.PROFILE.path,
+    // PWA offline fallback: static and never indexed.
+    '/offline',
   ]
 
   return {

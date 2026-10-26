@@ -50,6 +50,8 @@ const nextConfig = {
               "default-src 'self'",
               `script-src 'self' 'unsafe-inline' ${!isProduction ? "'unsafe-eval'" : ''}`,
               "style-src 'self' 'unsafe-inline'",
+              "worker-src 'self'",
+              "manifest-src 'self'",
               "img-src 'self' data: blob: https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://picsum.photos https://fastly.picsum.photos https://cdnjs.cloudflare.com",
               "font-src 'self' data:",
               "connect-src 'self' https://tile.openstreetmap.org https://*.tile.openstreetmap.org ws://127.0.0.1:3002 wss://127.0.0.1:3002 ws://127.0.0.1:3003/ wss://127.0.0.1:3003/ http://tablet.sigwebtablet.com:47289 https://tablet.sigwebtablet.com:47290",
@@ -58,6 +60,24 @@ const nextConfig = {
               "form-action 'self'",
             ].join('; '),
           },
+        ],
+      },
+      // Service worker: must revalidate so a new deploy is picked up, and it
+      // controls the whole origin.
+      {
+        source: '/sw.js',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' },
+          { key: 'Service-Worker-Allowed', value: '/' },
+        ],
+      },
+      // Manifest can be cached briefly; icons live under /icons and are
+      // immutable enough for the asset cache.
+      {
+        source: '/manifest.webmanifest',
+        headers: [
+          { key: 'Content-Type', value: 'application/manifest+json' },
+          { key: 'Cache-Control', value: 'public, max-age=3600' },
         ],
       },
     ]

@@ -7,7 +7,7 @@ import { ROUTES } from '@/features/shared/config/navigation/navigation.config'
  */
 export default function sitemap() {
   // NEXT_PUBLIC_SITE_URL must be set in production to avoid localhost fallback.
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:4000'
 
   return [
     {

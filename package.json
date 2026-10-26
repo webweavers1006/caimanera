@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env TZ=UTC next dev -p 3001",
+    "dev": "cross-env TZ=UTC next dev -p 4000",
     "build": "next build",
-    "start": "next start -p 3001",
+    "start": "next start -p 4000",
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
     "seed": "node prisma/seed",
+    "pwa:icons": "node scripts/generate-pwa-icons.mjs",
     "fix-open-forwarded": "node scripts/fix-open-forwarded-cases.mjs"
   },
   "dependencies": {

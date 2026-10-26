@@ -1,12 +1,12 @@
 # Estado del proyecto — Caimanera
 
 > **Fecha de corte:** 26 de octubre de 2026  
-> **Resumen:** app y admin separados; bloques 1, 1.5, 2, 3 y 4 completados. El inicio es público, las pantallas de juego requieren sesión y el jugador ya tiene pases y pagos propios. `discovery` ya no existe: `booking`, `location` y `player` viven en sus propios features.  
-> **Última verificación:** 26 oct 2026 · build OK · tests 75/75 · lint 0 errores / 20 warnings  
+> **Resumen:** app y admin separados; bloques 1, 1.5, 2, 3 y 4 completados. El inicio es público, las pantallas de juego requieren sesión y el jugador ya tiene pases y pagos propios. `discovery` ya no existe: `booking`, `location` y `player` viven en sus propios features. La app ya es instalable como PWA (manifest + service worker manual).  
+> **Última verificación:** 26 oct 2026 · build OK · tests 75/75 · lint 0 errores / 19 warnings · PWA verificada en Chrome (manifest, SW activo, precache y fallback offline).  
 > **Rama activa:** `feat/separacion-app-admin`  
-> **Estado general:** funcional, compilando, con tests en verde y con la superficie del jugador separada del panel administrativo.  
-> **Fase actual:** separación funcional app / admin completada (bloques 1, 1.5, 2, 3 y 4).  
-> **Siguiente foco:** pendientes de dominio y producto (webhook BDT, conciliación automática, cobro al promover lista de espera y notificaciones de partido) — sección 7.2.  
+> **Estado general:** funcional, compilando, con tests en verde, con la superficie del jugador separada del panel administrativo y con instalación PWA disponible.  
+> **Fase actual:** separación funcional app / admin completada (bloques 1, 1.5, 2, 3 y 4) + capa PWA.  
+> **Siguiente foco:** validación PWA en dispositivos reales (iOS/Android) y pendientes de dominio y producto (webhook BDT, conciliación automática, cobro al promover lista de espera y notificaciones de partido) — sección 7.2.  
 > **Commits de referencia:** `3b5ee56` (checkpoint), `13e5122` (bloque 1), `0582e45` (bloque 1.5), `a734c59` (docs), `d28c385` (bloque 2), `481b471` (bloque 3), `710b8d7` (historial); pases y pagos en el commit actual.
 
 ---
@@ -15,7 +15,7 @@
 
 1. **Rama:** `git switch feat/separacion-app-admin`. El bloque 2 está commiteado en `d28c385`; el bloque 3 en `481b471`; el historial en `710b8d7`; pases y pagos en el commit actual.
 2. **Variables:** configurar `NEXT_PUBLIC_LANDING_URL` en `.env` (ver `.env.example`). Sin ella, los legales se muestran como texto y las URLs viejas `/terminos` y `/privacidad` redirigen a `/`.
-3. **Entorno:** `pnpm install` si hace falta y `pnpm dev`. El script usa el puerto 3001; si ya hay otro dev server de Next en el repo, Next se niega a arrancar (en esta máquina también apareció uno en 3000).
+3. **Entorno:** `pnpm install` si hace falta y `pnpm dev`. El script usa el puerto 4000; si ya hay otro dev server de Next en el repo, Next se niega a arrancar (en esta máquina también apareció uno en 3000).
 4. **Leer primero:** secciones 2.15 (bloque 1), 2.16 (bloque 1.5), 2.17 (bloque 2), 2.18 (bloque 3), 2.19 (historial), 2.20 (pases, pagos y acceso), 3 (estructura), 7.1 (bloque 2 completado), 7.2 (siguientes pasos) y 8 (riesgos).
 5. **Empezar por:** sección 7.2, “Siguientes pasos funcionales”. La separación de superficies está cerrada; el trabajo nuevo es de dominio y producto.
 
@@ -231,7 +231,7 @@ Se conectó el CRUD que antes estaba incompleto:
 
 - README reescrito para Caimanera.
 - `package.json` renombrado a `caimanera-app`.
-- `ecosystem.config.js` renombrado a Caimanera y puerto 3001.
+- `ecosystem.config.js` renombrado a Caimanera y puerto 4000.
 - Correo del admin demo cambiado a `admin@caimanera.app`.
 - Eliminadas referencias visibles a PlayMatch.
 - Eliminado el grupo “Catálogos” del sidebar para reducir ruido.
@@ -589,6 +589,46 @@ Se cerró la separación de producto: el inicio es público, las pantallas de ju
 
 ---
 
+### 2.21 PWA instalable (26 de octubre de 2026)
+
+La app se preparó para instalarse como aplicación y funcionar sin conexión en modo lectura. No cambia ninguna regla de negocio ni ruta existente.
+
+**Manifest y metadata:**
+
+- `src/app/manifest.js` genera `/manifest.webmanifest` con `id`, `start_url`, `scope`, `display: standalone`, `lang: es`, `theme_color`/`background_color` (`#0d0e19`) e iconos `192`, `512` y `512 maskable`.
+- Atajos de instalación: `/partidos`, `/mis-partidos` y `/cuenta` (si no hay sesión, el proxy lleva a login con `?next=`).
+- `src/app/layout.js` enlaza el manifest, declara iconos PWA, `appleWebApp.capable` y `theme-color` vía el export `viewport`.
+- Compatibilidad iOS: `apple-mobile-web-app-capable`, `apple-mobile-web-app-title` y `statusBarStyle: black-translucent`; el header de la app y el del admin reservan `env(safe-area-inset-top)`.
+- Iconos generados con `pnpm pwa:icons` (`scripts/generate-pwa-icons.mjs`, sharp) a partir de `public/img/caimanera_icon.png`. El maskable usa el propio verde del icono como fondo, dentro de la safe zone de Android.
+
+**Service worker (manual, sin dependencias):**
+
+- `public/sw.js` con versión `caimanera-v1` y dos cachés: estáticos e imágenes.
+- Precache: `/offline`, su CSS/JS/fuentes hasheados, el manifest, los iconos y el logo. Así la página offline se ve bien incluso si el usuario se queda sin red antes de navegar.
+- `/_next/static/*` → cache-first; imágenes e iconos → stale-while-revalidate con tope de 80 entradas.
+- **Navegación → network-only.** Nunca se cachea HTML. Si falla la red (o el proxy responde 502/503/504) se sirve `/offline`; jamás el render de otro usuario. Esto protege `/cuenta`, `/mis-partidos`, `/admin` y el inicio personalizado.
+- No intercepta `POST`, ni `/api/*`, ni payloads RSC (`_rsc`), ni prefetch del router.
+- `skipWaiting` + `clients.claim`, limpieza de cachés de versiones anteriores y handshake `PING/PONG` para diagnosticar la versión activa.
+
+**Offline y UX:**
+
+- `/offline` es estática y pública: el proxy la deja pasar antes de validar sesión (si no, un staff terminaría cacheando el HTML de `/admin`). También queda fuera de `robots.txt`.
+- `OfflineBanner` avisa “Sin conexión” sobre la barra inferior móvil y se oculta al volver la red.
+- `InstallAppButton` aparece en `/cuenta`: usa `beforeinstallprompt` en Chromium y muestra las instrucciones manuales en iOS Safari; se oculta si ya corre en modo standalone.
+- `PwaRegister` registra el SW solo en producción (`pnpm build && pnpm start`), para no interferir con el HMR de Turbopack.
+- `next.config.mjs`: `worker-src`/`manifest-src` en la CSP, `Cache-Control: max-age=0, must-revalidate` y `Service-Worker-Allowed: /` para `/sw.js`, y `application/manifest+json` para el manifest.
+
+**Verificación:**
+
+- `pnpm build` OK: `/manifest.webmanifest` y `/offline` aparecen como estáticas.
+- `pnpm test`: 75/75. `npx eslint src`: 0 errores, 19 warnings.
+- Smoke HTTP: manifest 200 (`application/manifest+json`), `sw.js` 200 con `Service-Worker-Allowed: /`, `/offline` 200 sin sesión.
+- Chrome real (perfil limpio): SW `activated` con scope `/`, 6 entradas precacheadas y `PING → PONG caimanera-v1`.
+- Con el servidor apagado, navegar a `/partidos` mantiene la URL y renderiza `/offline` (“Sin conexión” + “Reintentar”); el caché solo contiene assets y `/offline`, ningún HTML de ruta privada.
+- **Pendiente:** pasada final en dispositivos reales (Android Chrome instalado e iOS “Añadir a inicio”), Lighthouse y prueba de actualización de SW tras un despliegue.
+
+---
+
 ## 3. Estructura relevante nueva
 
 ```text
@@ -770,7 +810,7 @@ src/features/transactions/
 pnpm build
 ```
 
-Resultado: **exitoso**, sin errores. `/login`, `/robots.txt` y `/sitemap.xml` se generan como estáticas; el resto es dinámico. `/terminos` y `/privacidad` ya no existen en el mapa de rutas.
+Resultado: **exitoso**, sin errores. `/login`, `/offline`, `/manifest.webmanifest`, `/robots.txt` y `/sitemap.xml` se generan como estáticas; el resto es dinámico. `/terminos` y `/privacidad` ya no existen en el mapa de rutas.
 
 ### Tests
 
@@ -801,9 +841,18 @@ Suites:
 npx eslint src
 ```
 
-Resultado: **0 errores, 20 warnings**.
+Resultado: **0 errores, 19 warnings**.
 
 Los warnings restantes son principalmente `<img>` en lugar de `next/image` y avisos menores de hooks/permisos.
+
+### PWA
+
+- `/manifest.webmanifest` → 200 con `Content-Type: application/manifest+json`; nombre, `standalone`, tema `#0d0e19` e iconos `192/512/maskable`.
+- `/sw.js` → 200 con `Cache-Control: max-age=0, must-revalidate` y `Service-Worker-Allowed: /`.
+- `/offline` → 200 sin sesión; también responde para staff (bypass previo a la validación de rol).
+- Chrome con perfil limpio: SW `activated`, scope `/`, precache de `/offline` + sus assets + manifest + iconos (23 entradas) y handshake `PING → PONG caimanera-v1`.
+- Servidor apagado tras una instalación limpia: `/mis-partidos` renderiza la página offline conservando la URL, con CSS y fuente Geist aplicados desde el precache; el caché no contiene HTML de rutas privadas.
+- CSP incluye `worker-src 'self'` y `manifest-src 'self'`.
 
 ### HTTP con sesión real
 
@@ -1001,6 +1050,8 @@ Regla: cada módulo tiene su propio read service; si dos necesitan los mismos se
 
 **Deuda menor antes de release:**
 
+- Validar la PWA en dispositivos reales: instalación en Android Chrome, “Añadir a pantalla de inicio” en iOS, Lighthouse y actualización del SW tras un despliegue.
+- Confirmar `NEXT_PUBLIC_SITE_URL=https://app.caimaneraapp.online` en el entorno de producción (HTTPS es requisito para instalar la PWA).
 - Completar la revisión visual pendiente a 375×812 en `/partidos`, `/canchas/[id]`, `/cuenta/pases` y `/cuenta/pagos`.
 - Confirmar `NEXT_PUBLIC_LANDING_URL` en el entorno de producción.
 - Decidir si `player` absorbe `/cuenta` (hoy el perfil es compartido con `/admin/perfil` desde `features/profile`).
@@ -1064,6 +1115,9 @@ Pendiente para una siguiente iteración: recuperación de contraseña y registro
 - **Piezas compartidas:** ya no hay acoplamientos en `discovery`. La tarjeta y el mapa públicos viven en `shared/components/matches`; `booking` y `location` tienen sus propios features. `profile` sigue siendo compartido entre `/cuenta` y `/admin/perfil`.
 - **Búsqueda en cliente:** `/partidos` descarga hasta 200 partidos próximos y filtra en el navegador. Si el catálogo crece, mover filtros y paginación al servidor.
 - **Ubicación persistida:** la búsqueda usa `lat`/`lng` de la URL y, si no existen, la última ubicación guardada en `localStorage`. Un enlace compartido sin `lat`/`lng` depende de la ubicación del visitante.
+- **PWA y caché:** el service worker **nunca** cachea HTML; solo assets inmutables, imágenes y `/offline`. Cualquier cambio en `public/sw.js` debe conservar esa regla para no filtrar datos entre sesiones. Subir `VERSION` invalida y limpia las cachés anteriores.
+- **Instalación PWA:** requiere HTTPS en producción (localhost es la excepción). El manifest, el SW y los iconos deben publicarse sin redirección a login; hoy el proxy los deja pasar por su extensión y por el bypass explícito de `/offline`.
+- **Offline parcial:** sin red solo hay shell estático y página offline; inscripciones, pagos y notificaciones SSE necesitan conexión. El mapa tampoco carga tiles sin red.
 
 ---
 
@@ -1091,6 +1145,9 @@ node prisma/seed --only=20260915095000_caimanera-demo-users
 node prisma/seed --only=20261025000000_caimanera-public-launch
 node prisma/seed --only=20260915104819_caimanera-demo-data
 node prisma/seed --only=20261027090000_caimanera-player-passes
+
+# PWA — regenerar iconos desde public/img/caimanera_icon.png
+pnpm pwa:icons
 
 # Base de datos
 pnpm prisma generate

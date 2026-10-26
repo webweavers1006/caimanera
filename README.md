@@ -37,7 +37,7 @@ pnpm seed
 pnpm dev
 ```
 
-La app queda en `http://localhost:3001`.
+La app queda en `http://localhost:4000`.
 
 ## Variables de entorno
 
@@ -165,9 +165,9 @@ Reglas clave:
 
 | Comando | Descripción |
 |---------|-------------|
-| `pnpm dev` | Servidor de desarrollo (3001) |
+| `pnpm dev` | Servidor de desarrollo (4000) |
 | `pnpm build` | Build de producción |
-| `pnpm start` | Servidor de producción (3001) |
+| `pnpm start` | Servidor de producción (4000) |
 | `pnpm lint` | ESLint |
 | `pnpm test` | Tests (Vitest) |
 | `pnpm seed` | Ejecuta seeders pendientes |

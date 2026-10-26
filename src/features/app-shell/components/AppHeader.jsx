@@ -35,7 +35,7 @@ export function AppHeader({ session = null }) {
     : LABELS.LOGIN;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 pt-[env(safe-area-inset-top)] backdrop-blur-xl">
       <div className="mx-auto flex h-14 w-full max-w-7xl items-center gap-3 px-4 sm:h-16">
         <Link href={ROUTES.PLAYER.HOME.path} className="flex items-center gap-2.5">
           <img src={SITE_CONFIG.logo} alt={SITE_CONFIG.name} className="size-8 rounded-xl sm:size-9" />
