@@ -60,8 +60,8 @@ export function VenueCard({ venue, distanceLabel = null, variant = "default", cl
         <p className="mt-1 inline-flex items-center gap-1 text-[10px] font-medium text-primary">
           <Trophy className="size-3" />
           {venue.upcomingMatches > 0
-            ? labels.VENUE.MATCHES(venue.upcomingMatches)
-            : labels.VENUE.NO_MATCHES}
+            ? labels.MATCHES(venue.upcomingMatches)
+            : labels.NO_MATCHES}
         </p>
       </div>
     </Link>
